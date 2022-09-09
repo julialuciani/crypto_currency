@@ -1,27 +1,23 @@
 import 'package:crypto/presenter/home_page/widgets/bottom_navigationbar.dart';
 import 'package:crypto/presenter/home_page/widgets/card_coin.dart';
+import 'package:crypto/presenter/home_page/widgets/visible.dart';
+import 'package:crypto/presenter/provider/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatefulHookConsumerWidget {
   const HomePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  bool visible = true;
-
-  void changeVisibility() {
-    setState(() {
-      visible = !visible;
-    });
-  }
-
+class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var visible = ref.watch(visibilityProvider.state);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -44,14 +40,17 @@ class _HomePageState extends State<HomePage> {
                       ),
                       IconButton(
                         onPressed: () {
-                          changeVisibility();
+                          setState(() {
+                            visible.state = !visible.state;
+                          });
                         },
-                        icon: Icon(
-                            visible ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(visible.state
+                            ? Icons.visibility
+                            : Icons.visibility_off),
                       ),
                     ],
                   ),
-                  visible
+                  visible.state
                       ? const Text(
                           'US\$ 1.0000,00',
                           style: TextStyle(
@@ -59,14 +58,7 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold,
                           ),
                         )
-                      : Container(
-                          width: 150,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                        ),
+                      : const ContainerVisible(),
                 ],
               ),
             ),
