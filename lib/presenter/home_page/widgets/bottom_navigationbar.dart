@@ -10,12 +10,6 @@ class BottomNavigationBarApp extends StatefulWidget {
 class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
   int selectedIndex = 0;
 
-  static const List<Widget> widgetsOptions = <Widget>[
-    Text('Index 0: Home'),
-    Text('Index 1: Carteiras'),
-    Text('Index 2: Movimentações'),
-  ];
-
   void onTappedIten(int index) {
     setState(() {
       selectedIndex = index;
@@ -30,13 +24,18 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
             icon: ImageIcon(
               AssetImage('assets/icons/icon_warren.png'),
             ),
-            label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Carteiras'),
+            label: 'Portifólio'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.settings_input_component), label: 'Movimentações'),
+            icon: ImageIcon(AssetImage('assets/icons/Union.png')),
+            label: 'Movimentações'),
       ],
       currentIndex: selectedIndex,
-      selectedItemColor: Colors.red,
+      selectedItemColor: const Color.fromARGB(
+        255,
+        224,
+        43,
+        87,
+      ),
       onTap: onTappedIten,
     );
   }

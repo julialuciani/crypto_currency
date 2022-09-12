@@ -1,6 +1,11 @@
-# crypto
+Finalização do card de listagem de cryptos
 
-Listagem de moedas, tela simples.
 
-<img width="204" alt="print" src="https://user-images.githubusercontent.com/113135536/189666501-940d0693-2724-405d-9977-7403c41486cc.png"><img width="203" alt="image" src="https://user-images.githubusercontent.com/113135536/189666677-748658ce-a6eb-444a-b927-f94aebea2df6.png">
+
+ <img width="214" alt="image" src="https://user-images.githubusercontent.com/113135536/189640005-65274ce8-44d4-4bc6-94f7-ac91da90c16f.png"> <img width="211" alt="image" src="https://user-images.githubusercontent.com/113135536/189644724-95416f00-1fa0-4255-9003-a9371f933d23.png">
+
+
+
+
+
 
