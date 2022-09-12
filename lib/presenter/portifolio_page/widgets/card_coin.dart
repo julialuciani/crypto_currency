@@ -1,4 +1,4 @@
-import 'package:crypto/presenter/home_page/widgets/visible.dart';
+import 'package:crypto/presenter/portifolio_page/widgets/visible.dart';
 import 'package:crypto/presenter/providers/visibility_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:crypto/presenter/home_page/widgets/visible.dart';
+import 'package:crypto/presenter/portifolio_page/widgets/visible.dart';
 import 'package:crypto/shared/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,7 +19,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperCardCrypto> {
     var visible = ref.watch(visibilityProvider.state);
     return Container(
       padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.only(top: 45, bottom: 5),
+      margin: const EdgeInsets.only(bottom: 5),
       height: 150,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
