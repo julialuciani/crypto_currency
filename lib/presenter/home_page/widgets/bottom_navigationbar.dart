@@ -27,7 +27,7 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
             ),
             label: 'Portifólio'),
         BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/icons/Union.png')),
+            icon: ImageIcon(AssetImage('assets/icons/cent.png')),
             label: 'Movimentações'),
       ],
       currentIndex: selectedIndex,

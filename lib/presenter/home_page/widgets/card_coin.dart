@@ -17,7 +17,7 @@ class CardCoin extends StatefulHookConsumerWidget {
     required this.abbreviation,
     required this.price,
     required this.variation,
-    this.iconImage = 'assets/icons/Union.png',
+    this.iconImage = 'assets/icons/cent.png',
   }) : super(key: key);
 
   @override
