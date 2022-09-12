@@ -1,16 +1,6 @@
 # crypto
 
-A new Flutter project.
+Listagem de moedas, tela simples.
 
-## Getting Started
+<img width="204" alt="print" src="https://user-images.githubusercontent.com/113135536/189666501-940d0693-2724-405d-9977-7403c41486cc.png"><img width="203" alt="image" src="https://user-images.githubusercontent.com/113135536/189666677-748658ce-a6eb-444a-b927-f94aebea2df6.png">
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
