@@ -10,11 +10,6 @@ class BottomNavigationBarApp extends StatefulWidget {
 class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
   int selectedIndex = 0;
 
-  static const List<Widget> widgetsOptions = <Widget>[
-    Text('Index 0: Portifólio'),
-    Text('Index 1: Movimentações'),
-  ];
-
   void onTappedIten(int index) {
     setState(() {
       selectedIndex = index;

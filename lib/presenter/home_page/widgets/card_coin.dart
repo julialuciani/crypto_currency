@@ -1,5 +1,5 @@
 import 'package:crypto/presenter/home_page/widgets/visible.dart';
-import 'package:crypto/presenter/provider/providers.dart';
+import 'package:crypto/presenter/providers/visibility_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +17,7 @@ class CardCoin extends StatefulHookConsumerWidget {
     required this.abbreviation,
     required this.price,
     required this.variation,
-    this.iconImage = 'assets/icons/bitcoin.png',
+    this.iconImage = 'assets/icons/Union.png',
   }) : super(key: key);
 
   @override
@@ -68,7 +68,7 @@ class _CardCoinState extends ConsumerState<CardCoin> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               visible.state
-                  ? Row(
+                  ? Column(
                       children: [
                         Text(
                           NumberFormat.simpleCurrency(

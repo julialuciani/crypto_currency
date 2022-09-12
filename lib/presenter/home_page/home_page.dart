@@ -2,7 +2,7 @@ import 'package:crypto/presenter/home_page/widgets/bottom_navigationbar.dart';
 import 'package:crypto/presenter/home_page/widgets/card_coin.dart';
 import 'package:crypto/presenter/home_page/widgets/divider_app.dart';
 import 'package:crypto/presenter/home_page/widgets/visible.dart';
-import 'package:crypto/presenter/provider/providers.dart';
+import 'package:crypto/presenter/providers/visibility_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -27,6 +27,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             Container(
               padding: const EdgeInsets.all(20),
               margin: const EdgeInsets.only(top: 45, bottom: 5),
+              height: 150,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -72,27 +73,27 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
             ),
             const DividerApp(),
-            CardCoin(
+            const CardCoin(
               abbreviation: 'BTC',
               name: 'Bitcoin',
               price: 6557.00,
-              variation: double.parse('0.65'),
+              variation: 0.65,
               iconImage: 'assets/icons/bitecoin.png',
             ),
             const DividerApp(),
-            CardCoin(
+            const CardCoin(
               abbreviation: 'ETH',
               name: 'Ethereum',
               price: 7996.00,
-              variation: double.parse('0.94'),
+              variation: 0.94,
               iconImage: 'assets/icons/ethereum.png',
             ),
             const DividerApp(),
-            CardCoin(
+            const CardCoin(
               abbreviation: 'LTC',
               name: 'Litecoin',
               price: 245.00,
-              variation: double.parse('0.82'),
+              variation: 0.82,
               iconImage: 'assets/icons/litecoin.png',
             ),
           ],
