@@ -64,24 +64,18 @@ class _CardCoinState extends ConsumerState<CardCoin> {
             ],
           ),
           const Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              visible.state
-                  ? Column(
-                      children: [
-                        Text(
-                          NumberFormat.simpleCurrency(
-                                  locale: 'pt-BR', decimalDigits: 2)
-                              .format(widget.price),
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    )
-                  : const ContainerVisible(),
-              const SizedBox(height: 8),
-              visible.state
-                  ? Row(
+          visible.state
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      NumberFormat.simpleCurrency(
+                              locale: 'pt-BR', decimalDigits: 2)
+                          .format(widget.price),
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
                       children: [
                         Text(
                           widget.variation.toString(),
@@ -99,9 +93,15 @@ class _CardCoinState extends ConsumerState<CardCoin> {
                         ),
                       ],
                     )
-                  : const ContainerVisible(),
-            ],
-          ),
+                  ],
+                )
+              : Column(
+                  children: const [
+                    ContainerVisible(),
+                    SizedBox(height: 8),
+                    ContainerVisible(),
+                  ],
+                ),
           const SizedBox(width: 10),
           Icon(
             Icons.arrow_forward_ios,
