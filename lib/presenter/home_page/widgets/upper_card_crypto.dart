@@ -33,6 +33,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperCardCrypto> {
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                   color: magenta,
+                  fontFamily: 'Montserrat',
                 ),
               ),
               IconButton(
@@ -52,7 +53,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperCardCrypto> {
                       .format(14798.00),
                   style: const TextStyle(
                     fontSize: 29,
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
                   ),
                 )
               : const ContainerVisible(),
