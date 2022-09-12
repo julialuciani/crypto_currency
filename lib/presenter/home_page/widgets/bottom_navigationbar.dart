@@ -1,3 +1,4 @@
+import 'package:crypto/shared/colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
@@ -30,12 +31,7 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
             label: 'Movimentações'),
       ],
       currentIndex: selectedIndex,
-      selectedItemColor: const Color.fromARGB(
-        255,
-        224,
-        43,
-        87,
-      ),
+      selectedItemColor: magenta,
       onTap: onTappedIten,
     );
   }

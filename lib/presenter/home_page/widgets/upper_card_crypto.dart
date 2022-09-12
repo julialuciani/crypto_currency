@@ -1,4 +1,5 @@
 import 'package:crypto/presenter/home_page/widgets/visible.dart';
+import 'package:crypto/shared/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -29,9 +30,10 @@ class _UpperCardCryptoState extends ConsumerState<UpperCardCrypto> {
               const Text(
                 'Cripto',
                 style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(224, 43, 87, 1)),
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  color: magenta,
+                ),
               ),
               IconButton(
                 onPressed: () {
