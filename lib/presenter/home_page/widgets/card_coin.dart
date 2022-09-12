@@ -2,18 +2,22 @@ import 'package:crypto/presenter/home_page/widgets/visible.dart';
 import 'package:crypto/presenter/provider/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class CardCoin extends StatefulHookConsumerWidget {
   final String name;
   final String abbreviation;
   final double price;
   final double variation;
+  final String iconImage;
+
   const CardCoin({
     Key? key,
     required this.name,
     required this.abbreviation,
     required this.price,
     required this.variation,
+    this.iconImage = 'assets/icons/bitcoin.png',
   }) : super(key: key);
 
   @override
@@ -29,35 +33,20 @@ class _CardCoinState extends ConsumerState<CardCoin> {
     });
   }
 
-  Color colorPicker(double percentage) {
-    if (percentage > 1) {
-      return const Color.fromRGBO(160, 244, 224, 1);
-    } else {
-      return const Color.fromRGBO(247, 161, 161, 1);
-    }
-  }
-
-  String addingSignals(double percentage) {
-    if (percentage > 1) {
-      return '+$percentage%';
-    } else {
-      return '-$percentage%';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 5),
-      padding: const EdgeInsets.all(26),
+      padding: const EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 30,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
+            backgroundImage: AssetImage(widget.iconImage),
           ),
           const SizedBox(width: 10),
           Column(
@@ -79,32 +68,46 @@ class _CardCoinState extends ConsumerState<CardCoin> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               visible.state
-                  ? Text(
-                      widget.price.toString(),
-                      style: const TextStyle(fontSize: 18),
+                  ? Row(
+                      children: [
+                        Text(
+                          NumberFormat.simpleCurrency(
+                                  locale: 'pt-BR', decimalDigits: 2)
+                              .format(widget.price),
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ],
                     )
                   : const ContainerVisible(),
               const SizedBox(height: 8),
               visible.state
-                  ? Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: colorPicker(
-                            double.parse((widget.variation).toString())),
-                      ),
-                      child: Text(
-                        addingSignals(
-                            double.parse((widget.variation).toString())),
-                        style: const TextStyle(
-                          fontSize: 14,
+                  ? Row(
+                      children: [
+                        Text(
+                          widget.variation.toString(),
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 5),
+                        Text(
+                          widget.abbreviation,
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     )
                   : const ContainerVisible(),
             ],
           ),
+          const SizedBox(width: 10),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.grey.shade500,
+            size: 16,
+          )
         ],
       ),
     );

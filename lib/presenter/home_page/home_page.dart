@@ -1,9 +1,11 @@
 import 'package:crypto/presenter/home_page/widgets/bottom_navigationbar.dart';
 import 'package:crypto/presenter/home_page/widgets/card_coin.dart';
+import 'package:crypto/presenter/home_page/widgets/divider_app.dart';
 import 'package:crypto/presenter/home_page/widgets/visible.dart';
 import 'package:crypto/presenter/provider/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulHookConsumerWidget {
   const HomePage({
@@ -23,8 +25,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(30),
-              margin: const EdgeInsets.only(top: 35, bottom: 30),
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.only(top: 45, bottom: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -32,11 +34,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        'Carteira',
+                        'Cripto',
                         style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(224, 43, 87, 1)),
                       ),
                       IconButton(
                         onPressed: () {
@@ -51,46 +53,47 @@ class _HomePageState extends ConsumerState<HomePage> {
                     ],
                   ),
                   visible.state
-                      ? const Text(
-                          'US\$ 1.0000,00',
-                          style: TextStyle(
-                            fontSize: 28,
+                      ? Text(
+                          NumberFormat.simpleCurrency(
+                                  locale: 'pt-BR', decimalDigits: 2)
+                              .format(14798.00),
+                          style: const TextStyle(
+                            fontSize: 29,
                             fontWeight: FontWeight.bold,
                           ),
                         )
                       : const ContainerVisible(),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Valor total de moedas',
+                    style: TextStyle(color: Colors.grey.shade600, fontSize: 15),
+                  ),
                 ],
               ),
             ),
-            const Divider(
-              height: 1,
-              thickness: 2,
-            ),
-            CardCoin(
-              abbreviation: 'ETH',
-              name: 'Ethereum',
-              price: 0.00,
-              variation: double.parse('75'),
-            ),
-            const Divider(
-              height: 1,
-              thickness: 2,
-            ),
+            const DividerApp(),
             CardCoin(
               abbreviation: 'BTC',
               name: 'Bitcoin',
-              price: 1000.00,
-              variation: double.parse('75'),
+              price: 6557.00,
+              variation: double.parse('0.65'),
+              iconImage: 'assets/icons/bitecoin.png',
             ),
-            const Divider(
-              height: 1,
-              thickness: 2,
+            const DividerApp(),
+            CardCoin(
+              abbreviation: 'ETH',
+              name: 'Ethereum',
+              price: 7996.00,
+              variation: double.parse('0.94'),
+              iconImage: 'assets/icons/ethereum.png',
             ),
+            const DividerApp(),
             CardCoin(
               abbreviation: 'LTC',
               name: 'Litecoin',
-              price: 0.00,
-              variation: double.parse('0.7'),
+              price: 245.00,
+              variation: double.parse('0.82'),
+              iconImage: 'assets/icons/litecoin.png',
             ),
           ],
         ),
