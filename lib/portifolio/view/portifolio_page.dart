@@ -1,8 +1,9 @@
 import 'package:crypto/shared/utils/providers/crypto_provider.dart';
-import 'package:crypto/portifolio/widgets/card_coin.dart';
 import 'package:crypto/portifolio/widgets/upper_container_crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../widgets/listview_crypto.dart';
 
 class PortifolioPage extends StatefulHookConsumerWidget {
   const PortifolioPage({Key? key}) : super(key: key);
@@ -24,23 +25,7 @@ class _PortifolioPageState extends ConsumerState<PortifolioPage> {
               thickness: 1,
               height: 0.5,
             ),
-            Expanded(
-              child: ListView.separated(
-                physics: const ClampingScrollPhysics(),
-                itemCount: cryptos.length,
-                separatorBuilder: (context, index) =>
-                    const Divider(thickness: 1),
-                itemBuilder: (context, index) {
-                  return ContainerCoin(
-                    name: cryptos[index].name,
-                    abbreviation: cryptos[index].abbreviation,
-                    price: cryptos[index].quantity,
-                    variation: cryptos[index].variation,
-                    iconImage: cryptos[index].iconImage,
-                  );
-                },
-              ),
-            ),
+            ListViewCryptos(cryptos: cryptos),
           ],
         ),
       ),

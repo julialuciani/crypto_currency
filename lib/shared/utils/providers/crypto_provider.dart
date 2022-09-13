@@ -1,7 +1,7 @@
 import 'package:decimal/decimal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../model/crypto_model.dart';
+import '../../models/crypto_model.dart';
 
 final cryptosListProvider = Provider(
   (ref) => [

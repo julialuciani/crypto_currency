@@ -1,32 +1,25 @@
-import 'package:crypto/portifolio/widgets/visible.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:crypto/portifolio/widgets/visible.dart';
+import 'package:crypto/shared/models/crypto_model.dart';
+
 import '../../shared/utils/providers/visibility_provider.dart';
 
 class ContainerCoin extends StatefulHookConsumerWidget {
-  final String name;
-  final String abbreviation;
-  final Decimal price;
-  final Decimal variation;
-  final String iconImage;
+  final CryptoModel crypto;
 
   const ContainerCoin({
     Key? key,
-    required this.name,
-    required this.abbreviation,
-    required this.price,
-    required this.variation,
-    required this.iconImage,
+    required this.crypto,
   }) : super(key: key);
 
   @override
-  ConsumerState<ContainerCoin> createState() => _CardCoinState();
+  ConsumerState<ContainerCoin> createState() => _ContainerCoinState();
 }
 
-class _CardCoinState extends ConsumerState<ContainerCoin> {
+class _ContainerCoinState extends ConsumerState<ContainerCoin> {
   bool visible = true;
 
   void changeVisibility() {
@@ -48,19 +41,19 @@ class _CardCoinState extends ConsumerState<ContainerCoin> {
           CircleAvatar(
             radius: 30,
             backgroundColor: Colors.white,
-            backgroundImage: AssetImage(widget.iconImage),
+            backgroundImage: AssetImage(widget.crypto.iconImage),
           ),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.abbreviation,
+                widget.crypto.abbreviation,
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 8),
               Text(
-                widget.name,
+                widget.crypto.name,
                 style: TextStyle(color: Colors.grey.shade600, fontSize: 15),
               ),
             ],
@@ -73,21 +66,22 @@ class _CardCoinState extends ConsumerState<ContainerCoin> {
                     Text(
                       NumberFormat.simpleCurrency(
                               locale: 'pt-BR', decimalDigits: 2)
-                          .format(double.parse(widget.price.toString())),
+                          .format(
+                              double.parse(widget.crypto.quantity.toString())),
                       style: const TextStyle(fontSize: 20),
                     ),
                     const SizedBox(height: 8),
                     Row(
                       children: [
                         Text(
-                          widget.variation.toString(),
+                          widget.crypto.variation.toString(),
                           style: TextStyle(
                             color: Colors.grey.shade600,
                           ),
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          widget.abbreviation,
+                          widget.crypto.abbreviation,
                           style: TextStyle(
                             color: Colors.grey.shade600,
                             fontSize: 15,
