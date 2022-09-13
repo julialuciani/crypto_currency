@@ -1,8 +1,9 @@
-import 'package:crypto/presenter/movements/movements_page.dart';
-import 'package:crypto/presenter/portifolio_page/portifolio_page.dart';
+import 'package:crypto/movements/view/movements_page.dart';
+import 'package:crypto/portifolio/view/portifolio_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../shared/colors.dart';
+import '../shared/utils/colors.dart';
+import '../shared/utils/design_system/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

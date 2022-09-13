@@ -1,26 +1,25 @@
-import 'package:crypto/presenter/portifolio_page/widgets/visible.dart';
-import 'package:crypto/shared/colors.dart';
+import 'package:crypto/portifolio/widgets/visible.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../providers/visibility_provider.dart';
+import '../../shared/utils/design_system/colors.dart';
+import '../../shared/utils/providers/visibility_provider.dart';
 
-class UpperCardCrypto extends StatefulHookConsumerWidget {
-  const UpperCardCrypto({super.key});
+class UpperContainerCrypto extends StatefulHookConsumerWidget {
+  const UpperContainerCrypto({super.key});
 
   @override
-  ConsumerState<UpperCardCrypto> createState() => _UpperCardCryptoState();
+  ConsumerState<UpperContainerCrypto> createState() => _UpperCardCryptoState();
 }
 
-class _UpperCardCryptoState extends ConsumerState<UpperCardCrypto> {
+class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
     return Container(
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.only(bottom: 5),
-      height: 150,
+      padding: const EdgeInsets.all(25),
+      margin: const EdgeInsets.only(bottom: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

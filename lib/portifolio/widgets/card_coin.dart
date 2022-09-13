@@ -1,30 +1,32 @@
-import 'package:crypto/presenter/portifolio_page/widgets/visible.dart';
-import 'package:crypto/presenter/providers/visibility_provider.dart';
+import 'package:crypto/portifolio/widgets/visible.dart';
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class CardCoin extends StatefulHookConsumerWidget {
+import '../../shared/utils/providers/visibility_provider.dart';
+
+class ContainerCoin extends StatefulHookConsumerWidget {
   final String name;
   final String abbreviation;
-  final double price;
-  final double variation;
+  final Decimal price;
+  final Decimal variation;
   final String iconImage;
 
-  const CardCoin({
+  const ContainerCoin({
     Key? key,
     required this.name,
     required this.abbreviation,
     required this.price,
     required this.variation,
-    this.iconImage = 'assets/icons/cent.png',
+    required this.iconImage,
   }) : super(key: key);
 
   @override
-  ConsumerState<CardCoin> createState() => _CardCoinState();
+  ConsumerState<ContainerCoin> createState() => _CardCoinState();
 }
 
-class _CardCoinState extends ConsumerState<CardCoin> {
+class _CardCoinState extends ConsumerState<ContainerCoin> {
   bool visible = true;
 
   void changeVisibility() {
@@ -71,7 +73,7 @@ class _CardCoinState extends ConsumerState<CardCoin> {
                     Text(
                       NumberFormat.simpleCurrency(
                               locale: 'pt-BR', decimalDigits: 2)
-                          .format(widget.price),
+                          .format(double.parse(widget.price.toString())),
                       style: const TextStyle(fontSize: 20),
                     ),
                     const SizedBox(height: 8),
