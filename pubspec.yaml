@@ -40,6 +40,7 @@ dependencies:
   currency_formatter: ^1.2.1
   intl: ^0.17.0
   decimal: ^2.3.0
+  fl_chart: ^0.55.1
  
 
 dev_dependencies:
