@@ -1,4 +1,5 @@
 import 'package:crypto/details/view/details_page.dart';
+import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -35,6 +36,7 @@ class _ContainerCoinState extends ConsumerState<ContainerCoin> {
 
     return InkWell(
       onTap: () {
+        ref.watch(oneCryptoProvider.state).state = widget.crypto;
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const DetailsPage(),
@@ -76,24 +78,16 @@ class _ContainerCoinState extends ConsumerState<ContainerCoin> {
                         NumberFormat.simpleCurrency(
                                 locale: 'pt-BR', decimalDigits: 2)
                             .format(double.parse(
-                                widget.crypto.quantity.toString())),
+                                widget.crypto.howMuchUserHave.toString())),
                         style: const TextStyle(fontSize: 20),
                       ),
                       const SizedBox(height: 8),
                       Row(
                         children: [
                           Text(
-                            widget.crypto.variation.toString(),
+                            '${widget.crypto.quantity.toStringAsFixed(2)} ${widget.crypto.abbreviation}',
                             style: TextStyle(
                               color: Colors.grey.shade600,
-                            ),
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            widget.crypto.abbreviation,
-                            style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontSize: 15,
                             ),
                           ),
                         ],
