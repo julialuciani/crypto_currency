@@ -1,4 +1,4 @@
-import 'package:crypto/presenter/home_page/home_page.dart';
+import 'package:crypto/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Crypto',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
