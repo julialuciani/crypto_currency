@@ -11,6 +11,7 @@ class CryptoModel {
   double variation;
   Decimal currentPrice;
   String iconImage;
+  List<Decimal> priceInOne;
   List<Decimal> priceInNinety;
 
   CryptoModel({
@@ -22,6 +23,7 @@ class CryptoModel {
     required this.variation,
     required this.currentPrice,
     required this.iconImage,
+    required this.priceInOne,
     required this.priceInNinety,
   });
 }

@@ -4,20 +4,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../shared/utils/providers/one_crypto_provider.dart';
 
-class ButtonChart extends StatefulHookConsumerWidget {
+class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
   final String title;
-  const ButtonChart({
+  const ChartButton({
     Key? key,
     required this.title,
     required this.daysButton,
   }) : super(key: key);
 
   @override
-  ConsumerState<ButtonChart> createState() => _ButtonChartState();
+  ConsumerState<ChartButton> createState() => _ButtonChartState();
 }
 
-class _ButtonChartState extends ConsumerState<ButtonChart> {
+class _ButtonChartState extends ConsumerState<ChartButton> {
   @override
   Widget build(BuildContext context) {
     var days = ref.watch(daysProvider.state);
@@ -36,9 +36,13 @@ class _ButtonChartState extends ConsumerState<ButtonChart> {
         setState(
           () {
             days.state = widget.daysButton;
-            oneCrypto.state.variation = ref
-                .read(oneCryptoProvider.notifier)
-                .variationInDays(widget.daysButton, oneCrypto.state);
+            days.state > 1
+                ? oneCrypto.state.variation = ref
+                    .read(oneCryptoProvider.notifier)
+                    .variationInDays(widget.daysButton, oneCrypto.state)
+                : oneCrypto.state.variation = ref
+                    .read(oneCryptoProvider.notifier)
+                    .variationInOneDay(oneCrypto.state);
             debugPrint(oneCrypto.state.variation.toString());
             changeButtonColor();
           },

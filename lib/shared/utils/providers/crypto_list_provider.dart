@@ -14,9 +14,17 @@ final cryptosListProvider = Provider(
       variation: 0.50,
       iconImage: 'assets/icons/bitecoin.png',
       currentPrice: Decimal.parse('100754'),
+      priceInOne: [
+        Decimal.parse('19800'),
+        Decimal.parse('19899'),
+        Decimal.parse('20000'),
+        Decimal.parse('19900'),
+        Decimal.parse('20000.50'),
+        Decimal.parse('20000.49'),
+      ],
       priceInNinety: [
         Decimal.parse('3000'),
-        Decimal.parse('5000'),
+        Decimal.parse('3000.50'),
         Decimal.parse('10000'),
         Decimal.parse('100'),
         Decimal.parse('20000'),
@@ -116,6 +124,14 @@ final cryptosListProvider = Provider(
       variation: 1.41,
       iconImage: 'assets/icons/ethereum.png',
       currentPrice: Decimal.parse('8248.29'),
+      priceInOne: [
+        Decimal.parse('19800'),
+        Decimal.parse('19899'),
+        Decimal.parse('20000'),
+        Decimal.parse('19900'),
+        Decimal.parse('20000.50'),
+        Decimal.parse('20000.49'),
+      ],
       priceInNinety: [
         Decimal.parse('1940'),
         Decimal.parse('305'),
@@ -218,6 +234,14 @@ final cryptosListProvider = Provider(
       variation: 1.77,
       iconImage: 'assets/icons/litecoin.png',
       currentPrice: Decimal.parse('306.98'),
+      priceInOne: [
+        Decimal.parse('19800'),
+        Decimal.parse('19899'),
+        Decimal.parse('20000'),
+        Decimal.parse('19900'),
+        Decimal.parse('20000.50'),
+        Decimal.parse('20000.49'),
+      ],
       priceInNinety: [
         Decimal.parse('26600'),
         Decimal.parse('90'),

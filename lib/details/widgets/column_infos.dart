@@ -1,4 +1,5 @@
 import 'package:crypto/details/widgets/row_infos.dart';
+import 'package:crypto/shared/utils/providers/days_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +12,7 @@ class ColumnInfos extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var cryptoModel = ref.watch(oneCryptoProvider.notifier).state;
+    var days = ref.watch(daysProvider);
 
     return Column(
       children: [
@@ -23,7 +25,7 @@ class ColumnInfos extends HookConsumerWidget {
         ),
         const Divider(thickness: 1),
         RowInfos(
-          title: 'Variação 24H',
+          title: days > 1 ? 'Variação ${days}D' : 'Variação 24H',
           number:
               '${cryptoModel.variation > 0 ? '+' : ''}${cryptoModel.variation.toStringAsFixed(2)}%',
           color: cryptoModel.variation > 0 ? Colors.green : Colors.red,

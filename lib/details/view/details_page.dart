@@ -37,7 +37,9 @@ class _DetailsPageState extends ConsumerState<DetailsPage> {
       appBar: AppBar(
         toolbarHeight: 60,
         elevation: 0.5,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
         backgroundColor: const Color.fromARGB(255, 245, 246, 250),
         title: const Text(
           'Detalhes',
@@ -94,30 +96,34 @@ class _DetailsPageState extends ConsumerState<DetailsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
-                ButtonChart(
+                ChartButton(
+                  title: '1D',
+                  daysButton: 1,
+                ),
+                ChartButton(
                   title: '5D',
                   daysButton: 5,
                 ),
-                ButtonChart(
+                ChartButton(
                   title: '15D',
                   daysButton: 15,
                 ),
-                ButtonChart(
+                ChartButton(
                   title: '30D',
                   daysButton: 30,
                 ),
-                ButtonChart(
+                ChartButton(
                   title: '45D',
                   daysButton: 45,
                 ),
-                ButtonChart(
+                ChartButton(
                   title: '90D',
                   daysButton: 90,
                 ),
               ],
             ),
             const Divider(thickness: 1),
-            ColumnInfos(),
+            const ColumnInfos(),
             const SizedBox(height: 10),
             const ButtonDefaultApp(
               action: ConversionPage(),

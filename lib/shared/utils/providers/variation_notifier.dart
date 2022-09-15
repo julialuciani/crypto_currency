@@ -14,6 +14,7 @@ class VariationNotifier extends StateNotifier<CryptoModel> {
             variation: 2,
             currentPrice: Decimal.parse('0'),
             iconImage: 'assets/icons/bitecoin.png',
+            priceInOne: [Decimal.parse('700')],
             priceInNinety: [Decimal.parse('500')],
           ),
         );
@@ -21,6 +22,15 @@ class VariationNotifier extends StateNotifier<CryptoModel> {
   double variationInDays(int days, CryptoModel cryptoModel) {
     cryptoModel.variation = (cryptoModel.priceInNinety.first.toDouble() /
                 cryptoModel.priceInNinety[days - 1].toDouble() -
+            1) *
+        100;
+    return cryptoModel.variation;
+  }
+
+  double variationInOneDay(CryptoModel cryptoModel) {
+    int days = cryptoModel.priceInOne.length;
+    cryptoModel.variation = (cryptoModel.priceInOne.first.toDouble() /
+                cryptoModel.priceInOne[days - 1].toDouble() -
             1) *
         100;
     return cryptoModel.variation;
