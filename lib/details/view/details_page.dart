@@ -25,10 +25,20 @@ class _DetailsPageState extends ConsumerState<DetailsPage> {
 
     List<FlSpot> generateFlSpot() {
       List<FlSpot> listDays = [];
-      for (int day = 0; day < days.state; day++) {
-        listDays.add(
-          FlSpot(day.toDouble(), oneCrypto.state.priceInNinety[day].toDouble()),
-        );
+      if (days.state > 1) {
+        for (int day = 0; day < days.state; day++) {
+          listDays.add(
+            FlSpot(
+                day.toDouble(), oneCrypto.state.priceInNinety[day].toDouble()),
+          );
+        }
+      } else if (days.state == 1) {
+        for (int day = 0; day < days.state; day++) {
+          listDays.add(
+            FlSpot(day.toDouble(), oneCrypto.state.priceInOne[day].toDouble()),
+          );
+        }
+        debugPrint(listDays.toString());
       }
       return listDays;
     }
@@ -97,8 +107,8 @@ class _DetailsPageState extends ConsumerState<DetailsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
                 ChartButton(
-                  title: '1D',
-                  daysButton: 1,
+                  title: '24H',
+                  daysButton: 24,
                 ),
                 ChartButton(
                   title: '5D',
