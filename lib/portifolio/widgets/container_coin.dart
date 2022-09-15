@@ -33,10 +33,11 @@ class _ContainerCoinState extends ConsumerState<ContainerCoin> {
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
+    var oneCrypto = ref.watch(oneCryptoProvider.notifier);
 
     return InkWell(
       onTap: () {
-        ref.watch(oneCryptoProvider.state).state = widget.crypto;
+        oneCrypto.state = widget.crypto;
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const DetailsPage(),

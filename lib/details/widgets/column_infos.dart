@@ -1,46 +1,44 @@
 import 'package:crypto/details/widgets/row_infos.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../shared/models/crypto_model.dart';
+import '../../shared/utils/providers/one_crypto_provider.dart';
 
-class ColumnInfos extends StatelessWidget {
-  const ColumnInfos({
-    Key? key,
-    required this.oneCrypto,
-  }) : super(key: key);
-
-  final CryptoModel oneCrypto;
+class ColumnInfos extends HookConsumerWidget {
+  const ColumnInfos({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var cryptoModel = ref.watch(oneCryptoProvider.notifier).state;
+
     return Column(
       children: [
         RowInfos(
           title: 'Preço atual',
           number: NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
               .format(
-            double.parse(oneCrypto.currentPrice.toString()),
+            double.parse(cryptoModel.priceInNinety.first.toString()),
           ),
         ),
         const Divider(thickness: 1),
         RowInfos(
           title: 'Variação 24H',
           number:
-              '${oneCrypto.variation > 0 ? '+' : ''}${oneCrypto.variation.toStringAsFixed(2)}%',
-          color: oneCrypto.variation > 0 ? Colors.green : Colors.red,
+              '${cryptoModel.variation > 0 ? '+' : ''}${cryptoModel.variation.toStringAsFixed(2)}%',
+          color: cryptoModel.variation > 0 ? Colors.green : Colors.red,
           isVariation: true,
         ),
         const Divider(thickness: 1),
         RowInfos(
           title: 'Quantidade',
-          number: '${oneCrypto.quantity} ${oneCrypto.abbreviation}',
+          number: '${cryptoModel.quantity} ${cryptoModel.abbreviation}',
         ),
         const Divider(thickness: 1),
         RowInfos(
           title: 'Valor',
           number: NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
-              .format(double.parse(oneCrypto.howMuchUserHave.toString())),
+              .format(double.parse(cryptoModel.howMuchUserHave.toString())),
         ),
       ],
     );

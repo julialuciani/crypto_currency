@@ -10,14 +10,10 @@ class MovementsPage extends StatefulWidget {
 class _MovementsPageState extends State<MovementsPage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
-        body: Column(
-          children: const [
-            Text(
-              'olaaaaa',
-            )
-          ],
+        body: Center(
+          child: Text('soon'),
         ),
       ),
     );

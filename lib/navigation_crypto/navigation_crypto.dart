@@ -12,15 +12,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  late PageController pageController;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    PortifolioPage(),
-    MovementsPage(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: _selectedIndex);
+  }
 
-  void _onItemTapped(int index) {
+  void changePage(int value) {
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = value;
     });
   }
 
@@ -28,7 +30,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: PageView(
+        onPageChanged: changePage,
+        controller: pageController,
+        children: const [
+          PortifolioPage(),
+          MovementsPage(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -42,7 +51,11 @@ class _HomePageState extends State<HomePage> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: magenta,
-        onTap: _onItemTapped,
+        onTap: (page) {
+          pageController.animateToPage(page,
+              duration: const Duration(milliseconds: 100),
+              curve: Curves.easeIn);
+        },
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:crypto/conversion/view/conversion_page.dart';
 import 'package:crypto/details/widgets/button_chart.dart';
 import 'package:crypto/shared/utils/providers/days_provider.dart';
 import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
@@ -10,30 +11,25 @@ import '../widgets/column_infos.dart';
 import '../widgets/upper_column_crypto.dart';
 
 class DetailsPage extends StatefulHookConsumerWidget {
-  const DetailsPage({
-    Key? key,
-  }) : super(key: key);
+  const DetailsPage({Key? key}) : super(key: key);
 
   @override
   ConsumerState<DetailsPage> createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends ConsumerState<DetailsPage> {
-  late int days;
-
   @override
   Widget build(BuildContext context) {
-    var oneCrypto = ref.watch(oneCryptoProvider.state).state;
-    days = ref.watch(daysProvider.state).state;
+    var oneCrypto = ref.watch(oneCryptoProvider.notifier);
+    var days = ref.watch(daysProvider.state);
 
     List<FlSpot> generateFlSpot() {
       List<FlSpot> listDays = [];
-      for (int day = 0; day < days; day++) {
+      for (int day = 0; day < days.state; day++) {
         listDays.add(
-          FlSpot(day.toDouble(), oneCrypto.priceInNinety[day].toDouble()),
+          FlSpot(day.toDouble(), oneCrypto.state.priceInNinety[day].toDouble()),
         );
       }
-
       return listDays;
     }
 
@@ -95,7 +91,6 @@ class _DetailsPageState extends ConsumerState<DetailsPage> {
                 ),
               ),
             ),
-            //const SizedBox(height: 150),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
@@ -122,9 +117,11 @@ class _DetailsPageState extends ConsumerState<DetailsPage> {
               ],
             ),
             const Divider(thickness: 1),
-            ColumnInfos(oneCrypto: oneCrypto),
+            ColumnInfos(),
             const SizedBox(height: 10),
-            const ButtonDefaultApp(),
+            const ButtonDefaultApp(
+              action: ConversionPage(),
+            ),
           ],
         ),
       ),

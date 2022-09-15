@@ -5,11 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
 
 class UpperColumnCrypto extends StatefulHookConsumerWidget {
-  //final CryptoModel crypto;
-  const UpperColumnCrypto({
-    Key? key,
-    // required this.crypto,
-  }) : super(key: key);
+  const UpperColumnCrypto({Key? key}) : super(key: key);
 
   @override
   ConsumerState<UpperColumnCrypto> createState() => _UpperColumnCryptoState();
@@ -18,7 +14,7 @@ class UpperColumnCrypto extends StatefulHookConsumerWidget {
 class _UpperColumnCryptoState extends ConsumerState<UpperColumnCrypto> {
   @override
   Widget build(BuildContext context) {
-    var oneCrypto = ref.watch(oneCryptoProvider.state).state;
+    var oneCrypto = ref.watch(oneCryptoProvider.notifier).state;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -53,7 +49,7 @@ class _UpperColumnCryptoState extends ConsumerState<UpperColumnCrypto> {
           Text(
             NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
                 .format(
-              double.parse(oneCrypto.currentPrice.toString()),
+              double.parse(oneCrypto.priceInNinety.first.toString()),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
