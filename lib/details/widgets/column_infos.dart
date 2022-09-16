@@ -25,7 +25,7 @@ class ColumnInfos extends HookConsumerWidget {
         ),
         const Divider(thickness: 1),
         RowInfos(
-          title: days != 24 ? 'Variação ${days}D' : 'Variação 24H',
+          title: 'Variação ${days}D',
           number:
               '${cryptoModel.variation > 0 ? '+' : ''}${cryptoModel.variation.toStringAsFixed(2)}%',
           color: cryptoModel.variation > 0 ? Colors.green : Colors.red,

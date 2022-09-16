@@ -38,11 +38,11 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
         setState(
           () {
             days.state = widget.daysButton;
+            changeButtonColor();
             ref
                 .read(variationProvider.notifier)
                 .variationInDays(widget.daysButton, oneCrypto);
             oneCrypto.variation = ref.read(variationProvider.notifier).state;
-            changeButtonColor();
           },
         );
       },

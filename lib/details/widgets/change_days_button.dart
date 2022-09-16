@@ -10,7 +10,7 @@ class ChangeDaysButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: const [
         ChartButton(
-          title: '24H',
+          title: '1D',
           daysButton: 1,
         ),
         ChartButton(

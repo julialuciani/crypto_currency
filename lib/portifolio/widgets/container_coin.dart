@@ -25,11 +25,12 @@ class ContainerCoin extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var visible = ref.watch(visibilityProvider.state);
-    var days = ref.watch(daysProvider.state);
+    var oneCrypto = ref.watch(oneCryptoProvider.notifier).state;
 
     return InkWell(
       onTap: () {
         crypto.variation = updateDayVariation();
+        ref.read(daysProvider.state).state = 1;
         ref.read(oneCryptoProvider.notifier).changeDetailsCrypto(crypto);
         ref.read(variationProvider.notifier).state = crypto.variation;
         Navigator.pushNamed(context, '/details');

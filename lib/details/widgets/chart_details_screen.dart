@@ -7,9 +7,7 @@ import '../../shared/utils/providers/days_provider.dart';
 import '../../shared/utils/providers/one_crypto_provider.dart';
 
 class ChartDetailsScreen extends StatefulHookConsumerWidget {
-  const ChartDetailsScreen({
-    Key? key,
-  }) : super(key: key);
+  const ChartDetailsScreen({Key? key}) : super(key: key);
 
   @override
   ConsumerState<ChartDetailsScreen> createState() => _ChartDetailsScreenState();
