@@ -1,6 +1,6 @@
+import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import 'package:crypto/details/controller/one_crypto_provider.dart';
 
@@ -42,10 +42,7 @@ class UpperColumnCrypto extends HookConsumerWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
-                .format(
-              double.parse(oneCrypto.priceInNinety.first.toString()),
-            ),
+            FormatCurrency.format(oneCrypto.priceInNinety.first),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 35,

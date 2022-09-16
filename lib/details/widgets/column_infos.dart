@@ -1,8 +1,8 @@
 import 'package:crypto/details/widgets/row_infos.dart';
 import 'package:crypto/details/controller/days_provider.dart';
+import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../controller/one_crypto_provider.dart';
 
@@ -19,12 +19,7 @@ class ColumnInfos extends HookConsumerWidget {
         const Divider(),
         RowInfos(
           title: days > 1 ? 'Preço nos últimos $days dias' : 'Preço atual',
-          number: NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
-              .format(
-            double.parse(
-              cryptoModel.currentPrice.toString(),
-            ),
-          ),
+          number: FormatCurrency.format(cryptoModel.currentPrice),
         ),
         const Divider(thickness: 1),
         RowInfos(
@@ -42,8 +37,7 @@ class ColumnInfos extends HookConsumerWidget {
         const Divider(thickness: 1),
         RowInfos(
           title: 'Valor',
-          number: NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
-              .format(double.parse(cryptoModel.howMuchUserHave.toString())),
+          number: FormatCurrency.format(cryptoModel.howMuchUserHave),
         ),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:crypto/details/controller/current_price_provider.dart';
 import 'package:crypto/details/controller/one_crypto_provider.dart';
 import 'package:crypto/details/controller/variation_notifier.dart';
 import 'package:crypto/portifolio/widgets/container_visible.dart';
+import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -46,7 +47,7 @@ class ListTitleCrypto extends HookConsumerWidget {
           children: [
             Text(crypto.abbreviation),
             visible.state
-                ? Text(crypto.howMuchUserHave.toString())
+                ? Text(FormatCurrency.format(crypto.howMuchUserHave))
                 : const InvisibleContainer(),
           ],
         ),
