@@ -1,4 +1,4 @@
-import 'package:crypto/portifolio/widgets/visible.dart';
+import 'package:crypto/portifolio/widgets/container_visible.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -18,6 +18,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
     return Container(
+      height: 170,
       padding: const EdgeInsets.all(25),
       margin: const EdgeInsets.only(bottom: 15),
       child: Column(

@@ -1,10 +1,10 @@
-import 'package:crypto/details/view/details_page.dart';
+import 'package:crypto/details/view/details_screen.dart';
 import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import 'package:crypto/portifolio/widgets/visible.dart';
+import 'package:crypto/portifolio/widgets/container_visible.dart';
 import 'package:crypto/shared/models/crypto_model.dart';
 
 import '../../shared/utils/providers/visibility_provider.dart';
@@ -40,7 +40,7 @@ class _ContainerCoinState extends ConsumerState<ContainerCoin> {
         oneCrypto.state = widget.crypto;
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DetailsPage(),
+            builder: (context) => const DetailsScreen(),
           ),
         );
       },
