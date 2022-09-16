@@ -1,10 +1,11 @@
+import 'package:crypto/shared/providers/current_price_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:crypto/shared/utils/providers/days_provider.dart';
-import 'package:crypto/shared/utils/providers/variation_notifier.dart';
+import 'package:crypto/shared/providers/days_provider.dart';
+import 'package:crypto/shared/providers/variation_notifier.dart';
 
-import '../../shared/utils/providers/one_crypto_provider.dart';
+import '../../shared/providers/one_crypto_provider.dart';
 
 class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
@@ -42,6 +43,11 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
             ref
                 .read(variationProvider.notifier)
                 .variationInDays(widget.daysButton, oneCrypto);
+            ref
+                .read(currrentPriceProvider.notifier)
+                .getCurrentPrice(widget.daysButton, oneCrypto);
+            oneCrypto.currentPrice =
+                ref.read(currrentPriceProvider.notifier).state;
             oneCrypto.variation = ref.read(variationProvider.notifier).state;
           },
         );

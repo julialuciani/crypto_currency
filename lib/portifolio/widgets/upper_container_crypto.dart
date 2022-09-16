@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../shared/utils/colors.dart';
-import '../../shared/utils/providers/visibility_provider.dart';
+import '../../shared/providers/visibility_provider.dart';
 
 class UpperContainerCrypto extends StatefulHookConsumerWidget {
   const UpperContainerCrypto({super.key});

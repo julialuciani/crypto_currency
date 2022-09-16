@@ -1,18 +1,18 @@
-import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
-import 'package:crypto/shared/utils/providers/variation_notifier.dart';
+import 'package:crypto/portifolio/widgets/container_visible.dart';
+import 'package:crypto/shared/providers/current_price_provider.dart';
+import 'package:crypto/shared/providers/one_crypto_provider.dart';
+import 'package:crypto/shared/providers/variation_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:crypto/shared/models/crypto_model.dart';
 import 'package:intl/intl.dart';
 
-import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/models/crypto_model.dart';
-
-import '../../shared/utils/providers/days_provider.dart';
-import '../../shared/utils/providers/visibility_provider.dart';
+import '../../shared/providers/days_provider.dart';
+import '../../shared/providers/visibility_provider.dart';
 
 class ContainerCoin extends HookConsumerWidget {
   final CryptoModel crypto;
-
   const ContainerCoin({Key? key, required this.crypto}) : super(key: key);
 
   double updateDayVariation() {
@@ -25,14 +25,14 @@ class ContainerCoin extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var visible = ref.watch(visibilityProvider.state);
-    var oneCrypto = ref.watch(oneCryptoProvider.notifier).state;
 
     return InkWell(
       onTap: () {
         crypto.variation = updateDayVariation();
         ref.read(daysProvider.state).state = 1;
-        ref.read(oneCryptoProvider.notifier).changeDetailsCrypto(crypto);
+        ref.read(currrentPriceProvider.notifier).state = crypto.currentPrice;
         ref.read(variationProvider.notifier).state = crypto.variation;
+        ref.read(oneCryptoProvider.notifier).changeDetailsCrypto(crypto);
         Navigator.pushNamed(context, '/details');
       },
       child: Container(

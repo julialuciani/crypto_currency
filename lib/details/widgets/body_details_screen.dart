@@ -7,7 +7,7 @@ import 'package:crypto/details/widgets/upper_column_crypto.dart';
 import 'package:crypto/shared/models/crypto_model.dart';
 
 import '../../conversion/view/conversion_page.dart';
-import '../../shared/widgets/button_default_app.dart';
+import '../../shared/templates/button_default_app.dart';
 
 class BodyDetailsScreen extends StatelessWidget {
   const BodyDetailsScreen({Key? key}) : super(key: key);

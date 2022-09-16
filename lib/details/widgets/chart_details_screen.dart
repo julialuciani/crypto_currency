@@ -3,19 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../shared/utils/colors.dart';
-import '../../shared/utils/providers/days_provider.dart';
-import '../../shared/utils/providers/one_crypto_provider.dart';
+import '../../shared/providers/days_provider.dart';
+import '../../shared/providers/one_crypto_provider.dart';
 
-class ChartDetailsScreen extends StatefulHookConsumerWidget {
+class ChartDetailsScreen extends HookConsumerWidget {
   const ChartDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ChartDetailsScreen> createState() => _ChartDetailsScreenState();
-}
-
-class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var oneCrypto = ref.watch(oneCryptoProvider.notifier);
     var days = ref.watch(daysProvider.state);
 
@@ -42,9 +37,9 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
       child: AspectRatio(
-        aspectRatio: 1.7,
+        aspectRatio: 1.9,
         child: LineChart(
           LineChartData(
             lineTouchData: LineTouchData(
@@ -80,6 +75,8 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
                 ),
               ),
             ),
+            minY: oneCrypto.state.currentPrice.toDouble() * -150,
+            maxY: oneCrypto.state.currentPrice.toDouble() * 60,
             lineBarsData: [
               LineChartBarData(
                 belowBarData: BarAreaData(

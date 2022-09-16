@@ -1,8 +1,6 @@
 import 'package:crypto/shared/utils/bottom_navigation_bar_app.dart';
-import 'package:crypto/shared/utils/providers/crypto_list_provider.dart';
 import 'package:crypto/portifolio/widgets/upper_container_crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../widgets/listview_crypto.dart';
 

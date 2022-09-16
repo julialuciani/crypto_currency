@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
+import 'package:crypto/shared/providers/one_crypto_provider.dart';
 
 class UpperColumnCrypto extends StatefulHookConsumerWidget {
   const UpperColumnCrypto({Key? key}) : super(key: key);

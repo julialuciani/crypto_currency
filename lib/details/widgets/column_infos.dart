@@ -1,10 +1,10 @@
 import 'package:crypto/details/widgets/row_infos.dart';
-import 'package:crypto/shared/utils/providers/days_provider.dart';
+import 'package:crypto/shared/providers/days_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../shared/utils/providers/one_crypto_provider.dart';
+import '../../shared/providers/one_crypto_provider.dart';
 
 class ColumnInfos extends HookConsumerWidget {
   const ColumnInfos({Key? key}) : super(key: key);
@@ -20,7 +20,9 @@ class ColumnInfos extends HookConsumerWidget {
           title: 'Preço atual',
           number: NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
               .format(
-            double.parse(cryptoModel.priceInNinety.first.toString()),
+            double.parse(
+              cryptoModel.currentPrice.toString(),
+            ),
           ),
         ),
         const Divider(thickness: 1),
