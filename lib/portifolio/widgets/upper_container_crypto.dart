@@ -56,7 +56,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
                     fontFamily: 'Montserrat',
                   ),
                 )
-              : const ContainerVisible(),
+              : const InvisibleContainer(),
           const SizedBox(height: 5),
           Text(
             'Valor total de moedas',

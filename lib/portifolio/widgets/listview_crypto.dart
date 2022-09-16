@@ -1,4 +1,4 @@
-import 'package:crypto/portifolio/widgets/container_coin.dart';
+import 'package:crypto/portifolio/widgets/listile_crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,7 +19,7 @@ class ListViewCryptos extends HookConsumerWidget {
         separatorBuilder: (context, index) => const Divider(thickness: 1),
         itemBuilder: (context, index) {
           CryptoModel crypto = cryptos[index];
-          return ContainerCoin(
+          return ListTitleCrypto(
             crypto: crypto,
           );
         },
