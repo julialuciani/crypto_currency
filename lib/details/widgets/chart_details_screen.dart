@@ -23,22 +23,24 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
 
     List<FlSpot> generateFlSpot() {
       List<FlSpot> listDays = [];
-      if (days.state > 1) {
+      if (days.state != 1) {
         for (int day = 0; day < days.state; day++) {
           listDays.add(
             FlSpot(
-                day.toDouble(), oneCrypto.state.priceInNinety[day].toDouble()),
+              day.toDouble(),
+              oneCrypto.state.priceInNinety[day].toDouble(),
+            ),
           );
         }
-      } else if (days.state == 1) {
-        for (int day = 0; day < days.state; day++) {
+        return listDays;
+      } else {
+        for (int day = 0; day < oneCrypto.state.priceInOne.length; day++) {
           listDays.add(
             FlSpot(day.toDouble(), oneCrypto.state.priceInOne[day].toDouble()),
           );
         }
-        debugPrint(listDays.toString());
+        return listDays;
       }
-      return listDays;
     }
 
     return Padding(

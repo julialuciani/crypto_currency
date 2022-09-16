@@ -39,8 +39,8 @@ dependencies:
   hooks_riverpod: ^1.0.4
   currency_formatter: ^1.2.1
   intl: ^0.17.0
-  decimal: ^2.3.0
   fl_chart: ^0.55.1
+  decimal: ^2.3.0
  
 
 dev_dependencies:

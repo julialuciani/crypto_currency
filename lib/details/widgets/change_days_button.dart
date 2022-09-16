@@ -1,9 +1,9 @@
-import 'package:crypto/details/widgets/button_chart.dart';
 import 'package:flutter/material.dart';
+
+import 'package:crypto/details/widgets/chart_button.dart';
 
 class ChangeDaysButtons extends StatelessWidget {
   const ChangeDaysButtons({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -11,7 +11,7 @@ class ChangeDaysButtons extends StatelessWidget {
       children: const [
         ChartButton(
           title: '24H',
-          daysButton: 24,
+          daysButton: 1,
         ),
         ChartButton(
           title: '5D',

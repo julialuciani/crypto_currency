@@ -2,37 +2,42 @@ import 'package:crypto/shared/models/crypto_model.dart';
 import 'package:decimal/decimal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class VariationNotifier extends StateNotifier<CryptoModel> {
-  VariationNotifier()
+var variationProvider = StateNotifierProvider<VariationNotifier, double>(
+  (ref) => VariationNotifier(),
+);
+
+class VariationNotifier extends StateNotifier<double> {
+  VariationNotifier() : super(0.0);
+
+  void variationInDays(int days, CryptoModel crypto) {
+    double variation = 0.0;
+    days = days == 1 ? 2 : days;
+    variation = (crypto.priceInNinety.first.toDouble() /
+                crypto.priceInNinety[days - 1].toDouble() -
+            1) *
+        100;
+    state = variation;
+  }
+}
+
+class DetailsCryptoNotifier extends StateNotifier<CryptoModel> {
+  DetailsCryptoNotifier()
       : super(
           CryptoModel(
             id: 0,
-            name: 'Bitcoin',
-            abbreviation: 'BTC',
-            howMuchUserHave: Decimal.parse('44'),
-            quantity: Decimal.parse('555'),
-            variation: 2,
-            currentPrice: Decimal.parse('0'),
-            iconImage: 'assets/icons/bitecoin.png',
-            priceInOne: [Decimal.parse('700')],
-            priceInNinety: [Decimal.parse('500')],
+            name: '',
+            abbreviation: '',
+            howMuchUserHave: Decimal.parse('1'),
+            quantity: Decimal.parse('1'),
+            variation: 1.3,
+            currentPrice: Decimal.parse('1'),
+            iconImage: '1',
+            priceInOne: [Decimal.parse('1')],
+            priceInNinety: [Decimal.parse('1')],
           ),
         );
 
-  double variationInDays(int days, CryptoModel cryptoModel) {
-    cryptoModel.variation = (cryptoModel.priceInNinety.first.toDouble() /
-                cryptoModel.priceInNinety[days - 1].toDouble() -
-            1) *
-        100;
-    return cryptoModel.variation;
-  }
-
-  double variationInOneDay(CryptoModel cryptoModel) {
-    int days = cryptoModel.priceInOne.length;
-    cryptoModel.variation = (cryptoModel.priceInOne.first.toDouble() /
-                cryptoModel.priceInOne[days - 1].toDouble() -
-            1) *
-        100;
-    return cryptoModel.variation;
+  void changeDetailsCrypto(CryptoModel model) {
+    state = model;
   }
 }

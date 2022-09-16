@@ -4,7 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../widgets/body_details_screen.dart';
 
 class DetailsScreen extends HookConsumerWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
+  static const route = '/details';
+
+  const DetailsScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../models/crypto_model.dart';
 
-var oneCryptoProvider = StateNotifierProvider<VariationNotifier, CryptoModel>(
-  (ref) => VariationNotifier(),
+var oneCryptoProvider =
+    StateNotifierProvider<DetailsCryptoNotifier, CryptoModel>(
+  (ref) => DetailsCryptoNotifier(),
 );

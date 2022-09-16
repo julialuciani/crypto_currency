@@ -1,5 +1,5 @@
-import 'package:crypto/details/view/details_screen.dart';
 import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
+import 'package:crypto/shared/utils/providers/variation_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -7,42 +7,32 @@ import 'package:intl/intl.dart';
 import 'package:crypto/portifolio/widgets/container_visible.dart';
 import 'package:crypto/shared/models/crypto_model.dart';
 
+import '../../shared/utils/providers/days_provider.dart';
 import '../../shared/utils/providers/visibility_provider.dart';
 
-class ContainerCoin extends StatefulHookConsumerWidget {
+class ContainerCoin extends HookConsumerWidget {
   final CryptoModel crypto;
 
-  const ContainerCoin({
-    Key? key,
-    required this.crypto,
-  }) : super(key: key);
+  const ContainerCoin({Key? key, required this.crypto}) : super(key: key);
 
-  @override
-  ConsumerState<ContainerCoin> createState() => _ContainerCoinState();
-}
-
-class _ContainerCoinState extends ConsumerState<ContainerCoin> {
-  bool visible = true;
-
-  void changeVisibility() {
-    setState(() {
-      visible = !visible;
-    });
+  double updateDayVariation() {
+    return (crypto.priceInNinety.first.toDouble() /
+                crypto.priceInNinety[1].toDouble() -
+            1) *
+        100;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var visible = ref.watch(visibilityProvider.state);
-    var oneCrypto = ref.watch(oneCryptoProvider.notifier);
+    var days = ref.watch(daysProvider.state);
 
     return InkWell(
       onTap: () {
-        oneCrypto.state = widget.crypto;
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const DetailsScreen(),
-          ),
-        );
+        crypto.variation = updateDayVariation();
+        ref.read(oneCryptoProvider.notifier).changeDetailsCrypto(crypto);
+        ref.read(variationProvider.notifier).state = crypto.variation;
+        Navigator.pushNamed(context, '/details');
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -53,19 +43,19 @@ class _ContainerCoinState extends ConsumerState<ContainerCoin> {
             CircleAvatar(
               radius: 30,
               backgroundColor: Colors.white,
-              backgroundImage: AssetImage(widget.crypto.iconImage),
+              backgroundImage: AssetImage(crypto.iconImage),
             ),
             const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.crypto.abbreviation,
+                  crypto.abbreviation,
                   style: const TextStyle(fontSize: 20),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  widget.crypto.name,
+                  crypto.name,
                   style: TextStyle(color: Colors.grey.shade600, fontSize: 15),
                 ),
               ],
@@ -79,14 +69,14 @@ class _ContainerCoinState extends ConsumerState<ContainerCoin> {
                         NumberFormat.simpleCurrency(
                                 locale: 'pt-BR', decimalDigits: 2)
                             .format(double.parse(
-                                widget.crypto.howMuchUserHave.toString())),
+                                crypto.howMuchUserHave.toString())),
                         style: const TextStyle(fontSize: 20),
                       ),
                       const SizedBox(height: 8),
                       Row(
                         children: [
                           Text(
-                            '${widget.crypto.quantity.toStringAsFixed(2)} ${widget.crypto.abbreviation}',
+                            '${crypto.quantity.toStringAsFixed(2)} ${crypto.abbreviation}',
                             style: TextStyle(
                               color: Colors.grey.shade600,
                             ),
