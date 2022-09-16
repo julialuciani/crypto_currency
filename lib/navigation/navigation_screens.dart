@@ -1,16 +1,16 @@
-import 'package:crypto/movements/view/movements_page.dart';
-import 'package:crypto/portifolio/view/portifolio_page.dart';
+import 'package:crypto/movements/view/movements_screen.dart';
+import 'package:crypto/portifolio/view/portifolio_screen.dart';
 import 'package:flutter/material.dart';
-import '../shared/utils/colors.dart';
+import '../shared/style/colors.dart';
 
-class Pages extends StatefulWidget {
-  const Pages({super.key});
+class Screens extends StatefulWidget {
+  const Screens({super.key});
 
   @override
-  State<Pages> createState() => _PagesState();
+  State<Screens> createState() => _ScreensState();
 }
 
-class _PagesState extends State<Pages> {
+class _ScreensState extends State<Screens> {
   late int _selectedIndex;
   late PageController pageController;
 
@@ -34,8 +34,8 @@ class _PagesState extends State<Pages> {
         onPageChanged: changePage,
         controller: pageController,
         children: const [
-          PortifolioPage(),
-          MovementsPage(),
+          PortifolioScreen(),
+          MovementsScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

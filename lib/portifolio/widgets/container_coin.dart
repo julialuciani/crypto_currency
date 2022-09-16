@@ -1,15 +1,15 @@
 import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/providers/current_price_provider.dart';
-import 'package:crypto/shared/providers/one_crypto_provider.dart';
-import 'package:crypto/shared/providers/variation_notifier.dart';
+import 'package:crypto/details/controller/current_price_provider.dart';
+import 'package:crypto/details/controller/one_crypto_provider.dart';
+import 'package:crypto/details/controller/variation_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:crypto/shared/models/crypto_model.dart';
 import 'package:intl/intl.dart';
 
-import '../../shared/providers/days_provider.dart';
-import '../../shared/providers/visibility_provider.dart';
+import '../../details/controller/days_provider.dart';
+import '../controller/visibility_provider.dart';
 
 class ContainerCoin extends HookConsumerWidget {
   final CryptoModel crypto;

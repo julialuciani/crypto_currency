@@ -17,21 +17,21 @@ class RowInfos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 16,
               color: Colors.grey.shade500,
             ),
           ),
           Text(
             number,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               color: color,
               fontWeight: isVariation ? FontWeight.bold : FontWeight.normal,
             ),

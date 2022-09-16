@@ -2,18 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import 'package:crypto/shared/providers/one_crypto_provider.dart';
+import 'package:crypto/details/controller/one_crypto_provider.dart';
 
-class UpperColumnCrypto extends StatefulHookConsumerWidget {
+class UpperColumnCrypto extends HookConsumerWidget {
   const UpperColumnCrypto({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<UpperColumnCrypto> createState() => _UpperColumnCryptoState();
-}
-
-class _UpperColumnCryptoState extends ConsumerState<UpperColumnCrypto> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var oneCrypto = ref.watch(oneCryptoProvider.notifier).state;
 
     return Padding(
@@ -45,7 +40,7 @@ class _UpperColumnCryptoState extends ConsumerState<UpperColumnCrypto> {
               fontSize: 20,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           Text(
             NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
                 .format(

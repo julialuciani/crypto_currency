@@ -1,4 +1,4 @@
-import 'package:crypto/shared/utils/colors.dart';
+import 'package:crypto/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
@@ -17,6 +17,7 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
         break;
       case 1:
         Navigator.of(context).pushReplacementNamed('/movements');
+        break;
     }
   }
 

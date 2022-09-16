@@ -1,4 +1,4 @@
-import 'package:crypto/shared/utils/app_routes.dart';
+import 'package:crypto/shared/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

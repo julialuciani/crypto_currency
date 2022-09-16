@@ -2,9 +2,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../shared/utils/colors.dart';
-import '../../shared/providers/days_provider.dart';
-import '../../shared/providers/one_crypto_provider.dart';
+import '../../shared/style/colors.dart';
+import '../controller/days_provider.dart';
+import '../controller/one_crypto_provider.dart';
 
 class ChartDetailsScreen extends HookConsumerWidget {
   const ChartDetailsScreen({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class ChartDetailsScreen extends HookConsumerWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
       child: AspectRatio(
         aspectRatio: 1.9,
         child: LineChart(
@@ -91,7 +91,7 @@ class ChartDetailsScreen extends HookConsumerWidget {
                   ),
                 ),
                 color: magenta,
-                barWidth: 4,
+                barWidth: 2,
                 dotData: FlDotData(
                   show: false,
                 ),

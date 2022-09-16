@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../shared/utils/colors.dart';
-import '../../shared/providers/visibility_provider.dart';
+import '../../shared/style/colors.dart';
+import '../controller/visibility_provider.dart';
 
 class UpperContainerCrypto extends StatefulHookConsumerWidget {
   const UpperContainerCrypto({super.key});
@@ -18,7 +18,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
     return Container(
-      height: 170,
+      height: 165,
       padding: const EdgeInsets.all(25),
       margin: const EdgeInsets.only(bottom: 15),
       child: Column(

@@ -1,8 +1,8 @@
-import 'package:crypto/shared/utils/bottom_navigation_bar_app.dart';
+import 'package:crypto/shared/templates/bottom_navigation_bar_app.dart';
 import 'package:flutter/material.dart';
 
-class MovementsPage extends StatelessWidget {
-  const MovementsPage({super.key});
+class MovementsScreen extends StatelessWidget {
+  const MovementsScreen({super.key});
 
   static const route = '/movements';
 
