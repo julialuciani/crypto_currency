@@ -1,13 +1,11 @@
+import 'package:crypto/shared/utils/bottom_navigation_bar_app.dart';
 import 'package:flutter/material.dart';
 
-class MovementsPage extends StatefulWidget {
+class MovementsPage extends StatelessWidget {
   const MovementsPage({super.key});
 
-  @override
-  State<MovementsPage> createState() => _MovementsPageState();
-}
+  static const route = '/movements';
 
-class _MovementsPageState extends State<MovementsPage> {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
@@ -15,6 +13,7 @@ class _MovementsPageState extends State<MovementsPage> {
         body: Center(
           child: Text('soon'),
         ),
+        bottomNavigationBar: BottomNavigationBarApp(index: 1),
       ),
     );
   }

@@ -5,7 +5,7 @@ import 'package:crypto/shared/utils/providers/one_crypto_provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../../shared/utils/design_system/colors.dart';
+import '../../shared/utils/colors.dart';
 import '../../shared/widgets/button_default_app.dart';
 import '../widgets/column_infos.dart';
 import '../widgets/upper_column_crypto.dart';
@@ -47,6 +47,12 @@ class _DetailsPageState extends ConsumerState<DetailsPage> {
       appBar: AppBar(
         toolbarHeight: 60,
         elevation: 0.5,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ref.read(daysProvider.state).state = 24;
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
         iconTheme: const IconThemeData(
           color: Colors.black,
         ),

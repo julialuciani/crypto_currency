@@ -1,4 +1,4 @@
-import 'package:crypto/navigation_crypto/navigation_crypto.dart';
+import 'package:crypto/shared/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      routes: appRoutes,
+      initialRoute: '/portifolio',
     );
   }
 }

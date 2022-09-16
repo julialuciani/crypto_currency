@@ -1,17 +1,17 @@
 import 'package:crypto/movements/view/movements_page.dart';
 import 'package:crypto/portifolio/view/portifolio_page.dart';
 import 'package:flutter/material.dart';
-import '../shared/utils/design_system/colors.dart';
+import '../shared/utils/colors.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class Pages extends StatefulWidget {
+  const Pages({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Pages> createState() => _PagesState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+class _PagesState extends State<Pages> {
+  late int _selectedIndex;
   late PageController pageController;
 
   @override

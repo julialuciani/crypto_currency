@@ -1,3 +1,4 @@
+import 'package:crypto/shared/utils/bottom_navigation_bar_app.dart';
 import 'package:crypto/shared/utils/providers/crypto_list_provider.dart';
 import 'package:crypto/portifolio/widgets/upper_container_crypto.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import '../widgets/listview_crypto.dart';
 
 class PortifolioPage extends StatefulHookConsumerWidget {
   const PortifolioPage({Key? key}) : super(key: key);
+
+  static const route = '/portifolio';
 
   @override
   ConsumerState<PortifolioPage> createState() => _PortifolioPageState();
@@ -28,6 +31,7 @@ class _PortifolioPageState extends ConsumerState<PortifolioPage> {
             ListViewCryptos(cryptos: cryptos),
           ],
         ),
+        bottomNavigationBar: const BottomNavigationBarApp(index: 0),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/design_system/colors.dart';
+import '../utils/colors.dart';
 
 class ButtonDefaultApp extends StatelessWidget {
   final dynamic action;
