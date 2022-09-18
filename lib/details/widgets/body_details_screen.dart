@@ -10,19 +10,16 @@ class BodyDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          UpperColumnCrypto(),
-          ChartDetailsScreen(),
-          ChangeDaysButtons(),
-          ColumnInfos(),
-          SizedBox(height: 5),
-          ButtonDetailsScreen(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: const [
+        UpperColumnCrypto(),
+        ChartDetailsScreen(),
+        ChangeDaysButtons(),
+        ColumnInfos(),
+        SizedBox(height: 5),
+        ButtonDetailsScreen(),
+      ],
     );
   }
 }

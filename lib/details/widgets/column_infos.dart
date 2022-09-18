@@ -4,14 +4,14 @@ import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../controller/one_crypto_provider.dart';
+import '../controller/crypto_provider.dart';
 
 class ColumnInfos extends HookConsumerWidget {
   const ColumnInfos({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var cryptoModel = ref.watch(oneCryptoProvider.notifier).state;
+    var cryptoModel = ref.watch(cryptoProvider.notifier).state;
     var days = ref.watch(daysProvider);
 
     return Column(

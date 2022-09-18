@@ -2,14 +2,14 @@ import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:crypto/details/controller/one_crypto_provider.dart';
+import '../controller/crypto_provider.dart';
 
 class UpperColumnCrypto extends HookConsumerWidget {
   const UpperColumnCrypto({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var oneCrypto = ref.watch(oneCryptoProvider.notifier).state;
+    var oneCrypto = ref.watch(cryptoProvider.notifier).state;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
