@@ -1,3 +1,4 @@
+import 'package:crypto/shared/routes/app_routes.dart';
 import 'package:crypto/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,22 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
-        Navigator.of(context).pushReplacementNamed('/portifolio');
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                appRoutes['/portifolio']!(context),
+          ),
+        );
         break;
       case 1:
-        Navigator.of(context).pushReplacementNamed('/movements');
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                appRoutes['/movements']!(context),
+          ),
+        );
         break;
     }
   }
