@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ContainerVisible extends StatelessWidget {
-  const ContainerVisible({
+class InvisibleContainer extends StatelessWidget {
+  const InvisibleContainer({
     Key? key,
   }) : super(key: key);
 
@@ -9,7 +9,7 @@ class ContainerVisible extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 150,
-      height: 25,
+      height: 15,
       decoration: BoxDecoration(
         color: Colors.grey.shade300,
         borderRadius: BorderRadius.circular(25),

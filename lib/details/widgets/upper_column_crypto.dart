@@ -1,13 +1,16 @@
+import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class UpperColumnCrypto extends StatelessWidget {
-  const UpperColumnCrypto({
-    Key? key,
-  }) : super(key: key);
+import '../controller/crypto_provider.dart';
+
+class UpperColumnCrypto extends HookConsumerWidget {
+  const UpperColumnCrypto({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var oneCrypto = ref.watch(cryptoProvider.notifier).state;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -15,33 +18,31 @@ class UpperColumnCrypto extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                'Bitcoin',
-                style: TextStyle(
+                oneCrypto.name,
+                style: const TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               CircleAvatar(
+                backgroundColor: Colors.transparent,
                 radius: 25,
-                backgroundImage: AssetImage('assets/icons/bitecoin.png'),
+                backgroundImage: AssetImage(oneCrypto.iconImage),
               ),
             ],
           ),
           Text(
-            'BTC',
+            oneCrypto.abbreviation,
             style: TextStyle(
               color: Colors.grey.shade500,
               fontSize: 20,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           Text(
-            NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
-                .format(
-              double.parse('100745'),
-            ),
+            FormatCurrency.format(oneCrypto.priceInNinety.first),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 35,

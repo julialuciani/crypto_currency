@@ -1,10 +1,13 @@
-import 'package:crypto/portifolio/widgets/visible.dart';
+import 'package:crypto/portifolio/controller/crypto_list_provider.dart';
+import 'package:crypto/portifolio/widgets/container_visible.dart';
+import 'package:crypto/shared/models/crypto_model.dart';
+import 'package:crypto/shared/utils/currency_formatter.dart';
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
-import '../../shared/utils/design_system/colors.dart';
-import '../../shared/utils/providers/visibility_provider.dart';
+import '../../shared/style/colors.dart';
+import '../controller/visibility_provider.dart';
 
 class UpperContainerCrypto extends StatefulHookConsumerWidget {
   const UpperContainerCrypto({super.key});
@@ -13,11 +16,24 @@ class UpperContainerCrypto extends StatefulHookConsumerWidget {
   ConsumerState<UpperContainerCrypto> createState() => _UpperCardCryptoState();
 }
 
+late CryptoModel cryptoModel;
+
 class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
+    var cryptosList = ref.read(cryptosListProvider);
+
+    Decimal walletBallance() {
+      Decimal balance = Decimal.parse('0');
+      for (int index = 0; index < cryptosList.length; index++) {
+        balance += cryptosList[index].howMuchUserHave;
+      }
+      return balance;
+    }
+
     return Container(
+      height: 165,
       padding: const EdgeInsets.all(25),
       margin: const EdgeInsets.only(bottom: 15),
       child: Column(
@@ -48,14 +64,13 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
           ),
           visible.state
               ? Text(
-                  NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
-                      .format(14798.00),
+                  FormatCurrency.format(walletBallance()),
                   style: const TextStyle(
                     fontSize: 29,
                     fontFamily: 'Montserrat',
                   ),
                 )
-              : const ContainerVisible(),
+              : const InvisibleContainer(),
           const SizedBox(height: 5),
           Text(
             'Valor total de moedas',

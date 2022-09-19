@@ -1,8 +1,12 @@
-Finalização do card de listagem de cryptos
+[FLUTTER] 05 - Rotas com argumento - Gráfico
 
 
 
- <img width="214" alt="image" src="https://user-images.githubusercontent.com/113135536/189640005-65274ce8-44d4-4bc6-94f7-ac91da90c16f.png"> <img width="211" alt="image" src="https://user-images.githubusercontent.com/113135536/189644724-95416f00-1fa0-4255-9003-a9371f933d23.png">
+<img width="212" alt="image" src="https://user-images.githubusercontent.com/113135536/190830007-40a30f47-a685-458d-8a49-401d43d0d4c6.png"><img width="212" alt="image" src="https://user-images.githubusercontent.com/113135536/190830024-64ef63f3-a219-4dc3-b019-cc554b5368db.png">
+
+
+
+
 
 
 

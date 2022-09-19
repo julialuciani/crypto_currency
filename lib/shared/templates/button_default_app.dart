@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../utils/design_system/colors.dart';
+import '../style/colors.dart';
 
-class ButtonDefaultApp extends StatelessWidget {
-  const ButtonDefaultApp({
-    Key? key,
-  }) : super(key: key);
+class ButtonDetailsScreen extends StatelessWidget {
+  const ButtonDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +14,9 @@ class ButtonDefaultApp extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         color: magenta,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/convertion');
+        },
         child: const Padding(
           padding: EdgeInsets.all(20),
           child: Text(
