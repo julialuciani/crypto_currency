@@ -29,7 +29,7 @@ class ListTitleCrypto extends HookConsumerWidget {
         Navigator.pushNamed(
           context,
           '/details',
-          arguments: Arguments(crypto: crypto, days: 1),
+          arguments: Arguments(crypto: crypto),
         );
       },
       minVerticalPadding: 20,
