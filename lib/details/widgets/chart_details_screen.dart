@@ -1,3 +1,4 @@
+import 'package:crypto/details/controller/graphic_repository_provider.dart';
 import 'package:crypto/shared/models/crypto_model.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -18,33 +19,49 @@ class ChartDetailsScreen extends StatefulHookConsumerWidget {
 class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
   late int days;
   late CryptoModel crypto;
+  late var graph;
 
   List<FlSpot> generateFlSpot() {
     List<FlSpot> listDays = [];
-    if (days != 1) {
+    if (days == 1) {
       for (int day = 0; day < days; day++) {
         listDays.add(
           FlSpot(
             day.toDouble(),
-            crypto.priceInNinety[day].toDouble(),
+            graph[day].toDouble(),
           ),
         );
       }
-      return listDays;
-    } else {
-      for (int day = 0; day < crypto.priceInOne.length; day++) {
-        listDays.add(
-          FlSpot(day.toDouble(), crypto.priceInOne[day].toDouble()),
-        );
-      }
-      return listDays;
     }
+    return listDays;
+
+    // List<FlSpot> generateFlSpot() {
+    //   List<FlSpot> listDays = [];
+    //   if (days != 1) {
+    //     for (int day = 0; day < days; day++) {
+    //       listDays.add(
+    //         FlSpot(
+    //           day.toDouble(),
+    //           crypto.priceInNinety[day].toDouble(),
+    //         ),
+    //       );
+    //     }
+    //     return listDays;
+    //   } else {
+    //     for (int day = 0; day < crypto.priceInOne.length; day++) {
+    //       listDays.add(
+    //         FlSpot(day.toDouble(), crypto.priceInOne[day].toDouble()),
+    //       );
+    //     }
+    //     return listDays;
+    //   }
   }
 
   @override
   Widget build(BuildContext context) {
     crypto = ref.watch(cryptoProvider.notifier).state;
     days = ref.watch(daysProvider.state).state;
+    graph = ref.watch(graphicProvider.state).state;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),

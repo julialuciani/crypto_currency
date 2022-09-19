@@ -8,7 +8,6 @@ class FormatCurrency {
   }
 
   static String formatDouble(double price) {
-    return NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
-        .format(price);
+    return NumberFormat.currency(locale: 'en', decimalDigits: 2).format(price);
   }
 }

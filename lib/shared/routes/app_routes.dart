@@ -1,4 +1,4 @@
-import 'package:crypto/conversion/view/conversion_page.dart';
+import 'package:crypto/conversion/view/conversion_screen.dart';
 import 'package:crypto/details/view/details_screen.dart';
 import 'package:crypto/movements/view/movements_screen.dart';
 import 'package:crypto/portifolio/view/portifolio_screen.dart';

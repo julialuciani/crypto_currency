@@ -1,9 +1,10 @@
-import 'package:crypto/details/controller/current_price_provider.dart';
+import 'package:crypto/details/controller/crypto_api_provider.dart';
+import 'package:crypto/details/controller/graphic_repository_provider.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:crypto/details/controller/days_provider.dart';
-import 'package:crypto/details/controller/crypto_provider.dart';
 
 class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
@@ -19,10 +20,16 @@ class ChartButton extends StatefulHookConsumerWidget {
 }
 
 class _ChartButtonState extends ConsumerState<ChartButton> {
+  // GraphicCryptoRepository repository = GraphicCryptoRepository(Dio());
+  late Future<Response> dates;
+  // late CryptoModelApi crypto;
+
   @override
   Widget build(BuildContext context) {
     var days = ref.watch(daysProvider.state);
-    var oneCrypto = ref.watch(cryptoProvider.notifier).state;
+    var crypto = ref.watch(cryptoApiProvider.notifier).state;
+    var dateRepo = ref.watch(graphicProvider.state).state;
+    // var oneCrypto = ref.watch(cryptoProvider.notifier).state;
 
     Color changeButtonColor() {
       if (widget.daysButton == days.state) {
@@ -38,16 +45,18 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
           () {
             days.state = widget.daysButton;
             changeButtonColor();
-            ref
-                .read(cryptoProvider.notifier)
-                .variationInDays(widget.daysButton);
-            ref
-                .read(currrentPriceProvider.notifier)
-                .getCurrentPrice(widget.daysButton, oneCrypto);
-            oneCrypto.currentPrice =
-                ref.read(currrentPriceProvider.notifier).state;
-            oneCrypto.variation =
-                ref.read(cryptoProvider.notifier).state.variation;
+            dateRepo.getDaysData(crypto, widget.daysButton);
+
+            // ref
+            //     .read(cryptoProvider.notifier)
+            //     .variationInDays(widget.daysButton);
+            // ref
+            //     .read(currrentPriceProvider.notifier)
+            //     .getCurrentPrice(widget.daysButton, oneCrypto);
+            // oneCrypto.currentPrice =
+            //     ref.read(currrentPriceProvider.notifier).state;
+            // oneCrypto.variation =
+            //     ref.read(cryptoProvider.notifier).state.variation;
           },
         );
       },

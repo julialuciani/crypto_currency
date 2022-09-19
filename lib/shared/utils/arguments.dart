@@ -1,7 +1,7 @@
-import 'package:crypto/shared/models/crypto_model.dart';
+import 'package:crypto/portifolio/model/crypto_model_api.dart';
 
 class Arguments {
-  CryptoModel crypto;
+  CryptoModelApi crypto;
   int? days;
 
   Arguments({required this.crypto, this.days});

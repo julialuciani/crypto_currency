@@ -1,31 +1,37 @@
+import 'package:crypto/details/controller/graphic_repository_provider.dart';
+import 'package:crypto/portifolio/model/crypto_model_api.dart';
 import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/utils/arguments.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:crypto/shared/models/crypto_model.dart';
-
+import '../../shared/utils/arguments.dart';
 import '../controller/visibility_provider.dart';
 
 class ListTitleCrypto extends HookConsumerWidget {
-  final CryptoModel crypto;
+  final CryptoModelApi crypto;
+
   const ListTitleCrypto({Key? key, required this.crypto}) : super(key: key);
 
-  double updateDayVariation() {
-    return (crypto.priceInNinety.first.toDouble() /
-                crypto.priceInNinety[1].toDouble() -
-            1) *
-        100;
-  }
+  // double updateDayVariation() {
+  //   return (crypto.priceInNinety.first.toDouble() /
+  //               crypto.priceInNinety[1].toDouble() -
+  //           1) *
+  //       100;
+  // }
+  // GraphicCryptoRepository dateRepo = GraphicCryptoRepository(Dio());
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var visible = ref.watch(visibilityProvider.state);
+    crypto.symbol = crypto.symbol.toUpperCase();
+    var dateRepo = ref.watch(graphicProvider.state).state;
+    double quantity = 0.5;
 
     return ListTile(
       onTap: () {
-        crypto.variation = updateDayVariation();
+        // crypto.variation = updateDayVariation();
+        dateRepo.getDaysData(crypto, 1);
         Navigator.pushNamed(
           context,
           '/details',
@@ -36,14 +42,14 @@ class ListTitleCrypto extends HookConsumerWidget {
       leading: CircleAvatar(
         radius: 25,
         backgroundColor: Colors.white,
-        backgroundImage: AssetImage(crypto.iconImage),
+        backgroundImage: NetworkImage(crypto.image),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(crypto.abbreviation),
+          Text(crypto.symbol),
           visible.state
-              ? Text(FormatCurrency.format(crypto.howMuchUserHave))
+              ? Text(FormatCurrency.formatDouble(crypto.currentPrice))
               : const InvisibleContainer(),
         ],
       ),
@@ -52,8 +58,7 @@ class ListTitleCrypto extends HookConsumerWidget {
         children: [
           Text(crypto.name),
           visible.state
-              ? Text(
-                  '${crypto.quantity.toStringAsFixed(2)} ${crypto.abbreviation}')
+              ? Text('$quantity ${crypto.symbol}')
               : const InvisibleContainer(),
         ],
       ),

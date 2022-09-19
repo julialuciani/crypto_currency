@@ -11,16 +11,16 @@ var cryptoProvider = StateNotifierProvider<CryptoNotifier, CryptoModel>(
 class CryptoNotifier extends StateNotifier<CryptoModel> {
   CryptoNotifier()
       : super(CryptoModel(
-            id: 0,
-            name: '',
-            abbreviation: '',
+            id: 1,
+            name: 's',
             howMuchUserHave: Decimal.parse('1'),
             quantity: Decimal.parse('1'),
             variation: 0,
             currentPrice: Decimal.parse('1'),
-            iconImage: '',
+            iconImage: 's',
             priceInOne: [Decimal.parse('0')],
-            priceInNinety: [Decimal.parse('0')]));
+            priceInNinety: [Decimal.parse('0')],
+            abbreviation: 'k'));
 
   void variationInDays(int days) {
     days = days == 1 ? 2 : days;

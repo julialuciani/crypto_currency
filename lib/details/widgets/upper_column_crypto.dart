@@ -1,15 +1,14 @@
-import 'package:crypto/shared/utils/currency_formatter.dart';
+import 'package:crypto/details/controller/crypto_api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../controller/crypto_provider.dart';
 
 class UpperColumnCrypto extends HookConsumerWidget {
   const UpperColumnCrypto({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var oneCrypto = ref.watch(cryptoProvider.notifier).state;
+    // var oneCrypto = ref.watch(cryptoProvider.notifier).state;
+    var crypto = ref.watch(cryptoApiProvider.notifier).state;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -20,7 +19,7 @@ class UpperColumnCrypto extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                oneCrypto.name,
+                crypto.name,
                 style: const TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
@@ -29,12 +28,12 @@ class UpperColumnCrypto extends HookConsumerWidget {
               CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 25,
-                backgroundImage: AssetImage(oneCrypto.iconImage),
+                backgroundImage: NetworkImage(crypto.image),
               ),
             ],
           ),
           Text(
-            oneCrypto.abbreviation,
+            crypto.symbol,
             style: TextStyle(
               color: Colors.grey.shade500,
               fontSize: 20,
@@ -42,7 +41,8 @@ class UpperColumnCrypto extends HookConsumerWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            FormatCurrency.format(oneCrypto.priceInNinety.first),
+            crypto.currentPrice.toString(),
+            // FormatCurrency.format(crypto.priceInNinety.first),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 35,
