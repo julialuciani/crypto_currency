@@ -1,12 +1,14 @@
-import 'package:crypto/details/controller/graphic_repository_provider.dart';
-import 'package:crypto/shared/models/crypto_model.dart';
+import 'package:crypto/details/controller/crypto_api_provider.dart';
+import 'package:crypto/details/controller/prices_notifier.dart';
+import 'package:crypto/details/repository/graphic_crypto_repository.dart';
+import 'package:crypto/portifolio/model/crypto_model_api.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
+import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../shared/style/colors.dart';
-import '../controller/crypto_provider.dart';
 import '../controller/days_provider.dart';
 
 class ChartDetailsScreen extends StatefulHookConsumerWidget {
@@ -17,51 +19,32 @@ class ChartDetailsScreen extends StatefulHookConsumerWidget {
 }
 
 class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
+  GraphicCryptoRepository repository = GraphicCryptoRepository(Dio());
+  // late List<double> prices;
+  late CryptoModelApi crypto;
   late int days;
-  late CryptoModel crypto;
-  late var graph;
 
-  List<FlSpot> generateFlSpot() {
-    List<FlSpot> listDays = [];
-    if (days == 1) {
-      for (int day = 0; day < days; day++) {
-        listDays.add(
-          FlSpot(
-            day.toDouble(),
-            graph[day].toDouble(),
-          ),
-        );
-      }
-    }
-    return listDays;
-
-    // List<FlSpot> generateFlSpot() {
-    //   List<FlSpot> listDays = [];
-    //   if (days != 1) {
-    //     for (int day = 0; day < days; day++) {
-    //       listDays.add(
-    //         FlSpot(
-    //           day.toDouble(),
-    //           crypto.priceInNinety[day].toDouble(),
-    //         ),
-    //       );
-    //     }
-    //     return listDays;
-    //   } else {
-    //     for (int day = 0; day < crypto.priceInOne.length; day++) {
-    //       listDays.add(
-    //         FlSpot(day.toDouble(), crypto.priceInOne[day].toDouble()),
-    //       );
-    //     }
-    //     return listDays;
-    //   }
+  @override
+  void initState() {
+    ref.read(gambiarra.state).state;
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    crypto = ref.watch(cryptoProvider.notifier).state;
-    days = ref.watch(daysProvider.state).state;
-    graph = ref.watch(graphicProvider.state).state;
+    var crypto = ref.watch(cryptoApiProvider.notifier).state;
+    var days = ref.watch(daysProvider.state).state;
+
+    var prices = ref.watch(gambiarra.state).state;
+    List<FlSpot> generateFlSpot() {
+      List<FlSpot> listDays = [];
+      for (int day = 0; day < prices.length; day++) {
+        listDays.add(
+          FlSpot(day.toDouble(), prices[day]),
+        );
+      }
+      return listDays;
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
@@ -114,8 +97,6 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
                 ),
               ),
             ),
-            minY: crypto.currentPrice.toDouble() * -150,
-            maxY: crypto.currentPrice.toDouble() * 60,
             lineBarsData: [
               LineChartBarData(
                 belowBarData: BarAreaData(

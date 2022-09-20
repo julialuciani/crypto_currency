@@ -14,24 +14,24 @@ class ChangeDaysButtons extends StatelessWidget {
           daysButton: 1,
         ),
         ChartButton(
-          title: '5D',
-          daysButton: 5,
+          title: '7D',
+          daysButton: 7,
         ),
         ChartButton(
-          title: '15D',
-          daysButton: 15,
+          title: '14D',
+          daysButton: 14,
         ),
         ChartButton(
           title: '30D',
           daysButton: 30,
         ),
         ChartButton(
-          title: '45D',
-          daysButton: 45,
-        ),
-        ChartButton(
           title: '90D',
           daysButton: 90,
+        ),
+        ChartButton(
+          title: '180D',
+          daysButton: 180,
         ),
       ],
     );

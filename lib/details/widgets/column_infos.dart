@@ -1,5 +1,5 @@
 import 'package:crypto/details/controller/crypto_api_provider.dart';
-import 'package:crypto/details/controller/graphic_repository_provider.dart';
+import 'package:crypto/details/controller/prices_notifier.dart';
 import 'package:crypto/details/widgets/row_infos.dart';
 import 'package:crypto/details/controller/days_provider.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
@@ -14,7 +14,13 @@ class ColumnInfos extends HookConsumerWidget {
     // var cryptoModel = ref.watch(cryptoProvider.notifier).state;
     var crypto = ref.watch(cryptoApiProvider.notifier).state;
     var days = ref.watch(daysProvider);
-    var dateRepo = ref.watch(graphicProvider.state).state;
+    var prices = ref.watch(pricesProvider.notifier).state;
+    // var dateRepo = ref.watch(graphicProvider.state).state;
+
+    double getPrice() {
+      double price = prices.last;
+      return price;
+    }
 
     double calculateValue(double quantity) {
       return quantity * crypto.currentPrice;
@@ -25,7 +31,8 @@ class ColumnInfos extends HookConsumerWidget {
         const Divider(),
         RowInfos(
           title: days > 1 ? 'Preço nos últimos $days dias' : 'Preço atual',
-          number: FormatCurrency.formatDouble(crypto.currentPrice),
+          number: 1.toString(),
+          // number: FormatCurrency.formatDouble(getPrice()),
         ),
         const Divider(thickness: 1),
         RowInfos(

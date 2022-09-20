@@ -1,10 +1,10 @@
-import 'package:crypto/details/controller/crypto_api_provider.dart';
-import 'package:crypto/details/controller/graphic_repository_provider.dart';
-import 'package:dio/dio.dart';
+import 'package:crypto/details/controller/prices_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:crypto/details/controller/crypto_api_provider.dart';
 import 'package:crypto/details/controller/days_provider.dart';
+import 'package:crypto/portifolio/model/crypto_model_api.dart';
 
 class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
@@ -21,14 +21,14 @@ class ChartButton extends StatefulHookConsumerWidget {
 
 class _ChartButtonState extends ConsumerState<ChartButton> {
   // GraphicCryptoRepository repository = GraphicCryptoRepository(Dio());
-  late Future<Response> dates;
+  // late Future<Response> dates;
   // late CryptoModelApi crypto;
 
   @override
   Widget build(BuildContext context) {
     var days = ref.watch(daysProvider.state);
-    var crypto = ref.watch(cryptoApiProvider.notifier).state;
-    var dateRepo = ref.watch(graphicProvider.state).state;
+
+    // var dateRepo = ref.watch(graphicProvider.state).state;
     // var oneCrypto = ref.watch(cryptoProvider.notifier).state;
 
     Color changeButtonColor() {
@@ -45,8 +45,12 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
           () {
             days.state = widget.daysButton;
             changeButtonColor();
-            dateRepo.getDaysData(crypto, widget.daysButton);
-
+            CryptoModelApi crypto = ref.read(cryptoApiProvider.notifier).state;
+            ref
+                .read(pricesProvider.notifier)
+                .getPriceRange(crypto.id, days.state);
+            ref.read(gambiarra.state).state =
+                ref.read(pricesProvider.notifier).state;
             // ref
             //     .read(cryptoProvider.notifier)
             //     .variationInDays(widget.daysButton);

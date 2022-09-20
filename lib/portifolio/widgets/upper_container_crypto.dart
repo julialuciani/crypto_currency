@@ -1,8 +1,8 @@
-import 'package:crypto/portifolio/controller/crypto_list_provider.dart';
+import 'package:crypto/portifolio/controller/crypto_list_provider_api.dart';
+import 'package:crypto/portifolio/controller/quantity_provider.dart';
 import 'package:crypto/portifolio/widgets/container_visible.dart';
 import 'package:crypto/shared/models/crypto_model.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -22,15 +22,8 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
-    var cryptosList = ref.read(cryptosListProvider);
-
-    Decimal walletBallance() {
-      Decimal balance = Decimal.parse('0');
-      for (int index = 0; index < cryptosList.length; index++) {
-        balance += cryptosList[index].howMuchUserHave;
-      }
-      return balance;
-    }
+    var balance = ref.watch(balanceProvider.state);
+    ref.read(listCryptosProvider.notifier).getAllCryptos();
 
     return Container(
       height: 165,
@@ -64,7 +57,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
           ),
           visible.state
               ? Text(
-                  FormatCurrency.format(walletBallance()),
+                  FormatCurrency.formatDouble(balance.state),
                   style: const TextStyle(
                     fontSize: 29,
                     fontFamily: 'Montserrat',

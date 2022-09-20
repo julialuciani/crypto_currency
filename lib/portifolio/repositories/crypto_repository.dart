@@ -19,6 +19,7 @@ class CryptoRepository {
         },
       ),
     );
+
     return cryptos;
   }
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InvisibleContainer extends StatelessWidget {
-  const InvisibleContainer({
-    Key? key,
-  }) : super(key: key);
+  const InvisibleContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
