@@ -7,7 +7,6 @@ class UpperColumnCrypto extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // var oneCrypto = ref.watch(cryptoProvider.notifier).state;
     var crypto = ref.watch(cryptoApiProvider.notifier).state;
 
     return Padding(

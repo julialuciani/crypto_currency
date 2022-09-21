@@ -20,16 +20,9 @@ class ChartButton extends StatefulHookConsumerWidget {
 }
 
 class _ChartButtonState extends ConsumerState<ChartButton> {
-  // GraphicCryptoRepository repository = GraphicCryptoRepository(Dio());
-  // late Future<Response> dates;
-  // late CryptoModelApi crypto;
-
   @override
   Widget build(BuildContext context) {
     var days = ref.watch(daysProvider.state);
-
-    // var dateRepo = ref.watch(graphicProvider.state).state;
-    // var oneCrypto = ref.watch(cryptoProvider.notifier).state;
 
     Color changeButtonColor() {
       if (widget.daysButton == days.state) {
@@ -41,6 +34,12 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
 
     return InkWell(
       onTap: () {
+        Future.delayed(Duration.zero, () {
+          CryptoModelApi crypto = ref.read(cryptoApiProvider.notifier).state;
+          ref
+              .read(pricesProvider.notifier)
+              .getPriceRange(crypto.id, days.state);
+        });
         setState(
           () {
             days.state = widget.daysButton;
@@ -49,18 +48,8 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
             ref
                 .read(pricesProvider.notifier)
                 .getPriceRange(crypto.id, days.state);
-            ref.read(gambiarra.state).state =
+            ref.read(changePriceProvider.state).state =
                 ref.read(pricesProvider.notifier).state;
-            // ref
-            //     .read(cryptoProvider.notifier)
-            //     .variationInDays(widget.daysButton);
-            // ref
-            //     .read(currrentPriceProvider.notifier)
-            //     .getCurrentPrice(widget.daysButton, oneCrypto);
-            // oneCrypto.currentPrice =
-            //     ref.read(currrentPriceProvider.notifier).state;
-            // oneCrypto.variation =
-            //     ref.read(cryptoProvider.notifier).state.variation;
           },
         );
       },

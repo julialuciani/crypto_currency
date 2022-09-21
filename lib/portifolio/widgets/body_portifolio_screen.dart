@@ -9,9 +9,9 @@ class BodyPortifolioScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        const UpperContainerCrypto(),
-        const Divider(
+      children: const [
+        UpperContainerCrypto(),
+        Divider(
           thickness: 1,
           height: 0.5,
         ),

@@ -18,8 +18,4 @@ class CryptoNotifier extends StateNotifier<CryptoModelApi> {
             priceChangeOneDay: 0,
           ),
         );
-
-  void updateVariation() {}
-
-  void updatePrice() {}
 }

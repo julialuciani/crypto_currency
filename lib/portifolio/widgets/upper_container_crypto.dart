@@ -1,5 +1,4 @@
-import 'package:crypto/portifolio/controller/crypto_list_provider_api.dart';
-import 'package:crypto/portifolio/controller/quantity_provider.dart';
+import 'package:crypto/portifolio/controller/balance_provider.dart';
 import 'package:crypto/portifolio/widgets/container_visible.dart';
 import 'package:crypto/shared/models/crypto_model.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
@@ -22,8 +21,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
-    var balance = ref.watch(balanceProvider.state);
-    ref.read(listCryptosProvider.notifier).getAllCryptos();
+    var balance = ref.watch(balanceProvider.notifier).state;
 
     return Container(
       height: 165,
@@ -57,7 +55,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
           ),
           visible.state
               ? Text(
-                  FormatCurrency.formatDouble(balance.state),
+                  FormatCurrency.formatDouble(balance),
                   style: const TextStyle(
                     fontSize: 29,
                     fontFamily: 'Montserrat',

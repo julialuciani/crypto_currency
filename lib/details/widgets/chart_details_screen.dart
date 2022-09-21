@@ -1,4 +1,3 @@
-import 'package:crypto/details/controller/crypto_api_provider.dart';
 import 'package:crypto/details/controller/prices_notifier.dart';
 import 'package:crypto/details/repository/graphic_crypto_repository.dart';
 import 'package:crypto/portifolio/model/crypto_model_api.dart';
@@ -9,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../shared/style/colors.dart';
-import '../controller/days_provider.dart';
 
 class ChartDetailsScreen extends StatefulHookConsumerWidget {
   const ChartDetailsScreen({Key? key}) : super(key: key);
@@ -26,16 +24,13 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
 
   @override
   void initState() {
-    ref.read(gambiarra.state).state;
+    ref.read(changePriceProvider.state).state;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var crypto = ref.watch(cryptoApiProvider.notifier).state;
-    var days = ref.watch(daysProvider.state).state;
-
-    var prices = ref.watch(gambiarra.state).state;
+    var prices = ref.watch(changePriceProvider.state).state;
     List<FlSpot> generateFlSpot() {
       List<FlSpot> listDays = [];
       for (int day = 0; day < prices.length; day++) {
@@ -53,35 +48,39 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
         child: LineChart(
           LineChartData(
             lineTouchData: LineTouchData(
-                getTouchedSpotIndicator:
-                    (LineChartBarData barData, List<int> spotIndexes) {
-                  return spotIndexes.map((index) {
-                    return TouchedSpotIndicatorData(
-                      FlLine(
-                        color: const Color.fromRGBO(224, 43, 87, 1),
-                        strokeWidth: 1,
-                        dashArray: [3, 3],
-                      ),
-                      FlDotData(
-                        show: false,
-                      ),
-                    );
-                  }).toList();
+              getTouchedSpotIndicator:
+                  (LineChartBarData barData, List<int> spotIndexes) {
+                return spotIndexes.map((index) {
+                  return TouchedSpotIndicatorData(
+                    FlLine(
+                      color: const Color.fromRGBO(224, 43, 87, 1),
+                      strokeWidth: 1,
+                      dashArray: [3, 3],
+                    ),
+                    FlDotData(
+                      show: false,
+                    ),
+                  );
+                }).toList();
+              },
+              touchTooltipData: LineTouchTooltipData(
+                fitInsideHorizontally: true,
+                tooltipBgColor: magenta,
+                tooltipPadding:
+                    const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                tooltipRoundedRadius: 12,
+                getTooltipItems: (touchedSpots) {
+                  return touchedSpots.map(
+                    (touchedSpot) {
+                      return LineTooltipItem(
+                        FormatCurrency.formatDouble(touchedSpot.y),
+                        const TextStyle(color: Colors.white, fontSize: 12),
+                      );
+                    },
+                  ).toList();
                 },
-                touchTooltipData: LineTouchTooltipData(
-                    fitInsideHorizontally: true,
-                    tooltipBgColor: magenta,
-                    tooltipPadding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                    tooltipRoundedRadius: 12,
-                    getTooltipItems: (touchedSpots) {
-                      return touchedSpots.map((touchedSpot) {
-                        return LineTooltipItem(
-                          FormatCurrency.formatDouble(touchedSpot.y),
-                          const TextStyle(color: Colors.white, fontSize: 12),
-                        );
-                      }).toList();
-                    })),
+              ),
+            ),
             titlesData: FlTitlesData(
               show: false,
             ),

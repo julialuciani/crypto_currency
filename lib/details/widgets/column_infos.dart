@@ -6,23 +6,38 @@ import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ColumnInfos extends HookConsumerWidget {
+class ColumnInfos extends StatefulHookConsumerWidget {
   const ColumnInfos({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // var cryptoModel = ref.watch(cryptoProvider.notifier).state;
-    var crypto = ref.watch(cryptoApiProvider.notifier).state;
-    var days = ref.watch(daysProvider);
-    var prices = ref.watch(pricesProvider.notifier).state;
-    // var dateRepo = ref.watch(graphicProvider.state).state;
+  ConsumerState<ColumnInfos> createState() => _ColumnInfosState();
+}
 
-    double getPrice() {
-      double price = prices.last;
-      return price;
+class _ColumnInfosState extends ConsumerState<ColumnInfos> {
+  @override
+  Widget build(BuildContext context) {
+    var crypto = ref.watch(cryptoApiProvider.notifier).state;
+    var days = ref.watch(daysProvider.state).state;
+    var prices = ref.watch(changePriceProvider.notifier).state;
+
+    double quantity = 0.5;
+
+    double getPriceByDays() {
+      double currentPrice = prices.isNotEmpty ? prices.first : 0;
+      return currentPrice;
     }
 
-    double calculateValue(double quantity) {
+    double getVariatonByDays() {
+      double variation = 0;
+      if (days != 1) {
+        variation = ((prices.last / prices.first) - 1) * 100;
+      } else {
+        variation = crypto.priceChangeOneDay.toDouble();
+      }
+      return variation;
+    }
+
+    double calculateValue() {
       return quantity * crypto.currentPrice;
     }
 
@@ -31,27 +46,26 @@ class ColumnInfos extends HookConsumerWidget {
         const Divider(),
         RowInfos(
           title: days > 1 ? 'Preço nos últimos $days dias' : 'Preço atual',
-          number: 1.toString(),
-          // number: FormatCurrency.formatDouble(getPrice()),
+          number: FormatCurrency.formatDouble(
+              days == 1 ? crypto.currentPrice : getPriceByDays()),
         ),
         const Divider(thickness: 1),
         RowInfos(
           title: days > 1 ? 'Variação ${days}D' : 'Variação 24H',
           number:
-              '${crypto.priceChangeOneDay > 0 ? '+' : ''}${crypto.priceChangeOneDay.toStringAsFixed(2)}%',
-          color: crypto.priceChangeOneDay > 0 ? Colors.green : Colors.red,
+              '${crypto.priceChangeOneDay > 0 ? '' : '+'} ${getVariatonByDays().toStringAsFixed(2)}%',
+          color: getVariatonByDays() > 0 ? Colors.green : Colors.red,
           isVariation: true,
         ),
         const Divider(thickness: 1),
         RowInfos(
           title: 'Quantidade',
-          number: '0,65 ${crypto.symbol}',
+          number: '$quantity ${crypto.symbol}',
         ),
         const Divider(thickness: 1),
         RowInfos(
           title: 'Valor',
-          number: FormatCurrency.formatDouble(calculateValue(0.65)).toString(),
-          // number: FormatCurrency.format(cryptoModel.howMuchUserHave),
+          number: FormatCurrency.formatDouble(calculateValue()).toString(),
         ),
       ],
     );

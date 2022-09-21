@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../repository/graphic_crypto_repository.dart';
 
-var gambiarra = StateProvider((ref) => []);
+var changePriceProvider = StateProvider((ref) => []);
 
 //StateNotifier
 var pricesProvider = StateNotifierProvider<PricesNotifier, List<double>>(
