@@ -27,7 +27,7 @@ class _ColumnInfosState extends ConsumerState<ColumnInfos> {
       return currentPrice;
     }
 
-    double getVariatonByDays() {
+    double getVariationByDays() {
       double variation = 0;
       if (days != 1) {
         variation = ((prices.last / prices.first) - 1) * 100;
@@ -53,8 +53,8 @@ class _ColumnInfosState extends ConsumerState<ColumnInfos> {
         RowInfos(
           title: days > 1 ? 'Variação ${days}D' : 'Variação 24H',
           number:
-              '${crypto.priceChangeOneDay > 0 ? '' : '+'} ${getVariatonByDays().toStringAsFixed(2)}%',
-          color: getVariatonByDays() > 0 ? Colors.green : Colors.red,
+              '${getVariationByDays() > 0 ? '+' : ''} ${getVariationByDays().toStringAsFixed(2)}%',
+          color: getVariationByDays() > 0 ? Colors.green : Colors.red,
           isVariation: true,
         ),
         const Divider(thickness: 1),

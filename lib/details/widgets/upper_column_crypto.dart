@@ -1,4 +1,5 @@
 import 'package:crypto/details/controller/crypto_api_provider.dart';
+import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -40,7 +41,7 @@ class UpperColumnCrypto extends HookConsumerWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            crypto.currentPrice.toString(),
+            FormatCurrency.formatDouble(crypto.currentPrice),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 35,
