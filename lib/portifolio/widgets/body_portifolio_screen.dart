@@ -11,10 +11,7 @@ class BodyPortifolioScreen extends StatelessWidget {
     return Column(
       children: const [
         UpperContainerCrypto(),
-        Divider(
-          thickness: 1,
-          height: 0.5,
-        ),
+        Divider(thickness: 1, height: 0.5),
         ListViewCryptos(),
       ],
     );

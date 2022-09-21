@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ConversionScreen extends StatelessWidget {
-  static const route = '/convertion';
+  static const route = '/conversion';
   const ConversionScreen({super.key});
 
   @override

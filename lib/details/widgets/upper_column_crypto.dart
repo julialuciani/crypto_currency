@@ -41,7 +41,6 @@ class UpperColumnCrypto extends HookConsumerWidget {
           const SizedBox(height: 5),
           Text(
             crypto.currentPrice.toString(),
-            // FormatCurrency.format(crypto.priceInNinety.first),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 35,

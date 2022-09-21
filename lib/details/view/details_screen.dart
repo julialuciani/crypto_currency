@@ -24,12 +24,15 @@ class DetailsScreen extends HookConsumerWidget {
     CryptoModelApi crypto = args;
     ref.read(cryptoApiProvider.notifier).state = crypto;
 
-    Future.delayed(Duration.zero, () async {
-      var days = ref.read(daysProvider.state).state;
-      await ref.read(pricesProvider.notifier).getPriceRange(crypto.id, days);
-      ref.read(changePriceProvider.state).state =
-          ref.read(pricesProvider.notifier).state;
-    });
+    Future.delayed(
+      Duration.zero,
+      () async {
+        var days = ref.read(daysProvider.state).state;
+        await ref.read(pricesProvider.notifier).getPriceRange(crypto.id, days);
+        ref.read(changePriceProvider.state).state =
+            ref.read(pricesProvider.notifier).state;
+      },
+    );
 
     return const Scaffold(
       appBar: DetailsAppBar(),

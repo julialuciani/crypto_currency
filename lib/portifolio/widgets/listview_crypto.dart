@@ -1,4 +1,3 @@
-import 'package:crypto/details/controller/days_provider.dart';
 import 'package:crypto/portifolio/controller/balance_provider.dart';
 import 'package:crypto/portifolio/model/crypto_model_api.dart';
 import 'package:crypto/portifolio/repositories/crypto_repository.dart';
@@ -27,13 +26,11 @@ class _ListViewCryptosState extends ConsumerState<ListViewCryptos> {
 
   @override
   Widget build(BuildContext context) {
-    var itemCount = ref.read(itemCountProvider.state).state;
     return Expanded(
       child: FutureBuilder(
         future: cryptos,
         builder: (context, AsyncSnapshot<List<CryptoModelApi>> snapshot) {
           if (snapshot.hasData) {
-            itemCount = snapshot.data!.length;
             ref.read(balanceProvider.notifier).getBalance(snapshot.data!);
             return ListView.separated(
               physics: const ClampingScrollPhysics(),

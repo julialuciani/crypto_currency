@@ -1,8 +1,5 @@
 import 'package:crypto/details/controller/prices_notifier.dart';
-import 'package:crypto/details/repository/graphic_crypto_repository.dart';
-import 'package:crypto/portifolio/model/crypto_model_api.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
-import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,11 +14,6 @@ class ChartDetailsScreen extends StatefulHookConsumerWidget {
 }
 
 class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
-  GraphicCryptoRepository repository = GraphicCryptoRepository(Dio());
-  // late List<double> prices;
-  late CryptoModelApi crypto;
-  late int days;
-
   @override
   void initState() {
     ref.read(changePriceProvider.state).state;

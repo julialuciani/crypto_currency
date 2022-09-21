@@ -1,6 +1,5 @@
 import 'package:crypto/portifolio/controller/balance_provider.dart';
 import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/models/crypto_model.dart';
 import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,8 +13,6 @@ class UpperContainerCrypto extends StatefulHookConsumerWidget {
   @override
   ConsumerState<UpperContainerCrypto> createState() => _UpperCardCryptoState();
 }
-
-late CryptoModel cryptoModel;
 
 class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   @override
