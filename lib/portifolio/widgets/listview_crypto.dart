@@ -1,52 +1,41 @@
-import 'package:crypto/portifolio/controller/balance_provider.dart';
-import 'package:crypto/portifolio/model/crypto_model_api.dart';
-import 'package:crypto/portifolio/repositories/crypto_repository.dart';
-import 'package:crypto/portifolio/widgets/listile_crypto.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/portifolio/controller/balance_provider.dart';
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
+import 'listile_crypto.dart';
 
-class ListViewCryptos extends StatefulHookConsumerWidget {
+class ListViewCryptos extends HookConsumerWidget {
   const ListViewCryptos({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ListViewCryptosState();
-}
-
-class _ListViewCryptosState extends ConsumerState<ListViewCryptos> {
-  CryptoRepository repository = CryptoRepository(Dio());
-  late Future<List<CryptoModelApi>> cryptos;
-
-  @override
-  void initState() {
-    cryptos = repository.getAllCryptos();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: FutureBuilder(
-        future: cryptos,
-        builder: (context, AsyncSnapshot<List<CryptoModelApi>> snapshot) {
-          if (snapshot.hasData) {
-            ref.read(balanceProvider.notifier).getBalance(snapshot.data!);
-            return ListView.separated(
-              physics: const ClampingScrollPhysics(),
-              itemCount: snapshot.data!.length,
-              separatorBuilder: (context, index) => const Divider(thickness: 1),
-              itemBuilder: (context, index) {
-                CryptoModelApi crypto = snapshot.data![index];
-                return ListTitleCrypto(
-                  crypto: crypto,
-                );
-              },
+  Widget build(BuildContext context, WidgetRef ref) {
+    var cryptos = ref.read(cryptosProvider);
+    return cryptos.when(
+      data: (data) => Expanded(
+        child: ListView.separated(
+          physics: const ClampingScrollPhysics(),
+          itemCount: data.length,
+          separatorBuilder: (context, index) => const Divider(thickness: 1),
+          itemBuilder: (context, index) {
+            CryptoViewData crypto = data[index];
+            ref.read(balanceProvider.notifier).getBalance(data);
+            return ListTitleCrypto(
+              crypto: crypto,
             );
-          }
-          return const Text('...');
-        },
+          },
+        ),
       ),
+      error: (e, r) {
+        debugPrint('E: $e');
+        debugPrint('R: $r');
+        return const Text('Erro');
+      },
+      loading: () {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

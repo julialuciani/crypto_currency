@@ -1,38 +1,20 @@
-import 'package:crypto/details/controller/prices_notifier.dart';
-import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/details/controller/days_provider.dart';
 
 import '../../shared/style/colors.dart';
+import '../../shared/utils/currency_formatter.dart';
 
-class ChartDetailsScreen extends StatefulHookConsumerWidget {
-  const ChartDetailsScreen({Key? key}) : super(key: key);
-
-  @override
-  ConsumerState<ChartDetailsScreen> createState() => _ChartDetailsScreenState();
-}
-
-class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
-  @override
-  void initState() {
-    ref.read(changePriceProvider.state).state;
-    super.initState();
-  }
+class ChartDetailsScreen extends HookConsumerWidget {
+  final List<FlSpot> list;
+  const ChartDetailsScreen({
+    Key? key,
+    required this.list,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    var prices = ref.watch(changePriceProvider.state).state;
-    List<FlSpot> generateFlSpot() {
-      List<FlSpot> listDays = [];
-      for (int day = 0; day < prices.length; day++) {
-        listDays.add(
-          FlSpot(day.toDouble(), prices[day]),
-        );
-      }
-      return listDays;
-    }
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
       child: AspectRatio(
@@ -65,7 +47,7 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
                   return touchedSpots.map(
                     (touchedSpot) {
                       return LineTooltipItem(
-                        FormatCurrency.formatDouble(touchedSpot.y),
+                        FormatCurrency.format(touchedSpot.y),
                         const TextStyle(color: Colors.white, fontSize: 12),
                       );
                     },
@@ -106,7 +88,7 @@ class _ChartDetailsScreenState extends ConsumerState<ChartDetailsScreen> {
                 dotData: FlDotData(
                   show: false,
                 ),
-                spots: generateFlSpot(),
+                spots: list.sublist(0, ref.watch(daysProvider.state).state + 1),
               ),
             ],
           ),

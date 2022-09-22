@@ -1,25 +1,18 @@
-import 'package:crypto/portifolio/model/crypto_model_api.dart';
-import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/utils/currency_formatter.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../details/repository/graphic_crypto_repository.dart';
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import '../../shared/utils/currency_formatter.dart';
 import '../controller/visibility_provider.dart';
+import 'container_visible.dart';
 
 class ListTitleCrypto extends HookConsumerWidget {
-  final CryptoModelApi crypto;
+  final CryptoViewData crypto;
 
-  ListTitleCrypto({Key? key, required this.crypto}) : super(key: key);
-
-  GraphicCryptoRepository repository = GraphicCryptoRepository(Dio());
+  const ListTitleCrypto({Key? key, required this.crypto}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var visible = ref.watch(visibilityProvider.state);
-    crypto.symbol = crypto.symbol.toUpperCase();
-
     return ListTile(
       onTap: () {
         Navigator.pushNamed(
@@ -37,9 +30,9 @@ class ListTitleCrypto extends HookConsumerWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(crypto.symbol),
+          Text(crypto.symbol.toUpperCase()),
           visible.state
-              ? Text(FormatCurrency.formatDouble(crypto.currentPrice))
+              ? Text(FormatCurrency.format(crypto.currentPrice))
               : const InvisibleContainer(),
         ],
       ),
@@ -48,7 +41,7 @@ class ListTitleCrypto extends HookConsumerWidget {
         children: [
           Text(crypto.name),
           visible.state
-              ? Text('0.5 ${crypto.symbol}')
+              ? Text('0.5 ${crypto.symbol.toUpperCase()}')
               : const InvisibleContainer(),
         ],
       ),

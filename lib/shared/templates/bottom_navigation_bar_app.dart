@@ -1,5 +1,5 @@
-import 'package:crypto/shared/style/colors.dart';
 import 'package:flutter/material.dart';
+import '../style/colors.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
   const BottomNavigationBarApp({Key? key, required this.index})

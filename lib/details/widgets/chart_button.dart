@@ -1,10 +1,10 @@
-import 'package:crypto/details/controller/prices_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/details/usecase/cryptos_market_data_provider.dart';
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
-import 'package:crypto/details/controller/crypto_api_provider.dart';
-import 'package:crypto/details/controller/days_provider.dart';
-import 'package:crypto/portifolio/model/crypto_model_api.dart';
+import '../controller/crypto_api_provider.dart';
+import '../controller/days_provider.dart';
 
 class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
@@ -35,21 +35,13 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
     return InkWell(
       onTap: () {
         Future.delayed(Duration.zero, () {
-          CryptoModelApi crypto = ref.read(cryptoApiProvider.notifier).state;
-          ref
-              .read(pricesProvider.notifier)
-              .getPriceRange(crypto.id, days.state);
+          CryptoViewData crypto = ref.read(cryptoProvider.notifier).state;
+          ref.watch(marketDataProvider(DetailsArguments(id: crypto.id)).future);
         });
         setState(
           () {
             days.state = widget.daysButton;
             changeButtonColor();
-            CryptoModelApi crypto = ref.read(cryptoApiProvider.notifier).state;
-            ref
-                .read(pricesProvider.notifier)
-                .getPriceRange(crypto.id, days.state);
-            ref.read(changePriceProvider.state).state =
-                ref.read(pricesProvider.notifier).state;
           },
         );
       },

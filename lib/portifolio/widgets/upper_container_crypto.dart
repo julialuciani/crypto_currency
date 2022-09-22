@@ -1,11 +1,11 @@
-import 'package:crypto/portifolio/controller/balance_provider.dart';
-import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../shared/style/colors.dart';
+import '../../shared/utils/currency_formatter.dart';
+import '../controller/balance_provider.dart';
 import '../controller/visibility_provider.dart';
+import 'container_visible.dart';
 
 class UpperContainerCrypto extends StatefulHookConsumerWidget {
   const UpperContainerCrypto({super.key});
@@ -52,7 +52,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
           ),
           visible.state
               ? Text(
-                  FormatCurrency.formatDouble(balance),
+                  FormatCurrency.format(balance),
                   style: const TextStyle(
                     fontSize: 29,
                     fontFamily: 'Montserrat',

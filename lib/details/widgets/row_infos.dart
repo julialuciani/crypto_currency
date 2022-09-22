@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class RowInfos extends StatelessWidget {
   final String title;
-  final dynamic number;
+  String info;
   final Color? color;
   final bool isVariation;
 
-  const RowInfos({
+  RowInfos({
     Key? key,
     required this.title,
-    required this.number,
+    required this.info,
     this.color = Colors.black,
     this.isVariation = false,
   }) : super(key: key);
@@ -29,7 +29,7 @@ class RowInfos extends StatelessWidget {
             ),
           ),
           Text(
-            number,
+            info,
             style: TextStyle(
               fontSize: 16,
               color: color,

@@ -1,21 +1,20 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
-import '../../portifolio/model/crypto_model_api.dart';
-
-var cryptoApiProvider = StateNotifierProvider<CryptoNotifier, CryptoModelApi>(
+var cryptoProvider = StateNotifierProvider<CryptoNotifier, CryptoViewData>(
   (ref) => CryptoNotifier(),
 );
 
-class CryptoNotifier extends StateNotifier<CryptoModelApi> {
+class CryptoNotifier extends StateNotifier<CryptoViewData> {
   CryptoNotifier()
       : super(
-          CryptoModelApi(
+          CryptoViewData(
             id: 's',
             name: 's',
             currentPrice: 0,
             image: 's',
             symbol: 's',
-            priceChangeOneDay: 0,
+            variation: 0,
           ),
         );
 }

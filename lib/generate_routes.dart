@@ -1,6 +1,6 @@
-import 'package:crypto/portifolio/model/crypto_model_api.dart';
-import 'package:crypto/portifolio/view/portifolio_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'portifolio/view/portifolio_screen.dart';
 
 import 'conversion/view/conversion_screen.dart';
 import 'details/view/details_screen.dart';
@@ -21,7 +21,7 @@ class GeneretaRoute {
         },
       );
     } else if (settings.name == DetailsScreen.route) {
-      final args = settings.arguments as CryptoModelApi;
+      final args = settings.arguments as CryptoViewData;
       return PageRouteBuilder(
         settings: settings,
         pageBuilder: (context, animation, secondaryAnimation) {

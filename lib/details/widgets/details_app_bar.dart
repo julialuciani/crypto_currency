@@ -1,6 +1,7 @@
-import 'package:crypto/details/controller/days_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../controller/days_provider.dart';
 
 class DetailsAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const DetailsAppBar({Key? key}) : super(key: key);
