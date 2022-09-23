@@ -7,8 +7,8 @@ extension CryptosMarketDataMapper on MarketDataResponse {
     return CryptosMarkeDataViewData(
       List.from(
         prices.map(
-          (prices) {
-            return prices;
+          (price) {
+            return price;
           },
         ),
       ),

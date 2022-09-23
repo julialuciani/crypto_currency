@@ -23,7 +23,7 @@ class ListTitleCrypto extends HookConsumerWidget {
       },
       minVerticalPadding: 20,
       leading: CircleAvatar(
-        radius: 25,
+        radius: 22,
         backgroundColor: Colors.white,
         backgroundImage: NetworkImage(crypto.image),
       ),
@@ -39,9 +39,14 @@ class ListTitleCrypto extends HookConsumerWidget {
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(crypto.name),
+          Text(
+            crypto.name,
+          ),
           visible.state
-              ? Text('0.5 ${crypto.symbol.toUpperCase()}')
+              ? Text(
+                  '0.5 ${crypto.symbol.toUpperCase()}',
+                  style: const TextStyle(fontSize: 12),
+                )
               : const InvisibleContainer(),
         ],
       ),

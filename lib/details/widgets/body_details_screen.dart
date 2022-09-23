@@ -21,8 +21,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var days = ref.watch(daysProvider.state).state;
-    final marketData =
-        ref.watch(marketDataProvider(DetailsArguments(id: crypto.id)));
+    final marketData = ref.watch(marketDataProvider(crypto.id));
 
     return marketData.when(
       data: ((data) {
@@ -35,7 +34,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const UpperColumnCrypto(),
+              UpperColumnCrypto(crypto: crypto),
               ChartDetailsScreen(
                 list: List<FlSpot>.from(
                   data.price.reversed.map(
@@ -57,6 +56,8 @@ class BodyDetailsScreen extends HookConsumerWidget {
               const Divider(thickness: 1),
               RowInfos(
                   title: 'Variação em $days dias',
+                  isVariation: true,
+                  color: getVariation > 0 ? Colors.green : Colors.red,
                   info:
                       '${getVariation > 0 ? '+' : ''} ${getVariation.toStringAsFixed(2)}%'),
               const Divider(thickness: 1),
@@ -75,6 +76,8 @@ class BodyDetailsScreen extends HookConsumerWidget {
         );
       }),
       error: (error, stackTrace) {
+        debugPrint(stackTrace.toString());
+        debugPrint(error.toString());
         return const Text('Opps...Erro :(');
       },
       loading: () {

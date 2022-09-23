@@ -9,8 +9,7 @@ part of 'market_data_response.dart';
 MarketDataResponse _$MarketDataResponseFromJson(Map<String, dynamic> json) =>
     MarketDataResponse(
       (json['prices'] as List<dynamic>)
-          .map((e) =>
-              (e as List<dynamic>).map((e) => (e as num).toDouble()).toList())
+          .map((e) => (e as List<dynamic>).map((e) => e as num).toList())
           .toList(),
     );
 

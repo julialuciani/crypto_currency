@@ -6,7 +6,7 @@ class CryptosEndpoint {
 
   Future<Response> getAllCryptos() async {
     return await _dio.get(
-        '/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false');
+        '/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=100&page=1&sparkline=false');
   }
 
   Future<Response> getAllCryptosMarketData(String id) async {

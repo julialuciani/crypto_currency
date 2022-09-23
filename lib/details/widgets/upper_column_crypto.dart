@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+
 import '../../shared/utils/currency_formatter.dart';
-import '../controller/crypto_api_provider.dart';
 
 class UpperColumnCrypto extends HookConsumerWidget {
-  const UpperColumnCrypto({Key? key}) : super(key: key);
+  final CryptoViewData crypto;
+  const UpperColumnCrypto({
+    Key? key,
+    required this.crypto,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var crypto = ref.watch(cryptoProvider.notifier).state;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(

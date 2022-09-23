@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'chart_button.dart';
 
 class ChangeDaysButtons extends StatelessWidget {
-  const ChangeDaysButtons({Key? key}) : super(key: key);
+  const ChangeDaysButtons({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
