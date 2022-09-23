@@ -15,7 +15,7 @@ class ButtonDetailsScreen extends StatelessWidget {
         ),
         color: magenta,
         onPressed: () {
-          Navigator.pushNamed(context, '/convertion');
+          Navigator.pushNamed(context, '/conversion');
         },
         child: const Padding(
           padding: EdgeInsets.all(20),

@@ -24,7 +24,9 @@ class DetailsScreen extends HookConsumerWidget {
     });
 
     return Scaffold(
-      appBar: const DetailsAppBar(),
+      appBar: const DetailsAppBar(
+        title: 'Detalhes',
+      ),
       body: BodyDetailsScreen(crypto: crypto),
     );
   }

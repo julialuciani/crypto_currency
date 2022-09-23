@@ -34,7 +34,7 @@ class GeneretaRoute {
       return PageRouteBuilder(
         settings: settings,
         pageBuilder: (context, animation, secondaryAnimation) {
-          return const ConversionScreen();
+          return ConversionScreen();
         },
       );
     }
