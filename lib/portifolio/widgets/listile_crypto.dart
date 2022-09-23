@@ -1,59 +1,52 @@
-import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/utils/arguments.dart';
-import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:crypto/shared/models/crypto_model.dart';
-
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import '../../shared/utils/currency_formatter.dart';
 import '../controller/visibility_provider.dart';
+import 'container_visible.dart';
 
 class ListTitleCrypto extends HookConsumerWidget {
-  final CryptoModel crypto;
-  const ListTitleCrypto({Key? key, required this.crypto}) : super(key: key);
+  final CryptoViewData crypto;
 
-  double updateDayVariation() {
-    return (crypto.priceInNinety.first.toDouble() /
-                crypto.priceInNinety[1].toDouble() -
-            1) *
-        100;
-  }
+  const ListTitleCrypto({Key? key, required this.crypto}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var visible = ref.watch(visibilityProvider.state);
-
     return ListTile(
       onTap: () {
-        crypto.variation = updateDayVariation();
         Navigator.pushNamed(
           context,
           '/details',
-          arguments: Arguments(crypto: crypto),
+          arguments: crypto,
         );
       },
       minVerticalPadding: 20,
       leading: CircleAvatar(
-        radius: 25,
+        radius: 22,
         backgroundColor: Colors.white,
-        backgroundImage: AssetImage(crypto.iconImage),
+        backgroundImage: NetworkImage(crypto.image),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(crypto.abbreviation),
+          Text(crypto.symbol.toUpperCase()),
           visible.state
-              ? Text(FormatCurrency.format(crypto.howMuchUserHave))
+              ? Text(FormatCurrency.format(crypto.currentPrice))
               : const InvisibleContainer(),
         ],
       ),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(crypto.name),
+          Text(
+            crypto.name,
+          ),
           visible.state
               ? Text(
-                  '${crypto.quantity.toStringAsFixed(2)} ${crypto.abbreviation}')
+                  '0.5 ${crypto.symbol.toUpperCase()}',
+                  style: const TextStyle(fontSize: 12),
+                )
               : const InvisibleContainer(),
         ],
       ),

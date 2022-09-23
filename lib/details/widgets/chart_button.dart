@@ -1,9 +1,7 @@
-import 'package:crypto/details/controller/current_price_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:crypto/details/controller/days_provider.dart';
-import 'package:crypto/details/controller/crypto_provider.dart';
+import '../controller/days_provider.dart';
 
 class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
@@ -22,7 +20,6 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
   @override
   Widget build(BuildContext context) {
     var days = ref.watch(daysProvider.state);
-    var oneCrypto = ref.watch(cryptoProvider.notifier).state;
 
     Color changeButtonColor() {
       if (widget.daysButton == days.state) {
@@ -38,16 +35,6 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
           () {
             days.state = widget.daysButton;
             changeButtonColor();
-            ref
-                .read(cryptoProvider.notifier)
-                .variationInDays(widget.daysButton);
-            ref
-                .read(currrentPriceProvider.notifier)
-                .getCurrentPrice(widget.daysButton, oneCrypto);
-            oneCrypto.currentPrice =
-                ref.read(currrentPriceProvider.notifier).state;
-            oneCrypto.variation =
-                ref.read(cryptoProvider.notifier).state.variation;
           },
         );
       },

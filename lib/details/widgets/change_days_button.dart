@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:crypto/details/widgets/chart_button.dart';
+import 'chart_button.dart';
 
 class ChangeDaysButtons extends StatelessWidget {
-  const ChangeDaysButtons({Key? key}) : super(key: key);
+  const ChangeDaysButtons({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: const [
-        ChartButton(
-          title: '1D',
-          daysButton: 1,
-        ),
         ChartButton(
           title: '5D',
           daysButton: 5,
@@ -32,6 +30,10 @@ class ChangeDaysButtons extends StatelessWidget {
         ChartButton(
           title: '90D',
           daysButton: 90,
+        ),
+        ChartButton(
+          title: '365D',
+          daysButton: 365,
         ),
       ],
     );

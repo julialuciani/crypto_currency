@@ -1,16 +1,19 @@
-import 'package:crypto/shared/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../controller/crypto_provider.dart';
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+
+import '../../shared/utils/currency_formatter.dart';
 
 class UpperColumnCrypto extends HookConsumerWidget {
-  const UpperColumnCrypto({Key? key}) : super(key: key);
+  final CryptoViewData crypto;
+  const UpperColumnCrypto({
+    Key? key,
+    required this.crypto,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var oneCrypto = ref.watch(cryptoProvider.notifier).state;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -20,7 +23,7 @@ class UpperColumnCrypto extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                oneCrypto.name,
+                crypto.name,
                 style: const TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
@@ -29,12 +32,12 @@ class UpperColumnCrypto extends HookConsumerWidget {
               CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 25,
-                backgroundImage: AssetImage(oneCrypto.iconImage),
+                backgroundImage: NetworkImage(crypto.image),
               ),
             ],
           ),
           Text(
-            oneCrypto.abbreviation,
+            crypto.symbol.toUpperCase(),
             style: TextStyle(
               color: Colors.grey.shade500,
               fontSize: 20,
@@ -42,7 +45,7 @@ class UpperColumnCrypto extends HookConsumerWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            FormatCurrency.format(oneCrypto.priceInNinety.first),
+            FormatCurrency.format(crypto.currentPrice),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 35,

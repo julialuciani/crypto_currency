@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:crypto/shared/routes/app_routes.dart';
+
+import 'generate_routes.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Crypto',
       debugShowCheckedModeBanner: false,
-      routes: appRoutes,
+      onGenerateRoute: GeneretaRoute.findRoute,
       initialRoute: '/portifolio',
     );
   }

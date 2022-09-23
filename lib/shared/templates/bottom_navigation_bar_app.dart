@@ -1,6 +1,5 @@
-import 'package:crypto/shared/routes/app_routes.dart';
-import 'package:crypto/shared/style/colors.dart';
 import 'package:flutter/material.dart';
+import '../style/colors.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
   const BottomNavigationBarApp({Key? key, required this.index})
@@ -14,21 +13,15 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
-        Navigator.pushReplacement(
+        Navigator.pushNamed(
           context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                appRoutes['/portifolio']!(context),
-          ),
+          '/portifolio',
         );
         break;
       case 1:
-        Navigator.pushReplacement(
+        Navigator.pushNamed(
           context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                appRoutes['/movements']!(context),
-          ),
+          '/movements',
         );
         break;
     }

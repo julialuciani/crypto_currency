@@ -1,13 +1,11 @@
-import 'package:crypto/portifolio/controller/crypto_list_provider.dart';
-import 'package:crypto/portifolio/widgets/container_visible.dart';
-import 'package:crypto/shared/models/crypto_model.dart';
-import 'package:crypto/shared/utils/currency_formatter.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../shared/style/colors.dart';
+import '../../shared/utils/currency_formatter.dart';
+import '../controller/balance_provider.dart';
 import '../controller/visibility_provider.dart';
+import 'container_visible.dart';
 
 class UpperContainerCrypto extends StatefulHookConsumerWidget {
   const UpperContainerCrypto({super.key});
@@ -16,21 +14,11 @@ class UpperContainerCrypto extends StatefulHookConsumerWidget {
   ConsumerState<UpperContainerCrypto> createState() => _UpperCardCryptoState();
 }
 
-late CryptoModel cryptoModel;
-
 class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
-    var cryptosList = ref.read(cryptosListProvider);
-
-    Decimal walletBallance() {
-      Decimal balance = Decimal.parse('0');
-      for (int index = 0; index < cryptosList.length; index++) {
-        balance += cryptosList[index].howMuchUserHave;
-      }
-      return balance;
-    }
+    var balance = ref.watch(balanceProvider.state).state;
 
     return Container(
       height: 165,
@@ -64,7 +52,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
           ),
           visible.state
               ? Text(
-                  FormatCurrency.format(walletBallance()),
+                  FormatCurrency.format(balance),
                   style: const TextStyle(
                     fontSize: 29,
                     fontFamily: 'Montserrat',

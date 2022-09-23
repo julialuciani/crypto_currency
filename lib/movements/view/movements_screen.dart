@@ -1,5 +1,6 @@
-import 'package:crypto/shared/templates/bottom_navigation_bar_app.dart';
 import 'package:flutter/material.dart';
+
+import '../../shared/templates/bottom_navigation_bar_app.dart';
 
 class MovementsScreen extends StatelessWidget {
   const MovementsScreen({super.key});

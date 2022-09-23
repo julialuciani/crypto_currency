@@ -1,5 +1,5 @@
-import 'package:crypto/portifolio/widgets/upper_container_crypto.dart';
 import 'package:flutter/material.dart';
+import 'upper_container_crypto.dart';
 
 import 'listview_crypto.dart';
 
@@ -11,10 +11,7 @@ class BodyPortifolioScreen extends StatelessWidget {
     return Column(
       children: const [
         UpperContainerCrypto(),
-        Divider(
-          thickness: 1,
-          height: 0.5,
-        ),
+        Divider(thickness: 1, height: 0.5),
         ListViewCryptos(),
       ],
     );
