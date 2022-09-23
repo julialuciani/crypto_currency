@@ -1,7 +1,7 @@
-import 'package:projeto_crypto/shared/api/cryptos_endpoint.dart';
+import 'package:projeto_crypto/shared/api/models/endpoints/cryptos_endpoint.dart';
 import 'package:projeto_crypto/shared/api/models/cryptos/get_all_cryptos_response.dart';
 
-import '../api/models/cryptos/cryptos_response.dart';
+import '../../shared/api/models/cryptos/cryptos_response.dart';
 
 class CryptosRepository {
   final CryptosEndpoint _endpoint;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:projeto_crypto/details/usecase/cryptos_market_data_provider.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
 import '../widgets/body_details_screen.dart';
@@ -19,10 +18,6 @@ class DetailsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final args = ModalRoute.of(context)!.settings.arguments as CryptoViewData;
     CryptoViewData crypto = args;
-    ref.read(marketDataProvider(DetailsArguments(id: crypto.id)));
-    ref.watch(marketDataProvider(DetailsArguments(
-      id: crypto.id,
-    )).future);
 
     return Scaffold(
       appBar: const DetailsAppBar(),

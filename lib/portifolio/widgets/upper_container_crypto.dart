@@ -18,7 +18,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
   @override
   Widget build(BuildContext context) {
     var visible = ref.watch(visibilityProvider.state);
-    var balance = ref.watch(balanceProvider.notifier).state;
+    var balance = ref.watch(balanceProvider.state).state;
 
     return Container(
       height: 165,
