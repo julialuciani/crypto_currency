@@ -16,10 +16,3 @@ final marketDataProvider =
     return ref.read(marketDataProviderUsecase).execute(id);
   }),
 );
-
-// class DetailsArguments {
-//   String id;
-//   DetailsArguments({
-//     required this.id,
-//   });
-// }
