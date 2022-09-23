@@ -12,8 +12,8 @@ CryptosResponse _$CryptosResponseFromJson(Map<String, dynamic> json) =>
       json['symbol'] as String,
       json['name'] as String,
       json['image'] as String,
-      (json['currentPrice'] as num).toDouble(),
-      (json['variation'] as num).toDouble(),
+      (json['current_price'] as num).toDouble(),
+      (json['price_change_percentage_24h'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$CryptosResponseToJson(CryptosResponse instance) =>
@@ -22,6 +22,6 @@ Map<String, dynamic> _$CryptosResponseToJson(CryptosResponse instance) =>
       'symbol': instance.symbol,
       'name': instance.name,
       'image': instance.image,
-      'currentPrice': instance.currentPrice,
-      'variation': instance.variation,
+      'current_price': instance.currentPrice,
+      'price_change_percentage_24h': instance.variation,
     };

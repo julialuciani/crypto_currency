@@ -23,28 +23,4 @@ class CryptosResponse {
       _$CryptosResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CryptosResponseToJson(this);
-
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'id': id});
-    result.addAll({'symbol': symbol});
-    result.addAll({'name': name});
-    result.addAll({'image': image});
-    result.addAll({'current_price': currentPrice});
-    result.addAll({'variation': variation});
-
-    return result;
-  }
-
-  factory CryptosResponse.fromMap(Map<String, dynamic> map) {
-    return CryptosResponse(
-      map['id'] ?? '',
-      map['symbol'] ?? '',
-      map['name'] ?? '',
-      map['image'] ?? '',
-      map['current_price']?.toDouble() ?? 0.0,
-      map['variation']?.toDouble() ?? 0.0,
-    );
-  }
 }
