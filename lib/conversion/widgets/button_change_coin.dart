@@ -16,7 +16,35 @@ class ButtonChangeCoin extends StatelessWidget {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
           side: BorderSide(color: Colors.grey.shade300)),
-      onPressed: () {},
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            elevation: 2,
+            backgroundColor: Colors.white,
+            content: SizedBox(
+              height: 200,
+              child: ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const Divider(thickness: 1),
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {},
+                    child: const ListTile(
+                      title: Text('ETH'),
+                      subtitle: Text('Ethereum'),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        size: 15,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
       child: Row(
         children: [
           CircleAvatar(

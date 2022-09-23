@@ -7,8 +7,9 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Crypto',
+      theme: ThemeData(primaryColor: Colors.red),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: GeneretaRoute.findRoute,
       initialRoute: '/portifolio',
