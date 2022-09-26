@@ -22,6 +22,7 @@ class _ConversionState extends ConsumerState<ButtonChangeCoin> {
   @override
   Widget build(BuildContext context) {
     var cryptos = ref.watch(cryptosProvider);
+    var crypto = ref.read(cryptoProvider.state).state;
 
     return cryptos.when(
       data: (data) {
@@ -49,10 +50,6 @@ class _ConversionState extends ConsumerState<ButtonChangeCoin> {
                         margin: const EdgeInsets.symmetric(vertical: 20),
                         height: 3,
                         width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.grey.shade400,
-                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,

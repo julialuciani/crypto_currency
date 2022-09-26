@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_crypto/conversion/controller/crypto_provider.dart';
@@ -34,6 +33,9 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () {
+      ref.watch(cryptoProvider.state).state = widget.crypto;
+    });
     valueController.addListener(getLastestValue);
   }
 
@@ -43,9 +45,17 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     super.dispose();
   }
 
+  String formattingValue(String value) {
+    return value.replaceAll(RegExp(r'[^\w\s]+'), '.');
+  }
+
   String getLastestValue() {
-    String value = valueController.text;
+    String value = formattingValue(valueController.text);
     return value;
+  }
+
+  bool isCorrect(String value) {
+    return value.startsWith(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
   }
 
   double convertLatestValue() {
@@ -62,13 +72,16 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     String value =
         NumberFormat.simpleCurrency(locale: 'pt-br', decimalDigits: 2)
             .format(convertLatestValue());
-    debugPrint(value);
     return value;
   }
 
   String getTotal(CryptoViewData crypto) {
-    double total = convertLatestValue() / crypto.currentPrice;
-    return '${total.toString()} ${crypto.symbol.toUpperCase()}';
+    if (convertLatestValue() == 0.0) {
+      return '0,00 ${crypto.symbol.toUpperCase()}';
+    } else {
+      double total = convertLatestValue() / crypto.currentPrice;
+      return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
+    }
   }
 
   @override
@@ -125,50 +138,46 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     ],
                   ),
                   TextFormField(
-                      showCursor: false,
-                      controller: valueController,
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      decoration: InputDecoration(
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: magenta,
-                            width: 3,
-                          ),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: magenta, width: 3)),
-                        hintText: '${widget.crypto.symbol.toUpperCase()} 0,00',
-                        hintStyle: TextStyle(
-                          fontSize: 30,
-                          color: Colors.grey.shade500,
+                    showCursor: false,
+                    controller: valueController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: magenta,
+                          width: 3,
                         ),
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          formatLatestValue();
-                          getTotal(crypto);
-                        });
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                            RegExp(r'(^\d*\.?\d*)')),
-                      ],
-                      onEditingComplete: getLastestValue,
-                      validator: (value) {
-                        if (value == '') {
-                          validate = false;
-                          return 'Digite algo';
-                        } else if (double.parse(value!) == 0) {
-                          validate = false;
-                          return 'Você não pode converter zero';
-                        } else if (double.parse(value) > 0.5) {
-                          return 'Você não tem essa quantia';
-                        } else {
-                          validate = true;
-                          return null;
-                        }
-                      }),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: magenta, width: 3)),
+                      hintText: '${widget.crypto.symbol.toUpperCase()} 0,00',
+                      hintStyle: TextStyle(
+                        fontSize: 30,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        formatLatestValue();
+                        getTotal(crypto);
+                      });
+                    },
+                    onEditingComplete: getLastestValue,
+                    validator: (value) {
+                      if (value == '') {
+                        return 'Digite algo';
+                      } else if (isCorrect(value!) || value.startsWith('-')) {
+                        return "O valor não pode começar com caractere especial";
+                      } else if (double.parse(formattingValue(value)) == 0) {
+                        return 'Você não pode converter zero';
+                      } else if (double.parse(formattingValue(value)) > 0.5) {
+                        return 'Você não tem essa quantia';
+                      } else {
+                        validate = true;
+                        return null;
+                      }
+                    },
+                  ),
                   const SizedBox(height: 10),
                   Text(
                     formatLatestValue(),
@@ -197,10 +206,31 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   validate ? magenta : const Color.fromARGB(255, 202, 200, 212),
               onPressed: () {
                 if (_key.currentState!.validate()) {
-                  if (widget.crypto.symbol != crypto.symbol) {
-                    validate = true;
+                  if (widget.crypto == crypto) {
+                    showModalBottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        ),
+                      ),
+                      context: context,
+                      builder: (context) {
+                        return SizedBox(
+                          height: 100,
+                          child: Center(
+                            child: Text(
+                              'Não faz sentido converter duas moedas iguais',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey.shade700),
+                            ),
+                          ),
+                        );
+                      },
+                    );
                   } else {
-                    validate = false;
+                    validate = true;
                   }
                 }
               },
