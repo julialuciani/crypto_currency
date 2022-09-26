@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+
 import '../style/colors.dart';
 
 class ButtonDetailsScreen extends StatelessWidget {
-  const ButtonDetailsScreen({Key? key}) : super(key: key);
+  CryptoViewData crypto;
+  ButtonDetailsScreen({
+    Key? key,
+    required this.crypto,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,7 @@ class ButtonDetailsScreen extends StatelessWidget {
         ),
         color: magenta,
         onPressed: () {
-          Navigator.pushNamed(context, '/conversion');
+          Navigator.pushNamed(context, '/conversion', arguments: crypto);
         },
         child: const Padding(
           padding: EdgeInsets.all(20),
