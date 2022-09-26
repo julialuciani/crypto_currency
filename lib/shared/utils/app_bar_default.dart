@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DetailsAppBar extends HookConsumerWidget implements PreferredSizeWidget {
+class AppBarDefault extends HookConsumerWidget implements PreferredSizeWidget {
   final String title;
-  const DetailsAppBar({
+  const AppBarDefault({
     Key? key,
     required this.title,
   }) : super(key: key);

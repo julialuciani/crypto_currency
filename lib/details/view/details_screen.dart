@@ -4,7 +4,7 @@ import 'package:projeto_crypto/details/controller/days_provider.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
 import '../widgets/body_details_screen.dart';
-import '../widgets/details_app_bar.dart';
+import '../../shared/utils/app_bar_default.dart';
 
 class DetailsScreen extends HookConsumerWidget {
   static const route = '/details';
@@ -24,7 +24,7 @@ class DetailsScreen extends HookConsumerWidget {
     });
 
     return Scaffold(
-      appBar: const DetailsAppBar(
+      appBar: const AppBarDefault(
         title: 'Detalhes',
       ),
       body: BodyDetailsScreen(crypto: crypto),

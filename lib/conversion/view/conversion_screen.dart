@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_crypto/conversion/controller/crypto_provider.dart';
 
-import 'package:projeto_crypto/details/widgets/details_app_bar.dart';
+import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
@@ -16,10 +16,7 @@ class ConversionScreen extends StatefulHookConsumerWidget {
   static const route = '/conversion';
   CryptoViewData crypto;
 
-  ConversionScreen({
-    Key? key,
-    required this.crypto,
-  }) : super(key: key);
+  ConversionScreen({Key? key, required this.crypto}) : super(key: key);
 
   @override
   ConsumerState<ConversionScreen> createState() => _ConversionState();
@@ -95,9 +92,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           key: _key,
           autovalidateMode: AutovalidateMode.always,
           child: Scaffold(
-            appBar: const DetailsAppBar(
-              title: 'Converter',
-            ),
+            appBar: const AppBarDefault(title: 'Converter'),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -108,10 +103,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   const AutoSizeText(
                     'Quanto você gostaria de converter?',
                     maxLines: 2,
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),
                   Row(
