@@ -70,7 +70,9 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 info: FormatCurrency.format(crypto.currentPrice * 0.5),
               ),
               const SizedBox(height: 5),
-              const ButtonDetailsScreen(),
+              ButtonDetailsScreen(
+                crypto: crypto,
+              ),
             ],
           ),
         );
