@@ -221,10 +221,9 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                         );
                       },
                     );
-                  } else {
-                    validate = true;
                   }
                 }
+                validate = true;
               },
               child: const Icon(Icons.navigate_next),
             ),

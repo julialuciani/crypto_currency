@@ -22,7 +22,6 @@ class _ConversionState extends ConsumerState<ButtonChangeCoin> {
   @override
   Widget build(BuildContext context) {
     var cryptos = ref.watch(cryptosProvider);
-    var crypto = ref.read(cryptoProvider.state).state;
 
     return cryptos.when(
       data: (data) {
