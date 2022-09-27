@@ -35,11 +35,6 @@ class RevisionScreen extends StatelessWidget {
             const Divider(thickness: 1),
             RowRevisionInfo(label: 'Câmbio', data: '1 BTC = 11.77 ETH'),
             const SizedBox(height: 10),
-            // ButtonDefaulApp(
-
-            //   label: 'Concluir conversão',
-            //   route: '/revision',
-            // ),
           ],
         ),
       ),

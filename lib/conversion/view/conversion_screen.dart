@@ -57,16 +57,17 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
 
   String getLastestValue() {
     String value = formattingValue(valueController.text);
+
     return value;
   }
 
   bool isCorrect(String value) {
-    return value.startsWith(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+    return value.startsWith(RegExp(r'[!@#$%^&*().,?":{}|<>]'));
   }
 
   double convertLatestValue() {
     double value = 0.0;
-    if (getLastestValue() == '') {
+    if (getLastestValue() == '' || getLastestValue() == '.') {
       value = 0.0;
     } else {
       value = double.parse(getLastestValue()) * widget.crypto.currentPrice;
@@ -208,27 +209,28 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                           RegExp(r'^(\d+)?\.?\d{0,6}')),
                     ],
                     onChanged: (value) {
+                      if (_key.currentState!.validate()) validate = true;
                       setState(() {
                         formatLatestValue();
                         getTotal(crypto);
                       });
                     },
-                    onEditingComplete: getLastestValue,
                     validator: (value) {
-                      if (value == '') {
+                      if (value == '' || value == null) {
                         return 'Digite algo';
-                      } else if (isCorrect(value!)) {
+                      } else if (isCorrect(value) || value.startsWith('.')) {
                         return "O valor não pode começar com caractere especial";
                       } else if (double.parse(
                               formattingValue(value.toString())) ==
                           0) {
+                        validate = false;
                         return 'Você não pode converter zero';
                       } else if (double.parse(
                               formattingValue(value.toString())) >
                           args.singleBalance) {
+                        validate = false;
                         return 'Você não tem essa quantia';
                       } else {
-                        validate = true;
                         return null;
                       }
                     },
@@ -284,13 +286,14 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                         );
                       },
                     );
+                  } else {
+                    Navigator.of(context).pushNamed('/revision',
+                        arguments: AppArguments(
+                            crypto: args.crypto,
+                            singleBalance: args.singleBalance));
+                    validate = true;
                   }
                 }
-                Navigator.of(context).pushNamed('/revision',
-                    arguments: AppArguments(
-                        crypto: args.crypto,
-                        singleBalance: args.singleBalance));
-                validate = true;
               },
               child: const Icon(Icons.navigate_next),
             ),
