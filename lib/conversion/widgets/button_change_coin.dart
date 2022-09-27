@@ -104,6 +104,7 @@ class _ConversionState extends ConsumerState<ButtonChangeCoin> {
                 backgroundImage: NetworkImage(
                   widget.image,
                 ),
+                backgroundColor: Colors.transparent,
               ),
               const SizedBox(width: 8),
               Text(widget.abbreviation),
