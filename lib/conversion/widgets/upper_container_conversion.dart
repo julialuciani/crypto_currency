@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../view/conversion_screen.dart';
 
-class UpperContainerConversion extends StatelessWidget {
-  const UpperContainerConversion({
+class UpperAvailableBalanceContainer extends StatelessWidget {
+  const UpperAvailableBalanceContainer({
     Key? key,
     required this.widget,
   }) : super(key: key);

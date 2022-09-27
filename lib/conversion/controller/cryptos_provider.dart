@@ -1,17 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
-var firstCryptosProvider =
-    StateProvider<CryptoViewData>((ref) => CryptoViewData(
-          id: 'bitcoin',
-          symbol: 'btc',
-          name: 'Bitcoin',
-          image: 'assets/icons/cent.png',
-          currentPrice: 0.0,
-          variation: 0.0,
-        ));
-
-var secondCryptosProvider =
+var singleCryptoProvider =
     StateProvider<CryptoViewData>((ref) => CryptoViewData(
           id: 'bitcoin',
           symbol: 'btc',
