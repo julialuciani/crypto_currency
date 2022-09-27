@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -82,11 +83,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
 
   String getTotal(CryptoViewData crypto) {
     if (convertLatestValue() == 0.0) {
-      return '0,00 ${crypto.symbol.toUpperCase()}';
-    } else {
-      double total = convertLatestValue() / crypto.currentPrice;
-      return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
+      return '0.00 ${crypto.symbol.toUpperCase()}';
     }
+    double total = convertLatestValue() / crypto.currentPrice;
+    return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
   }
 
   @override
@@ -197,12 +197,16 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                       ),
                       focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: magenta, width: 3)),
-                      hintText: '${widget.crypto.symbol.toUpperCase()} 0,00',
+                      hintText: '${widget.crypto.symbol.toUpperCase()} 0.00',
                       hintStyle: TextStyle(
                         fontSize: 30,
                         color: Colors.grey.shade500,
                       ),
                     ),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^(\d+)?\.?\d{0,6}')),
+                    ],
                     onChanged: (value) {
                       setState(() {
                         formatLatestValue();
@@ -213,11 +217,14 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     validator: (value) {
                       if (value == '') {
                         return 'Digite algo';
-                      } else if (isCorrect(value!) || value.startsWith('-')) {
+                      } else if (isCorrect(value!)) {
                         return "O valor não pode começar com caractere especial";
-                      } else if (double.parse(formattingValue(value)) == 0) {
+                      } else if (double.parse(
+                              formattingValue(value.toString())) ==
+                          0) {
                         return 'Você não pode converter zero';
-                      } else if (double.parse(formattingValue(value)) >
+                      } else if (double.parse(
+                              formattingValue(value.toString())) >
                           args.singleBalance) {
                         return 'Você não tem essa quantia';
                       } else {
