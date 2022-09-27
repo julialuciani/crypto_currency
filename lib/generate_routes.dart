@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/revision/revision_arguments/revision_arguments.dart';
 import 'package:projeto_crypto/revision/revision_screen.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import 'portifolio/view/portifolio_screen.dart';
@@ -44,13 +45,15 @@ class GeneretaRoute {
         },
       );
     } else if (settings.name == RevisionScreen.route) {
-      final args = settings.arguments as AppArguments;
+      final args = settings.arguments as RevisionArguments;
       return PageRouteBuilder(
         settings: settings,
         pageBuilder: (context, animation, secondaryAnimation) {
           return RevisionScreen(
-            crypto: args.crypto,
-            singleBalance: args.singleBalance,
+            convertQuantity: args.convertQuantity,
+            receiveQuantity: args.receiveQuantity,
+            cryptoReceive: args.cryptoReceive,
+            cryptoConvert: args.cryptoConvert,
           );
         },
       );

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
+import 'package:projeto_crypto/revision/revision_arguments/revision_arguments.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
 import 'package:projeto_crypto/shared/templates/error_body.dart';
 import 'package:projeto_crypto/shared/templates/loading_body.dart';
@@ -288,9 +289,11 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     );
                   } else {
                     Navigator.of(context).pushNamed('/revision',
-                        arguments: AppArguments(
-                            crypto: args.crypto,
-                            singleBalance: args.singleBalance));
+                        arguments: RevisionArguments(
+                            convertQuantity: getLastestValue(),
+                            receiveQuantity: getTotal(crypto),
+                            cryptoConvert: widget.crypto,
+                            cryptoReceive: crypto));
                     validate = true;
                   }
                 }

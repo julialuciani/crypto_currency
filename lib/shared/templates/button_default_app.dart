@@ -5,13 +5,13 @@ import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import '../style/colors.dart';
 
 class ButtonDefaulApp extends StatelessWidget {
-  AppArguments arguments;
+  AppArguments? arguments;
   String route;
   String label;
   ButtonDefaulApp({
     Key? key,
     required this.route,
-    required this.arguments,
+    this.arguments,
     required this.label,
   }) : super(key: key);
 
@@ -25,7 +25,7 @@ class ButtonDefaulApp extends StatelessWidget {
         ),
         color: magenta,
         onPressed: () {
-          Navigator.pushNamed(context, route, arguments: arguments);
+          Navigator.pushNamed(context, route, arguments: arguments!);
         },
         child: Padding(
           padding: const EdgeInsets.all(20),
