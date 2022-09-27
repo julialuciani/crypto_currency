@@ -4,6 +4,8 @@ import 'package:projeto_crypto/portifolio/controller/balance_provider.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
+import 'package:projeto_crypto/shared/templates/error_body.dart';
+import 'package:projeto_crypto/shared/templates/loading_body.dart';
 import 'listile_crypto.dart';
 
 class ListViewCryptos extends HookConsumerWidget {
@@ -43,21 +45,12 @@ class ListViewCryptos extends HookConsumerWidget {
       error: (e, r) {
         debugPrint('E: $e');
         debugPrint('R: $r');
-        return Column(
-          children: const [
-            SizedBox(height: 10),
-            Text('Deu erro :('),
-          ],
-        );
+        return ErrorBody(onError: () {
+          ref.refresh(cryptosProvider);
+        });
       },
       loading: () {
-        return Column(
-          children: const [
-            CircularProgressIndicator(
-              color: magenta,
-            ),
-          ],
-        );
+        return const LoadingBody();
       },
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:projeto_crypto/shared/templates/error_body.dart';
+import 'package:projeto_crypto/shared/templates/loading_body.dart';
 
 import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
@@ -273,12 +275,12 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         );
       },
       error: (error, stackTrace) {
-        return const Text('Deu erro');
+        return ErrorBody(onError: () {
+          ref.refresh(cryptosProvider);
+        });
       },
       loading: () {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const LoadingBody();
       },
     );
   }

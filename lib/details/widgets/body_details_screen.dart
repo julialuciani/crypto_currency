@@ -6,7 +6,8 @@ import 'package:projeto_crypto/details/usecase/cryptos_market_data_provider.dart
 import 'package:projeto_crypto/details/widgets/row_infos.dart';
 
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/shared/style/colors.dart';
+import 'package:projeto_crypto/shared/templates/error_body.dart';
+import 'package:projeto_crypto/shared/templates/loading_body.dart';
 import 'package:projeto_crypto/shared/utils/currency_formatter.dart';
 
 import '../../shared/templates/button_default_app.dart';
@@ -80,14 +81,12 @@ class BodyDetailsScreen extends HookConsumerWidget {
       error: (error, stackTrace) {
         debugPrint(stackTrace.toString());
         debugPrint(error.toString());
-        return const Text('Opps...Erro :(');
+        return ErrorBody(onError: () {
+          ref.refresh(marketDataProvider(crypto.id));
+        });
       },
       loading: () {
-        return const Center(
-          child: CircularProgressIndicator(
-            color: magenta,
-          ),
-        );
+        return const LoadingBody();
       },
     );
   }
