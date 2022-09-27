@@ -1,15 +1,17 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:projeto_crypto/conversion/controller/crypto_provider.dart';
+import 'package:projeto_crypto/shared/templates/error_body.dart';
+import 'package:projeto_crypto/shared/templates/loading_body.dart';
 
 import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
 
+import '../controller/cryptos_provider.dart';
 import '../widgets/button_change_coin.dart';
+import '../widgets/interactive_text.dart';
 import '../widgets/upper_container_conversion.dart';
 
 class ConversionScreen extends StatefulHookConsumerWidget {
@@ -31,7 +33,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
-      ref.watch(cryptoProvider.state).state = widget.crypto;
+      ref.watch(singleCryptoProvider.state).state = widget.crypto;
     });
     valueController.addListener(getLastestValue);
   }
@@ -84,7 +86,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
   @override
   Widget build(BuildContext context) {
     final cryptos = ref.watch(cryptosProvider);
-    var crypto = ref.watch(cryptoProvider.state).state;
+    var crypto = ref.watch(singleCryptoProvider.state).state;
 
     return cryptos.when(
       data: (data) {
@@ -98,20 +100,37 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UpperContainerConversion(widget: widget),
-                  const SizedBox(height: 30),
-                  const AutoSizeText(
-                    'Quanto você gostaria de converter?',
-                    maxLines: 2,
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
+                  UpperAvailableBalanceContainer(widget: widget),
+                  const InteractiveText(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ButtonChangeCoin(
-                        image: widget.crypto.image,
-                        abbreviation: widget.crypto.symbol.toUpperCase(),
+                        crypto: widget.crypto,
+                        data: data,
+                        listView: ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              const Divider(thickness: 1),
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  widget.crypto = data[index];
+                                });
+                              },
+                              child: ListTile(
+                                title: Text(data[index].symbol.toUpperCase()),
+                                subtitle: Text(data[index].name),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 15,
+                                  color: Colors.grey.shade500,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       IconButton(
                         icon: const Icon(Icons.compare_arrows, color: magenta),
@@ -119,13 +138,37 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                           CryptoViewData temp = widget.crypto;
                           setState(() {
                             widget.crypto = crypto;
-                            ref.read(cryptoProvider.state).state = temp;
+                            ref.read(singleCryptoProvider.state).state = temp;
                           });
                         },
                       ),
                       ButtonChangeCoin(
-                        image: crypto.image,
-                        abbreviation: crypto.symbol.toUpperCase(),
+                        crypto: crypto,
+                        data: data,
+                        listView: ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              const Divider(thickness: 1),
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  ref.read(singleCryptoProvider.state).state =
+                                      data[index];
+                                });
+                              },
+                              child: ListTile(
+                                title: Text(data[index].symbol.toUpperCase()),
+                                subtitle: Text(data[index].name),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 15,
+                                  color: Colors.grey.shade500,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -231,12 +274,12 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         );
       },
       error: (error, stackTrace) {
-        return const Text('Deu erro');
+        return ErrorBody(onError: () {
+          ref.refresh(cryptosProvider);
+        });
       },
       loading: () {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const LoadingBody();
       },
     );
   }
