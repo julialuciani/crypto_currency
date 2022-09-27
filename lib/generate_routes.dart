@@ -31,10 +31,13 @@ class GeneretaRoute {
         },
       );
     } else if (settings.name == ConversionScreen.route) {
+      final args = settings.arguments as CryptoViewData;
       return PageRouteBuilder(
         settings: settings,
         pageBuilder: (context, animation, secondaryAnimation) {
-          return const ConversionScreen();
+          return ConversionScreen(
+            crypto: args,
+          );
         },
       );
     }

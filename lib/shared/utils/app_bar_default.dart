@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DetailsAppBar extends HookConsumerWidget implements PreferredSizeWidget {
-  const DetailsAppBar({Key? key}) : super(key: key);
+class AppBarDefault extends HookConsumerWidget implements PreferredSizeWidget {
+  final String title;
+  const AppBarDefault({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Size get preferredSize => const Size(double.maxFinite, 56);
@@ -21,9 +25,9 @@ class DetailsAppBar extends HookConsumerWidget implements PreferredSizeWidget {
         color: Colors.black,
       ),
       backgroundColor: const Color.fromARGB(255, 245, 246, 250),
-      title: const Text(
-        'Detalhes',
-        style: TextStyle(
+      title: Text(
+        title,
+        style: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 20,
