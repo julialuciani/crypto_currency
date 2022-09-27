@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../style/colors.dart';
 
-class ButtonDetailsScreen extends StatelessWidget {
-  CryptoViewData crypto;
-  ButtonDetailsScreen({
+class ButtonDefaulApp extends StatelessWidget {
+  AppArguments arguments;
+  String route;
+  String label;
+  ButtonDefaulApp({
     Key? key,
-    required this.crypto,
+    required this.route,
+    required this.arguments,
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -21,13 +25,13 @@ class ButtonDetailsScreen extends StatelessWidget {
         ),
         color: magenta,
         onPressed: () {
-          Navigator.pushNamed(context, '/conversion', arguments: crypto);
+          Navigator.pushNamed(context, route, arguments: arguments);
         },
-        child: const Padding(
-          padding: EdgeInsets.all(20),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
           child: Text(
-            'Converter Moeda',
-            style: TextStyle(
+            label,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
             ),

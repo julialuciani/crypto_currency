@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../view/conversion_screen.dart';
+import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
 class UpperAvailableBalanceContainer extends StatelessWidget {
-  const UpperAvailableBalanceContainer({
+  CryptoViewData crypto;
+  double singleBalance;
+  UpperAvailableBalanceContainer({
     Key? key,
-    required this.widget,
+    required this.crypto,
+    required this.singleBalance,
   }) : super(key: key);
-
-  final ConversionScreen widget;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class UpperAvailableBalanceContainer extends StatelessWidget {
             style: TextStyle(fontSize: 17, color: Colors.grey.shade600),
           ),
           Text(
-            '0.5 ${widget.crypto.symbol.toUpperCase()}',
+            '${singleBalance.toStringAsFixed(5)} ${crypto.symbol.toUpperCase()}',
             style: const TextStyle(fontSize: 17),
           ),
         ],

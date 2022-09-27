@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:projeto_crypto/shared/templates/error_body.dart';
-import 'package:projeto_crypto/shared/templates/loading_body.dart';
 
-import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
+import 'package:projeto_crypto/shared/templates/error_body.dart';
+import 'package:projeto_crypto/shared/templates/loading_body.dart';
+import 'package:projeto_crypto/shared/utils/app_arguments.dart';
+import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 
 import '../controller/cryptos_provider.dart';
 import '../widgets/button_change_coin.dart';
@@ -17,8 +18,13 @@ import '../widgets/upper_container_conversion.dart';
 class ConversionScreen extends StatefulHookConsumerWidget {
   static const route = '/conversion';
   CryptoViewData crypto;
+  double singleBalance;
 
-  ConversionScreen({Key? key, required this.crypto}) : super(key: key);
+  ConversionScreen({
+    Key? key,
+    required this.crypto,
+    required this.singleBalance,
+  }) : super(key: key);
 
   @override
   ConsumerState<ConversionScreen> createState() => _ConversionState();
@@ -85,6 +91,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as AppArguments;
     final cryptos = ref.watch(cryptosProvider);
     var crypto = ref.watch(singleCryptoProvider.state).state;
 
@@ -100,7 +107,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UpperAvailableBalanceContainer(widget: widget),
+                  UpperAvailableBalanceContainer(
+                    crypto: args.crypto,
+                    singleBalance: args.singleBalance,
+                  ),
                   const InteractiveText(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,6 +128,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                                 setState(() {
                                   widget.crypto = data[index];
                                 });
+                                Navigator.pop(context);
                               },
                               child: ListTile(
                                 title: Text(data[index].symbol.toUpperCase()),
@@ -156,6 +167,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                                   ref.read(singleCryptoProvider.state).state =
                                       data[index];
                                 });
+                                Navigator.pop(context);
                               },
                               child: ListTile(
                                 title: Text(data[index].symbol.toUpperCase()),
@@ -205,7 +217,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                         return "O valor não pode começar com caractere especial";
                       } else if (double.parse(formattingValue(value)) == 0) {
                         return 'Você não pode converter zero';
-                      } else if (double.parse(formattingValue(value)) > 0.5) {
+                      } else if (double.parse(formattingValue(value)) >
+                          args.singleBalance) {
                         return 'Você não tem essa quantia';
                       } else {
                         validate = true;
@@ -266,6 +279,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     );
                   }
                 }
+                Navigator.of(context).pushNamed('/revision',
+                    arguments: AppArguments(
+                        crypto: args.crypto,
+                        singleBalance: args.singleBalance));
                 validate = true;
               },
               child: const Icon(Icons.navigate_next),

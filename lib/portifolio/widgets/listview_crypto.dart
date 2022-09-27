@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projeto_crypto/portifolio/controller/balance_provider.dart';
+import 'package:projeto_crypto/portifolio/controller/crypto_individual_balance_notifier.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
-import 'package:projeto_crypto/shared/style/colors.dart';
 import 'package:projeto_crypto/shared/templates/error_body.dart';
 import 'package:projeto_crypto/shared/templates/loading_body.dart';
 import 'listile_crypto.dart';
@@ -37,6 +37,7 @@ class ListViewCryptos extends HookConsumerWidget {
               CryptoViewData crypto = data[index];
               return ListTitleCrypto(
                 crypto: crypto,
+                cryptoBalance: ref.watch(singleBalanceProvider)[index],
               );
             },
           ),
