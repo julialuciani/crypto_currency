@@ -15,7 +15,7 @@ class ConversionPerformedScreen extends StatelessWidget {
         elevation: 0.5,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/portifolio');
           },
           icon: const Icon(
             Icons.close,

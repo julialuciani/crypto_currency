@@ -17,7 +17,7 @@ import '../controller/cryptos_provider.dart';
 import '../widgets/button_change_coin.dart';
 import '../widgets/interactive_text.dart';
 import '../widgets/list_tile_conversion.dart';
-import '../widgets/total_column.dart';
+import '../widgets/total_container.dart';
 import '../widgets/upper_container_conversion.dart';
 
 class ConversionScreen extends StatefulHookConsumerWidget {
