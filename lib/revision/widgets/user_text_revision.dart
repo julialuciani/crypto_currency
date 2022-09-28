@@ -9,7 +9,7 @@ class UserTextRevision extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+      padding: EdgeInsets.symmetric(vertical: 40),
       child: AutoSizeText(
         'Revise os dados da sua conversão',
         style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),

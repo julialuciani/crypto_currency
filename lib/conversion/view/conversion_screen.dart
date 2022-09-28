@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:projeto_crypto/conversion/widgets/bottom_sheet_warning_user.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
-import 'package:projeto_crypto/revision/revision_arguments/revision_arguments.dart';
+import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
 import 'package:projeto_crypto/shared/templates/error_body.dart';
 import 'package:projeto_crypto/shared/templates/loading_body.dart';
@@ -15,6 +16,8 @@ import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
 import '../widgets/button_change_coin.dart';
 import '../widgets/interactive_text.dart';
+import '../widgets/list_tile_conversion.dart';
+import '../widgets/total_column.dart';
 import '../widgets/upper_container_conversion.dart';
 
 class ConversionScreen extends StatefulHookConsumerWidget {
@@ -132,14 +135,9 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                                 });
                                 Navigator.pop(context);
                               },
-                              child: ListTile(
-                                title: Text(data[index].symbol.toUpperCase()),
-                                subtitle: Text(data[index].name),
-                                trailing: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 15,
-                                  color: Colors.grey.shade500,
-                                ),
+                              child: ListTileConversion(
+                                name: data[index].name,
+                                symbol: data[index].symbol.toUpperCase(),
                               ),
                             );
                           },
@@ -171,14 +169,9 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                                 });
                                 Navigator.pop(context);
                               },
-                              child: ListTile(
-                                title: Text(data[index].symbol.toUpperCase()),
-                                subtitle: Text(data[index].name),
-                                trailing: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 15,
-                                  color: Colors.grey.shade500,
-                                ),
+                              child: ListTileConversion(
+                                name: data[index].name,
+                                symbol: data[index].symbol.toUpperCase(),
                               ),
                             );
                           },
@@ -245,16 +238,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.32),
-                  const Divider(thickness: 1),
-                  Text(
-                    'Total estimado',
-                    style: TextStyle(color: Colors.grey.shade500, fontSize: 17),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    getTotal(crypto),
-                    style: const TextStyle(
-                        fontSize: 23, fontWeight: FontWeight.bold),
+                  TotalColumn(
+                    total: getTotal(crypto),
                   ),
                 ],
               ),
@@ -265,35 +250,17 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               onPressed: () {
                 if (_key.currentState!.validate()) {
                   if (widget.crypto == crypto) {
-                    showModalBottomSheet(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25),
-                        ),
-                      ),
-                      context: context,
-                      builder: (context) {
-                        return SizedBox(
-                          height: 100,
-                          child: Center(
-                            child: Text(
-                              'Não faz sentido converter duas moedas iguais',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey.shade700),
-                            ),
-                          ),
-                        );
-                      },
-                    );
+                    BottomSheetWarningUser(context);
                   } else {
-                    Navigator.of(context).pushNamed('/revision',
-                        arguments: RevisionArguments(
-                            convertQuantity: getLastestValue(),
-                            receiveQuantity: getTotal(crypto),
-                            cryptoConvert: widget.crypto,
-                            cryptoReceive: crypto));
+                    Navigator.of(context).pushNamed(
+                      '/revision',
+                      arguments: RevisionArguments(
+                        convertQuantity: valueController.text,
+                        cryptoConvert: widget.crypto,
+                        cryptoReceive: crypto,
+                        receiveQuantity: getTotal(crypto),
+                      ),
+                    );
                     validate = true;
                   }
                 }

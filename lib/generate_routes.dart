@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_crypto/revision/revision_arguments/revision_arguments.dart';
+import 'package:projeto_crypto/revision/revision_arguments/conversion_performed_screen.dart';
+import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
 import 'package:projeto_crypto/revision/revision_screen.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import 'portifolio/view/portifolio_screen.dart';
@@ -51,10 +52,25 @@ class GeneretaRoute {
         pageBuilder: (context, animation, secondaryAnimation) {
           return RevisionScreen(
             convertQuantity: args.convertQuantity,
-            receiveQuantity: args.receiveQuantity,
-            cryptoReceive: args.cryptoReceive,
             cryptoConvert: args.cryptoConvert,
+            cryptoReceive: args.cryptoReceive,
+            receiveQuantity: args.receiveQuantity,
           );
+        },
+      );
+    } else if (settings.name == ConversionPerformedScreen.route) {
+      return PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 250),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          animation = CurvedAnimation(parent: animation, curve: Curves.ease);
+          return ScaleTransition(
+            scale: animation,
+            alignment: Alignment.center,
+            child: child,
+          );
+        },
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return const ConversionPerformedScreen();
         },
       );
     }

@@ -1,62 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/revision/widgets/button_revision_screen.dart';
+import 'package:projeto_crypto/revision/widgets/column_revision_infor.dart';
 
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
 import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
 
-import '../../shared/templates/button_default_app.dart';
+import '../../portifolio/model/crypto_view_data.dart';
 
 class BodyRevision extends StatelessWidget {
-  String convertQuantiy;
+  String convertQuantity;
   String receiveQuantity;
   CryptoViewData cryptoConvert;
   CryptoViewData cryptoReceive;
   BodyRevision({
     Key? key,
-    required this.convertQuantiy,
+    required this.convertQuantity,
     required this.receiveQuantity,
     required this.cryptoConvert,
     required this.cryptoReceive,
-    required this.route,
   }) : super(key: key);
-
-  final String route;
-
-  String getConvertionFromOne() {
-    double total = cryptoConvert.currentPrice / cryptoReceive.currentPrice;
-    debugPrint(total.toString());
-    return total.toStringAsFixed(4);
-  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const UserTextRevision(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.3),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                const Divider(thickness: 1),
-                RowRevisionInfo(
-                    label: 'Converter',
-                    data:
-                        '$convertQuantiy ${cryptoConvert.symbol.toUpperCase()}'),
-                const Divider(thickness: 1),
-                RowRevisionInfo(label: 'Receber', data: receiveQuantity),
-                const Divider(thickness: 1),
-                RowRevisionInfo(
-                    label: 'Câmbio',
-                    data:
-                        '1 ${cryptoConvert.symbol.toUpperCase()} = $getConvertionFromOne'),
-              ],
-            ),
+          ColumnRevisionInfo(
+            convertQuantity: convertQuantity,
+            cryptoConvert: cryptoConvert,
+            receiveQuantity: receiveQuantity,
+            cryptoReceive: cryptoReceive,
           ),
-          const SizedBox(height: 10),
-          ButtonDefaulApp(route: route, label: 'Concluir conversão')
+          const SizedBox(height: 20),
+          const ButtonRevisionScreen(),
         ],
       ),
     );
