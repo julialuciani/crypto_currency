@@ -91,7 +91,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
       return '0.00 ${crypto.symbol.toUpperCase()}';
     }
     double total = convertLatestValue() / crypto.currentPrice;
-    return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
+    return '${total.toStringAsFixed(4)} ${crypto.symbol.toUpperCase()}';
   }
 
   @override
@@ -256,6 +256,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                         cryptoConvert: widget.crypto,
                         cryptoReceive: crypto,
                         receiveQuantity: getTotal(crypto),
+                        total: formatLatestValue(),
                       ),
                     );
                     validate = true;

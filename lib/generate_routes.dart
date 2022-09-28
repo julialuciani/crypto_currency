@@ -55,6 +55,7 @@ class GeneretaRoute {
             cryptoConvert: args.cryptoConvert,
             cryptoReceive: args.cryptoReceive,
             receiveQuantity: args.receiveQuantity,
+            total: args.total,
           );
         },
       );
