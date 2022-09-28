@@ -6,7 +6,9 @@ import 'package:projeto_crypto/details/usecase/cryptos_market_data_provider.dart
 import 'package:projeto_crypto/details/widgets/row_infos.dart';
 
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/shared/style/colors.dart';
+import 'package:projeto_crypto/shared/templates/error_body.dart';
+import 'package:projeto_crypto/shared/templates/loading_body.dart';
+import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import 'package:projeto_crypto/shared/utils/currency_formatter.dart';
 
 import '../../shared/templates/button_default_app.dart';
@@ -16,7 +18,10 @@ import 'upper_column_crypto.dart';
 
 class BodyDetailsScreen extends HookConsumerWidget {
   CryptoViewData crypto;
-  BodyDetailsScreen({Key? key, required this.crypto}) : super(key: key);
+  double singleBalance;
+  BodyDetailsScreen(
+      {Key? key, required this.crypto, required this.singleBalance})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,15 +68,20 @@ class BodyDetailsScreen extends HookConsumerWidget {
               const Divider(thickness: 1),
               RowInfos(
                   title: 'Quantidade',
-                  info: '0.5 ${crypto.symbol.toUpperCase()}'),
+                  info:
+                      '${singleBalance.toStringAsFixed(8)} ${crypto.symbol.toUpperCase()}'),
               const Divider(thickness: 1),
               RowInfos(
                 title: 'Valor',
-                info: FormatCurrency.format(crypto.currentPrice * 0.5),
+                info:
+                    FormatCurrency.format(crypto.currentPrice * singleBalance),
               ),
               const SizedBox(height: 5),
-              ButtonDetailsScreen(
-                crypto: crypto,
+              ButtonDefaulApp(
+                arguments:
+                    AppArguments(crypto: crypto, singleBalance: singleBalance),
+                label: 'Converter moeda',
+                route: '/conversion',
               ),
             ],
           ),
@@ -80,14 +90,12 @@ class BodyDetailsScreen extends HookConsumerWidget {
       error: (error, stackTrace) {
         debugPrint(stackTrace.toString());
         debugPrint(error.toString());
-        return const Text('Opps...Erro :(');
+        return ErrorBody(onError: () {
+          ref.refresh(marketDataProvider(crypto.id));
+        });
       },
       loading: () {
-        return const Center(
-          child: CircularProgressIndicator(
-            color: magenta,
-          ),
-        );
+        return const LoadingBody();
       },
     );
   }
