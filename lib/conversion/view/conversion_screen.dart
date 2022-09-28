@@ -238,9 +238,6 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.32),
-                  TotalColumn(
-                    total: getTotal(crypto),
-                  ),
                 ],
               ),
             ),
@@ -266,6 +263,9 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                 }
               },
               child: const Icon(Icons.navigate_next),
+            ),
+            bottomSheet: TotalContainer(
+              total: getTotal(crypto),
             ),
           ),
         );
