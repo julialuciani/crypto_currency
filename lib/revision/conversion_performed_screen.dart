@@ -14,12 +14,13 @@ class ConversionPerformedScreen extends StatelessWidget {
         toolbarHeight: 60,
         elevation: 0.5,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.close,
-            )),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.close,
+          ),
+        ),
         iconTheme: const IconThemeData(
           color: Colors.black,
         ),
@@ -29,11 +30,7 @@ class ConversionPerformedScreen extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CircleAvatar(
-            radius: 40,
-            backgroundColor: Colors.transparent,
-            backgroundImage: AssetImage('assets/icons/concluded.png'),
-          ),
+          Image.asset('assets/icons/concluded.png'),
           const SizedBox(height: 15),
           const Text(
             'Conversão efetuada',

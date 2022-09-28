@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_crypto/revision/widgets/button_revision_screen.dart';
-import 'package:projeto_crypto/revision/widgets/column_revision_infor.dart';
+import 'package:projeto_crypto/revision/widgets/column_revision_infos.dart';
 
 import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
 
 import '../../portifolio/model/crypto_view_data.dart';
 
 class BodyRevision extends StatelessWidget {
-  String convertQuantity;
-  String receiveQuantity;
-  CryptoViewData cryptoConvert;
-  CryptoViewData cryptoReceive;
-  BodyRevision({
+  final String convertQuantity;
+  final String receiveQuantity;
+  final CryptoViewData cryptoConvert;
+  final CryptoViewData cryptoReceive;
+  const BodyRevision({
     Key? key,
     required this.convertQuantity,
     required this.receiveQuantity,
