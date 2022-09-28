@@ -10,7 +10,7 @@ final singleBalanceProvider =
 class SingleBalanceNotifier extends StateNotifier<List<double>> {
   SingleBalanceNotifier() : super([]) {
     for (double lenght = 0; lenght < 100; lenght++) {
-      state.add(Random().nextDouble() * 2);
+      state.add(Random().nextDouble() * 25);
     }
   }
 }
