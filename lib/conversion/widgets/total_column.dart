@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TotalColumn extends StatelessWidget {
-  String total;
-  TotalColumn({
+  final String total;
+  const TotalColumn({
     Key? key,
     required this.total,
   }) : super(key: key);

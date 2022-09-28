@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 
 class ButtonChangeCoin extends HookConsumerWidget {
-  CryptoViewData crypto;
-  List<CryptoViewData> data;
-  Widget listView;
+  final CryptoViewData crypto;
+  final List<CryptoViewData> data;
+  final Widget listView;
 
-  ButtonChangeCoin({
+  const ButtonChangeCoin({
     Key? key,
     required this.crypto,
     required this.data,
@@ -18,8 +17,6 @@ class ButtonChangeCoin extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var cryptos = ref.watch(cryptosProvider);
-
     return MaterialButton(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       shape: RoundedRectangleBorder(
