@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
 class UpperAvailableBalanceContainer extends StatelessWidget {
-  final CryptoViewData crypto;
-  final double singleBalance;
-  const UpperAvailableBalanceContainer({
+  CryptoViewData crypto;
+  double singleBalance;
+  UpperAvailableBalanceContainer({
     Key? key,
     required this.crypto,
     required this.singleBalance,

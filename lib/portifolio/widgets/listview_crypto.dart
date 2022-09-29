@@ -21,8 +21,7 @@ class ListViewCryptos extends HookConsumerWidget {
           double getBalance() {
             double balance = 0;
             for (CryptoViewData crypto in data) {
-              balance += crypto.currentPrice *
-                  ref.watch(singleBalanceProvider)[data.indexOf(crypto)];
+              balance += crypto.currentPrice * 0.5;
             }
             return balance;
           }
