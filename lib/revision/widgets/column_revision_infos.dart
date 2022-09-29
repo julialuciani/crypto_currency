@@ -20,7 +20,6 @@ class ColumnRevisionInfo extends StatelessWidget {
 
   String getConvertionFromOne() {
     double total = cryptoConvert.currentPrice / cryptoReceive.currentPrice;
-    debugPrint(total.toString());
     return '1 ${cryptoConvert.symbol.toUpperCase()} = ${total.toStringAsFixed(5)} ${cryptoReceive.symbol.toUpperCase()}';
   }
 

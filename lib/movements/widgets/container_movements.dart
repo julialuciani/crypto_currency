@@ -8,7 +8,7 @@ class ContainerMovementsText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
       child: const Text(
         'Movimentações',
         style: TextStyle(

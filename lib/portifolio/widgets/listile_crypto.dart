@@ -26,10 +26,9 @@ class ListTitleCrypto extends HookConsumerWidget {
         );
       },
       minVerticalPadding: 20,
-      leading: CircleAvatar(
-        radius: 22,
-        backgroundColor: Colors.white,
-        backgroundImage: NetworkImage(crypto.image),
+      leading: Image.network(
+        crypto.image,
+        scale: 6,
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
