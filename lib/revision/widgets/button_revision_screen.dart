@@ -8,21 +8,24 @@ class ButtonRevisionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      color: magenta,
-      onPressed: () {
-        Navigator.pushNamed(context, '/conversion-performed');
-      },
-      child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 10),
-        child: Text(
-          'Concluir conversão',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
+    return Padding(
+      padding: const EdgeInsets.only(top: 30, bottom: 5),
+      child: MaterialButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        color: magenta,
+        onPressed: () {
+          Navigator.pushNamed(context, '/conversion-performed');
+        },
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+          child: Text(
+            'Concluir conversão',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
           ),
         ),
       ),
