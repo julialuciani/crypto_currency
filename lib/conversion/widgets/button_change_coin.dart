@@ -68,11 +68,12 @@ class ButtonChangeCoin extends HookConsumerWidget {
       child: Row(
         children: [
           CircleAvatar(
-            radius: 16,
-            backgroundImage: NetworkImage(
-              crypto.image,
-            ),
+            radius: 15,
             backgroundColor: Colors.transparent,
+            child: Image.network(
+              crypto.image,
+              scale: 8,
+            ),
           ),
           const SizedBox(width: 8),
           Text(crypto.symbol.toUpperCase()),

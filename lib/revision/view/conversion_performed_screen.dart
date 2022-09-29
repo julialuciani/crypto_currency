@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class ConversionPerformedScreen extends StatefulWidget {
@@ -17,15 +15,21 @@ class ConversionPerformedScreen extends StatefulWidget {
 class _ConversionPerformedScreenState extends State<ConversionPerformedScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  late Animation<double> sizeAnimation;
 
   @override
   void initState() {
+    super.initState();
+
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
     );
     _controller.forward();
-    super.initState();
+
+    final curvedAnimation =
+        CurvedAnimation(parent: _controller, curve: Curves.linear);
+    sizeAnimation = Tween<double>(begin: 50, end: 90).animate(curvedAnimation);
   }
 
   @override
@@ -58,15 +62,21 @@ class _ConversionPerformedScreenState extends State<ConversionPerformedScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedBuilder(
-            animation: _controller.view,
-            builder: (context, child) {
-              return Transform.rotate(
-                angle: _controller.value * 2 * pi,
-                child: child,
-              );
-            },
-            child: Image.asset('assets/icons/concluded.png'),
-          ),
+              animation: _controller.view,
+              builder: (context, child) {
+                return Container(
+                  width: sizeAnimation.value,
+                  height: sizeAnimation.value,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: const Color.fromARGB(255, 214, 255, 223)),
+                  child: const Icon(
+                    Icons.done,
+                    size: 40,
+                    color: Color.fromARGB(255, 104, 167, 125),
+                  ),
+                );
+              }),
           const SizedBox(height: 15),
           const Text(
             'Conversão efetuada',
