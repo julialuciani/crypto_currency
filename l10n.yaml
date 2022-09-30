@@ -6,3 +6,4 @@ output-class: CoreString
 
 output-dir: lib/l10n
 synthetic-package: false
+

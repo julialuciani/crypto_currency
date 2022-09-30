@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 class ConversionPerformedScreen extends StatefulWidget {
   static const route = '/conversion-performed';
@@ -78,13 +79,13 @@ class _ConversionPerformedScreenState extends State<ConversionPerformedScreen>
                 );
               }),
           const SizedBox(height: 15),
-          const Text(
-            'Conversão efetuada',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 37),
+          Text(
+            CoreString.of(context)!.sucess,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 37),
           ),
           const SizedBox(height: 5),
           Text(
-            'Conversão de moeda efetuada com sucesso!',
+            CoreString.of(context)!.sucessM,
             style: TextStyle(color: Colors.grey.shade700, fontSize: 15),
           ),
         ],

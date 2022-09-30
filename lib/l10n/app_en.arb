@@ -20,7 +20,7 @@
     "sucess" : "Conversion performed",
     "sucessM" : "Conversion made successfully!",
     "writeS" : "Type something",
-    "theValue" : "value cannot start with special character",
+    "theValue" : "Value cannot start with special character",
     "youDont" : "You don't have this ammount",
     "zero" : "You can't convert zero",
     "details" : "Details"

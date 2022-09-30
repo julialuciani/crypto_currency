@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 class UserTextRevision extends StatelessWidget {
   const UserTextRevision({
@@ -8,9 +9,9 @@ class UserTextRevision extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AutoSizeText(
-      'Revise os dados da sua conversão',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    return AutoSizeText(
+      CoreString.of(context)!.review,
+      style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
 }

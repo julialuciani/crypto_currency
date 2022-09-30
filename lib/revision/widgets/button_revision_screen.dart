@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 import 'package:projeto_crypto/movements/view/model/movement_model.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
@@ -74,11 +75,11 @@ class ButtonRevisionScreen extends HookConsumerWidget {
         movements.add(model);
         alterBalance();
       },
-      child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
         child: Text(
-          'Concluir conversão',
-          style: TextStyle(
+          CoreString.of(context)!.conv,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 18,
           ),

@@ -18,9 +18,9 @@ import 'chart_details_screen.dart';
 import 'upper_column_crypto.dart';
 
 class BodyDetailsScreen extends HookConsumerWidget {
-  CryptoViewData crypto;
-  double singleBalance;
-  BodyDetailsScreen(
+  final CryptoViewData crypto;
+  final double singleBalance;
+  const BodyDetailsScreen(
       {Key? key, required this.crypto, required this.singleBalance})
       : super(key: key);
 
