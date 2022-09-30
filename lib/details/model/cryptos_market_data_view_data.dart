@@ -1,4 +1,4 @@
 class CryptosMarkeDataViewData {
-  final List<List<num>> price;
-  CryptosMarkeDataViewData(this.price);
+  final List<List<num>> prices;
+  CryptosMarkeDataViewData(this.prices);
 }

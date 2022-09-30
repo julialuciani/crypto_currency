@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 import 'generate_routes.dart';
 
@@ -11,6 +13,16 @@ class AppWidget extends StatelessWidget {
       title: 'Crypto',
       theme: ThemeData(primaryColor: Colors.red),
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        CoreString.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('pt', 'BR'),
+        Locale('en', ''),
+      ],
       onGenerateRoute: GeneretaRoute.findRoute,
       initialRoute: '/portifolio',
     );

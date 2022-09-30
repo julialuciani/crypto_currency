@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class RowInfos extends StatelessWidget {
   final String title;
-  String info;
+  final String info;
   final Color? color;
   final bool isVariation;
 
-  RowInfos({
+  const RowInfos({
     Key? key,
     required this.title,
     required this.info,

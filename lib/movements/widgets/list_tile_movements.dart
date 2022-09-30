@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -6,13 +8,15 @@ class ListTileMovements extends StatelessWidget {
   final String receiveQuantity;
   final String total;
   final DateTime date;
-  const ListTileMovements({
+  ListTileMovements({
     Key? key,
     required this.convertQuantity,
     required this.receiveQuantity,
     required this.total,
     required this.date,
   }) : super(key: key);
+
+  DateFormat dateFormat = DateFormat.yMd(Platform.localeName);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class ListTileMovements extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            DateFormat('dd/MM/yyyy').format(date),
+            dateFormat.format(date),
             style: TextStyle(
               color: Colors.grey.shade700,
             ),
