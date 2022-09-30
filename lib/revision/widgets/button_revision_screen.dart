@@ -5,8 +5,6 @@ import 'package:projeto_crypto/movements/view/model/movement_model.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 import 'package:projeto_crypto/shared/controller/movement_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
-import 'package:projeto_crypto/shared/templates/error_body.dart';
-import 'package:projeto_crypto/shared/templates/loading_body.dart';
 
 import '../../portifolio/controller/crypto_individual_balance_notifier.dart';
 import '../../portifolio/model/crypto_view_data.dart';
@@ -49,54 +47,43 @@ class ButtonRevisionScreen extends HookConsumerWidget {
       idIncrease: idIncrease,
     );
 
-    return cryptos.when(
-      data: (data) {
-        void alterBalance() {
-          Future.delayed(Duration.zero, () {
-            for (CryptoViewData crypto in data) {
-              if (model.idDiscount == crypto.id) {
-                ref
-                    .read(singleBalanceProvider.notifier)
-                    .state[data.indexOf(crypto)] -= model.discount;
-              } else if (model.idIncrease == crypto.id) {
-                ref
-                    .read(singleBalanceProvider.notifier)
-                    .state[data.indexOf(crypto)] += model.increase;
-              }
-            }
-          });
-        }
+    void alterBalance() {
+      Future.delayed(Duration.zero, () {
+        int discountIndex = cryptos.asData!.value
+            .indexWhere((element) => idDiscount == element.id);
+        int increaseIndex = cryptos.asData!.value
+            .indexWhere((element) => idIncrease == element.id);
 
-        return MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+        for (CryptoViewData crypto in cryptos.asData!.value) {
+          if (model.idDiscount == crypto.id) {
+            ref.read(singleBalanceProvider)[discountIndex] -= model.discount;
+          } else if (model.idIncrease == crypto.id) {
+            ref.read(singleBalanceProvider)[increaseIndex] += model.increase;
+          }
+        }
+      });
+    }
+
+    return MaterialButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      color: magenta,
+      onPressed: () {
+        Navigator.pushNamed(context, '/conversion-performed');
+        movements.add(model);
+        alterBalance();
+      },
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+        child: Text(
+          'Concluir conversão',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
           ),
-          color: magenta,
-          onPressed: () {
-            Navigator.pushNamed(context, '/conversion-performed');
-            movements.add(model);
-            alterBalance();
-          },
-          child: const Padding(
-            padding: EdgeInsets.symmetric(vertical: 25, horizontal: 10),
-            child: Text(
-              'Concluir conversão',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
-            ),
-          ),
-        );
-      },
-      error: (error, stackTrace) {
-        return ErrorBody(onError: () {
-          ref.refresh(cryptosProvider);
-        });
-      },
-      loading: () {
-        return const LoadingBody();
-      },
+        ),
+      ),
     );
   }
 }

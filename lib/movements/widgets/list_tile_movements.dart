@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ListTileMovements extends StatelessWidget {
-  String convertQuantity;
-  String receiveQuantity;
-  String total;
-  DateTime date;
-  ListTileMovements({
+  final String convertQuantity;
+  final String receiveQuantity;
+  final String total;
+  final DateTime date;
+  const ListTileMovements({
     Key? key,
     required this.convertQuantity,
     required this.receiveQuantity,
