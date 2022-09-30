@@ -68,7 +68,7 @@ class CoreStringEn extends CoreString {
   String get writeS => 'Type something';
 
   @override
-  String get theValue => 'value cannot start with special character';
+  String get theValue => 'Value cannot start with special character';
 
   @override
   String get youDont => 'You don\'t have this ammount';

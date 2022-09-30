@@ -4,7 +4,6 @@ import 'package:projeto_crypto/portifolio/controller/balance_provider.dart';
 import 'package:projeto_crypto/portifolio/controller/crypto_individual_balance_notifier.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
-import 'package:projeto_crypto/shared/controller/movement_provider.dart';
 import 'package:projeto_crypto/shared/templates/error_body.dart';
 import 'package:projeto_crypto/shared/templates/loading_body.dart';
 import 'listile_crypto.dart';
@@ -16,7 +15,6 @@ class ListViewCryptos extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cryptos = ref.watch(cryptosProvider);
     final singleBalance = ref.watch(singleBalanceProvider);
-    final movement = ref.read(movementProvider.state).state;
 
     return cryptos.when(
       data: (data) {

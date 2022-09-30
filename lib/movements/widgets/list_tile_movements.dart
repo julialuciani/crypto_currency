@@ -1,15 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-class ListTileMovements extends StatefulWidget {
+class ListTileMovements extends StatelessWidget {
   final String convertQuantity;
   final String receiveQuantity;
   final String total;
   final DateTime date;
-  const ListTileMovements({
+  ListTileMovements({
     Key? key,
     required this.convertQuantity,
     required this.receiveQuantity,
@@ -17,19 +16,7 @@ class ListTileMovements extends StatefulWidget {
     required this.date,
   }) : super(key: key);
 
-  @override
-  State<ListTileMovements> createState() => _ListTileMovementsState();
-}
-
-class _ListTileMovementsState extends State<ListTileMovements> {
-  late DateFormat dateFormat;
-
-  @override
-  void initState() {
-    initializeDateFormatting();
-    dateFormat = DateFormat.yMd(Platform.localeName);
-    super.initState();
-  }
+  DateFormat dateFormat = DateFormat.yMd(Platform.localeName);
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +25,13 @@ class _ListTileMovementsState extends State<ListTileMovements> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            widget.convertQuantity,
+            convertQuantity,
             style: TextStyle(
               color: Colors.grey.shade700,
             ),
           ),
           Text(
-            widget.receiveQuantity,
+            receiveQuantity,
             style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
           )
         ],
@@ -53,13 +40,13 @@ class _ListTileMovementsState extends State<ListTileMovements> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            dateFormat.format(widget.date),
+            dateFormat.format(date),
             style: TextStyle(
               color: Colors.grey.shade700,
             ),
           ),
           Text(
-            widget.total,
+            total,
             style: TextStyle(
               color: Colors.grey.shade700,
             ),

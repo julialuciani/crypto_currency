@@ -164,7 +164,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
       onPressed: () {
         if (_key.currentState!.validate()) {
           if (widget.crypto == crypto) {
-            BottomSheetWarningUser(context);
+            bottomSheetWarningUser(context);
           } else {
             Navigator.of(context).pushNamed(
               '/revision',

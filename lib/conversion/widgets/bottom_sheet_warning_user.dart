@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Future<dynamic> BottomSheetWarningUser(BuildContext context) {
+Future<dynamic> bottomSheetWarningUser(BuildContext context) {
   return showModalBottomSheet(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
