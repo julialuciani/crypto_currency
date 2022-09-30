@@ -7,17 +7,17 @@ import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 
 class RevisionScreen extends StatelessWidget {
   static const route = '/revision';
-  String convertQuantity;
-  String receiveQuantity;
-  CryptoViewData cryptoConvert;
-  CryptoViewData cryptoReceive;
-  String total;
-  double discount;
-  double increase;
-  String idDiscount;
-  String idIncrease;
+  final String convertQuantity;
+  final String receiveQuantity;
+  final CryptoViewData cryptoConvert;
+  final CryptoViewData cryptoReceive;
+  final String total;
+  final double discount;
+  final double increase;
+  final String idDiscount;
+  final String idIncrease;
 
-  RevisionScreen({
+  const RevisionScreen({
     Key? key,
     required this.convertQuantity,
     required this.receiveQuantity,

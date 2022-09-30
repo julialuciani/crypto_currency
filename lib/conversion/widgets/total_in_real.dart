@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_crypto/conversion/methods/conversion_screen_methods.dart';
-import 'package:projeto_crypto/conversion/view/conversion_screen.dart';
+
+import '../methods/conversion_methods.dart';
+import '../view/conversion_screen.dart';
 
 class TotalInReal extends StatelessWidget {
   const TotalInReal({
