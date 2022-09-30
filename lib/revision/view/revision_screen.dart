@@ -12,6 +12,10 @@ class RevisionScreen extends StatelessWidget {
   CryptoViewData cryptoConvert;
   CryptoViewData cryptoReceive;
   String total;
+  double discount;
+  double increase;
+  String idDiscount;
+  String idIncrease;
 
   RevisionScreen({
     Key? key,
@@ -20,6 +24,10 @@ class RevisionScreen extends StatelessWidget {
     required this.cryptoConvert,
     required this.cryptoReceive,
     required this.total,
+    required this.discount,
+    required this.increase,
+    required this.idDiscount,
+    required this.idIncrease,
   }) : super(key: key);
 
   @override
@@ -34,6 +42,10 @@ class RevisionScreen extends StatelessWidget {
         cryptoReceive: args.cryptoReceive,
         receiveQuantity: args.receiveQuantity,
         total: args.total,
+        increase: args.increase,
+        discount: args.discount,
+        idDiscount: args.idDiscount,
+        idIncrease: args.idIncrease,
       ),
     );
   }

@@ -178,6 +178,11 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                 total: ConversionMethods.formatLatestValue(
                     ConversionMethods.convertLatestValue(
                         valueController, widget.crypto)),
+                discount: double.parse(valueController.text),
+                increase: ConversionMethods.convertLatestValue(
+                    valueController, crypto),
+                idDiscount: widget.crypto.id,
+                idIncrease: crypto.id,
               ),
             );
             validate = true;

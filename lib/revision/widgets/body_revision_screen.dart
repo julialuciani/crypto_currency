@@ -12,6 +12,10 @@ class BodyRevision extends StatelessWidget {
   final CryptoViewData cryptoConvert;
   final CryptoViewData cryptoReceive;
   final String total;
+  final double increase;
+  final double discount;
+  final String idDiscount;
+  final String idIncrease;
   const BodyRevision({
     Key? key,
     required this.convertQuantity,
@@ -19,6 +23,10 @@ class BodyRevision extends StatelessWidget {
     required this.cryptoConvert,
     required this.cryptoReceive,
     required this.total,
+    required this.increase,
+    required this.discount,
+    required this.idDiscount,
+    required this.idIncrease,
   }) : super(key: key);
 
   @override
@@ -43,6 +51,10 @@ class BodyRevision extends StatelessWidget {
             receiveQuantity: receiveQuantity,
             cryptoReceive: cryptoReceive,
             total: total,
+            discount: discount,
+            increase: increase,
+            idDiscount: idDiscount,
+            idIncrease: idIncrease,
           ),
         ],
       ),
