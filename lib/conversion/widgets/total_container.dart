@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/core_strings.dart';
+
 class TotalContainer extends StatelessWidget {
   final String total;
   const TotalContainer({
@@ -17,7 +19,7 @@ class TotalContainer extends StatelessWidget {
         children: [
           const Divider(thickness: 1),
           Text(
-            'Total estimado',
+            CoreString.of(context)!.totEst,
             style: TextStyle(color: Colors.grey.shade500, fontSize: 17),
           ),
           const SizedBox(height: 10),

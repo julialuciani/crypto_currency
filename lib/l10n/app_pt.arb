@@ -1,0 +1,29 @@
+{
+    "crypto": "Cripto",
+    "total" : "Valor total de moedas",
+    "port" : "Portifólio",
+    "move" : "Movimentos",
+    "pricesfive" : "Preço nos últimos",
+    "days" : "dias",
+    "variationfive" : "Variação nos últimos",
+    "quant" : "Quantidade",
+    "value" : "Valor",
+    "conv" : "Converter moeda",
+    "avai" : "Saldo disponível",
+    "how" : "Quanto você gostaria de converter?",
+    "totEst" : "Total estimado",
+    "review" : "Revise os dados da sua conversão",
+    "convert" : "Converter",
+    "receive" : "Receber",
+    "exc" : "câmbio",
+    "comp" : "Concluir conversão",
+    "sucess" : "Conversão efetuada",
+    "sucessM" : "Conversão de moeda efetuada com sucesso!",
+    "writeS" : "Digite algo",
+    "theValue" : "O valor não pode começar com um caractere especial",
+    "youDont" : "Você não tem essa quantia",
+    "zero" : "Você não pode converter zero",
+    "details" : "Detalhes"
+
+     
+}

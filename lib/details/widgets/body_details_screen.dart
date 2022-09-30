@@ -11,6 +11,7 @@ import 'package:projeto_crypto/shared/templates/loading_body.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import 'package:projeto_crypto/shared/utils/currency_formatter.dart';
 
+import '../../l10n/core_strings.dart';
 import '../../shared/templates/button_default_app.dart';
 import 'change_days_button.dart';
 import 'chart_details_screen.dart';
@@ -54,26 +55,28 @@ class BodyDetailsScreen extends HookConsumerWidget {
               const ChangeDaysButtons(),
               const Divider(thickness: 1),
               RowInfos(
-                title: 'Preço nos últimos $days dias',
+                title:
+                    '${CoreString.of(context)!.pricesfive} $days ${CoreString.of(context)!.days}',
                 info: FormatCurrency.format(
                   data.price.reversed.elementAt(days).last.toDouble(),
                 ),
               ),
               const Divider(thickness: 1),
               RowInfos(
-                  title: 'Variação em $days dias',
+                  title:
+                      '${CoreString.of(context)!.variationfive} $days ${CoreString.of(context)!.days}',
                   isVariation: true,
                   color: getVariation > 0 ? Colors.green : Colors.red,
                   info:
                       '${getVariation > 0 ? '+' : ''} ${getVariation.toStringAsFixed(2)}%'),
               const Divider(thickness: 1),
               RowInfos(
-                  title: 'Quantidade',
+                  title: CoreString.of(context)!.quant,
                   info:
                       '${singleBalance.toStringAsFixed(8)} ${crypto.symbol.toUpperCase()}'),
               const Divider(thickness: 1),
               RowInfos(
-                title: 'Valor',
+                title: CoreString.of(context)!.value,
                 info:
                     FormatCurrency.format(crypto.currentPrice * singleBalance),
               ),
@@ -81,7 +84,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
               ButtonDefaulApp(
                 arguments:
                     AppArguments(crypto: crypto, singleBalance: singleBalance),
-                label: 'Converter moeda',
+                label: CoreString.of(context)!.conv,
                 route: '/conversion',
               ),
             ],

@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:projeto_crypto/conversion/widgets/bottom_sheet_warning_user.dart';
 import 'package:projeto_crypto/conversion/widgets/total_in_real.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
@@ -68,7 +69,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           key: _key,
           autovalidateMode: AutovalidateMode.always,
           child: Scaffold(
-            appBar: const AppBarDefault(title: 'Converter'),
+            appBar: AppBarDefault(title: CoreString.of(context)!.convert),
             body: bodyConversion(args, data, crypto, context),
             floatingActionButton:
                 floatingActionButtonConversion(crypto, context),
@@ -231,20 +232,20 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
       },
       validator: (value) {
         if (value == '' || value == null) {
-          return 'Digite algo';
+          return CoreString.of(context)!.writeS;
         } else if (ConversionMethods.isCorrect(value) ||
             value.startsWith('.')) {
-          return "O valor não pode começar com caractere especial";
+          return CoreString.of(context)!.theValue;
         } else if (double.parse(
                 ConversionMethods.formattingValue(value.toString())) ==
             0) {
           validate = false;
-          return 'Você não pode converter zero';
+          return CoreString.of(context)!.zero;
         } else if (double.parse(
                 ConversionMethods.formattingValue(value.toString())) >
             args.singleBalance) {
           validate = false;
-          return 'Você não tem essa quantia';
+          return CoreString.of(context)!.youDont;
         } else {
           return null;
         }
