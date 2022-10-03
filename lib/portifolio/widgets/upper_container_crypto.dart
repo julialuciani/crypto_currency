@@ -6,7 +6,7 @@ import '../../shared/style/colors.dart';
 import '../../shared/utils/currency_formatter.dart';
 import '../controller/balance_provider.dart';
 import '../controller/visibility_provider.dart';
-import 'container_visible.dart';
+import 'invisible_container.dart';
 
 class UpperContainerCrypto extends StatefulHookConsumerWidget {
   const UpperContainerCrypto({super.key});

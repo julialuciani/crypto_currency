@@ -2,24 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:projeto_crypto/conversion/widgets/bottom_sheet_warning_user.dart';
-import 'package:projeto_crypto/conversion/widgets/total_in_real.dart';
-import 'package:projeto_crypto/l10n/core_strings.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
-import 'package:projeto_crypto/shared/style/colors.dart';
-import 'package:projeto_crypto/shared/templates/error_body.dart';
-import 'package:projeto_crypto/shared/templates/loading_body.dart';
-import 'package:projeto_crypto/shared/utils/app_arguments.dart';
-import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
-
+import '../../l10n/core_strings.dart';
+import '../../portifolio/model/crypto_view_data.dart';
+import '../../portifolio/usecase/cryptos_provider.dart';
 import '../../revision/revision_arguments/revision_arguments_screen.dart';
+import '../../shared/style/colors.dart';
+import '../../shared/templates/error_body.dart';
+import '../../shared/templates/loading_body.dart';
+import '../../shared/utils/app_arguments.dart';
+import '../../shared/utils/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
 import '../methods/conversion_methods.dart';
+import '../widgets/bottom_sheet_warning_user.dart';
 import '../widgets/button_change_coin.dart';
 import '../widgets/interactive_text.dart';
 import '../widgets/list_tile_conversion.dart';
 import '../widgets/total_container.dart';
+import '../widgets/total_in_real.dart';
 import '../widgets/upper_container_conversion.dart';
 
 class ConversionScreen extends StatefulHookConsumerWidget {

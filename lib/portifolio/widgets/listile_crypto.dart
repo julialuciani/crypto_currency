@@ -4,7 +4,7 @@ import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import '../../shared/utils/currency_formatter.dart';
 import '../controller/visibility_provider.dart';
-import 'container_visible.dart';
+import 'invisible_container.dart';
 
 class ListTitleCrypto extends HookConsumerWidget {
   final CryptoViewData crypto;

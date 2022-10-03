@@ -8,6 +8,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/app_widget.dart';
+import 'package:projeto_crypto/portifolio/widgets/upper_container_crypto.dart';
+
+import 'helpers/setup_widget_tester.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -26,4 +29,20 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
   });
+
+  Future<void> loadPage(WidgetTester tester) async {
+    const upperContainer = SetupWidgetTester(child: UpperContainerCrypto());
+    await tester.pumpWidget(upperContainer);
+  }
+
+  testWidgets('VisibilityIcon test', (WidgetTester tester) async {
+    await tester.pumpWidget(const UpperContainerCrypto());
+    expect(find.byIcon(Icons.visibility), find);
+  });
+
+  // testWidgets('Find visibility Icon', (WidgetTester tester) async {
+  //   await loadPage(tester);
+  //   final visibilityIcon = find.byType(Icon);
+  //   expect(Icons.visibility, findsOneWidget);
+  // });
 }

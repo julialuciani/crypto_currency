@@ -117,23 +117,17 @@ abstract class CoreString {
   /// **'Movimentos'**
   String get move;
 
-  /// No description provided for @pricesfive.
+  /// No description provided for @prices.
   ///
   /// In pt, this message translates to:
-  /// **'Preço nos últimos'**
-  String get pricesfive;
+  /// **'Price in the last {days} days'**
+  String prices(int days);
 
-  /// No description provided for @days.
+  /// No description provided for @variation.
   ///
   /// In pt, this message translates to:
-  /// **'dias'**
-  String get days;
-
-  /// No description provided for @variationfive.
-  ///
-  /// In pt, this message translates to:
-  /// **'Variação nos últimos'**
-  String get variationfive;
+  /// **'Variation in the last {days} days'**
+  String variation(int days);
 
   /// No description provided for @quant.
   ///
@@ -242,6 +236,12 @@ abstract class CoreString {
   /// In pt, this message translates to:
   /// **'Detalhes'**
   String get details;
+
+  /// No description provided for @pick.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escolha uma moeda para converter'**
+  String get pick;
 }
 
 class _CoreStringDelegate extends LocalizationsDelegate<CoreString> {

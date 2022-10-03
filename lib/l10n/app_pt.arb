@@ -3,9 +3,24 @@
     "total" : "Valor total de moedas",
     "port" : "Portifólio",
     "move" : "Movimentos",
-    "pricesfive" : "Preço nos últimos",
-    "days" : "dias",
-    "variationfive" : "Variação nos últimos",
+    "prices" : "Price in the last {days} days",
+    "@prices": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
+    "variation" : "Variation in the last {days} days",
+    "@variation": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    }, 
     "quant" : "Quantidade",
     "value" : "Valor",
     "conv" : "Converter moeda",
@@ -23,7 +38,8 @@
     "theValue" : "O valor não pode começar com um caractere especial",
     "youDont" : "Você não tem essa quantia",
     "zero" : "Você não pode converter zero",
-    "details" : "Detalhes"
+    "details" : "Detalhes",
+    "pick" : "Escolha uma moeda para converter"
 
      
 }

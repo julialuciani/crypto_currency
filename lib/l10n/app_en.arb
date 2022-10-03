@@ -3,9 +3,24 @@
     "total" : "Total coin value",
     "port" : "Portifolio",
     "move" : "Movements",
-    "pricesfive" : "Price in the last",
-    "days" : "days",
-    "variationfive" : "Variation in the last",
+    "prices" : "Price in the last {days} days",
+    "@prices": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
+    "variation" : "Variation in the last {days} days",
+    "@variation": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
     "quant" : "Quantity",
     "value" : "Value",
     "conv" : "Convert coin",
@@ -23,7 +38,8 @@
     "theValue" : "Value cannot start with special character",
     "youDont" : "You don't have this ammount",
     "zero" : "You can't convert zero",
-    "details" : "Details"
+    "details" : "Details",
+    "pick" : "Choose a crypto to convert"
 
 
      
