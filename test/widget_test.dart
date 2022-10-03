@@ -40,9 +40,9 @@ void main() {
     expect(find.byIcon(Icons.visibility), find);
   });
 
-  // testWidgets('Find visibility Icon', (WidgetTester tester) async {
-  //   await loadPage(tester);
-  //   final visibilityIcon = find.byType(Icon);
-  //   expect(Icons.visibility, findsOneWidget);
-  // });
+  testWidgets('Find visibility Icon', (WidgetTester tester) async {
+    await loadPage(tester);
+    final visibilityIcon = find.byType(Icon);
+    expect(Icons.visibility, findsOneWidget);
+  });
 }
