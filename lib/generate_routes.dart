@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/revision/revision_screen.dart';
 import 'package:projeto_crypto/revision/view/conversion_performed_screen.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
-import 'package:projeto_crypto/revision/view/revision_screen.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import 'portifolio/view/portifolio_screen.dart';
 
