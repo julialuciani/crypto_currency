@@ -3,9 +3,24 @@
     "total" : "Total coin value",
     "port" : "Portifolio",
     "move" : "Movements",
-    "prices" : "Price in the last",
-    "days" : "days",
-    "variation" : "Variation in the last",
+    "prices" : "Price in the last {days} days",
+    "@prices": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
+    "variation" : "Variation in the last {days} days",
+    "@variation": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
     "quant" : "Quantity",
     "value" : "Value",
     "conv" : "Convert coin",

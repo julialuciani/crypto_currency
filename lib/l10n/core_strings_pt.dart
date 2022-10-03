@@ -17,13 +17,14 @@ class CoreStringPt extends CoreString {
   String get move => 'Movimentos';
 
   @override
-  String get prices => 'Preço nos últimos';
+  String prices(int days) {
+    return 'Price in the last $days days';
+  }
 
   @override
-  String get days => 'dias';
-
-  @override
-  String get variation => 'Variação nos últimos';
+  String variation(int days) {
+    return 'Variation in the last $days days';
+  }
 
   @override
   String get quant => 'Quantidade';
