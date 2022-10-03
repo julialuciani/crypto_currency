@@ -1,42 +1,51 @@
 import 'package:flutter/material.dart';
 
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
-import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
-import 'package:projeto_crypto/shared/utils/app_arguments.dart';
+import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
+import 'package:projeto_crypto/revision/widgets/body_revision_screen.dart';
 import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
 
 class RevisionScreen extends StatelessWidget {
   static const route = '/revision';
-  CryptoViewData crypto;
-  double singleBalance;
+  final String convertQuantity;
+  final String receiveQuantity;
+  final CryptoViewData cryptoConvert;
+  final CryptoViewData cryptoReceive;
+  final String total;
+  final double discount;
+  final double increase;
+  final String idDiscount;
+  final String idIncrease;
 
-  RevisionScreen({
+  const RevisionScreen({
     Key? key,
-    required this.crypto,
-    required this.singleBalance,
+    required this.convertQuantity,
+    required this.receiveQuantity,
+    required this.cryptoConvert,
+    required this.cryptoReceive,
+    required this.total,
+    required this.discount,
+    required this.increase,
+    required this.idDiscount,
+    required this.idIncrease,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as AppArguments;
+    final args =
+        ModalRoute.of(context)!.settings.arguments as RevisionArguments;
     return Scaffold(
       appBar: const AppBarDefault(title: 'Revisar'),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const UserTextRevision(),
-            const Divider(thickness: 1),
-            RowRevisionInfo(label: 'Converter', data: '0.00000 BTC'),
-            const Divider(thickness: 1),
-            RowRevisionInfo(label: 'Receber', data: '0.09 ETH'),
-            const Divider(thickness: 1),
-            RowRevisionInfo(label: 'Câmbio', data: '1 BTC = 11.77 ETH'),
-            const SizedBox(height: 10),
-          ],
-        ),
+      body: BodyRevision(
+        convertQuantity: args.convertQuantity,
+        cryptoConvert: args.cryptoConvert,
+        cryptoReceive: args.cryptoReceive,
+        receiveQuantity: args.receiveQuantity,
+        total: args.total,
+        increase: args.increase,
+        discount: args.discount,
+        idDiscount: args.idDiscount,
+        idIncrease: args.idIncrease,
       ),
     );
   }

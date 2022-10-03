@@ -29,10 +29,9 @@ class UpperColumnCrypto extends HookConsumerWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              CircleAvatar(
-                backgroundColor: Colors.transparent,
-                radius: 25,
-                backgroundImage: NetworkImage(crypto.image),
+              Image.network(
+                crypto.image,
+                scale: 4,
               ),
             ],
           ),

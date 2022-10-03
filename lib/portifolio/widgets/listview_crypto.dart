@@ -14,6 +14,7 @@ class ListViewCryptos extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cryptos = ref.watch(cryptosProvider);
+    final singleBalance = ref.watch(singleBalanceProvider);
 
     return cryptos.when(
       data: (data) {
@@ -21,7 +22,8 @@ class ListViewCryptos extends HookConsumerWidget {
           double getBalance() {
             double balance = 0;
             for (CryptoViewData crypto in data) {
-              balance += crypto.currentPrice * 0.5;
+              balance +=
+                  crypto.currentPrice * singleBalance[data.indexOf(crypto)];
             }
             return balance;
           }
@@ -37,7 +39,7 @@ class ListViewCryptos extends HookConsumerWidget {
               CryptoViewData crypto = data[index];
               return ListTitleCrypto(
                 crypto: crypto,
-                cryptoBalance: ref.watch(singleBalanceProvider)[index],
+                cryptoBalance: singleBalance[index],
               );
             },
           ),
