@@ -1,0 +1,31 @@
+{
+    "crypto": "Crypto",
+    "total" : "Total coin value",
+    "port" : "Portifolio",
+    "move" : "Movements",
+    "prices" : "Price in the last",
+    "days" : "days",
+    "variation" : "Variation in the last",
+    "quant" : "Quantity",
+    "value" : "Value",
+    "conv" : "Convert coin",
+    "avai" : "Available balance",
+    "how" : "How much would you like to convert?",
+    "totEst" : "Estimated total",
+    "review" : "Review your conversion data",
+    "convert" : "Convert",
+    "receive" : "Receive",
+    "exc" : "exchange",
+    "comp" : "Complete conversion",
+    "sucess" : "Conversion performed",
+    "sucessM" : "Conversion made successfully!",
+    "writeS" : "Type something",
+    "theValue" : "Value cannot start with special character",
+    "youDont" : "You don't have this ammount",
+    "zero" : "You can't convert zero",
+    "details" : "Details",
+    "pick" : "Choose a crypto to convert"
+
+
+     
+}

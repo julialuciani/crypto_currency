@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
 
@@ -29,14 +30,15 @@ class ColumnRevisionInfo extends StatelessWidget {
       children: [
         const Divider(thickness: 1),
         RowRevisionInfo(
-          label: 'Converter',
+          label: CoreString.of(context)!.convert,
           data: '$convertQuantity ${cryptoConvert.symbol.toUpperCase()}',
         ),
         const Divider(thickness: 1),
-        RowRevisionInfo(label: 'Receber', data: receiveQuantity),
+        RowRevisionInfo(
+            label: CoreString.of(context)!.receive, data: receiveQuantity),
         const Divider(thickness: 1),
         RowRevisionInfo(
-          label: 'Câmbio',
+          label: CoreString.of(context)!.exc,
           data: getConvertionFromOne(),
         ),
       ],

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 import '../../shared/style/colors.dart';
 import '../../shared/utils/currency_formatter.dart';
 import '../controller/balance_provider.dart';
 import '../controller/visibility_provider.dart';
-import 'container_visible.dart';
+import 'invisible_container.dart';
 
 class UpperContainerCrypto extends StatefulHookConsumerWidget {
   const UpperContainerCrypto({super.key});
@@ -30,9 +31,9 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Cripto',
-                style: TextStyle(
+              Text(
+                CoreString.of(context)!.crypto,
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                   color: magenta,
@@ -61,7 +62,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
               : const InvisibleContainer(),
           const SizedBox(height: 5),
           Text(
-            'Valor total de moedas',
+            CoreString.of(context)!.total,
             style: TextStyle(color: Colors.grey.shade600, fontSize: 15),
           ),
         ],

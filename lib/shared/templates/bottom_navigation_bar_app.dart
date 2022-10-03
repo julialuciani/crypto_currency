@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../l10n/core_strings.dart';
 import '../style/colors.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
@@ -33,18 +34,18 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
       selectedItemColor: magenta,
       currentIndex: widget.index,
       onTap: _onItemTapped,
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: ImageIcon(
+          icon: const ImageIcon(
             AssetImage('assets/icons/icon_warren.png'),
           ),
-          label: 'Portifólio',
+          label: CoreString.of(context)!.port,
         ),
         BottomNavigationBarItem(
-          icon: ImageIcon(
+          icon: const ImageIcon(
             AssetImage('assets/icons/cent.png'),
           ),
-          label: 'Movimentações',
+          label: CoreString.of(context)!.move,
         ),
       ],
     );
