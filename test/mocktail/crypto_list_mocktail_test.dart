@@ -21,6 +21,13 @@ void main() {
     final list = await usecase.execute();
     expect(list[0].id, 'bitcoin');
   });
+
+  test('Check if the second id is ethereum', () async {
+    when(() => dio.get(any())).thenAnswer((_) async => Response(
+        data: jsonDecode(jsonData), requestOptions: RequestOptions(path: '')));
+    final list = await usecase.execute();
+    expect(list[1].id, 'ethereum');
+  });
 }
 
 String jsonData = ''' 

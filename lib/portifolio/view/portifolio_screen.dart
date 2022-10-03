@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:projeto_crypto/portifolio/controller/crypto_individual_balance_notifier.dart';
 import '../../shared/templates/bottom_navigation_bar_app.dart';
+import '../controller/crypto_individual_balance_notifier.dart';
 import '../widgets/body_portifolio_screen.dart';
 
 class PortifolioScreen extends StatefulHookConsumerWidget {
