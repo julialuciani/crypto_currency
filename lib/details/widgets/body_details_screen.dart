@@ -55,16 +55,14 @@ class BodyDetailsScreen extends HookConsumerWidget {
               const ChangeDaysButtons(),
               const Divider(thickness: 1),
               RowInfos(
-                title:
-                    '${CoreString.of(context)!.prices} $days ${CoreString.of(context)!.days}',
+                title: CoreString.of(context)!.prices(days),
                 info: FormatCurrency.format(
                   data.price.reversed.elementAt(days).last.toDouble(),
                 ),
               ),
               const Divider(thickness: 1),
               RowInfos(
-                  title:
-                      '${CoreString.of(context)!.variation} $days ${CoreString.of(context)!.days}',
+                  title: CoreString.of(context)!.variation(days),
                   isVariation: true,
                   color: getVariation > 0 ? Colors.green : Colors.red,
                   info:

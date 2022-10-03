@@ -3,9 +3,24 @@
     "total" : "Valor total de moedas",
     "port" : "Portifólio",
     "move" : "Movimentos",
-    "prices" : "Preço nos últimos",
-    "days" : "dias",
-    "variation" : "Variação nos últimos",
+    "prices" : "Price in the last {days} days",
+    "@prices": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
+    "variation" : "Variation in the last {days} days",
+    "@variation": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    }, 
     "quant" : "Quantidade",
     "value" : "Valor",
     "conv" : "Converter moeda",
