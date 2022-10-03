@@ -17,13 +17,13 @@ class CoreStringPt extends CoreString {
   String get move => 'Movimentos';
 
   @override
-  String get pricesfive => 'Preço nos últimos';
+  String get prices => 'Preço nos últimos';
 
   @override
   String get days => 'dias';
 
   @override
-  String get variationfive => 'Variação nos últimos';
+  String get variation => 'Variação nos últimos';
 
   @override
   String get quant => 'Quantidade';
@@ -78,4 +78,7 @@ class CoreStringPt extends CoreString {
 
   @override
   String get details => 'Detalhes';
+
+  @override
+  String get pick => 'Escolha uma moeda para converter';
 }

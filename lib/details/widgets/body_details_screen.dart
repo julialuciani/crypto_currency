@@ -56,7 +56,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
               const Divider(thickness: 1),
               RowInfos(
                 title:
-                    '${CoreString.of(context)!.pricesfive} $days ${CoreString.of(context)!.days}',
+                    '${CoreString.of(context)!.prices} $days ${CoreString.of(context)!.days}',
                 info: FormatCurrency.format(
                   data.price.reversed.elementAt(days).last.toDouble(),
                 ),
@@ -64,7 +64,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
               const Divider(thickness: 1),
               RowInfos(
                   title:
-                      '${CoreString.of(context)!.variationfive} $days ${CoreString.of(context)!.days}',
+                      '${CoreString.of(context)!.variation} $days ${CoreString.of(context)!.days}',
                   isVariation: true,
                   color: getVariation > 0 ? Colors.green : Colors.red,
                   info:

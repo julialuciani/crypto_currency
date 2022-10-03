@@ -17,13 +17,13 @@ class CoreStringEn extends CoreString {
   String get move => 'Movements';
 
   @override
-  String get pricesfive => 'Price in the last';
+  String get prices => 'Price in the last';
 
   @override
   String get days => 'days';
 
   @override
-  String get variationfive => 'Variation in the last';
+  String get variation => 'Variation in the last';
 
   @override
   String get quant => 'Quantity';
@@ -78,4 +78,7 @@ class CoreStringEn extends CoreString {
 
   @override
   String get details => 'Details';
+
+  @override
+  String get pick => 'Choose a crypto to convert';
 }

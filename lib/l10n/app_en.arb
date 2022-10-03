@@ -3,9 +3,9 @@
     "total" : "Total coin value",
     "port" : "Portifolio",
     "move" : "Movements",
-    "pricesfive" : "Price in the last",
+    "prices" : "Price in the last",
     "days" : "days",
-    "variationfive" : "Variation in the last",
+    "variation" : "Variation in the last",
     "quant" : "Quantity",
     "value" : "Value",
     "conv" : "Convert coin",
@@ -23,7 +23,8 @@
     "theValue" : "Value cannot start with special character",
     "youDont" : "You don't have this ammount",
     "zero" : "You can't convert zero",
-    "details" : "Details"
+    "details" : "Details",
+    "pick" : "Choose a crypto to convert"
 
 
      

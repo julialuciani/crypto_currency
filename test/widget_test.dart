@@ -37,7 +37,7 @@ void main() {
 
   testWidgets('VisibilityIcon test', (WidgetTester tester) async {
     await tester.pumpWidget(const UpperContainerCrypto());
-    expect(find.byIcon(Icons.visibility), findsNothing);
+    expect(find.byIcon(Icons.visibility), find);
   });
 
   // testWidgets('Find visibility Icon', (WidgetTester tester) async {

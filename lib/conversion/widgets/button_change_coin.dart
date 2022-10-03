@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
@@ -66,13 +67,13 @@ class ButtonChangeCoin extends HookConsumerWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
+                children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 15, bottom: 15),
+                    padding: const EdgeInsets.only(left: 15, bottom: 15),
                     child: Text(
-                      'Escolha uma moeda para converter',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      CoreString.of(context)!.pick,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
                 ],
