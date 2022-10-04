@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../l10n/core_strings.dart';
 import '../../portifolio/model/crypto_view_data.dart';
 import '../../portifolio/usecase/cryptos_provider.dart';
@@ -68,6 +67,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           key: _key,
           autovalidateMode: AutovalidateMode.always,
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             appBar: AppBarDefault(title: CoreString.of(context)!.convert),
             body: bodyConversion(args, data, crypto, context),
             floatingActionButton:

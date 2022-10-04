@@ -54,7 +54,7 @@ class CoreStringPt extends CoreString {
   String get receive => 'Receber';
 
   @override
-  String get exc => 'câmbio';
+  String get exc => 'Câmbio';
 
   @override
   String get comp => 'Concluir conversão';

@@ -37,14 +37,14 @@ class BodyRevision extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const UserTextRevision(),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.35),
+          const Spacer(),
           ColumnRevisionInfo(
             convertQuantity: convertQuantity,
             cryptoConvert: cryptoConvert,
             receiveQuantity: receiveQuantity,
             cryptoReceive: cryptoReceive,
           ),
-          const Spacer(),
+          const SizedBox(height: 30),
           ButtonRevisionScreen(
             convertQuantity: convertQuantity,
             cryptoConvert: cryptoConvert,

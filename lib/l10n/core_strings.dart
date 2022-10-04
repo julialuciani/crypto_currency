@@ -188,7 +188,7 @@ abstract class CoreString {
   /// No description provided for @exc.
   ///
   /// In pt, this message translates to:
-  /// **'câmbio'**
+  /// **'Câmbio'**
   String get exc;
 
   /// No description provided for @comp.
