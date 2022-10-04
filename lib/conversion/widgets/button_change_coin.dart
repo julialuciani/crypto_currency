@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projeto_crypto/l10n/core_strings.dart';
 
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
 
 class ButtonChangeCoin extends HookConsumerWidget {
   CryptoViewData crypto;
@@ -19,8 +18,6 @@ class ButtonChangeCoin extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var cryptos = ref.watch(cryptosProvider);
-
     return MaterialButton(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       shape: RoundedRectangleBorder(

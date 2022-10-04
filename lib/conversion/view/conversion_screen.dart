@@ -24,7 +24,7 @@ import '../widgets/upper_container_conversion.dart';
 class ConversionScreen extends StatefulHookConsumerWidget {
   static const route = '/conversion';
   CryptoViewData crypto;
-  double singleBalance;
+  final double singleBalance;
 
   ConversionScreen({
     Key? key,
@@ -118,28 +118,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ButtonChangeCoin(
-          crypto: widget.crypto,
-          data: data,
-          listView: ListView.separated(
-            separatorBuilder: (context, index) => const Divider(thickness: 1),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  setState(() {
-                    widget.crypto = data[index];
-                  });
-                  Navigator.pop(context);
-                },
-                child: ListTileConversion(
-                  name: data[index].name,
-                  symbol: data[index].symbol.toUpperCase(),
-                ),
-              );
-            },
-          ),
-        ),
+        buttonChangeCoinFirst(data),
         IconButton(
           icon: const Icon(Icons.compare_arrows, color: magenta),
           onPressed: () {
@@ -152,6 +131,31 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         ),
         buttonChangeCoinMethod(crypto, data),
       ],
+    );
+  }
+
+  ButtonChangeCoin buttonChangeCoinFirst(List<CryptoViewData> data) {
+    return ButtonChangeCoin(
+      crypto: widget.crypto,
+      data: data,
+      listView: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(thickness: 1),
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              setState(() {
+                widget.crypto = data[index];
+              });
+              Navigator.pop(context);
+            },
+            child: ListTileConversion(
+              name: data[index].name,
+              symbol: data[index].symbol.toUpperCase(),
+            ),
+          );
+        },
+      ),
     );
   }
 
