@@ -24,7 +24,7 @@ class AppWidget extends StatelessWidget {
         Locale('en', ''),
         Locale('es', ''),
       ],
-      onGenerateRoute: GeneretaRoute.findRoute,
+      onGenerateRoute: GenerateRoute.findRoute,
       initialRoute: '/portifolio',
     );
   }
