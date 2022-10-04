@@ -15,7 +15,7 @@ class UpperColumnCrypto extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,13 +25,13 @@ class UpperColumnCrypto extends HookConsumerWidget {
               Text(
                 crypto.name,
                 style: const TextStyle(
-                  fontSize: 35,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Image.network(
                 crypto.image,
-                scale: 4,
+                scale: 5,
               ),
             ],
           ),
@@ -42,12 +42,14 @@ class UpperColumnCrypto extends HookConsumerWidget {
               fontSize: 20,
             ),
           ),
-          const SizedBox(height: 5),
-          Text(
-            FormatCurrency.format(crypto.currentPrice),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 35,
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              FormatCurrency.format(crypto.currentPrice),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
             ),
           ),
         ],

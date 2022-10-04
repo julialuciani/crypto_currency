@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'core_strings_en.dart';
+import 'core_strings_es.dart';
 import 'core_strings_pt.dart';
 
 /// Callers can lookup localized strings with an instance of CoreString
@@ -90,6 +91,7 @@ abstract class CoreString {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('es'),
     Locale('pt')
   ];
 
@@ -253,7 +255,7 @@ class _CoreStringDelegate extends LocalizationsDelegate<CoreString> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_CoreStringDelegate old) => false;
@@ -265,6 +267,7 @@ CoreString lookupCoreString(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return CoreStringEn();
+    case 'es': return CoreStringEs();
     case 'pt': return CoreStringPt();
   }
 

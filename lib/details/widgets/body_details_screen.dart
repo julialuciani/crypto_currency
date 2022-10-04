@@ -35,9 +35,8 @@ class BodyDetailsScreen extends HookConsumerWidget {
             (data.prices.last.last / data.prices.reversed.elementAt(days).last -
                     1) *
                 100;
-        return SingleChildScrollView(
-          padding: const EdgeInsets.only(left: 10),
-          physics: const ClampingScrollPhysics(),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

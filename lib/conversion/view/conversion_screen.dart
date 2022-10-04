@@ -44,10 +44,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      ref.watch(singleCryptoProvider.state).state = widget.crypto;
-    });
     valueController.addListener(getLastestValue);
+    Future.delayed(Duration.zero, () {
+      ref.read(singleCryptoProvider.state).state = widget.crypto;
+    });
   }
 
   String getLastestValue() {
@@ -159,6 +159,32 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     );
   }
 
+  ButtonChangeCoin buttonChangeCoinMethod(
+      CryptoViewData crypto, List<CryptoViewData> data) {
+    return ButtonChangeCoin(
+      crypto: crypto,
+      data: data,
+      listView: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(thickness: 1),
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              setState(() {
+                ref.read(singleCryptoProvider.state).state = data[index];
+              });
+              Navigator.pop(context);
+            },
+            child: ListTileConversion(
+              name: data[index].name,
+              symbol: data[index].symbol.toUpperCase(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   FloatingActionButton floatingActionButtonConversion(
       CryptoViewData crypto, BuildContext context) {
     return FloatingActionButton(
@@ -253,32 +279,6 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           return null;
         }
       },
-    );
-  }
-
-  ButtonChangeCoin buttonChangeCoinMethod(
-      CryptoViewData crypto, List<CryptoViewData> data) {
-    return ButtonChangeCoin(
-      crypto: crypto,
-      data: data,
-      listView: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(thickness: 1),
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              setState(() {
-                ref.read(singleCryptoProvider.state).state = data[index];
-              });
-              Navigator.pop(context);
-            },
-            child: ListTileConversion(
-              name: data[index].name,
-              symbol: data[index].symbol.toUpperCase(),
-            ),
-          );
-        },
-      ),
     );
   }
 }
