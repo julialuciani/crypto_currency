@@ -41,6 +41,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               UpperColumnCrypto(crypto: crypto),
+              const Spacer(),
               ChartDetailsScreen(
                 list: List<FlSpot>.from(
                   data.prices.reversed.map(
@@ -52,6 +53,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 ),
               ),
               const ChangeDaysButtons(),
+              const Spacer(),
               const Divider(thickness: 1),
               RowInfos(
                 title: CoreString.of(context)!.prices(days),
