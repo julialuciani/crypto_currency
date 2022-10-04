@@ -64,9 +64,6 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
 
     return cryptos.when(
       data: (data) {
-        if (crypto == widget.crypto) {
-          crypto == data[1];
-        }
         return Form(
           key: _key,
           autovalidateMode: AutovalidateMode.always,
@@ -145,7 +142,6 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         separatorBuilder: (context, index) => const Divider(thickness: 1),
         itemCount: data.length,
         itemBuilder: (context, index) {
-          data.removeWhere((element) => element == widget.crypto);
           return InkWell(
             onTap: () {
               setState(() {
@@ -269,7 +265,6 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         separatorBuilder: (context, index) => const Divider(thickness: 1),
         itemCount: data.length,
         itemBuilder: (context, index) {
-          data.removeWhere((element) => element == crypto);
           return InkWell(
             onTap: () {
               setState(() {
