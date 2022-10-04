@@ -26,7 +26,8 @@ class ConversionMethods {
 
   static String formatLatestValue(double price) {
     String value = NumberFormat.simpleCurrency(
-            locale: Platform.localeName, decimalDigits: 2)
+            locale: Platform.localeName == 'pt_BR' ? 'pt_BR' : 'en',
+            decimalDigits: 2)
         .format(price);
     return value;
   }
