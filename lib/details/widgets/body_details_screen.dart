@@ -77,6 +77,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 info:
                     FormatCurrency.format(crypto.currentPrice * singleBalance),
               ),
+              const Spacer(),
               ButtonDefaulApp(
                 arguments:
                     AppArguments(crypto: crypto, singleBalance: singleBalance),
