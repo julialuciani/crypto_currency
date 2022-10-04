@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 import 'package:projeto_crypto/portifolio/widgets/body_portifolio_screen.dart';
 import 'package:projeto_crypto/portifolio/widgets/invisible_container.dart';
+import 'package:projeto_crypto/portifolio/widgets/listile_crypto.dart';
 import 'package:projeto_crypto/portifolio/widgets/listview_crypto.dart';
 import 'package:projeto_crypto/portifolio/widgets/upper_container_crypto.dart';
 
+import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
 
 void main() {
@@ -72,6 +75,22 @@ void main() {
 
       await tester.tap(listViewFinder);
       await tester.pumpAndSettle();
+    });
+
+    testWidgets('Making sure listTile has info', (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await loadPage(tester,
+            ListTitleCrypto(crypto: crypto, cryptoBalance: cryptoBalance));
+        await tester.pumpAndSettle();
+
+        final textFinder = find.byType(Text);
+        final imageFinder = find.byType(Image);
+        final iconFinder = find.byIcon(Icons.arrow_forward_ios);
+
+        expect(textFinder, findsAtLeastNWidgets(4));
+        expect(imageFinder, findsOneWidget);
+        expect(iconFinder, findsOneWidget);
+      });
     });
   });
 }

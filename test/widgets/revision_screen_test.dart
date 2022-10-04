@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/revision/widgets/body_revision_screen.dart';
 import 'package:projeto_crypto/revision/widgets/button_revision_screen.dart';
 import 'package:projeto_crypto/revision/widgets/column_revision_infos.dart';
 import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
 import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
 
+import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
 
 void main() {
@@ -18,20 +18,8 @@ void main() {
           BodyRevision(
               convertQuantity: '0.2',
               receiveQuantity: '0.2',
-              cryptoConvert: CryptoViewData(
-                  id: 'bitcoim',
-                  symbol: 'btc',
-                  name: 'Bitcoin',
-                  image: 'assets/icons/cent.png',
-                  currentPrice: 0.0,
-                  variation: 0.0),
-              cryptoReceive: CryptoViewData(
-                  id: 'bitcoim',
-                  symbol: 'btc',
-                  name: 'Bitcoin',
-                  image: 'assets/icons/cent.png',
-                  currentPrice: 0.0,
-                  variation: 0.0),
+              cryptoConvert: crypto,
+              cryptoReceive: crypto,
               total: '0.2',
               increase: 0.0,
               discount: 0.0,
@@ -57,20 +45,8 @@ void main() {
           ColumnRevisionInfo(
             convertQuantity: '0.2',
             receiveQuantity: '0.2',
-            cryptoConvert: CryptoViewData(
-                id: 'bitcoim',
-                symbol: 'btc',
-                name: 'Bitcoin',
-                image: 'assets/icons/cent.png',
-                currentPrice: 0.0,
-                variation: 0.0),
-            cryptoReceive: CryptoViewData(
-                id: 'bitcoim',
-                symbol: 'btc',
-                name: 'Bitcoin',
-                image: 'assets/icons/cent.png',
-                currentPrice: 0.0,
-                variation: 0.0),
+            cryptoConvert: crypto,
+            cryptoReceive: crypto,
           ));
       final dividerFinder = find.byType(Divider);
       final rowRevisionFinder = find.byType(RowRevisionInfo);

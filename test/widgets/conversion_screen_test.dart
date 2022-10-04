@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/conversion/widgets/interactive_text.dart';
 import 'package:projeto_crypto/conversion/widgets/total_container.dart';
 import 'package:projeto_crypto/conversion/widgets/upper_container_conversion.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
+import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
 
 void main() {
@@ -13,14 +13,7 @@ void main() {
       await loadPage(
           tester,
           UpperAvailableBalanceContainer(
-              crypto: CryptoViewData(
-                  id: 'bitcoim',
-                  symbol: 'btc',
-                  name: 'Bitcoin',
-                  image: 'assets/icons/cent.png',
-                  currentPrice: 0.0,
-                  variation: 0.0),
-              singleBalance: 0.7));
+              crypto: crypto, singleBalance: cryptoBalance));
 
       final upperContainerFinder = find.byType(UpperAvailableBalanceContainer);
       expect(upperContainerFinder, findsOneWidget);
