@@ -120,13 +120,13 @@ abstract class CoreString {
   /// No description provided for @prices.
   ///
   /// In pt, this message translates to:
-  /// **'Price in the last {days} days'**
+  /// **'Preço nos últimos {days} dias'**
   String prices(int days);
 
   /// No description provided for @variation.
   ///
   /// In pt, this message translates to:
-  /// **'Variation in the last {days} days'**
+  /// **'Variação nos últimos {days} dias'**
   String variation(int days);
 
   /// No description provided for @quant.

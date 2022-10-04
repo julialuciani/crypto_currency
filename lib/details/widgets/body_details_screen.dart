@@ -78,7 +78,6 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 info:
                     FormatCurrency.format(crypto.currentPrice * singleBalance),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.08),
               ButtonDefaulApp(
                 arguments:
                     AppArguments(crypto: crypto, singleBalance: singleBalance),

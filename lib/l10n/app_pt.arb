@@ -3,7 +3,7 @@
     "total" : "Valor total de moedas",
     "port" : "Portifólio",
     "move" : "Movimentos",
-    "prices" : "Price in the last {days} days",
+    "prices" : "Preço nos últimos {days} dias",
     "@prices": {
     "placeholders":{
     "days":{
@@ -12,7 +12,7 @@
     }
     }
     },  
-    "variation" : "Variation in the last {days} days",
+    "variation" : "Variação nos últimos {days} dias",
     "@variation": {
     "placeholders":{
     "days":{

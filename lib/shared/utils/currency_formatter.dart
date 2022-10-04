@@ -1,8 +1,10 @@
 import 'package:intl/intl.dart';
+import 'dart:io';
 
 class FormatCurrency {
   static String format(double price) {
-    return NumberFormat.simpleCurrency(locale: 'pt-BR', decimalDigits: 2)
+    return NumberFormat.simpleCurrency(
+            locale: Platform.localeName, decimalDigits: 2)
         .format(price);
   }
 }
