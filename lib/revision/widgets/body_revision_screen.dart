@@ -44,7 +44,7 @@ class BodyRevision extends StatelessWidget {
             receiveQuantity: receiveQuantity,
             cryptoReceive: cryptoReceive,
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           ButtonRevisionScreen(
             convertQuantity: convertQuantity,
             cryptoConvert: cryptoConvert,
