@@ -4,7 +4,7 @@ CryptoViewData crypto = CryptoViewData(
     id: 'bitcoin',
     symbol: 'btc',
     name: 'Bitcoin',
-    image: 'assets/icons/cent.png',
+    image: 'https://cdn-icons-png.flaticon.com/512/825/825540.png',
     currentPrice: 0.0,
     variation: 0.0);
 

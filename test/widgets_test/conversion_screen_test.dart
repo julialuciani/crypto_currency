@@ -27,7 +27,9 @@ void main() {
 
       final dividerFinder = find.byType(Divider);
       final textFinder = find.byType(Text);
+      final containerFinder = find.byType(Container);
 
+      expect(containerFinder, findsWidgets);
       expect(dividerFinder, findsOneWidget);
       expect(textFinder, findsAtLeastNWidgets(2));
     });

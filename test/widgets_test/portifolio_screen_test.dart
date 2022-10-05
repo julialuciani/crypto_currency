@@ -6,6 +6,7 @@ import 'package:projeto_crypto/portifolio/widgets/invisible_container.dart';
 import 'package:projeto_crypto/portifolio/widgets/listile_crypto.dart';
 import 'package:projeto_crypto/portifolio/widgets/listview_crypto.dart';
 import 'package:projeto_crypto/portifolio/widgets/upper_container_crypto.dart';
+import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 
 import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
@@ -25,6 +26,12 @@ void main() {
       expect(dividerFinder, findsOneWidget);
       expect(listViewCryptosFinder, findsOneWidget);
     });
+
+    testWidgets('Testing bottom navigation bar', (WidgetTester tester) async {
+      await loadPage(tester, const BottomNavigationBarApp(index: 0));
+      await tester.pumpAndSettle();
+    });
+
     testWidgets('Checking icon visibility', (WidgetTester tester) async {
       await loadPage(tester, const UpperContainerCrypto());
 
