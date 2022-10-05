@@ -90,10 +90,12 @@ void main() {
         final textFinder = find.byType(Text);
         final imageFinder = find.byType(Image);
         final iconFinder = find.byIcon(Icons.arrow_forward_ios);
+        final rowFinder = find.byType(Row);
 
         expect(textFinder, findsAtLeastNWidgets(4));
         expect(imageFinder, findsOneWidget);
         expect(iconFinder, findsOneWidget);
+        expect(rowFinder, findsAtLeastNWidgets(2));
       });
     });
   });

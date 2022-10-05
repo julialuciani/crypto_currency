@@ -56,8 +56,9 @@ void main() {
     testWidgets('Testing ListView movements', (WidgetTester tester) async {
       await loadPage(tester, const ListViewMovements());
 
-      final listViewFinder = find.byType(ListViewMovements);
-      expect(listViewFinder, findsOneWidget);
+      final listTileFinder = find.byType(ListView);
+
+      expect(listTileFinder, findsWidgets);
     });
 
     testWidgets('Testing ListTile', (WidgetTester tester) async {

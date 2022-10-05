@@ -19,6 +19,13 @@ void main() {
               crypto: crypto, singleBalance: cryptoBalance));
 
       final upperContainerFinder = find.byType(UpperAvailableBalanceContainer);
+      final textFinder = find.byType(Text);
+      final rowFinder = find.byType(Row);
+      final containerFinder = find.byType(Container);
+
+      expect(textFinder, findsAtLeastNWidgets(2));
+      expect(rowFinder, findsOneWidget);
+      expect(containerFinder, findsOneWidget);
       expect(upperContainerFinder, findsOneWidget);
     });
 
@@ -28,7 +35,9 @@ void main() {
       final dividerFinder = find.byType(Divider);
       final textFinder = find.byType(Text);
       final containerFinder = find.byType(Container);
+      final columnFinder = find.byType(Column);
 
+      expect(columnFinder, findsOneWidget);
       expect(containerFinder, findsWidgets);
       expect(dividerFinder, findsOneWidget);
       expect(textFinder, findsAtLeastNWidgets(2));
@@ -56,7 +65,9 @@ void main() {
         final iconFinder = find.byIcon(Icons.expand_more);
         final imageFinder = find.byType(Image);
         final circleAvatarFinder = find.byType(CircleAvatar);
+        final rowFinder = find.byType(Row);
 
+        expect(rowFinder, findsOneWidget);
         expect(textFinder, findsOneWidget);
         expect(iconFinder, findsOneWidget);
         expect(imageFinder, findsOneWidget);
