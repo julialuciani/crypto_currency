@@ -50,13 +50,14 @@ dependencies:
   auto_size_text: ^3.0.0
   loading_animation_widget: ^1.2.0+3
   devicelocale: ^0.5.5
-  network_image_mock: ^2.1.1
+  
   
   
  
  
 
 dev_dependencies:
+  network_image_mock: ^2.1.1
   mocktail: ^0.3.0
   flutter_test:
     sdk: flutter
