@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/portifolio/controller/crypto_individual_balance_notifier.dart';
 import '../../l10n/core_strings.dart';
 import '../../portifolio/model/crypto_view_data.dart';
 import '../../portifolio/usecase/cryptos_provider.dart';
@@ -60,6 +61,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     final args = ModalRoute.of(context)!.settings.arguments as AppArguments;
     final cryptos = ref.watch(cryptosProvider);
     var crypto = ref.watch(singleCryptoProvider.state).state;
+    var cryptoBalance = ref.read(singleBalanceProvider);
 
     return cryptos.when(
       data: (data) {
@@ -69,7 +71,13 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBarDefault(title: CoreString.of(context)!.convert),
-            body: bodyConversion(args, data, crypto, context),
+            body: bodyConversion(
+              args,
+              cryptoBalance.elementAt(data.indexOf(widget.crypto)),
+              data,
+              crypto,
+              context,
+            ),
             floatingActionButton:
                 floatingActionButtonConversion(crypto, context),
             bottomSheet: TotalContainer(
@@ -92,7 +100,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     );
   }
 
-  SingleChildScrollView bodyConversion(AppArguments args,
+  SingleChildScrollView bodyConversion(AppArguments args, double balance,
       List<CryptoViewData> data, CryptoViewData crypto, BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -100,9 +108,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UpperAvailableBalanceContainer(
-            crypto: args.crypto,
-            singleBalance: args.singleBalance,
-          ),
+              crypto: args.crypto, singleBalance: balance),
           const InteractiveText(),
           rowButtons(data, crypto),
           textFormFieldConversion(crypto, args),
