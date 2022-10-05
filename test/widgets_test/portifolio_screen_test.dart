@@ -72,9 +72,6 @@ void main() {
       final Finder listViewFinder = find.byType(ListViewCryptos);
 
       expect(listViewFinder, findsOneWidget);
-
-      await tester.tap(listViewFinder);
-      await tester.pumpAndSettle();
     });
 
     testWidgets('Making sure listTile has info', (WidgetTester tester) async {
