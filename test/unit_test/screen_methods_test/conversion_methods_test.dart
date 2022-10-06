@@ -45,4 +45,12 @@ void main() {
     }
     expect(formatLatest, '\$50.00');
   });
+
+  test('Get total', () async {
+    String getTotal = ConversionMethods.getTotal(crypto, 5);
+    expect(getTotal, '2.5000000000 BTC');
+
+    String getTotalSecond = ConversionMethods.getTotal(crypto, 0);
+    expect(getTotalSecond, '0.00 BTC');
+  });
 }
