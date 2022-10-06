@@ -1,8 +1,10 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:projeto_crypto/details/widgets/change_days_button.dart';
 import 'package:projeto_crypto/details/widgets/chart_button.dart';
+import 'package:projeto_crypto/details/widgets/chart_details_screen.dart';
 import 'package:projeto_crypto/details/widgets/upper_column_crypto.dart';
 import 'package:projeto_crypto/shared/templates/button_default_app.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
@@ -73,5 +75,30 @@ void main() {
       final buttonFinder = find.byType(ButtonDefaulApp);
       expect(buttonFinder, findsOneWidget);
     });
+
+    testWidgets('Testing ChartDetails', (WidgetTester tester) async {
+      List<FlSpot> data = lista
+          .map((price) => FlSpot(price[0].toDouble(), price[1].toDouble()))
+          .toList();
+      await loadPage(tester, ChartDetailsScreen(list: data));
+      await tester.pumpAndSettle();
+
+      final aspectRationFinder = find.byType(AspectRatio);
+      final lineChartFinder = find.byType(LineChart);
+
+      expect(aspectRationFinder, findsOneWidget);
+      expect(lineChartFinder, findsOneWidget);
+    });
   });
 }
+
+List<List<num>> lista = [
+  [20, 40],
+  [20, 40],
+  [20, 40],
+  [20, 40],
+  [20, 40],
+  [20, 40],
+  [20, 40],
+  [20, 40],
+];

@@ -11,9 +11,9 @@ import '../widgets/body_details_screen.dart';
 
 class DetailsScreen extends HookConsumerWidget {
   static const route = '/details';
-  CryptoViewData crypto;
-  double singleBalance;
-  DetailsScreen({
+  final CryptoViewData crypto;
+  final double singleBalance;
+  const DetailsScreen({
     Key? key,
     required this.crypto,
     required this.singleBalance,
