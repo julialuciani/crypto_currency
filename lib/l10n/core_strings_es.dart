@@ -54,7 +54,7 @@ class CoreStringEs extends CoreString {
   String get receive => 'Recibir';
 
   @override
-  String get exc => 'intercambio';
+  String get exc => 'Intercambio';
 
   @override
   String get comp => 'Conversión completa';

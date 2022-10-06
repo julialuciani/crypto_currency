@@ -21,6 +21,7 @@ class SetupWidgetTester extends StatelessWidget {
       supportedLocales: const [
         Locale('pt', 'BR'),
         Locale('en', ''),
+        Locale('es', ''),
       ],
       home: Material(
         child: MediaQuery(

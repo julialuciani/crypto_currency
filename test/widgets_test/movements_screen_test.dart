@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:projeto_crypto/movements/view/model/movement_model.dart';
 import 'package:projeto_crypto/movements/view/movements_screen.dart';
 import 'package:projeto_crypto/movements/widgets/body_movements.dart';
 import 'package:projeto_crypto/movements/widgets/container_movements.dart';
@@ -54,11 +55,28 @@ void main() {
     });
 
     testWidgets('Testing ListView movements', (WidgetTester tester) async {
-      await loadPage(tester, const ListViewMovements());
+      await loadPage(
+          tester,
+          ListViewMovements(
+            movements: [
+              MovementModel(
+                  converted: '',
+                  received: '',
+                  date: DateTime.now(),
+                  valueInReal: '',
+                  discount: 0,
+                  increase: 0,
+                  idDiscount: '',
+                  idIncrease: '')
+            ],
+          ));
+      await tester.pumpAndSettle();
 
-      final listTileFinder = find.byType(ListView);
+      final listViewFinder = find.byType(ListView);
+      final listTileFinder = find.byType(ListTileMovements);
 
-      expect(listTileFinder, findsWidgets);
+      expect(listViewFinder, findsOneWidget);
+      expect(listTileFinder, findsOneWidget);
     });
 
     testWidgets('Testing ListTile', (WidgetTester tester) async {
