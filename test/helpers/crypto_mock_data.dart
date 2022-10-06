@@ -1,3 +1,4 @@
+import 'package:projeto_crypto/movements/view/model/movement_model.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
 CryptoViewData crypto = CryptoViewData(
@@ -9,3 +10,13 @@ CryptoViewData crypto = CryptoViewData(
     variation: 0.0);
 
 double cryptoBalance = 0;
+
+MovementModel movement = MovementModel(
+    converted: '',
+    received: '',
+    date: DateTime.now(),
+    valueInReal: '',
+    discount: 0,
+    increase: 0,
+    idDiscount: '',
+    idIncrease: '');
