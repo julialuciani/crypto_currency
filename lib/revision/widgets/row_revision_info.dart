@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RowRevisionInfo extends StatelessWidget {
-  String label;
-  String data;
-  RowRevisionInfo({
+  final String label;
+  final String data;
+  const RowRevisionInfo({
     Key? key,
     required this.label,
     required this.data,

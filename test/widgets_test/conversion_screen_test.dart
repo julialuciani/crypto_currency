@@ -36,11 +36,15 @@ void main() {
       final textFinder = find.byType(Text);
       final containerFinder = find.byType(Container);
       final columnFinder = find.byType(Column);
+      final totalFinder = find.byType(TotalContainer);
+      final TotalContainer total = tester.widget(totalFinder);
 
-      expect(columnFinder, findsOneWidget);
+      expect(columnFinder, findsWidgets);
       expect(containerFinder, findsWidgets);
       expect(dividerFinder, findsOneWidget);
       expect(textFinder, findsAtLeastNWidgets(2));
+      expect(totalFinder, findsOneWidget);
+      expect(total.total, '2');
     });
 
     testWidgets('Testing interactive text', (WidgetTester tester) async {
@@ -49,7 +53,7 @@ void main() {
       expect(textFinder, findsOneWidget);
     });
 
-    testWidgets('Testing change coin button has all it needs',
+    testWidgets('Testing ButtonChangeCoin has all it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(
@@ -66,6 +70,7 @@ void main() {
         final imageFinder = find.byType(Image);
         final circleAvatarFinder = find.byType(CircleAvatar);
         final rowFinder = find.byType(Row);
+        final buttonFinder = find.byType(MaterialButton);
 
         expect(rowFinder, findsOneWidget);
         expect(textFinder, findsOneWidget);
@@ -73,6 +78,7 @@ void main() {
         expect(imageFinder, findsOneWidget);
         expect(circleAvatarFinder, findsOneWidget);
         expect(sizedBoxFinder, findsAtLeastNWidgets(2));
+        expect(buttonFinder, findsOneWidget);
       });
     });
   });

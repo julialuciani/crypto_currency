@@ -5,11 +5,11 @@ import 'package:projeto_crypto/l10n/core_strings.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
 class ButtonChangeCoin extends HookConsumerWidget {
-  CryptoViewData crypto;
-  List<CryptoViewData> data;
-  Widget listView;
+  final CryptoViewData crypto;
+  final List<CryptoViewData> data;
+  final Widget listView;
 
-  ButtonChangeCoin({
+  const ButtonChangeCoin({
     Key? key,
     required this.crypto,
     required this.data,

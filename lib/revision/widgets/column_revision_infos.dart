@@ -4,6 +4,7 @@ import 'package:projeto_crypto/l10n/core_strings.dart';
 import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
 
 import '../../portifolio/model/crypto_view_data.dart';
+import '../methods/revision_methods.dart';
 
 class ColumnRevisionInfo extends StatelessWidget {
   const ColumnRevisionInfo({
@@ -18,11 +19,6 @@ class ColumnRevisionInfo extends StatelessWidget {
   final CryptoViewData cryptoConvert;
   final String receiveQuantity;
   final CryptoViewData cryptoReceive;
-
-  String getConvertionFromOne() {
-    double total = cryptoConvert.currentPrice / cryptoReceive.currentPrice;
-    return '1 ${cryptoConvert.symbol.toUpperCase()} = ${total.toStringAsFixed(5)} ${cryptoReceive.symbol.toUpperCase()}';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +35,8 @@ class ColumnRevisionInfo extends StatelessWidget {
         const Divider(thickness: 1),
         RowRevisionInfo(
           label: CoreString.of(context)!.exc,
-          data: getConvertionFromOne(),
+          data: RevisionMethods.getConvertionFromOne(
+              cryptoConvert, cryptoReceive),
         ),
       ],
     );
