@@ -268,7 +268,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
       validator: (value) {
         if (value == '' || value == null) {
           return CoreString.of(context)!.writeS;
-        } else if (ConversionMethods.isCorrect(value) ||
+        } else if (!ConversionMethods.isCorrect(value) ||
             value.startsWith('.')) {
           return CoreString.of(context)!.theValue;
         } else if (double.parse(
