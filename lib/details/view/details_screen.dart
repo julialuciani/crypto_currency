@@ -7,6 +7,9 @@ import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../../l10n/core_strings.dart';
 import '../../shared/templates/app_bar_default.dart';
+import '../../shared/templates/error_body.dart';
+import '../../shared/templates/loading_body.dart';
+import '../usecase/cryptos_market_data_provider.dart';
 import '../widgets/body_details_screen.dart';
 
 class DetailsScreen extends HookConsumerWidget {
@@ -23,16 +26,31 @@ class DetailsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final args = ModalRoute.of(context)!.settings.arguments as AppArguments;
     CryptoViewData crypto = args.crypto;
+    final marketData = ref.watch(marketDataProvider(crypto.id));
     Future.delayed(Duration.zero, () {
       ref.read(daysProvider.state).state = 5;
     });
 
     return Scaffold(
-      appBar: AppBarDefault(title: CoreString.of(context)!.details),
-      body: BodyDetailsScreen(
-        crypto: crypto,
-        singleBalance: singleBalance,
-      ),
-    );
+        appBar: AppBarDefault(title: CoreString.of(context)!.details),
+        body: marketData.when(
+          data: ((data) {
+            return BodyDetailsScreen(
+              crypto: crypto,
+              singleBalance: singleBalance,
+              data: data,
+            );
+          }),
+          error: (error, stackTrace) {
+            debugPrint(stackTrace.toString());
+            debugPrint(error.toString());
+            return ErrorBody(onError: () {
+              ref.refresh(marketDataProvider(crypto.id));
+            });
+          },
+          loading: () {
+            return const LoadingBody();
+          },
+        ));
   }
 }

@@ -42,7 +42,7 @@ void main() {
       final rowFinder = find.byType(Row);
 
       expect(rowFinder, findsOneWidget);
-      expect(buttonFinder, findsAtLeastNWidgets(6));
+      expect(buttonFinder, findsWidgets);
     });
 
     testWidgets('Testing CharButton', (WidgetTester tester) async {
