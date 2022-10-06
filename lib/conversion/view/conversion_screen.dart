@@ -10,7 +10,7 @@ import '../../shared/style/colors.dart';
 import '../../shared/templates/error_body.dart';
 import '../../shared/templates/loading_body.dart';
 import '../../shared/utils/app_arguments.dart';
-import '../../shared/utils/app_bar_default.dart';
+import '../../shared/templates/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
 import '../methods/conversion_methods.dart';
 import '../widgets/bottom_sheet_warning_user.dart';

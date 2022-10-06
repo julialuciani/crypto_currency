@@ -6,7 +6,7 @@ import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../../l10n/core_strings.dart';
-import '../../shared/utils/app_bar_default.dart';
+import '../../shared/templates/app_bar_default.dart';
 import '../widgets/body_details_screen.dart';
 
 class DetailsScreen extends HookConsumerWidget {

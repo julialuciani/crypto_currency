@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
 import 'package:projeto_crypto/revision/widgets/body_revision_screen.dart';
-import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
+import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 
 class RevisionScreen extends StatelessWidget {
   static const route = '/revision';

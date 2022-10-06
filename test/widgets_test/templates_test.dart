@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
+import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 import 'package:projeto_crypto/shared/templates/button_default_app.dart';
 import 'package:projeto_crypto/shared/templates/error_body.dart';
@@ -82,6 +83,29 @@ void main() {
       expect(normalBottomBar.selectedItemColor, magenta);
       expect(iconFinder, findsWidgets);
       expect(labelFinder, findsWidgets);
+    });
+
+    testWidgets('Testing app bar default', (WidgetTester tester) async {
+      await loadPage(
+          tester,
+          const AppBarDefault(
+            title: 'App',
+          ));
+      await tester.pumpAndSettle();
+
+      final iconButtonFinder = find.byType(IconButton);
+      final iconBack = find.byIcon(Icons.arrow_back_ios);
+      final textFinder = find.byType(Text);
+      final appBarDefaultFinder = find.byType(AppBarDefault);
+      final appBarFinder = find.byType(AppBar);
+      final AppBarDefault appBarTest = tester.widget(appBarDefaultFinder);
+
+      expect(iconButtonFinder, findsOneWidget);
+      expect(iconBack, findsOneWidget);
+      expect(textFinder, findsOneWidget);
+      expect(appBarDefaultFinder, findsOneWidget);
+      expect(appBarTest.title, 'App');
+      expect(appBarFinder, findsOneWidget);
     });
   });
 }

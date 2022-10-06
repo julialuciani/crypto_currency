@@ -55,7 +55,7 @@ void main() {
       final containerFinder = find.byType(Container);
       final containerMovementsTextFinder = find.byType(ContainerMovementsText);
 
-      expect(containerFinder, findsOneWidget);
+      expect(containerFinder, findsWidgets);
       expect(textFinder, findsOneWidget);
       expect(containerMovementsTextFinder, findsOneWidget);
     });
