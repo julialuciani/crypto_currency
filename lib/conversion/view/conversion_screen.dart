@@ -84,7 +84,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               total: ConversionMethods.getTotal(
                   crypto,
                   ConversionMethods.convertLatestValue(
-                      valueController, widget.crypto)),
+                      valueController.text, widget.crypto)),
             ),
           ),
         );
@@ -210,13 +210,13 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                 receiveQuantity: ConversionMethods.getTotal(
                     crypto,
                     ConversionMethods.convertLatestValue(
-                        valueController, widget.crypto)),
+                        valueController.text, widget.crypto)),
                 total: ConversionMethods.formatLatestValue(
                     ConversionMethods.convertLatestValue(
-                        valueController, widget.crypto)),
+                        valueController.text, widget.crypto)),
                 discount: double.parse(valueController.text),
                 increase: ConversionMethods.convertLatestValue(
-                    valueController, crypto),
+                    valueController.text, crypto),
                 idDiscount: widget.crypto.id,
                 idIncrease: crypto.id,
               ),
@@ -258,11 +258,11 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         setState(() {
           ConversionMethods.formatLatestValue(
               ConversionMethods.convertLatestValue(
-                  valueController, widget.crypto));
+                  valueController.text, widget.crypto));
           ConversionMethods.getTotal(
               crypto,
               ConversionMethods.convertLatestValue(
-                  valueController, widget.crypto));
+                  valueController.text, widget.crypto));
         });
       },
       validator: (value) {

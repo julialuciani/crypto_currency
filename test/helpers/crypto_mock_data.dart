@@ -5,7 +5,7 @@ CryptoViewData crypto = CryptoViewData(
     symbol: 'btc',
     name: 'Bitcoin',
     image: 'https://cdn-icons-png.flaticon.com/512/825/825540.png',
-    currentPrice: 0.0,
+    currentPrice: 2.0,
     variation: 0.0);
 
 double cryptoBalance = 0;

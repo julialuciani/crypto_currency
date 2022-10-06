@@ -16,8 +16,8 @@ class TotalInReal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      ConversionMethods.formatLatestValue(
-          ConversionMethods.convertLatestValue(valueController, widget.crypto)),
+      ConversionMethods.formatLatestValue(ConversionMethods.convertLatestValue(
+          valueController.text, widget.crypto)),
       style: TextStyle(
         fontSize: 20,
         color: Colors.grey.shade500,

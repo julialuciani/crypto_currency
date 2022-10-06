@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
@@ -10,16 +9,16 @@ class ConversionMethods {
   }
 
   static bool isCorrect(String value) {
-    return value.startsWith(RegExp(r'[!@#$%^&*().,?":{}|<>]'));
+    return !value.startsWith(RegExp(r'[!@#$%^&*()-/+.,?":{}|<>]'));
   }
 
   static double convertLatestValue(
-      TextEditingController valueController, CryptoViewData crypto) {
+      String valueController, CryptoViewData crypto) {
     double value = 0.0;
-    if (valueController.text == '' || valueController.text == '.') {
+    if (valueController == '' || valueController == '.') {
       value = 0.0;
     } else {
-      value = double.parse(valueController.text) * crypto.currentPrice;
+      value = double.parse(valueController) * crypto.currentPrice;
     }
     return value;
   }
