@@ -238,7 +238,7 @@ LF:5
 LH:5
 end_of_record
 SF:lib\details\model\cryptos_market_data_view_data.dart
-DA:3,1
+DA:3,2
 LF:1
 LH:1
 end_of_record
@@ -291,11 +291,11 @@ SF:lib\details\methods\details_methods.dart
 DA:5,2
 DA:6,2
 DA:7,2
-DA:13,0
-DA:14,0
-DA:15,0
+DA:13,1
+DA:14,9
+DA:15,1
 LF:6
-LH:3
+LH:6
 end_of_record
 SF:lib\revision\methods\revision_methods.dart
 DA:4,2

@@ -7,8 +7,6 @@ import '../../portifolio/model/crypto_view_data.dart';
 import '../../portifolio/usecase/cryptos_provider.dart';
 import '../../revision/revision_arguments/revision_arguments_screen.dart';
 import '../../shared/style/colors.dart';
-import '../../shared/templates/error_body.dart';
-import '../../shared/templates/loading_body.dart';
 import '../../shared/utils/app_arguments.dart';
 import '../../shared/templates/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
@@ -63,228 +61,191 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     var crypto = ref.watch(singleCryptoProvider.state).state;
     var cryptoBalance = ref.read(singleBalanceProvider);
 
-    return cryptos.when(
-      data: (data) {
-        return Form(
-          key: _key,
-          autovalidateMode: AutovalidateMode.always,
-          child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: AppBarDefault(title: CoreString.of(context)!.convert),
-            body: bodyConversion(
-              args,
-              cryptoBalance.elementAt(data.indexOf(widget.crypto)),
-              data,
-              crypto,
-              context,
-            ),
-            floatingActionButton:
-                floatingActionButtonConversion(crypto, context),
-            bottomSheet: TotalContainer(
-              total: ConversionMethods.getTotal(
-                  crypto,
-                  ConversionMethods.convertLatestValue(
-                      valueController.text, widget.crypto)),
-            ),
-          ),
-        );
-      },
-      error: (error, stackTrace) {
-        return ErrorBody(onError: () {
-          ref.refresh(cryptosProvider);
-        });
-      },
-      loading: () {
-        return const LoadingBody();
-      },
-    );
-  }
-
-  SingleChildScrollView bodyConversion(AppArguments args, double balance,
-      List<CryptoViewData> data, CryptoViewData crypto, BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          UpperAvailableBalanceContainer(
-              crypto: args.crypto, singleBalance: balance),
-          const InteractiveText(),
-          rowButtons(data, crypto),
-          textFormFieldConversion(crypto, args),
-          const SizedBox(height: 10),
-          TotalInReal(valueController: valueController, widget: widget),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.32),
-        ],
-      ),
-    );
-  }
-
-  Row rowButtons(List<CryptoViewData> data, CryptoViewData crypto) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        buttonChangeCoinFirst(data),
-        IconButton(
-          icon: const Icon(Icons.compare_arrows, color: magenta),
-          onPressed: () {
-            CryptoViewData temp = widget.crypto;
-            setState(() {
-              widget.crypto = crypto;
-              ref.read(singleCryptoProvider.state).state = temp;
-            });
-          },
-        ),
-        buttonChangeCoinMethod(crypto, data),
-      ],
-    );
-  }
-
-  ButtonChangeCoin buttonChangeCoinFirst(List<CryptoViewData> data) {
-    return ButtonChangeCoin(
-      crypto: widget.crypto,
-      data: data,
-      listView: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(thickness: 1),
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              setState(() {
-                widget.crypto = data[index];
-              });
-              Navigator.pop(context);
-            },
-            child: ListTileConversion(
-              name: data[index].name,
-              symbol: data[index].symbol.toUpperCase(),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  ButtonChangeCoin buttonChangeCoinMethod(
-      CryptoViewData crypto, List<CryptoViewData> data) {
-    return ButtonChangeCoin(
-      crypto: crypto,
-      data: data,
-      listView: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(thickness: 1),
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              setState(() {
-                ref.read(singleCryptoProvider.state).state = data[index];
-              });
-              Navigator.pop(context);
-            },
-            child: ListTileConversion(
-              name: data[index].name,
-              symbol: data[index].symbol.toUpperCase(),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  FloatingActionButton floatingActionButtonConversion(
-      CryptoViewData crypto, BuildContext context) {
-    return FloatingActionButton(
-      backgroundColor:
-          validate ? magenta : const Color.fromARGB(255, 202, 200, 212),
-      onPressed: () {
-        if (_key.currentState!.validate()) {
-          if (widget.crypto == crypto) {
-            bottomSheetWarningUser(context);
-          } else {
-            Navigator.of(context).pushNamed(
-              '/revision',
-              arguments: RevisionArguments(
-                convertQuantity: valueController.text,
-                cryptoConvert: widget.crypto,
-                cryptoReceive: crypto,
-                receiveQuantity: ConversionMethods.getTotal(
-                    crypto,
-                    ConversionMethods.convertLatestValue(
-                        valueController.text, widget.crypto)),
-                total: ConversionMethods.formatLatestValue(
-                    ConversionMethods.convertLatestValue(
-                        valueController.text, widget.crypto)),
-                discount: double.parse(valueController.text),
-                increase: ConversionMethods.convertLatestValue(
-                    valueController.text, crypto),
-                idDiscount: widget.crypto.id,
-                idIncrease: crypto.id,
+    return Form(
+      key: _key,
+      autovalidateMode: AutovalidateMode.always,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBarDefault(title: CoreString.of(context)!.convert),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              UpperAvailableBalanceContainer(
+                crypto: args.crypto,
+                singleBalance: cryptoBalance.elementAt(
+                  cryptos.asData!.value.indexOf(widget.crypto),
+                ),
               ),
-            );
-            validate = true;
-          }
-        }
-      },
-      child: const Icon(Icons.navigate_next),
-    );
-  }
-
-  TextFormField textFormFieldConversion(
-      CryptoViewData crypto, AppArguments args) {
-    return TextFormField(
-      showCursor: false,
-      controller: valueController,
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: magenta,
-            width: 3,
+              const InteractiveText(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonChangeCoin(
+                    crypto: widget.crypto,
+                    data: cryptos.asData!.value,
+                    listView: ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          const Divider(thickness: 1),
+                      itemCount: cryptos.asData!.value.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              widget.crypto = cryptos.asData!.value[index];
+                            });
+                            Navigator.pop(context);
+                          },
+                          child: ListTileConversion(
+                            name: cryptos.asData!.value[index].name,
+                            symbol: cryptos.asData!.value[index].symbol
+                                .toUpperCase(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.compare_arrows, color: magenta),
+                    onPressed: () {
+                      CryptoViewData temp = widget.crypto;
+                      setState(() {
+                        widget.crypto = crypto;
+                        ref.read(singleCryptoProvider.state).state = temp;
+                      });
+                    },
+                  ),
+                  ButtonChangeCoin(
+                    crypto: crypto,
+                    data: cryptos.asData!.value,
+                    listView: ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          const Divider(thickness: 1),
+                      itemCount: cryptos.asData!.value.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              ref.read(singleCryptoProvider.state).state =
+                                  cryptos.asData!.value[index];
+                            });
+                            Navigator.pop(context);
+                          },
+                          child: ListTileConversion(
+                            name: cryptos.asData!.value[index].name,
+                            symbol: cryptos.asData!.value[index].symbol
+                                .toUpperCase(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              TextFormField(
+                showCursor: false,
+                controller: valueController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: magenta,
+                      width: 3,
+                    ),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: magenta, width: 3)),
+                  hintText: '${widget.crypto.symbol.toUpperCase()} 0.00',
+                  hintStyle: TextStyle(
+                    fontSize: 30,
+                    color: Colors.grey.shade500,
+                  ),
+                ),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                      RegExp(r'^(\d+)?\.?\d{0,6}')),
+                ],
+                onChanged: (value) {
+                  if (_key.currentState!.validate()) validate = true;
+                  setState(() {
+                    ConversionMethods.formatLatestValue(
+                        ConversionMethods.convertLatestValue(
+                            valueController.text, widget.crypto));
+                    ConversionMethods.getTotal(
+                        crypto,
+                        ConversionMethods.convertLatestValue(
+                            valueController.text, widget.crypto));
+                  });
+                },
+                validator: (value) {
+                  if (value == '' || value == null) {
+                    return CoreString.of(context)!.writeS;
+                  } else if (!ConversionMethods.isCorrect(value) ||
+                      value.startsWith('.')) {
+                    return CoreString.of(context)!.theValue;
+                  } else if (double.parse(ConversionMethods.formattingValue(
+                          value.toString())) ==
+                      0) {
+                    validate = false;
+                    return CoreString.of(context)!.zero;
+                  } else if (double.parse(
+                          ConversionMethods.formattingValue(value.toString())) >
+                      args.singleBalance) {
+                    validate = false;
+                    return CoreString.of(context)!.youDont;
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(height: 10),
+              TotalInReal(valueController: valueController, widget: widget),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.32),
+            ],
           ),
         ),
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: magenta, width: 3)),
-        hintText: '${widget.crypto.symbol.toUpperCase()} 0.00',
-        hintStyle: TextStyle(
-          fontSize: 30,
-          color: Colors.grey.shade500,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor:
+              validate ? magenta : const Color.fromARGB(255, 202, 200, 212),
+          onPressed: () {
+            if (_key.currentState!.validate()) {
+              if (widget.crypto == crypto) {
+                bottomSheetWarningUser(context);
+              } else {
+                Navigator.of(context).pushNamed(
+                  '/revision',
+                  arguments: RevisionArguments(
+                    convertQuantity: valueController.text,
+                    cryptoConvert: widget.crypto,
+                    cryptoReceive: crypto,
+                    receiveQuantity: ConversionMethods.getTotal(
+                        crypto,
+                        ConversionMethods.convertLatestValue(
+                            valueController.text, widget.crypto)),
+                    total: ConversionMethods.formatLatestValue(
+                        ConversionMethods.convertLatestValue(
+                            valueController.text, widget.crypto)),
+                    discount: double.parse(valueController.text),
+                    increase: ConversionMethods.convertLatestValue(
+                        valueController.text, crypto),
+                    idDiscount: widget.crypto.id,
+                    idIncrease: crypto.id,
+                  ),
+                );
+                validate = true;
+              }
+            }
+          },
+          child: const Icon(Icons.navigate_next),
         ),
-      ),
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,6}')),
-      ],
-      onChanged: (value) {
-        if (_key.currentState!.validate()) validate = true;
-        setState(() {
-          ConversionMethods.formatLatestValue(
-              ConversionMethods.convertLatestValue(
-                  valueController.text, widget.crypto));
-          ConversionMethods.getTotal(
+        bottomSheet: TotalContainer(
+          total: ConversionMethods.getTotal(
               crypto,
               ConversionMethods.convertLatestValue(
-                  valueController.text, widget.crypto));
-        });
-      },
-      validator: (value) {
-        if (value == '' || value == null) {
-          return CoreString.of(context)!.writeS;
-        } else if (!ConversionMethods.isCorrect(value) ||
-            value.startsWith('.')) {
-          return CoreString.of(context)!.theValue;
-        } else if (double.parse(
-                ConversionMethods.formattingValue(value.toString())) ==
-            0) {
-          validate = false;
-          return CoreString.of(context)!.zero;
-        } else if (double.parse(
-                ConversionMethods.formattingValue(value.toString())) >
-            args.singleBalance) {
-          validate = false;
-          return CoreString.of(context)!.youDont;
-        } else {
-          return null;
-        }
-      },
+                  valueController.text, widget.crypto)),
+        ),
+      ),
     );
   }
 }
