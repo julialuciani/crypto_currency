@@ -3,8 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/details/methods/details_methods.dart';
 import 'package:projeto_crypto/details/model/cryptos_market_data_view_data.dart';
 
-import '../../shared/api_factory.dart';
-
 void main() {
   test('ChartButton', () async {
     Color change = DetailsMethods.changeButtonColor(5, 5);
@@ -15,8 +13,14 @@ void main() {
   });
 
   test('Testing getVariation', () async {
-    double getVariation = DetailsMethods.getVariation(
-        CryptosMarkeDataViewData(ApiFactory.getAllPrices()["prices"]), 2);
+    double getVariation =
+        DetailsMethods.getVariation(CryptosMarkeDataViewData(prices), 2);
     expect(getVariation, 0.0);
   });
 }
+
+List<List<num>> prices = [
+  [2, 3],
+  [2, 3],
+  [2, 3],
+];
