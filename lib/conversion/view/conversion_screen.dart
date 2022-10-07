@@ -14,7 +14,6 @@ import '../methods/conversion_methods.dart';
 import '../widgets/bottom_sheet_warning_user.dart';
 import '../widgets/button_change_coin.dart';
 import '../widgets/interactive_text.dart';
-import '../widgets/list_tile_conversion.dart';
 import '../widgets/total_container.dart';
 import '../widgets/total_in_real.dart';
 import '../widgets/upper_container_conversion.dart';
@@ -85,26 +84,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   ButtonChangeCoin(
                     crypto: widget.crypto,
                     data: cryptos.asData!.value,
-                    listView: ListView.separated(
-                      separatorBuilder: (context, index) =>
-                          const Divider(thickness: 1),
-                      itemCount: cryptos.asData!.value.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            setState(() {
-                              widget.crypto = cryptos.asData!.value[index];
-                            });
-                            Navigator.pop(context);
-                          },
-                          child: ListTileConversion(
-                            name: cryptos.asData!.value[index].name,
-                            symbol: cryptos.asData!.value[index].symbol
-                                .toUpperCase(),
-                          ),
-                        );
-                      },
-                    ),
+                    id: '1',
                   ),
                   IconButton(
                     icon: const Icon(Icons.compare_arrows, color: magenta),
@@ -119,27 +99,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   ButtonChangeCoin(
                     crypto: crypto,
                     data: cryptos.asData!.value,
-                    listView: ListView.separated(
-                      separatorBuilder: (context, index) =>
-                          const Divider(thickness: 1),
-                      itemCount: cryptos.asData!.value.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            setState(() {
-                              ref.read(singleCryptoProvider.state).state =
-                                  cryptos.asData!.value[index];
-                            });
-                            Navigator.pop(context);
-                          },
-                          child: ListTileConversion(
-                            name: cryptos.asData!.value[index].name,
-                            symbol: cryptos.asData!.value[index].symbol
-                                .toUpperCase(),
-                          ),
-                        );
-                      },
-                    ),
+                    id: '2',
                   ),
                 ],
               ),

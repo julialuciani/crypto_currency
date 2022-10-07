@@ -48,7 +48,6 @@ void main() {
       final sizedBoxFinder = find.byType(SizedBox);
       final inkWellFinder = find.byType(InkWell);
       final columnFinder = find.byType(Column);
-      final paddingFinder = find.byType(Padding);
 
       expect(textFinder, findsOneWidget);
       expect(iconWarningFinder, findsOneWidget);
@@ -57,7 +56,6 @@ void main() {
       expect(sizedBoxFinder, findsWidgets);
       expect(inkWellFinder, findsOneWidget);
       expect(columnFinder, findsOneWidget);
-      expect(paddingFinder, findsOneWidget);
     });
 
     testWidgets('Testing LoadingBody', (WidgetTester tester) async {

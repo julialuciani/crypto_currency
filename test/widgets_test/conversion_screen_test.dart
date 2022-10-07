@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:projeto_crypto/conversion/widgets/button_change_coin.dart';
 import 'package:projeto_crypto/conversion/widgets/interactive_text.dart';
+import 'package:projeto_crypto/conversion/widgets/list_tile_conversion.dart';
 import 'package:projeto_crypto/conversion/widgets/total_container.dart';
 import 'package:projeto_crypto/conversion/widgets/upper_container_conversion.dart';
-import 'package:projeto_crypto/portifolio/widgets/listview_crypto.dart';
 
 import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
@@ -45,7 +45,7 @@ void main() {
       expect(columnFinder, findsWidgets);
       expect(containerFinder, findsWidgets);
       expect(dividerFinder, findsOneWidget);
-      expect(textFinder, findsAtLeastNWidgets(2));
+      expect(textFinder, findsWidgets);
       expect(totalFinder, findsOneWidget);
       expect(total.total, '2');
     });
@@ -62,9 +62,10 @@ void main() {
         await loadPage(
             tester,
             ButtonChangeCoin(
-                crypto: crypto,
-                data: [crypto, crypto],
-                listView: const ListViewCryptos()));
+              crypto: crypto,
+              data: [crypto, crypto],
+              id: '1',
+            ));
         await tester.pumpAndSettle();
 
         final sizedBoxFinder = find.byType(SizedBox);
@@ -75,11 +76,22 @@ void main() {
         final rowFinder = find.byType(Row);
         final buttonFinder = find.byType(ButtonChangeCoin);
         final ButtonChangeCoin button = tester.widget(buttonFinder);
+        final containerFinder = find.byType(Container);
+        final columnFinder = find.byType(Column);
+        final dividerFinder = find.byType(Divider);
+        final expandedFinder = find.byType(Expanded);
+        final listTileConversionFinder = find.byType(ListTileConversion);
+        final listViewFinder = find.byType(ListView);
+        final inkWellFinder = find.byType(InkWell);
+        final paddingFinder = find.byType(Padding);
+        final materialFinder = find.byType(MaterialButton);
 
         expect(button.data, [crypto, crypto]);
         expect(button.crypto.symbol, 'btc');
         expect(button.crypto.image,
             'https://cdn-icons-png.flaticon.com/512/825/825540.png');
+        expect(button.id, '1');
+        expect(button.data, [crypto, crypto]);
         expect(rowFinder, findsOneWidget);
         expect(textFinder, findsOneWidget);
         expect(iconFinder, findsOneWidget);
@@ -87,6 +99,22 @@ void main() {
         expect(circleAvatarFinder, findsOneWidget);
         expect(sizedBoxFinder, findsAtLeastNWidgets(2));
         expect(buttonFinder, findsOneWidget);
+        expect(materialFinder, findsWidgets);
+
+        await tester.tap(buttonFinder);
+        await tester.pumpAndSettle();
+
+        expect(sizedBoxFinder, findsWidgets);
+        expect(containerFinder, findsWidgets);
+        expect(rowFinder, findsWidgets);
+        expect(columnFinder, findsWidgets);
+        expect(textFinder, findsWidgets);
+        expect(dividerFinder, findsWidgets);
+        expect(expandedFinder, findsWidgets);
+        expect(listTileConversionFinder, findsWidgets);
+        expect(listViewFinder, findsOneWidget);
+        expect(inkWellFinder, findsWidgets);
+        expect(paddingFinder, findsWidgets);
       });
     });
   });

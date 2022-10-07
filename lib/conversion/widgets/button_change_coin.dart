@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:projeto_crypto/l10n/core_strings.dart';
+import 'package:projeto_crypto/conversion/controller/cryptos_provider.dart';
 
+import 'package:projeto_crypto/l10n/core_strings.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
 
-class ButtonChangeCoin extends HookConsumerWidget {
-  final CryptoViewData crypto;
-  final List<CryptoViewData> data;
-  final Widget listView;
+import 'list_tile_conversion.dart';
 
-  const ButtonChangeCoin({
+class ButtonChangeCoin extends ConsumerStatefulWidget {
+  CryptoViewData crypto;
+  final List<CryptoViewData> data;
+  final String id;
+
+  ButtonChangeCoin({
     Key? key,
     required this.crypto,
     required this.data,
-    required this.listView,
+    required this.id,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ButtonChangeCoin> createState() => _ButtonChangeCoinState();
+}
+
+class _ButtonChangeCoinState extends ConsumerState<ButtonChangeCoin> {
+  @override
+  Widget build(BuildContext context) {
     return MaterialButton(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       shape: RoundedRectangleBorder(
@@ -58,7 +66,30 @@ class ButtonChangeCoin extends HookConsumerWidget {
                   ),
                   const Divider(thickness: 1),
                   Expanded(
-                    child: listView,
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          const Divider(thickness: 1),
+                      itemCount: widget.data.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              if (widget.id == '1') {
+                                widget.crypto = widget.data[index];
+                              } else if (widget.id != '1') {
+                                ref.read(singleCryptoProvider.state).state =
+                                    widget.data[index];
+                              }
+                            });
+                            Navigator.pop(context);
+                          },
+                          child: ListTileConversion(
+                            name: widget.data[index].name,
+                            symbol: widget.data[index].symbol.toUpperCase(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -72,12 +103,12 @@ class ButtonChangeCoin extends HookConsumerWidget {
             radius: 15,
             backgroundColor: Colors.transparent,
             child: Image.network(
-              crypto.image,
+              widget.crypto.image,
               scale: 8,
             ),
           ),
           const SizedBox(width: 8),
-          Text(crypto.symbol.toUpperCase()),
+          Text(widget.crypto.symbol.toUpperCase()),
           const SizedBox(width: 2),
           const Icon(Icons.expand_more),
         ],

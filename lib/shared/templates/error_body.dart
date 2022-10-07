@@ -11,12 +11,14 @@ class ErrorBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 100),
-      child: Column(
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text(
             'Erro',
+            textAlign: TextAlign.center,
             style: TextStyle(
                 color: magenta, fontSize: 40, fontWeight: FontWeight.bold),
           ),

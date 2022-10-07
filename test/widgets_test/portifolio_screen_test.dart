@@ -10,21 +10,31 @@ import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 
 import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
+import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   group('Testing portifolio screen', () {
     testWidgets('Testing if body has all it needs',
         (WidgetTester tester) async {
-      await loadPage(tester, const BodyPortifolioScreen());
-      await tester.pumpAndSettle();
+      mockNetworkImagesFor(() async {
+        await loadPage(
+            tester,
+            BodyPortifolioScreen(
+              data: data,
+              singleBalance: single,
+            ));
+        await tester.pumpAndSettle();
 
-      final upperContainerFinder = find.byType(UpperContainerCrypto);
-      final dividerFinder = find.byType(Divider);
-      final listViewCryptosFinder = find.byType(ListViewCryptos);
+        final upperContainerFinder = find.byType(UpperContainerCrypto);
+        final dividerFinder = find.byType(Divider);
+        final listViewCryptosFinder = find.byType(ListViewCryptos);
+        final expandedFinder = find.byKey(const Key('expanded'));
 
-      expect(upperContainerFinder, findsOneWidget);
-      expect(dividerFinder, findsOneWidget);
-      expect(listViewCryptosFinder, findsOneWidget);
+        expect(upperContainerFinder, findsOneWidget);
+        expect(dividerFinder, findsWidgets);
+        expect(listViewCryptosFinder, findsOneWidget);
+        expect(expandedFinder, findsOneWidget);
+      });
     });
 
     testWidgets('Testing bottom navigation bar', (WidgetTester tester) async {
@@ -57,7 +67,12 @@ void main() {
 
     testWidgets('Testing if every price gets invisible',
         (WidgetTester tester) async {
-      await loadPage(tester, const BodyPortifolioScreen());
+      await loadPage(
+          tester,
+          BodyPortifolioScreen(
+            data: data,
+            singleBalance: single,
+          ));
       await tester.pumpAndSettle();
 
       final iconFinder = find.byIcon(Icons.visibility);
@@ -73,12 +88,26 @@ void main() {
     });
 
     testWidgets('Testing ListView', (WidgetTester tester) async {
-      await loadPage(tester, const ListViewCryptos());
+      mockNetworkImagesFor(() async {
+        await loadPage(
+            tester,
+            ListViewCryptos(
+              data: data,
+              singleBalance: single,
+            ));
 
-      await tester.pumpAndSettle();
-      final Finder listViewFinder = find.byType(ListViewCryptos);
+        await tester.pumpAndSettle();
+        final listViewFinder = find.byType(ListViewCryptos);
+        final listFinder = find.byType(ListView);
+        final listTileFinder = find.byType(ListTile);
+        final ListViewCryptos listCheck = tester.widget(listViewFinder);
 
-      expect(listViewFinder, findsOneWidget);
+        expect(listViewFinder, findsOneWidget);
+        expect(listFinder, findsWidgets);
+        expect(listTileFinder, findsWidgets);
+        expect(listCheck.singleBalance, single);
+        expect(listCheck.data, data);
+      });
     });
 
     testWidgets('Making sure listTile has info', (WidgetTester tester) async {
@@ -91,11 +120,17 @@ void main() {
         final imageFinder = find.byType(Image);
         final iconFinder = find.byIcon(Icons.arrow_forward_ios);
         final rowFinder = find.byType(Row);
+        final listTileFinder = find.byType(ListTitleCrypto);
+        final ListTitleCrypto listTileCheck = tester.widget(listTileFinder);
+        final normalListTile = find.byType(ListTile);
 
-        expect(textFinder, findsAtLeastNWidgets(4));
+        expect(listTileCheck.crypto, crypto);
+        expect(listTileFinder, findsOneWidget);
+        expect(textFinder, findsWidgets);
         expect(imageFinder, findsOneWidget);
         expect(iconFinder, findsOneWidget);
-        expect(rowFinder, findsAtLeastNWidgets(2));
+        expect(rowFinder, findsWidgets);
+        expect(normalListTile, findsWidgets);
       });
     });
   });
