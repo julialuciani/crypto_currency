@@ -2,9 +2,12 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:projeto_crypto/details/model/cryptos_market_data_view_data.dart';
+import 'package:projeto_crypto/details/widgets/body_details_screen.dart';
 import 'package:projeto_crypto/details/widgets/change_days_button.dart';
 import 'package:projeto_crypto/details/widgets/chart_button.dart';
 import 'package:projeto_crypto/details/widgets/chart_details_screen.dart';
+import 'package:projeto_crypto/details/widgets/column_infos.dart';
 import 'package:projeto_crypto/details/widgets/upper_column_crypto.dart';
 import 'package:projeto_crypto/shared/templates/button_default_app.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
@@ -15,6 +18,38 @@ import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing details screen', () {
+    testWidgets('Testing if body details has all it needs',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await loadPage(
+            tester,
+            BodyDetailsScreen(
+                crypto: crypto,
+                singleBalance: cryptoBalance,
+                data: CryptosMarkeDataViewData(lista)));
+        await tester.pumpAndSettle();
+
+        final upperColumnCryptoFinder = find.byType(UpperColumnCrypto);
+        final spaceFinder = find.byType(Spacer);
+        final columnFinder = find.byType(Column);
+        final paddingFinnder = find.byType(Padding);
+        final chartDetailsScreen = find.byType(ChartDetailsScreen);
+        final changeDaysButton = find.byType(ChangeDaysButtons);
+        final dividerFinder = find.byType(Divider);
+        final columnInfosFinder = find.byType(ColumnInfos);
+        final buttonDefaultAppFinder = find.byType(ButtonDefaulApp);
+
+        expect(upperColumnCryptoFinder, findsOneWidget);
+        expect(spaceFinder, findsWidgets);
+        expect(columnFinder, findsWidgets);
+        expect(paddingFinnder, findsWidgets);
+        expect(chartDetailsScreen, findsWidgets);
+        expect(changeDaysButton, findsWidgets);
+        expect(dividerFinder, findsWidgets);
+        expect(columnInfosFinder, findsWidgets);
+        expect(buttonDefaultAppFinder, findsWidgets);
+      });
+    });
     testWidgets('Testing appBar', (WidgetTester tester) async {
       await loadPage(tester, const AppBarDefault(title: 'Detalhes'));
 
@@ -35,7 +70,7 @@ void main() {
       });
     });
 
-    testWidgets('Testing buttons chart', (WidgetTester tester) async {
+    testWidgets('Testing  ChangeDaysButton', (WidgetTester tester) async {
       await loadPage(tester, const ChangeDaysButtons());
 
       final buttonFinder = find.byType(ChartButton);

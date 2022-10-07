@@ -5,9 +5,9 @@ import '../../l10n/core_strings.dart';
 class TotalContainer extends StatelessWidget {
   final String total;
   const TotalContainer({
-    Key? key,
+    super.key,
     required this.total,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

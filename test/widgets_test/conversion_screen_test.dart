@@ -39,15 +39,17 @@ void main() {
       final totalFinder = find.byType(TotalContainer);
       final TotalContainer total = tester.widget(totalFinder);
       final Column column = tester.widget(columnFinder);
+      final sizedBoxFinder = find.byType(SizedBox);
 
       expect(column.crossAxisAlignment, CrossAxisAlignment.start);
 
       expect(columnFinder, findsWidgets);
       expect(containerFinder, findsWidgets);
-      expect(dividerFinder, findsOneWidget);
+      expect(dividerFinder, findsWidgets);
       expect(textFinder, findsWidgets);
-      expect(totalFinder, findsOneWidget);
+      expect(totalFinder, findsWidgets);
       expect(total.total, '2');
+      expect(sizedBoxFinder, findsWidgets);
     });
 
     testWidgets('Testing interactive text', (WidgetTester tester) async {
@@ -58,6 +60,7 @@ void main() {
 
     testWidgets('Testing ButtonChangeCoin has all it needs',
         (WidgetTester tester) async {
+      BuildContext context;
       mockNetworkImagesFor(() async {
         await loadPage(
             tester,

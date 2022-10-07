@@ -8,10 +8,10 @@ class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
   final String title;
   const ChartButton({
-    Key? key,
+    super.key,
     required this.daysButton,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<ChartButton> createState() => _ChartButtonState();

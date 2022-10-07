@@ -13,11 +13,11 @@ class ButtonChangeCoin extends ConsumerStatefulWidget {
   final String id;
 
   ButtonChangeCoin({
-    Key? key,
+    super.key,
     required this.crypto,
     required this.data,
     required this.id,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<ButtonChangeCoin> createState() => _ButtonChangeCoinState();

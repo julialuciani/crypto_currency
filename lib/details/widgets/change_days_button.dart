@@ -4,8 +4,8 @@ import 'chart_button.dart';
 
 class ChangeDaysButtons extends StatelessWidget {
   const ChangeDaysButtons({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return Row(

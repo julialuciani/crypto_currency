@@ -4,9 +4,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class AppBarDefault extends HookConsumerWidget implements PreferredSizeWidget {
   final String title;
   const AppBarDefault({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => const Size(double.maxFinite, 56);

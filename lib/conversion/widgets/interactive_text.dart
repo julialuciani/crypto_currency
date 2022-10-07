@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_crypto/l10n/core_strings.dart';
 
 class InteractiveText extends StatelessWidget {
-  const InteractiveText({Key? key}) : super(key: key);
+  const InteractiveText({super.key});
 
   @override
   Widget build(BuildContext context) {

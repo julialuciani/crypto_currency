@@ -3,8 +3,7 @@ import '../../l10n/core_strings.dart';
 import '../style/colors.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
-  const BottomNavigationBarApp({Key? key, required this.index})
-      : super(key: key);
+  const BottomNavigationBarApp({super.key, required this.index});
   final int index;
   @override
   State<BottomNavigationBarApp> createState() => _BottomNavigationBarAppState();

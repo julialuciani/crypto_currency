@@ -35,6 +35,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const Spacer(),
           UpperColumnCrypto(crypto: crypto),
           const Spacer(),
           ChartDetailsScreen(
@@ -47,6 +48,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
               ),
             ),
           ),
+          const Spacer(),
           const ChangeDaysButtons(),
           const Spacer(),
           const Divider(thickness: 1),
@@ -63,6 +65,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
             label: CoreString.of(context)!.conv,
             route: '/conversion',
           ),
+          const Spacer(),
         ],
       ),
     );
