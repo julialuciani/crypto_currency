@@ -38,6 +38,9 @@ void main() {
       final columnFinder = find.byType(Column);
       final totalFinder = find.byType(TotalContainer);
       final TotalContainer total = tester.widget(totalFinder);
+      final Column column = tester.widget(columnFinder);
+
+      expect(column.crossAxisAlignment, CrossAxisAlignment.start);
 
       expect(columnFinder, findsWidgets);
       expect(containerFinder, findsWidgets);
@@ -70,8 +73,13 @@ void main() {
         final imageFinder = find.byType(Image);
         final circleAvatarFinder = find.byType(CircleAvatar);
         final rowFinder = find.byType(Row);
-        final buttonFinder = find.byType(MaterialButton);
+        final buttonFinder = find.byType(ButtonChangeCoin);
+        final ButtonChangeCoin button = tester.widget(buttonFinder);
 
+        expect(button.data, [crypto, crypto]);
+        expect(button.crypto.symbol, 'btc');
+        expect(button.crypto.image,
+            'https://cdn-icons-png.flaticon.com/512/825/825540.png');
         expect(rowFinder, findsOneWidget);
         expect(textFinder, findsOneWidget);
         expect(iconFinder, findsOneWidget);
