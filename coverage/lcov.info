@@ -713,7 +713,7 @@ LF:9
 LH:9
 end_of_record
 SF:lib\movements\widgets\container_movements.dart
-DA:6,5
+DA:6,3
 DA:8,0
 DA:10,1
 DA:12,1
@@ -765,7 +765,7 @@ LF:12
 LH:11
 end_of_record
 SF:lib\shared\templates\bottom_navigation_bar_app.dart
-DA:6,6
+DA:6,4
 DA:7,0
 DA:9,3
 DA:10,3

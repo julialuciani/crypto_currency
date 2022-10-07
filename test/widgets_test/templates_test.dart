@@ -27,7 +27,9 @@ void main() {
       final textFinder = find.byType(Text);
       final ButtonDefaulApp button = tester.widget(buttonFinder);
       final paddingFinder = find.byType(Padding);
+      final materialButtonFinder = find.byType(MaterialButton);
 
+      expect(materialButtonFinder, findsOneWidget);
       expect(textFinder, findsOneWidget);
       expect(buttonFinder, findsOneWidget);
       expect(button.label, 'Converter');
@@ -77,7 +79,9 @@ void main() {
       final labelFinder = find.byType(Text);
       final normalBottom = find.byType(BottomNavigationBar);
       final BottomNavigationBar normalBottomBar = tester.widget(normalBottom);
+      final itemFinder = find.byType(BottomNavigationBarApp);
 
+      expect(itemFinder, findsWidgets);
       expect(barFinder, findsOneWidget);
       expect(bottomBar.index, 1);
       expect(normalBottomBar.selectedItemColor, magenta);
