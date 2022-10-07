@@ -16,7 +16,7 @@ class ChartDetailsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AspectRatio(
-      aspectRatio: 25 / 5,
+      aspectRatio: 21 / 5,
       child: LineChart(
         LineChartData(
           lineTouchData: LineTouchData(
