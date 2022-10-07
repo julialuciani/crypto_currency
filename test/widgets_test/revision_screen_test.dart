@@ -54,5 +54,43 @@ void main() {
       expect(dividerFinder, findsAtLeastNWidgets(3));
       expect(rowRevisionFinder, findsAtLeastNWidgets(3));
     });
+
+    testWidgets('Testing button revision screen', (WidgetTester tester) async {
+      await loadPage(
+          tester,
+          ButtonRevisionScreen(
+              convertQuantity: '0.2',
+              receiveQuantity: '0.2',
+              cryptoConvert: crypto,
+              cryptoReceive: crypto,
+              total: '0.2',
+              increase: 0.0,
+              discount: 0.0,
+              idDiscount: 'bitcoin',
+              idIncrease: 'bitcoin'));
+      await tester.pumpAndSettle();
+
+      final materialButtonFinder = find.byType(MaterialButton);
+      final paddingFinder = find.byType(Padding);
+      final textFinder = find.byType(Text);
+      final revisionButton = find.byType(ButtonRevisionScreen);
+      final ButtonRevisionScreen buttonTester = tester.widget(revisionButton);
+      final MaterialButton materialTester = tester.widget(materialButtonFinder);
+
+      expect(materialButtonFinder, findsWidgets);
+      expect(paddingFinder, findsWidgets);
+      expect(textFinder, findsWidgets);
+      expect(revisionButton, findsWidgets);
+      expect(buttonTester.convertQuantity, '0.2');
+      expect(buttonTester.receiveQuantity, '0.2');
+      expect(buttonTester.cryptoConvert, crypto);
+      expect(buttonTester.cryptoReceive, crypto);
+      expect(buttonTester.total, '0.2');
+      expect(buttonTester.increase, 0.0);
+      expect(buttonTester.discount, 0.0);
+      expect(buttonTester.idDiscount, 'bitcoin');
+      expect(buttonTester.idIncrease, 'bitcoin');
+      expect(materialTester.onPressed != null, true);
+    });
   });
 }

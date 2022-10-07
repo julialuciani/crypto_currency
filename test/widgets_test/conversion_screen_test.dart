@@ -60,7 +60,6 @@ void main() {
 
     testWidgets('Testing ButtonChangeCoin has all it needs',
         (WidgetTester tester) async {
-      BuildContext context;
       mockNetworkImagesFor(() async {
         await loadPage(
             tester,
@@ -86,6 +85,7 @@ void main() {
         final listTileConversionFinder = find.byType(ListTileConversion);
         final listViewFinder = find.byType(ListView);
         final inkWellFinder = find.byType(InkWell);
+        final InkWell inkWell = tester.widget(inkWellFinder);
         final paddingFinder = find.byType(Padding);
         final materialFinder = find.byType(MaterialButton);
 
@@ -118,6 +118,7 @@ void main() {
         expect(listViewFinder, findsOneWidget);
         expect(inkWellFinder, findsWidgets);
         expect(paddingFinder, findsWidgets);
+        expect(inkWell.onTap != null, true);
       });
     });
   });

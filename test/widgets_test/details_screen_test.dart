@@ -89,12 +89,14 @@ void main() {
       final inkWellFinder = find.byType(InkWell);
       final chartButtonFinder = find.byType(ChartButton);
       final ChartButton chartButton = tester.widget(chartButtonFinder);
+      final InkWell inkWell = tester.widget(inkWellFinder);
 
       expect(chartButton.daysButton, 5);
       expect(chartButton.title, '5D');
       expect(chartButtonFinder, findsOneWidget);
       expect(textFinder, findsOneWidget);
       expect(containerFinder, findsOneWidget);
+      expect(inkWell.onTap != null, true);
       expect(inkWellFinder, findsOneWidget);
     });
 
@@ -108,7 +110,12 @@ void main() {
               label: ''));
 
       final buttonFinder = find.byType(ButtonDefaulApp);
+      final materialFinder = find.byType(MaterialButton);
+      final MaterialButton button = tester.widget(materialFinder);
+
       expect(buttonFinder, findsOneWidget);
+      expect(materialFinder, findsWidgets);
+      expect(button.onPressed != null, true);
     });
 
     testWidgets('Testing ChartDetails', (WidgetTester tester) async {
@@ -120,9 +127,13 @@ void main() {
 
       final aspectRationFinder = find.byType(AspectRatio);
       final lineChartFinder = find.byType(LineChart);
+      final chartDetailsFinder = find.byType(ChartDetailsScreen);
 
       expect(aspectRationFinder, findsOneWidget);
       expect(lineChartFinder, findsOneWidget);
+      expect(chartDetailsFinder, findsWidgets);
+
+      await tester.drag(chartDetailsFinder, const Offset(20, 20));
     });
   });
 }
