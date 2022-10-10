@@ -15,9 +15,10 @@ class RevisionScreen extends StatelessWidget {
   final double increase;
   final String idDiscount;
   final String idIncrease;
+  final List<CryptoViewData> cryptos;
 
   const RevisionScreen({
-    super.key,
+    Key? key,
     required this.convertQuantity,
     required this.receiveQuantity,
     required this.cryptoConvert,
@@ -27,7 +28,8 @@ class RevisionScreen extends StatelessWidget {
     required this.increase,
     required this.idDiscount,
     required this.idIncrease,
-  });
+    required this.cryptos,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class RevisionScreen extends StatelessWidget {
         discount: discount,
         idDiscount: idDiscount,
         idIncrease: idIncrease,
+        cryptos: cryptos,
       ),
     );
   }

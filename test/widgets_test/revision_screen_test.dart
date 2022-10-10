@@ -13,11 +13,12 @@ import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing revision screen', () {
-    testWidgets('Testing if revision screen has all it needs',
+    testWidgets('When RevisionScreen is called then expect to find its widgets',
         (WidgetTester tester) async {
       await loadPage(
           tester,
           RevisionScreen(
+              cryptos: [crypto, cryptoSecond],
               convertQuantity: '1BTC',
               receiveQuantity: '2 ETH',
               cryptoConvert: crypto,
@@ -36,11 +37,12 @@ void main() {
       expect(appBarFinder, findsWidgets);
       expect(bodyFinder, findsWidgets);
     });
-    testWidgets('Testing if body contains all widgets it needs',
+    testWidgets('When BodyRevision is called then expect to find its widgets',
         (WidgetTester tester) async {
       await loadPage(
           tester,
           BodyRevision(
+              cryptos: [crypto, cryptoSecond],
               convertQuantity: '0.2',
               receiveQuantity: '0.2',
               cryptoConvert: crypto,
@@ -64,7 +66,9 @@ void main() {
       expect(butttonRevisionScreen, findsOneWidget);
     });
 
-    testWidgets('Testing Column Revision Infos', (WidgetTester tester) async {
+    testWidgets(
+        'When ColumnRevisionInfo is called then expect to find its widgets',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           ColumnRevisionInfo(
@@ -80,19 +84,23 @@ void main() {
       expect(rowRevisionFinder, findsAtLeastNWidgets(3));
     });
 
-    testWidgets('Testing button revision screen', (WidgetTester tester) async {
+    testWidgets(
+        'When ButtonRevisionScreen is called the expect to find its widgets and taps it',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           ButtonRevisionScreen(
-              convertQuantity: '0.2',
-              receiveQuantity: '0.2',
-              cryptoConvert: crypto,
-              cryptoReceive: crypto,
-              total: '0.2',
-              increase: 0.0,
-              discount: 0.0,
-              idDiscount: 'bitcoin',
-              idIncrease: 'bitcoin'));
+            convertQuantity: '0.2',
+            receiveQuantity: '0.2',
+            cryptoConvert: crypto,
+            cryptoReceive: crypto,
+            total: '0.2',
+            increase: 0.0,
+            discount: 0.0,
+            idDiscount: 'bitcoin',
+            idIncrease: 'bitcoin',
+            cryptos: [crypto, cryptoSecond],
+          ));
       await tester.pumpAndSettle();
 
       final materialButtonFinder = find.byType(MaterialButton);
@@ -116,6 +124,32 @@ void main() {
       expect(buttonTester.idDiscount, 'bitcoin');
       expect(buttonTester.idIncrease, 'bitcoin');
       expect(materialTester.onPressed != null, true);
+
+      await tester.tap(revisionButton);
+      await tester.pumpAndSettle();
+    });
+    testWidgets('When ids are equal in ButtonRevisionScreen then taps it',
+        (WidgetTester tester) async {
+      await loadPage(
+          tester,
+          ButtonRevisionScreen(
+            convertQuantity: '0.2',
+            receiveQuantity: '0.2',
+            cryptoConvert: crypto,
+            cryptoReceive: cryptoSecond,
+            total: '0.2',
+            increase: 0.0,
+            discount: 0.0,
+            idDiscount: 'bitcoin',
+            idIncrease: 'eth',
+            cryptos: [crypto, cryptoSecond],
+          ));
+      await tester.pumpAndSettle();
+
+      final revisionButton = find.byType(ButtonRevisionScreen);
+
+      await tester.tap(revisionButton);
+      await tester.pumpAndSettle();
     });
   });
 }

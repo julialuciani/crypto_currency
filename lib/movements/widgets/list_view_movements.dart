@@ -12,18 +12,22 @@ class ListViewMovements extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) => const Divider(
-        thickness: 1,
-        height: 1,
-      ),
+    return ListView.builder(
       itemCount: movements.length,
       itemBuilder: (context, index) {
-        return ListTileMovements(
-          convertQuantity: movements[index].converted,
-          receiveQuantity: movements[index].received,
-          total: movements[index].valueInReal,
-          date: DateTime.now(),
+        return Column(
+          children: [
+            ListTileMovements(
+              convertQuantity: movements[index].converted,
+              receiveQuantity: movements[index].received,
+              total: movements[index].valueInReal,
+              date: DateTime.now(),
+            ),
+            const Divider(
+              thickness: 1,
+              height: 1,
+            ),
+          ],
         );
       },
     );

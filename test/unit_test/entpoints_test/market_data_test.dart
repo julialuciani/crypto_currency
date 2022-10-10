@@ -16,7 +16,7 @@ void main() {
   final repo = MarketDataRepository(endpoint);
   final usecase = CryptosMarketDataUsecase(repo);
 
-  test("Must return a list o MarketData about cryptos", () async {
+  test("When test this endpoint the return a list of cryptos", () async {
     when(() => dio.get(any())).thenAnswer((_) async => Response(
         data: jsonDecode(ApiFactory.getAllPrices()),
         requestOptions: RequestOptions(path: '')));

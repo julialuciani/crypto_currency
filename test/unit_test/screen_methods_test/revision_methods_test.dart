@@ -5,12 +5,14 @@ import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_sc
 import '../../helpers/crypto_mock_data.dart';
 
 void main() {
-  test('Testing Conversion from One', () async {
+  test(
+      'When receives the cryptos then return the convertion of one to how much the other has value compared to',
+      () async {
     String getConvertion = RevisionMethods.getConvertionFromOne(crypto, crypto);
     expect(getConvertion, '1 BTC = 1.00000 BTC');
   });
 
-  test('Testing Revision Arguments', () async {
+  test('When receive the parameters then tests if they are equal', () async {
     RevisionArguments revisionArguments = RevisionArguments(
         convertQuantity: '1BTC',
         receiveQuantity: '2 ETH',
@@ -20,7 +22,8 @@ void main() {
         discount: 1,
         increase: 2,
         idDiscount: 'btc',
-        idIncrease: 'eth');
+        idIncrease: 'eth',
+        cryptos: [crypto, cryptoSecond]);
 
     expect(revisionArguments.convertQuantity, '1BTC');
     expect(revisionArguments.receiveQuantity, '2 ETH');

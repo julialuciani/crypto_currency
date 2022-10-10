@@ -19,6 +19,7 @@ class SetupWidgetTester extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
+      locale: const Locale('pt', 'BR'),
       supportedLocales: const [
         Locale('pt', 'BR'),
         Locale('en', ''),

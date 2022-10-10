@@ -17,7 +17,7 @@ void main() {
   final repo = CryptosRepository(endpoint);
   final usecase = CryptosUsecase(repo);
 
-  test('Must return a list of Cryptos', () async {
+  test('When test endpoint then return a list of cryptos', () async {
     when(() => dio.get(any())).thenAnswer((_) async => Response(
         data: jsonDecode(ApiFactory.getAllCryptos()),
         requestOptions: RequestOptions(path: '')));

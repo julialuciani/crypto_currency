@@ -10,6 +10,7 @@ class RevisionArguments {
   double increase;
   String idDiscount;
   String idIncrease;
+  List<CryptoViewData> cryptos;
   RevisionArguments({
     required this.convertQuantity,
     required this.receiveQuantity,
@@ -20,5 +21,6 @@ class RevisionArguments {
     required this.increase,
     required this.idDiscount,
     required this.idIncrease,
+    required this.cryptos,
   });
 }

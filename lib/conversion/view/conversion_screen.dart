@@ -169,7 +169,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           onPressed: () {
             if (_key.currentState!.validate()) {
               ConversionMethods.validation(
-                  crypto, widget.crypto, context, valueController);
+                  crypto, widget.crypto, context, valueController, widget.list);
             }
           },
           child: const Icon(Icons.navigate_next),

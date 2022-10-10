@@ -12,7 +12,8 @@ import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing movemnts screen', () {
-    testWidgets('Testing if the body has all it needs',
+    testWidgets(
+        'When BodyMovements is called then test if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -27,13 +28,15 @@ void main() {
       final expandedFinder = find.byType(Expanded);
 
       expect(expandedFinder, findsOneWidget);
-      expect(dividerFinder, findsOneWidget);
-      expect(columnFinder, findsOneWidget);
+      expect(dividerFinder, findsWidgets);
+      expect(columnFinder, findsWidgets);
       expect(containerMovementsFinder, findsOneWidget);
       expect(listViewMovementsFinder, findsOneWidget);
     });
 
-    testWidgets('Testing movements screen', (WidgetTester tester) async {
+    testWidgets(
+        'When MovementsScreen its called then test if it has all the widgets it needs',
+        (WidgetTester tester) async {
       await loadPage(tester, const MovementsScreen());
       await tester.pumpAndSettle();
 
@@ -51,7 +54,9 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets('Testing Container Movements', (WidgetTester tester) async {
+    testWidgets(
+        'When ContainerMovementsText is called the tests if it has all the widgets it needs',
+        (WidgetTester tester) async {
       await loadPage(tester, const ContainerMovementsText());
 
       final textFinder = find.byType(Text);
@@ -63,7 +68,9 @@ void main() {
       expect(containerMovementsTextFinder, findsOneWidget);
     });
 
-    testWidgets('Testing ListView movements', (WidgetTester tester) async {
+    testWidgets(
+        'When ListViewMovements is called then tests if it has all the widgets it needs',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           ListViewMovements(
@@ -82,7 +89,9 @@ void main() {
       expect(listTile.total, movement.valueInReal);
     });
 
-    testWidgets('Testing ListTile', (WidgetTester tester) async {
+    testWidgets(
+        'When ListTile is called then tests if it has all the widgets it needs',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           ListTileMovements(

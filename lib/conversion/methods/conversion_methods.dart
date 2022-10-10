@@ -43,8 +43,12 @@ class ConversionMethods {
     return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
   }
 
-  static bool validation(CryptoViewData crypto, CryptoViewData model,
-      BuildContext context, TextEditingController valueController) {
+  static bool validation(
+      CryptoViewData crypto,
+      CryptoViewData model,
+      BuildContext context,
+      TextEditingController valueController,
+      List<CryptoViewData> list) {
     if (model == crypto) {
       bottomSheetWarningUser(context);
       return false;
@@ -52,6 +56,7 @@ class ConversionMethods {
       Navigator.of(context).pushNamed(
         '/revision',
         arguments: RevisionArguments(
+          cryptos: list,
           convertQuantity: valueController.text,
           cryptoConvert: model,
           cryptoReceive: crypto,

@@ -16,7 +16,8 @@ import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing conversion screen', () {
-    testWidgets('Testing if conversion screen has all it needs',
+    testWidgets(
+        'When ConversionScreen is called then test if it has all it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         AppArguments args = AppArguments(
@@ -87,7 +88,9 @@ void main() {
         await tester.pumpAndSettle();
       });
     });
-    testWidgets('Testing UpperContainer', (WidgetTester tester) async {
+    testWidgets(
+        'When UpperContainer is called then tests if it has all it needs',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           UpperAvailableBalanceContainer(
@@ -104,7 +107,9 @@ void main() {
       expect(upperContainerFinder, findsOneWidget);
     });
 
-    testWidgets('Testing total container', (WidgetTester tester) async {
+    testWidgets(
+        'When TotalContainer is called then test if it has all it needs',
+        (WidgetTester tester) async {
       await loadPage(tester, const TotalContainer(total: '2'));
 
       final dividerFinder = find.byType(Divider);
@@ -127,13 +132,15 @@ void main() {
       expect(sizedBoxFinder, findsWidgets);
     });
 
-    testWidgets('Testing interactive text', (WidgetTester tester) async {
+    testWidgets('When called InteractiveText then tests if it has all it needs',
+        (WidgetTester tester) async {
       await loadPage(tester, const InteractiveText());
       final textFinder = find.byType(InteractiveText);
       expect(textFinder, findsOneWidget);
     });
 
-    testWidgets('Testing formFieldValidation', (WidgetTester tester) async {
+    testWidgets('When enterText then tap the floating button',
+        (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(
             tester,
@@ -160,7 +167,8 @@ void main() {
       });
     });
 
-    testWidgets('Testing ButtonChangeCoin has all it needs',
+    testWidgets(
+        'When ButtonChangeCoin is called then test if it has all it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(

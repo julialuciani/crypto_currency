@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:projeto_crypto/movements/widgets/list_view_movements.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
 import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
@@ -13,7 +14,9 @@ import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing templates', () {
-    testWidgets('Testing ButtonDefaultApp', (WidgetTester tester) async {
+    testWidgets(
+        'When ButtonDefaultApp is called the expect to find its widgets and tap it',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           ButtonDefaulApp(
@@ -42,7 +45,9 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets('Testing ErrorBody', (WidgetTester tester) async {
+    testWidgets(
+        'When ErrorBody is tapped expects to find its widgets and tap its button',
+        (WidgetTester tester) async {
       await loadPage(tester, ErrorBody(onError: () {}));
       await tester.pumpAndSettle();
 
@@ -66,7 +71,8 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets('Testing LoadingBody', (WidgetTester tester) async {
+    testWidgets('When LoadingBody is called then expects to find its widgets',
+        (WidgetTester tester) async {
       await loadPage(tester, const LoadingBody());
 
       final centerFinder = find.byType(Center);
@@ -74,9 +80,10 @@ void main() {
       expect(centerFinder, findsOneWidget);
     });
 
-    testWidgets('Testing Bottom Navigation Bar App',
+    testWidgets(
+        'When BottomNavigationBarApp is on PortfolioScreen then go to MovementsScreen',
         (WidgetTester tester) async {
-      await loadPage(tester, const BottomNavigationBarApp(index: 1));
+      await loadPage(tester, const BottomNavigationBarApp(index: 0));
       await tester.pumpAndSettle();
 
       final barFinder = find.byType(BottomNavigationBarApp);
@@ -89,7 +96,7 @@ void main() {
 
       expect(itemFinder, findsWidgets);
       expect(barFinder, findsOneWidget);
-      expect(bottomBar.index, 1);
+      expect(bottomBar.index, 0);
       expect(normalBottomBar.selectedItemColor, magenta);
       expect(iconFinder, findsWidgets);
       expect(labelFinder, findsWidgets);
@@ -97,11 +104,24 @@ void main() {
       await tester.tap(normalBottom.last);
       await tester.pumpAndSettle();
 
+      expect(find.byType(ListViewMovements), findsWidgets);
+
       await tester.tap(normalBottom.first);
       await tester.pumpAndSettle();
     });
+    testWidgets(
+        'When BottomNavigationBarApp is on Movements then go to PortfoliosScreen',
+        (WidgetTester tester) async {
+      await loadPage(tester, const BottomNavigationBarApp(index: 1));
+      await tester.pumpAndSettle();
 
-    testWidgets('Testing app bar default', (WidgetTester tester) async {
+      await tester.tap(find.text('Portifólio'));
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets(
+        'When AppBarDefault is called then expects its widgets and tap the arrow_back icon',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           const AppBarDefault(

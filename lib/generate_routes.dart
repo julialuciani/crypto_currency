@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_crypto/portifolio/view/portifolio_screen.dart';
+import 'package:projeto_crypto/portifolio/view/portfolio_screen.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
 import 'package:projeto_crypto/revision/view/conversion_performed_screen.dart';
 import 'package:projeto_crypto/revision/view/revision_screen.dart';
@@ -11,10 +11,10 @@ import 'movements/view/movements_screen.dart';
 
 class GenerateRoute {
   static Route<dynamic>? findRoute(settings) {
-    if (settings.name == PortifolioScreen.route) {
+    if (settings.name == PortfolioScreen.route) {
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) {
-          return const PortifolioScreen();
+          return const PortfolioScreen();
         },
       );
     } else if (settings.name == MovementsScreen.route) {
@@ -62,6 +62,7 @@ class GenerateRoute {
             increase: args.increase,
             idDiscount: args.idDiscount,
             idIncrease: args.idIncrease,
+            cryptos: args.cryptos,
           );
         },
       );

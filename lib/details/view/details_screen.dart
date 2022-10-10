@@ -35,25 +35,20 @@ class DetailsScreen extends HookConsumerWidget {
 
     return Scaffold(
         appBar: AppBarDefault(title: CoreString.of(context)!.details),
-        body: marketData.when(
-          data: ((data) {
-            return BodyDetailsScreen(
+        body: marketData.when(data: ((data) {
+          return BodyDetailsScreen(
               crypto: crypto,
               singleBalance: singleBalance,
               data: data,
-              list: list,
-            );
-          }),
-          error: (error, stackTrace) {
-            debugPrint(stackTrace.toString());
-            debugPrint(error.toString());
-            return ErrorBody(onError: () {
-              ref.refresh(marketDataProvider(crypto.id));
-            });
-          },
-          loading: () {
-            return const LoadingBody();
-          },
-        ));
+              list: list);
+        }), error: (error, stackTrace) {
+          debugPrint(stackTrace.toString());
+          debugPrint(error.toString());
+          return ErrorBody(onError: () {
+            ref.refresh(marketDataProvider(crypto.id));
+          });
+        }, loading: () {
+          return const LoadingBody();
+        }));
   }
 }
