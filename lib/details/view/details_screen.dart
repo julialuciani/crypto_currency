@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:projeto_crypto/details/controller/days_provider.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../../l10n/core_strings.dart';
 import '../../shared/templates/app_bar_default.dart';
@@ -26,8 +25,6 @@ class DetailsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final args = ModalRoute.of(context)!.settings.arguments as AppArguments;
-    CryptoViewData crypto = args.crypto;
     final marketData = ref.watch(marketDataProvider(crypto.id));
     Future.delayed(Duration.zero, () {
       ref.read(daysProvider.state).state = 5;

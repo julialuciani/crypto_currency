@@ -22,12 +22,14 @@ void main() {
         'When BodyDetailsScreen is called then test if it has all it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
+        CryptosMarkeDataViewData cryptosMarket =
+            CryptosMarkeDataViewData(lista);
         await loadPage(
             tester,
             BodyDetailsScreen(
               crypto: crypto,
               singleBalance: cryptoBalance,
-              data: CryptosMarkeDataViewData(lista),
+              data: cryptosMarket,
               list: [crypto, crypto],
             ));
         await tester.pumpAndSettle();
@@ -41,6 +43,8 @@ void main() {
         final dividerFinder = find.byType(Divider);
         final columnInfosFinder = find.byType(ColumnInfos);
         final buttonDefaultAppFinder = find.byType(ButtonDefaulApp);
+        final BodyDetailsScreen bodyTester =
+            tester.widget(find.byType(BodyDetailsScreen));
 
         expect(upperColumnCryptoFinder, findsOneWidget);
         expect(spaceFinder, findsWidgets);
@@ -51,6 +55,10 @@ void main() {
         expect(dividerFinder, findsWidgets);
         expect(columnInfosFinder, findsWidgets);
         expect(buttonDefaultAppFinder, findsWidgets);
+        expect(bodyTester.crypto, crypto);
+        expect(bodyTester.singleBalance, cryptoBalance);
+        expect(bodyTester.data, cryptosMarket);
+        expect(bodyTester.list, [crypto, crypto]);
 
         await tester.tap(changeDaysButton.first);
         await tester.pumpAndSettle();
