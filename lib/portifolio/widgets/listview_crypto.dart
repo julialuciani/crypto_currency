@@ -24,6 +24,7 @@ class ListViewCryptos extends StatelessWidget {
         return ListTitleCrypto(
           crypto: crypto,
           cryptoBalance: singleBalance[index],
+          list: data,
         );
       },
     );

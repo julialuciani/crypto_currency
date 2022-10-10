@@ -107,13 +107,22 @@ void main() {
         expect(listTileFinder, findsWidgets);
         expect(listCheck.singleBalance, single);
         expect(listCheck.data, data);
+
+        await tester.tap(listViewFinder);
+        await tester.tap(listTileFinder.first);
+        await tester.pumpAndSettle();
       });
     });
 
     testWidgets('Making sure listTile has info', (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
-        await loadPage(tester,
-            ListTitleCrypto(crypto: crypto, cryptoBalance: cryptoBalance));
+        await loadPage(
+            tester,
+            ListTitleCrypto(
+              crypto: crypto,
+              cryptoBalance: cryptoBalance,
+              list: [crypto, crypto],
+            ));
         await tester.pumpAndSettle();
 
         final textFinder = find.byType(Text);
@@ -131,6 +140,9 @@ void main() {
         expect(iconFinder, findsOneWidget);
         expect(rowFinder, findsWidgets);
         expect(normalListTile, findsWidgets);
+
+        await tester.tap(listTileFinder);
+        await tester.pumpAndSettle();
       });
     });
   });

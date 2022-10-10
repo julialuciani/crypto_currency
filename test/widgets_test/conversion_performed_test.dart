@@ -27,6 +27,8 @@ void main() {
       expect(iconDoneFinder, findsOneWidget);
       expect(sizedBoxFinder, findsAtLeastNWidgets(2));
       expect(textFinder, findsAtLeastNWidgets(2));
+      await tester.tap(iconCloseFinder);
+      await tester.pumpAndSettle();
     });
   });
 }

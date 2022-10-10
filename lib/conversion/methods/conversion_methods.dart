@@ -1,7 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+
+import '../../revision/revision_arguments/revision_arguments_screen.dart';
+import '../widgets/bottom_sheet_warning_user.dart';
 
 class ConversionMethods {
   static String formattingValue(String value) {
@@ -37,5 +41,35 @@ class ConversionMethods {
     }
     double total = convert / crypto.currentPrice;
     return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
+  }
+
+  static bool validation(CryptoViewData crypto, CryptoViewData model,
+      BuildContext context, TextEditingController valueController) {
+    if (model == crypto) {
+      bottomSheetWarningUser(context);
+      return false;
+    } else {
+      Navigator.of(context).pushNamed(
+        '/revision',
+        arguments: RevisionArguments(
+          convertQuantity: valueController.text,
+          cryptoConvert: model,
+          cryptoReceive: crypto,
+          receiveQuantity: ConversionMethods.getTotal(
+              crypto,
+              ConversionMethods.convertLatestValue(
+                  valueController.text, model)),
+          total: ConversionMethods.formatLatestValue(
+              ConversionMethods.convertLatestValue(
+                  valueController.text, model)),
+          discount: double.parse(valueController.text),
+          increase: ConversionMethods.convertLatestValue(
+              valueController.text, crypto),
+          idDiscount: model.id,
+          idIncrease: crypto.id,
+        ),
+      );
+      return true;
+    }
   }
 }

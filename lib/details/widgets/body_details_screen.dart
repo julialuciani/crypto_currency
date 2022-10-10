@@ -19,10 +19,12 @@ class BodyDetailsScreen extends HookConsumerWidget {
   final CryptoViewData crypto;
   final double singleBalance;
   final CryptosMarkeDataViewData data;
+  final List<CryptoViewData> list;
   const BodyDetailsScreen(
       {Key? key,
       required this.crypto,
       required this.singleBalance,
+      required this.list,
       required this.data})
       : super(key: key);
 
@@ -60,8 +62,8 @@ class BodyDetailsScreen extends HookConsumerWidget {
               crypto: crypto),
           const Spacer(),
           ButtonDefaulApp(
-            arguments:
-                AppArguments(crypto: crypto, singleBalance: singleBalance),
+            arguments: AppArguments(
+                crypto: crypto, singleBalance: singleBalance, list: list),
             label: CoreString.of(context)!.conv,
             route: '/conversion',
           ),

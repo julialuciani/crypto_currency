@@ -46,6 +46,9 @@ void main() {
       expect(scaffoldFinder, findsOneWidget);
       expect(bottomFinder, findsOneWidget);
       expect(bodyFinder, findsOneWidget);
+
+      await tester.tap(bottomFinder);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Testing Container Movements', (WidgetTester tester) async {

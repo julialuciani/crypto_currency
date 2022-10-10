@@ -24,9 +24,11 @@ void main() {
         await loadPage(
             tester,
             BodyDetailsScreen(
-                crypto: crypto,
-                singleBalance: cryptoBalance,
-                data: CryptosMarkeDataViewData(lista)));
+              crypto: crypto,
+              singleBalance: cryptoBalance,
+              data: CryptosMarkeDataViewData(lista),
+              list: [crypto, crypto],
+            ));
         await tester.pumpAndSettle();
 
         final upperColumnCryptoFinder = find.byType(UpperColumnCrypto);
@@ -48,6 +50,11 @@ void main() {
         expect(dividerFinder, findsWidgets);
         expect(columnInfosFinder, findsWidgets);
         expect(buttonDefaultAppFinder, findsWidgets);
+
+        await tester.tap(changeDaysButton.first);
+        await tester.pumpAndSettle();
+        await tester.tap(buttonDefaultAppFinder);
+        await tester.pumpAndSettle();
       });
     });
     testWidgets('Testing appBar', (WidgetTester tester) async {
@@ -55,6 +62,9 @@ void main() {
 
       final appBarFinder = find.byType(AppBar);
       expect(appBarFinder, findsOneWidget);
+
+      await tester.tap(appBarFinder);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Testing upper container', (WidgetTester tester) async {
@@ -78,6 +88,9 @@ void main() {
 
       expect(rowFinder, findsOneWidget);
       expect(buttonFinder, findsWidgets);
+
+      await tester.tap(buttonFinder.first);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Testing CharButton', (WidgetTester tester) async {
@@ -98,24 +111,32 @@ void main() {
       expect(containerFinder, findsOneWidget);
       expect(inkWell.onTap != null, true);
       expect(inkWellFinder, findsOneWidget);
+      await tester.tap(chartButtonFinder);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Testing button', (WidgetTester tester) async {
-      await loadPage(
-          tester,
-          ButtonDefaulApp(
-              route: '/conversion',
-              arguments:
-                  AppArguments(crypto: crypto, singleBalance: cryptoBalance),
-              label: ''));
+      mockNetworkImagesFor(() async {
+        await loadPage(
+            tester,
+            ButtonDefaulApp(
+                route: '/conversion',
+                arguments: AppArguments(
+                    crypto: crypto,
+                    singleBalance: cryptoBalance,
+                    list: [crypto, crypto]),
+                label: ''));
 
-      final buttonFinder = find.byType(ButtonDefaulApp);
-      final materialFinder = find.byType(MaterialButton);
-      final MaterialButton button = tester.widget(materialFinder);
+        final buttonFinder = find.byType(ButtonDefaulApp);
+        final materialFinder = find.byType(MaterialButton);
+        final MaterialButton button = tester.widget(materialFinder);
 
-      expect(buttonFinder, findsOneWidget);
-      expect(materialFinder, findsWidgets);
-      expect(button.onPressed != null, true);
+        expect(buttonFinder, findsOneWidget);
+        expect(materialFinder, findsWidgets);
+        expect(button.onPressed != null, true);
+        await tester.tap(buttonFinder);
+        await tester.pumpAndSettle();
+      });
     });
 
     testWidgets('Testing ChartDetails', (WidgetTester tester) async {

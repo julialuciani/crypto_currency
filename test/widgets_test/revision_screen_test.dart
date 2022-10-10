@@ -1,16 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:projeto_crypto/revision/view/revision_screen.dart';
 import 'package:projeto_crypto/revision/widgets/body_revision_screen.dart';
 import 'package:projeto_crypto/revision/widgets/button_revision_screen.dart';
 import 'package:projeto_crypto/revision/widgets/column_revision_infos.dart';
 import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
 import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
+import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 
 import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing revision screen', () {
+    testWidgets('Testing if revision screen has all it needs',
+        (WidgetTester tester) async {
+      await loadPage(
+          tester,
+          RevisionScreen(
+              convertQuantity: '1BTC',
+              receiveQuantity: '2 ETH',
+              cryptoConvert: crypto,
+              cryptoReceive: cryptoSecond,
+              total: '1',
+              discount: 1,
+              increase: 2,
+              idDiscount: 'btc',
+              idIncrease: 'eth'));
+      await tester.pumpAndSettle();
+      final scaffoldFinder = find.byType(Scaffold);
+      final appBarFinder = find.byType(AppBarDefault);
+      final bodyFinder = find.byType(BodyRevision);
+
+      expect(scaffoldFinder, findsWidgets);
+      expect(appBarFinder, findsWidgets);
+      expect(bodyFinder, findsWidgets);
+    });
     testWidgets('Testing if body contains all widgets it needs',
         (WidgetTester tester) async {
       await loadPage(

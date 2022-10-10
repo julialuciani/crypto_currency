@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:projeto_crypto/portifolio/controller/crypto_individual_balance_notifier.dart';
+
 import '../../l10n/core_strings.dart';
 import '../../portifolio/model/crypto_view_data.dart';
-import '../../portifolio/usecase/cryptos_provider.dart';
-import '../../revision/revision_arguments/revision_arguments_screen.dart';
 import '../../shared/style/colors.dart';
-import '../../shared/utils/app_arguments.dart';
 import '../../shared/templates/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
 import '../methods/conversion_methods.dart';
-import '../widgets/bottom_sheet_warning_user.dart';
 import '../widgets/button_change_coin.dart';
 import '../widgets/interactive_text.dart';
 import '../widgets/total_container.dart';
@@ -22,12 +20,14 @@ class ConversionScreen extends StatefulHookConsumerWidget {
   static const route = '/conversion';
   CryptoViewData crypto;
   final double singleBalance;
+  final List<CryptoViewData> list;
 
   ConversionScreen({
-    Key? key,
+    super.key,
     required this.crypto,
     required this.singleBalance,
-  }) : super(key: key);
+    required this.list,
+  });
 
   @override
   ConsumerState<ConversionScreen> createState() => _ConversionState();
@@ -55,8 +55,6 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as AppArguments;
-    final cryptos = ref.watch(cryptosProvider);
     var crypto = ref.watch(singleCryptoProvider.state).state;
     var cryptoBalance = ref.read(singleBalanceProvider);
 
@@ -72,9 +70,9 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               UpperAvailableBalanceContainer(
-                crypto: args.crypto,
+                crypto: widget.crypto,
                 singleBalance: cryptoBalance.elementAt(
-                  cryptos.asData!.value.indexOf(widget.crypto),
+                  widget.list.indexOf(widget.crypto),
                 ),
               ),
               const InteractiveText(),
@@ -83,7 +81,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                 children: [
                   ButtonChangeCoin(
                     crypto: widget.crypto,
-                    data: cryptos.asData!.value,
+                    data: widget.list,
                     id: '1',
                   ),
                   IconButton(
@@ -98,7 +96,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   ),
                   ButtonChangeCoin(
                     crypto: crypto,
-                    data: cryptos.asData!.value,
+                    data: widget.list,
                     id: '2',
                   ),
                 ],
@@ -151,7 +149,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     return CoreString.of(context)!.zero;
                   } else if (double.parse(
                           ConversionMethods.formattingValue(value.toString())) >
-                      args.singleBalance) {
+                      widget.singleBalance) {
                     validate = false;
                     return CoreString.of(context)!.youDont;
                   } else {
@@ -170,31 +168,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               validate ? magenta : const Color.fromARGB(255, 202, 200, 212),
           onPressed: () {
             if (_key.currentState!.validate()) {
-              if (widget.crypto == crypto) {
-                bottomSheetWarningUser(context);
-              } else {
-                Navigator.of(context).pushNamed(
-                  '/revision',
-                  arguments: RevisionArguments(
-                    convertQuantity: valueController.text,
-                    cryptoConvert: widget.crypto,
-                    cryptoReceive: crypto,
-                    receiveQuantity: ConversionMethods.getTotal(
-                        crypto,
-                        ConversionMethods.convertLatestValue(
-                            valueController.text, widget.crypto)),
-                    total: ConversionMethods.formatLatestValue(
-                        ConversionMethods.convertLatestValue(
-                            valueController.text, widget.crypto)),
-                    discount: double.parse(valueController.text),
-                    increase: ConversionMethods.convertLatestValue(
-                        valueController.text, crypto),
-                    idDiscount: widget.crypto.id,
-                    idIncrease: crypto.id,
-                  ),
-                );
-                validate = true;
-              }
+              ConversionMethods.validation(
+                  crypto, widget.crypto, context, valueController);
             }
           },
           child: const Icon(Icons.navigate_next),

@@ -18,8 +18,10 @@ void main() {
           tester,
           ButtonDefaulApp(
               route: '/portifolio',
-              arguments:
-                  AppArguments(crypto: crypto, singleBalance: cryptoBalance),
+              arguments: AppArguments(
+                  crypto: crypto,
+                  singleBalance: cryptoBalance,
+                  list: [crypto, crypto]),
               label: 'Converter'));
       await tester.pumpAndSettle();
 
@@ -35,6 +37,9 @@ void main() {
       expect(button.label, 'Converter');
       expect(button.route, '/portifolio');
       expect(paddingFinder, findsWidgets);
+
+      await tester.tap(materialButtonFinder);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Testing ErrorBody', (WidgetTester tester) async {
@@ -56,6 +61,9 @@ void main() {
       expect(sizedBoxFinder, findsWidgets);
       expect(inkWellFinder, findsOneWidget);
       expect(columnFinder, findsOneWidget);
+
+      await tester.tap(iconSyncFinder);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Testing LoadingBody', (WidgetTester tester) async {
@@ -85,6 +93,12 @@ void main() {
       expect(normalBottomBar.selectedItemColor, magenta);
       expect(iconFinder, findsWidgets);
       expect(labelFinder, findsWidgets);
+
+      await tester.tap(normalBottom.last);
+      await tester.pumpAndSettle();
+
+      await tester.tap(normalBottom.first);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Testing app bar default', (WidgetTester tester) async {
@@ -108,6 +122,9 @@ void main() {
       expect(appBarDefaultFinder, findsOneWidget);
       expect(appBarTest.title, 'App');
       expect(appBarFinder, findsOneWidget);
+
+      await tester.tap(iconBack);
+      await tester.pumpAndSettle();
     });
   });
 }

@@ -16,10 +16,12 @@ class DetailsScreen extends HookConsumerWidget {
   static const route = '/details';
   final CryptoViewData crypto;
   final double singleBalance;
+  final List<CryptoViewData> list;
   const DetailsScreen({
     Key? key,
     required this.crypto,
     required this.singleBalance,
+    required this.list,
   }) : super(key: key);
 
   @override
@@ -39,6 +41,7 @@ class DetailsScreen extends HookConsumerWidget {
               crypto: crypto,
               singleBalance: singleBalance,
               data: data,
+              list: list,
             );
           }),
           error: (error, stackTrace) {

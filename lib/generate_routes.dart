@@ -31,6 +31,7 @@ class GenerateRoute {
           return DetailsScreen(
             crypto: args.crypto,
             singleBalance: args.singleBalance,
+            list: args.list,
           );
         },
       );
@@ -42,6 +43,7 @@ class GenerateRoute {
           return ConversionScreen(
             crypto: args.crypto,
             singleBalance: args.singleBalance,
+            list: args.list,
           );
         },
       );

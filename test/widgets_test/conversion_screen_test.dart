@@ -1,17 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:projeto_crypto/conversion/view/conversion_screen.dart';
 import 'package:projeto_crypto/conversion/widgets/button_change_coin.dart';
 import 'package:projeto_crypto/conversion/widgets/interactive_text.dart';
 import 'package:projeto_crypto/conversion/widgets/list_tile_conversion.dart';
 import 'package:projeto_crypto/conversion/widgets/total_container.dart';
+import 'package:projeto_crypto/conversion/widgets/total_in_real.dart';
 import 'package:projeto_crypto/conversion/widgets/upper_container_conversion.dart';
+import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
+import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../helpers/crypto_mock_data.dart';
 import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing conversion screen', () {
+    testWidgets('Testing if conversion screen has all it needs',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        AppArguments args = AppArguments(
+            crypto: crypto,
+            singleBalance: cryptoBalance,
+            list: [crypto, cryptoSecond]);
+        await loadPage(
+            tester,
+            ConversionScreen(
+              crypto: args.crypto,
+              singleBalance: args.singleBalance,
+              list: args.list,
+            ));
+        await tester.pumpAndSettle();
+
+        final formFinder = find.byType(Form);
+        final scaffoldFinder = find.byType(Scaffold);
+        final appBarDefaultFinder = find.byType(AppBarDefault);
+        final singleChildScrollViewFinder = find.byType(SingleChildScrollView);
+        final columnFinder = find.byType(Column);
+        final upperAvailable = find.byType(UpperAvailableBalanceContainer);
+        final interactiveTextFinder = find.byType(InteractiveText);
+        final rowFinder = find.byType(Row);
+        final buttonChangeFinder = find.byType(ButtonChangeCoin);
+        final iconButtonFinder = find.byType(IconButton);
+        final textFormFieldFinder = find.byType(TextFormField);
+        final sizedBoxFinder = find.byType(SizedBox);
+        final totalFinder = find.byType(TotalInReal);
+        final floatingButtonFinder = find.byType(FloatingActionButton);
+        final totalContainerFinder = find.byType(TotalContainer);
+        final swapFinder = find.byIcon(Icons.compare_arrows);
+        final listTileConversionFinder = find.byType(ListTileConversion);
+
+        expect(formFinder, findsWidgets);
+        expect(scaffoldFinder, findsWidgets);
+        expect(appBarDefaultFinder, findsWidgets);
+        expect(singleChildScrollViewFinder, findsWidgets);
+        expect(columnFinder, findsWidgets);
+        expect(upperAvailable, findsWidgets);
+        expect(interactiveTextFinder, findsWidgets);
+        expect(rowFinder, findsWidgets);
+        expect(buttonChangeFinder, findsWidgets);
+        expect(iconButtonFinder, findsWidgets);
+        expect(textFormFieldFinder, findsWidgets);
+        expect(sizedBoxFinder, findsWidgets);
+        expect(totalFinder, findsWidgets);
+        expect(floatingButtonFinder, findsWidgets);
+        expect(totalContainerFinder, findsWidgets);
+
+        await tester.tap(buttonChangeFinder.first);
+        await tester.pumpAndSettle();
+
+        await tester.tap(listTileConversionFinder.first);
+        await tester.pumpAndSettle();
+
+        await tester.tap(buttonChangeFinder.last);
+        await tester.pumpAndSettle();
+
+        await tester.tap(listTileConversionFinder.last);
+        await tester.pumpAndSettle();
+
+        await tester.tap(swapFinder);
+        await tester.pumpAndSettle();
+
+        await tester.enterText(textFormFieldFinder, '0.01');
+        await tester.tap(floatingButtonFinder);
+
+        await tester.pumpAndSettle();
+      });
+    });
     testWidgets('Testing UpperContainer', (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -56,6 +131,33 @@ void main() {
       await loadPage(tester, const InteractiveText());
       final textFinder = find.byType(InteractiveText);
       expect(textFinder, findsOneWidget);
+    });
+
+    testWidgets('Testing formFieldValidation', (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await loadPage(
+            tester,
+            ConversionScreen(
+                crypto: crypto,
+                singleBalance: cryptoBalance,
+                list: [crypto, cryptoSecond]));
+        await tester.pumpAndSettle();
+
+        final textFormFieldFinder = find.byType(TextFormField);
+        final floatingButtonFinder = find.byType(FloatingActionButton);
+
+        expect(textFormFieldFinder, findsWidgets);
+        await tester.enterText(textFormFieldFinder, '.');
+
+        await tester.enterText(textFormFieldFinder, '0');
+
+        await tester.enterText(textFormFieldFinder, '10000');
+
+        await tester.enterText(textFormFieldFinder, '0.001');
+
+        await tester.tap(floatingButtonFinder);
+        await tester.pumpAndSettle();
+      });
     });
 
     testWidgets('Testing ButtonChangeCoin has all it needs',
@@ -119,6 +221,9 @@ void main() {
         expect(inkWellFinder, findsWidgets);
         expect(paddingFinder, findsWidgets);
         expect(inkWell.onTap != null, true);
+
+        await tester.tap(listTileConversionFinder.first);
+        await tester.pumpAndSettle();
       });
     });
   });

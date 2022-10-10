@@ -9,9 +9,13 @@ import 'invisible_container.dart';
 class ListTitleCrypto extends HookConsumerWidget {
   final CryptoViewData crypto;
   final double cryptoBalance;
+  final List<CryptoViewData> list;
 
   const ListTitleCrypto(
-      {Key? key, required this.crypto, required this.cryptoBalance})
+      {Key? key,
+      required this.crypto,
+      required this.cryptoBalance,
+      required this.list})
       : super(key: key);
 
   @override
@@ -22,7 +26,8 @@ class ListTitleCrypto extends HookConsumerWidget {
         Navigator.pushNamed(
           context,
           '/details',
-          arguments: AppArguments(crypto: crypto, singleBalance: cryptoBalance),
+          arguments: AppArguments(
+              crypto: crypto, singleBalance: cryptoBalance, list: list),
         );
       },
       minVerticalPadding: 20,
