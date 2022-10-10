@@ -32,6 +32,7 @@ class ListViewCryptos extends HookConsumerWidget {
         });
         return Expanded(
           child: ListView.separated(
+            key: const Key('list_view_cryptos'),
             physics: const ClampingScrollPhysics(),
             itemCount: data.length,
             separatorBuilder: (context, index) => const Divider(thickness: 1),

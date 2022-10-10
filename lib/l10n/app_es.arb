@@ -1,0 +1,46 @@
+{
+    "crypto": "Cripto",
+    "total" : "Total en valor de la moneda",
+    "port" : "Portafolio",
+    "move" : "Movimientos",
+    "prices" : "Precio en los ultimos {days} dias",
+    "@prices": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
+    "variation" : "Variación en los ultimos {days} dias",
+    "@variation": {
+    "placeholders":{
+    "days":{
+    "type" : "int",
+    "example" : "5"
+    }
+    }
+    },  
+    "quant" : "Cantidad",
+    "value" : "Valor",
+    "conv" : "Convertir moneda",
+    "avai" : "Saldo disponible",
+    "how" : "¿Cuánto te gustaría convertir?",
+    "totEst" : "Total estimado",
+    "review" : "Revisar sus datos de conversión",
+    "convert" : "Convertir",
+    "receive" : "Recibir",
+    "exc" : "intercambio",
+    "comp" : "Conversión completa",
+    "sucess" : "Conversión realizada",
+    "sucessM" : "Conversión hecha con éxito",
+    "writeS" : "Escribe algo",
+    "theValue" : "El valor no puede comenzar con un carácter especial",
+    "youDont" : "No tienes esta cantidad",
+    "zero" : "No puedes convertir cero",
+    "details" : "Detalles",
+    "pick" : "Elija una criptomoneda para convertir"
+
+
+     
+}

@@ -18,12 +18,12 @@ class CoreStringPt extends CoreString {
 
   @override
   String prices(int days) {
-    return 'Price in the last $days days';
+    return 'Preço nos últimos $days dias';
   }
 
   @override
   String variation(int days) {
-    return 'Variation in the last $days days';
+    return 'Variação nos últimos $days dias';
   }
 
   @override
@@ -54,7 +54,7 @@ class CoreStringPt extends CoreString {
   String get receive => 'Receber';
 
   @override
-  String get exc => 'câmbio';
+  String get exc => 'Câmbio';
 
   @override
   String get comp => 'Concluir conversão';

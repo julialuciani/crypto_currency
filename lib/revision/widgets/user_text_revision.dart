@@ -9,7 +9,6 @@ class UserTextRevision extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return AutoSizeText(
       CoreString.of(context)!.review,
       style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),

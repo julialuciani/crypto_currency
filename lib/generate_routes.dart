@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_crypto/revision/revision_screen.dart';
-import 'package:projeto_crypto/revision/view/conversion_performed_screen.dart';
+import 'package:projeto_crypto/portifolio/view/portifolio_screen.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
+import 'package:projeto_crypto/revision/view/conversion_performed_screen.dart';
+import 'package:projeto_crypto/revision/view/revision_screen.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
-import 'portifolio/view/portifolio_screen.dart';
 
 import 'conversion/view/conversion_screen.dart';
 import 'details/view/details_screen.dart';
 import 'movements/view/movements_screen.dart';
 
-class GeneretaRoute {
+class GenerateRoute {
   static Route<dynamic>? findRoute(settings) {
     if (settings.name == PortifolioScreen.route) {
       return PageRouteBuilder(

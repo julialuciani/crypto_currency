@@ -19,7 +19,7 @@ class BodyMovements extends StatelessWidget {
             thickness: 1,
             height: 0,
           ),
-          ListViewMovements(),
+          Expanded(child: ListViewMovements()),
         ],
       ),
     );

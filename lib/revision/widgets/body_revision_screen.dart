@@ -31,19 +31,20 @@ class BodyRevision extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const UserTextRevision(),
+          const Spacer(),
           ColumnRevisionInfo(
             convertQuantity: convertQuantity,
             cryptoConvert: cryptoConvert,
             receiveQuantity: receiveQuantity,
             cryptoReceive: cryptoReceive,
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          const SizedBox(height: 30),
           ButtonRevisionScreen(
             convertQuantity: convertQuantity,
             cryptoConvert: cryptoConvert,

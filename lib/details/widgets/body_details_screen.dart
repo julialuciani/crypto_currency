@@ -32,19 +32,19 @@ class BodyDetailsScreen extends HookConsumerWidget {
     return marketData.when(
       data: ((data) {
         double getVariation =
-            (data.price.last.last / data.price.reversed.elementAt(days).last -
+            (data.prices.last.last / data.prices.reversed.elementAt(days).last -
                     1) *
                 100;
-        return SingleChildScrollView(
-          padding: const EdgeInsets.only(left: 10),
-          physics: const ClampingScrollPhysics(),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               UpperColumnCrypto(crypto: crypto),
+              const Spacer(),
               ChartDetailsScreen(
                 list: List<FlSpot>.from(
-                  data.price.reversed.map(
+                  data.prices.reversed.map(
                     (e) => FlSpot(
                       e[0].toDouble(),
                       e[1].toDouble(),
@@ -53,11 +53,12 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 ),
               ),
               const ChangeDaysButtons(),
+              const Spacer(),
               const Divider(thickness: 1),
               RowInfos(
                 title: CoreString.of(context)!.prices(days),
                 info: FormatCurrency.format(
-                  data.price.reversed.elementAt(days).last.toDouble(),
+                  data.prices.reversed.elementAt(days).last.toDouble(),
                 ),
               ),
               const Divider(thickness: 1),
@@ -78,7 +79,7 @@ class BodyDetailsScreen extends HookConsumerWidget {
                 info:
                     FormatCurrency.format(crypto.currentPrice * singleBalance),
               ),
-              const SizedBox(height: 5),
+              const Spacer(),
               ButtonDefaulApp(
                 arguments:
                     AppArguments(crypto: crypto, singleBalance: singleBalance),

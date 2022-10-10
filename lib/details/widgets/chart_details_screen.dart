@@ -16,7 +16,7 @@ class ChartDetailsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: AspectRatio(
         aspectRatio: 1.9,
         child: LineChart(

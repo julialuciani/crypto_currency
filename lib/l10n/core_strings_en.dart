@@ -8,7 +8,7 @@ class CoreStringEn extends CoreString {
   String get crypto => 'Crypto';
 
   @override
-  String get total => 'Total coin value';
+  String get total => 'Total crypto wealth';
 
   @override
   String get port => 'Portifolio';

@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-
-import 'package:projeto_crypto/conversion/widgets/bottom_sheet_warning_user.dart';
-import 'package:projeto_crypto/conversion/widgets/total_in_real.dart';
-import 'package:projeto_crypto/l10n/core_strings.dart';
-
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
-import 'package:projeto_crypto/shared/style/colors.dart';
-import 'package:projeto_crypto/shared/templates/error_body.dart';
-import 'package:projeto_crypto/shared/templates/loading_body.dart';
-import 'package:projeto_crypto/shared/utils/app_arguments.dart';
-import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
-
+import 'package:projeto_crypto/portifolio/controller/crypto_individual_balance_notifier.dart';
+import '../../l10n/core_strings.dart';
+import '../../portifolio/model/crypto_view_data.dart';
+import '../../portifolio/usecase/cryptos_provider.dart';
 import '../../revision/revision_arguments/revision_arguments_screen.dart';
+import '../../shared/style/colors.dart';
+import '../../shared/templates/error_body.dart';
+import '../../shared/templates/loading_body.dart';
+import '../../shared/utils/app_arguments.dart';
+import '../../shared/utils/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
 import '../methods/conversion_methods.dart';
 import '../widgets/bottom_sheet_warning_user.dart';
@@ -29,7 +24,7 @@ import '../widgets/upper_container_conversion.dart';
 class ConversionScreen extends StatefulHookConsumerWidget {
   static const route = '/conversion';
   CryptoViewData crypto;
-  double singleBalance;
+  final double singleBalance;
 
   ConversionScreen({
     Key? key,
@@ -49,10 +44,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      ref.watch(singleCryptoProvider.state).state = widget.crypto;
-    });
     valueController.addListener(getLastestValue);
+    Future.delayed(Duration.zero, () {
+      ref.read(singleCryptoProvider.state).state = widget.crypto;
+    });
   }
 
   String getLastestValue() {
@@ -66,6 +61,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     final args = ModalRoute.of(context)!.settings.arguments as AppArguments;
     final cryptos = ref.watch(cryptosProvider);
     var crypto = ref.watch(singleCryptoProvider.state).state;
+    var cryptoBalance = ref.read(singleBalanceProvider);
 
     return cryptos.when(
       data: (data) {
@@ -73,8 +69,15 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           key: _key,
           autovalidateMode: AutovalidateMode.always,
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             appBar: AppBarDefault(title: CoreString.of(context)!.convert),
-            body: bodyConversion(args, data, crypto, context),
+            body: bodyConversion(
+              args,
+              cryptoBalance.elementAt(data.indexOf(widget.crypto)),
+              data,
+              crypto,
+              context,
+            ),
             floatingActionButton:
                 floatingActionButtonConversion(crypto, context),
             bottomSheet: TotalContainer(
@@ -97,7 +100,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     );
   }
 
-  SingleChildScrollView bodyConversion(AppArguments args,
+  SingleChildScrollView bodyConversion(AppArguments args, double balance,
       List<CryptoViewData> data, CryptoViewData crypto, BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -105,9 +108,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UpperAvailableBalanceContainer(
-            crypto: args.crypto,
-            singleBalance: args.singleBalance,
-          ),
+              crypto: args.crypto, singleBalance: balance),
           const InteractiveText(),
           rowButtons(data, crypto),
           textFormFieldConversion(crypto, args),
@@ -123,28 +124,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ButtonChangeCoin(
-          crypto: widget.crypto,
-          data: data,
-          listView: ListView.separated(
-            separatorBuilder: (context, index) => const Divider(thickness: 1),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  setState(() {
-                    widget.crypto = data[index];
-                  });
-                  Navigator.pop(context);
-                },
-                child: ListTileConversion(
-                  name: data[index].name,
-                  symbol: data[index].symbol.toUpperCase(),
-                ),
-              );
-            },
-          ),
-        ),
+        buttonChangeCoinFirst(data),
         IconButton(
           icon: const Icon(Icons.compare_arrows, color: magenta),
           onPressed: () {
@@ -157,6 +137,57 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         ),
         buttonChangeCoinMethod(crypto, data),
       ],
+    );
+  }
+
+  ButtonChangeCoin buttonChangeCoinFirst(List<CryptoViewData> data) {
+    return ButtonChangeCoin(
+      crypto: widget.crypto,
+      data: data,
+      listView: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(thickness: 1),
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              setState(() {
+                widget.crypto = data[index];
+              });
+              Navigator.pop(context);
+            },
+            child: ListTileConversion(
+              name: data[index].name,
+              symbol: data[index].symbol.toUpperCase(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  ButtonChangeCoin buttonChangeCoinMethod(
+      CryptoViewData crypto, List<CryptoViewData> data) {
+    return ButtonChangeCoin(
+      crypto: crypto,
+      data: data,
+      listView: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(thickness: 1),
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              setState(() {
+                ref.read(singleCryptoProvider.state).state = data[index];
+              });
+              Navigator.pop(context);
+            },
+            child: ListTileConversion(
+              name: data[index].name,
+              symbol: data[index].symbol.toUpperCase(),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -254,32 +285,6 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           return null;
         }
       },
-    );
-  }
-
-  ButtonChangeCoin buttonChangeCoinMethod(
-      CryptoViewData crypto, List<CryptoViewData> data) {
-    return ButtonChangeCoin(
-      crypto: crypto,
-      data: data,
-      listView: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(thickness: 1),
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              setState(() {
-                ref.read(singleCryptoProvider.state).state = data[index];
-              });
-              Navigator.pop(context);
-            },
-            child: ListTileConversion(
-              name: data[index].name,
-              symbol: data[index].symbol.toUpperCase(),
-            ),
-          );
-        },
-      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 {
     "crypto": "Crypto",
-    "total" : "Total coin value",
+    "total" : "Total crypto wealth",
     "port" : "Portifolio",
     "move" : "Movements",
     "prices" : "Price in the last {days} days",

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
@@ -23,9 +25,10 @@ class ConversionMethods {
   }
 
   static String formatLatestValue(double price) {
-    String value =
-        NumberFormat.simpleCurrency(locale: 'pt-br', decimalDigits: 2)
-            .format(price);
+    String value = NumberFormat.simpleCurrency(
+            locale: Platform.localeName == 'pt_BR' ? 'pt_BR' : 'en',
+            decimalDigits: 2)
+        .format(price);
     return value;
   }
 
