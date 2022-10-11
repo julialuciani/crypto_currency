@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projeto_crypto/details/controller/days_provider.dart';
 
 import '../../shared/style/colors.dart';
-import '../../shared/utils/currency_formatter.dart';
 
 class ChartDetailsScreen extends HookConsumerWidget {
   final List<FlSpot> list;
@@ -19,40 +18,7 @@ class ChartDetailsScreen extends HookConsumerWidget {
       aspectRatio: 21 / 5,
       child: LineChart(
         LineChartData(
-          lineTouchData: LineTouchData(
-            getTouchedSpotIndicator:
-                (LineChartBarData barData, List<int> spotIndexes) {
-              return spotIndexes.map((index) {
-                return TouchedSpotIndicatorData(
-                  FlLine(
-                    color: const Color.fromRGBO(224, 43, 87, 1),
-                    strokeWidth: 1,
-                    dashArray: [3, 3],
-                  ),
-                  FlDotData(
-                    show: false,
-                  ),
-                );
-              }).toList();
-            },
-            touchTooltipData: LineTouchTooltipData(
-              fitInsideHorizontally: true,
-              tooltipBgColor: magenta,
-              tooltipPadding:
-                  const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              tooltipRoundedRadius: 12,
-              getTooltipItems: (touchedSpots) {
-                return touchedSpots.map(
-                  (touchedSpot) {
-                    return LineTooltipItem(
-                      FormatCurrency.format(touchedSpot.y),
-                      const TextStyle(color: Colors.white, fontSize: 12),
-                    );
-                  },
-                ).toList();
-              },
-            ),
-          ),
+          lineTouchData: LineTouchData(enabled: false),
           titlesData: FlTitlesData(
             show: false,
           ),
