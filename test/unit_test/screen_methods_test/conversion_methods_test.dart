@@ -55,7 +55,7 @@ void main() {
         'WHEN receives a value THEN returns the value divided by the current price of the crypto',
         () async {
       String getTotal = ConversionMethods.getTotal(crypto, 5);
-      expect(getTotal, '2.5000000000 BTC');
+      expect(getTotal, '2.50000 BTC');
 
       String getTotalSecond = ConversionMethods.getTotal(crypto, 0);
       expect(getTotalSecond, '0.00 BTC');

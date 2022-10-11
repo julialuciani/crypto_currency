@@ -40,7 +40,7 @@ class ConversionMethods {
       return '0.00 ${crypto.symbol.toUpperCase()}';
     }
     double total = convert / crypto.currentPrice;
-    return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
+    return '${total.toStringAsFixed(5)} ${crypto.symbol.toUpperCase()}';
   }
 
   static bool validation(

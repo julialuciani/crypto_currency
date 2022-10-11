@@ -18,11 +18,11 @@ import '../widgets/upper_container_conversion.dart';
 
 class ConversionScreen extends StatefulHookConsumerWidget {
   static const route = '/conversion';
-  final CryptoViewData crypto;
+  CryptoViewData crypto;
   final double singleBalance;
   final List<CryptoViewData> list;
 
-  const ConversionScreen({
+  ConversionScreen({
     super.key,
     required this.crypto,
     required this.singleBalance,
@@ -58,7 +58,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
   Widget build(BuildContext context) {
     var cryptoRight = ref.watch(rightCryptoProvider.state).state;
     var cryptoLeft = ref.watch(leftCryptoProvider.state).state;
-    var cryptoBalance = ref.read(singleBalanceProvider);
+    var cryptoBalanceList = ref.read(singleBalanceProvider);
+    var cryptoSingleBalance = cryptoBalanceList.elementAt(
+      widget.list.indexWhere((element) => element.id == cryptoLeft.id),
+    );
 
     return Form(
       key: _key,
@@ -72,10 +75,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               UpperAvailableBalanceContainer(
-                crypto: widget.crypto,
-                singleBalance: cryptoBalance.elementAt(
-                  widget.list.indexOf(cryptoLeft),
-                ),
+                crypto: cryptoLeft,
+                singleBalance: cryptoSingleBalance,
               ),
               const InteractiveText(),
               Row(
@@ -116,7 +117,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   ),
                   focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: magenta, width: 3)),
-                  hintText: '${widget.crypto.symbol.toUpperCase()} 0.00',
+                  hintText: '${cryptoLeft.symbol.toUpperCase()} 0.00',
                   hintStyle: TextStyle(
                     fontSize: 30,
                     color: Colors.grey.shade500,
@@ -151,7 +152,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     return CoreString.of(context)!.zero;
                   } else if (double.parse(
                           ConversionMethods.formattingValue(value.toString())) >
-                      widget.singleBalance) {
+                      cryptoSingleBalance) {
                     validate = false;
                     return CoreString.of(context)!.youDont;
                   } else {

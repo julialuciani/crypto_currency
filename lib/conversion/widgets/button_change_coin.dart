@@ -8,11 +8,11 @@ import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 import 'list_tile_conversion.dart';
 
 class ButtonChangeCoin extends ConsumerStatefulWidget {
-  final CryptoViewData crypto;
+  CryptoViewData crypto;
   final List<CryptoViewData> data;
   final String id;
 
-  const ButtonChangeCoin({
+  ButtonChangeCoin({
     super.key,
     required this.crypto,
     required this.data,
