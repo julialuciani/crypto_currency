@@ -22,7 +22,7 @@ void main() {
             tester,
             BodyPortifolioScreen(
               data: data,
-              singleBalance: single,
+              singleBalance: balance,
             ));
         await tester.pumpAndSettle();
 
@@ -78,7 +78,7 @@ void main() {
           tester,
           BodyPortifolioScreen(
             data: data,
-            singleBalance: single,
+            singleBalance: balance,
           ));
       await tester.pumpAndSettle();
 
@@ -102,7 +102,7 @@ void main() {
             tester,
             ListViewCryptos(
               data: data,
-              singleBalance: single,
+              singleBalance: balance,
             ));
 
         await tester.pumpAndSettle();
@@ -114,7 +114,7 @@ void main() {
         expect(listViewFinder, findsOneWidget);
         expect(listFinder, findsWidgets);
         expect(listTileFinder, findsWidgets);
-        expect(listCheck.singleBalance, single);
+        expect(listCheck.singleBalance, balance);
         expect(listCheck.data, data);
 
         await tester.tap(listViewFinder);

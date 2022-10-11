@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_crypto/movements/view/model/movement_model.dart';
+import 'package:projeto_crypto/movements/model/movement_model.dart';
 import 'package:projeto_crypto/movements/widgets/container_movements.dart';
 import 'package:projeto_crypto/movements/widgets/list_view_movements.dart';
 

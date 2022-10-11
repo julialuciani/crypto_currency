@@ -8,10 +8,10 @@ void main() {
   test(
       'WHEN receives the list of cryptos and the list of all their prices THEN takes the price of every single one according to both indexes',
       () async {
-    double getBalance = PortifolioMethods.getBalance(data, single);
+    double getBalance = PortifolioMethods.getBalance(data, balance);
     expect(getBalance, 20);
   });
 }
 
 List<CryptoViewData> data = [crypto, crypto];
-List<double> single = [5, 5];
+List<double> balance = [5, 5];

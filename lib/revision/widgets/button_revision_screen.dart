@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:projeto_crypto/l10n/core_strings.dart';
-import 'package:projeto_crypto/movements/view/model/movement_model.dart';
+import 'package:projeto_crypto/movements/model/movement_model.dart';
 import 'package:projeto_crypto/shared/controller/movement_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
 

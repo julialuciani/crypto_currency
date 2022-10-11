@@ -1,4 +1,4 @@
-import 'package:projeto_crypto/movements/view/model/movement_model.dart';
+import 'package:projeto_crypto/movements/model/movement_model.dart';
 import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
 CryptoViewData crypto = CryptoViewData(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_crypto/movements/view/model/movement_model.dart';
+import 'package:projeto_crypto/movements/model/movement_model.dart';
 import 'package:projeto_crypto/movements/widgets/list_tile_movements.dart';
 
 class ListViewMovements extends StatelessWidget {
