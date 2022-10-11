@@ -13,7 +13,7 @@ import '../helpers/setup_widget_tester.dart';
 void main() {
   group('Testing movemnts screen', () {
     testWidgets(
-        'When BodyMovements is called then test if it has all the widgets it needs',
+        'WHEN BodyMovements is called THEN test if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -35,7 +35,7 @@ void main() {
     });
 
     testWidgets(
-        'When MovementsScreen its called then test if it has all the widgets it needs',
+        'WHEN MovementsScreen its called THEN test if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const MovementsScreen());
       await tester.pumpAndSettle();
@@ -55,7 +55,7 @@ void main() {
     });
 
     testWidgets(
-        'When ContainerMovementsText is called then tests if it has all the widgets it needs',
+        'WHEN ContainerMovementsText is called THEN tests if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const ContainerMovementsText());
 
@@ -69,7 +69,7 @@ void main() {
     });
 
     testWidgets(
-        'When ListViewMovements is called then tests if it has all the widgets it needs',
+        'WHEN ListViewMovements is called THEN tests if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -90,7 +90,7 @@ void main() {
     });
 
     testWidgets(
-        'When ListTile is called then tests if it has all the widgets it needs',
+        'WHEN ListTile is called THEN tests if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(
           tester,

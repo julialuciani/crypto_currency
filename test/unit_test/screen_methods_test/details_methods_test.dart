@@ -5,7 +5,7 @@ import 'package:projeto_crypto/details/model/cryptos_market_data_view_data.dart'
 
 void main() {
   test(
-      'When the numbers are the same then returns grey, when the numbers are different then returns transparent',
+      'WHEN the numbers are the same THEN returns grey, when the numbers are different THEN returns transparent',
       () async {
     Color change = DetailsMethods.changeButtonColor(5, 5);
     expect(change, Colors.grey.shade300);
@@ -14,7 +14,7 @@ void main() {
     expect(changeSecond, Colors.transparent);
   });
 
-  test('When receives the list of prices then returns the variation of them',
+  test('WHEN receives the list of prices THEN returns the variation of them',
       () async {
     double getVariation =
         DetailsMethods.getVariation(CryptosMarkeDataViewData(prices), 2);

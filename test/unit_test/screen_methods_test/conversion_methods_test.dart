@@ -7,12 +7,12 @@ import '../../helpers/crypto_mock_data.dart';
 
 void main() {
   group('Testing conversion methods', () {
-    test('When testing formattingValue then return a formatted value',
+    test('WHEN testing formattingValue THEN return a formatted value',
         () async {
       expect(ConversionMethods.formattingValue('0,2'), '0.2');
     });
 
-    test('When a value starts with a special character then return false',
+    test('WHEN a value starts with a special character THEN return false',
         () async {
       expect(ConversionMethods.isCorrect('.1'), false);
       expect(ConversionMethods.isCorrect('-1'), false);
@@ -21,7 +21,7 @@ void main() {
       expect(ConversionMethods.isCorrect('0.1'), true);
     });
 
-    test('When controller receives a value then convert this value', () async {
+    test('WHEN controller receives a value THEN convert this value', () async {
       String valueController = '5';
 
       double convert =
@@ -42,7 +42,7 @@ void main() {
     });
 
     test(
-        'When receives value then formats value with the currency by the locale',
+        'WHEN receives value THEN formats value with the currency by the locale',
         () async {
       String formatLatest = ConversionMethods.formatLatestValue(50.0);
       if (Platform.localeName == 'pt-BR') {
@@ -52,7 +52,7 @@ void main() {
     });
 
     test(
-        'When receives a value then returns the value divided by the current price of the crypto',
+        'WHEN receives a value THEN returns the value divided by the current price of the crypto',
         () async {
       String getTotal = ConversionMethods.getTotal(crypto, 5);
       expect(getTotal, '2.5000000000 BTC');

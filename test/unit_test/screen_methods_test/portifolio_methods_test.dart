@@ -6,7 +6,7 @@ import '../../helpers/crypto_mock_data.dart';
 
 void main() {
   test(
-      'When receives the list of cryptos and the list of all their prices then takes the price of every single one according to both indexes',
+      'WHEN receives the list of cryptos and the list of all their prices THEN takes the price of every single one according to both indexes',
       () async {
     double getBalance = PortifolioMethods.getBalance(data, single);
     expect(getBalance, 20);

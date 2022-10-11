@@ -19,7 +19,7 @@ import '../helpers/setup_widget_tester.dart';
 void main() {
   group('Testing details screen', () {
     testWidgets(
-        'When BodyDetailsScreen is called then test if it has all the widgets it needs',
+        'WHEN BodyDetailsScreen is called THEN test if it has all the widgets it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         CryptosMarkeDataViewData cryptosMarket =
@@ -66,7 +66,7 @@ void main() {
         await tester.pumpAndSettle();
       });
     });
-    testWidgets('When appBar is called then find it and tap it',
+    testWidgets('WHEN appBar is called THEN find it and tap it',
         (WidgetTester tester) async {
       await loadPage(tester, const AppBarDefault(title: 'Detalhes'));
 
@@ -78,7 +78,7 @@ void main() {
     });
 
     testWidgets(
-        'When UpperColumnCrypto is called then test if it has all the widgets it needs',
+        'WHEN UpperColumnCrypto is called THEN test if it has all the widgets it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(tester, UpperColumnCrypto(crypto: crypto));
@@ -93,7 +93,7 @@ void main() {
     });
 
     testWidgets(
-        'When ChangeDaysButtons is called then tests if it has all the widgets it needs and tap',
+        'WHEN ChangeDaysButtons is called THEN tests if it has all the widgets it needs and tap',
         (WidgetTester tester) async {
       await loadPage(tester, const ChangeDaysButtons());
 
@@ -108,7 +108,7 @@ void main() {
     });
 
     testWidgets(
-        'When ChartButton is called then tap it and see if has all the widgets it needs',
+        'WHEN ChartButton is called THEN tap it and see if has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const ChartButton(daysButton: 5, title: '5D'));
       await tester.pumpAndSettle();
@@ -131,7 +131,7 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets('When ButtonDefaultApp is called then tap it',
+    testWidgets('WHEN ButtonDefaultApp is called THEN tap it',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(
@@ -156,7 +156,7 @@ void main() {
       });
     });
 
-    testWidgets('When ChartDetailsScreen then create chart according to list',
+    testWidgets('WHEN ChartDetailsScreen THEN create chart according to list',
         (WidgetTester tester) async {
       List<FlSpot> data = lista
           .map((price) => FlSpot(price[0].toDouble(), price[1].toDouble()))

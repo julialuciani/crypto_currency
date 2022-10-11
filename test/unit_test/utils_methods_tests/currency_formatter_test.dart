@@ -5,7 +5,7 @@ import 'package:projeto_crypto/shared/utils/currency_formatter.dart';
 
 void main() {
   test(
-      'When receives a value then formats to the currency according to the locale',
+      'WHEN receives a value THEN formats to the currency according to the locale',
       () async {
     String format = FormatCurrency.format(20);
     if (Platform.localeName == 'pt_BR') {

@@ -6,13 +6,13 @@ import '../../helpers/crypto_mock_data.dart';
 
 void main() {
   test(
-      'When receives the cryptos then return the convertion of one to how much the other has value compared to',
+      'WHEN receives the cryptos THEN return the convertion of one to how much the other has value compared to',
       () async {
     String getConvertion = RevisionMethods.getConvertionFromOne(crypto, crypto);
     expect(getConvertion, '1 BTC = 1.00000 BTC');
   });
 
-  test('When receive the parameters then tests if they are equal', () async {
+  test('WHEN receive the parameters THEN tests if they are equal', () async {
     RevisionArguments revisionArguments = RevisionArguments(
         convertQuantity: '1BTC',
         receiveQuantity: '2 ETH',

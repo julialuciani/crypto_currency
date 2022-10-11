@@ -15,7 +15,7 @@ import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 void main() {
   group('Testing portifolio screen', () {
     testWidgets(
-        'When BodyPortifolioScreen is called then tests if it has all the widgets it needs',
+        'WHEN BodyPortifolioScreen is called THEN tests if it has all the widgets it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(
@@ -39,13 +39,13 @@ void main() {
     });
 
     testWidgets(
-        'When BottomNavigationBarApp is called then tests if it has all the widgets it needs',
+        'WHEN BottomNavigationBarApp is called THEN tests if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const BottomNavigationBarApp(index: 0));
       await tester.pumpAndSettle();
     });
 
-    testWidgets('When tap on visibility_icon then expect it changes icon',
+    testWidgets('WHEN tap on visibility_icon THEN expect it changes icon',
         (WidgetTester tester) async {
       await loadPage(tester, const UpperContainerCrypto());
 
@@ -63,7 +63,7 @@ void main() {
     });
 
     testWidgets(
-        'When called UpperContainerCrypto then tests if it has the number of texts it should have',
+        'WHEN called UpperContainerCrypto THEN tests if it has the number of texts it should have',
         (WidgetTester tester) async {
       await loadPage(tester, const UpperContainerCrypto());
 
@@ -72,7 +72,7 @@ void main() {
     });
 
     testWidgets(
-        'When presses on the visibility icon then finds invisibleContainers that replace the text',
+        'WHEN presses on the visibility icon THEN finds invisibleContainers that replace the text',
         (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -95,7 +95,7 @@ void main() {
     });
 
     testWidgets(
-        'When ListViewCryptos is called then expects to find its widgets',
+        'WHEN ListViewCryptos is called THEN expects to find its widgets',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(
@@ -124,7 +124,7 @@ void main() {
     });
 
     testWidgets(
-        'When ListTile is called then expect to find its widgets and its infos',
+        'WHEN ListTile is called THEN expect to find its widgets and its infos',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(

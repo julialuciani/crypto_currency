@@ -17,7 +17,7 @@ import '../helpers/setup_widget_tester.dart';
 void main() {
   group('Testing conversion screen', () {
     testWidgets(
-        'When ConversionScreen is called then test if it has all it needs',
+        'WHEN ConversionScreen is called THEN test if it has all it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         AppArguments args = AppArguments(
@@ -89,7 +89,7 @@ void main() {
       });
     });
     testWidgets(
-        'When UpperContainer is called then tests if it has all it needs',
+        'WHEN UpperContainer is called THEN tests if it has all it needs',
         (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -108,7 +108,7 @@ void main() {
     });
 
     testWidgets(
-        'When TotalContainer is called then test if it has all it needs',
+        'WHEN TotalContainer is called THEN test if it has all it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const TotalContainer(total: '2'));
 
@@ -132,14 +132,14 @@ void main() {
       expect(sizedBoxFinder, findsWidgets);
     });
 
-    testWidgets('When called InteractiveText then tests if it has all it needs',
+    testWidgets('WHEN called InteractiveText THEN tests if it has all it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const InteractiveText());
       final textFinder = find.byType(InteractiveText);
       expect(textFinder, findsOneWidget);
     });
 
-    testWidgets('When enterText then tap the floating button',
+    testWidgets('WHEN enterText THEN tap the floating button',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(
@@ -168,7 +168,7 @@ void main() {
     });
 
     testWidgets(
-        'When ButtonChangeCoin is called then test if it has all it needs',
+        'WHEN ButtonChangeCoin is called THEN test if it has all it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(

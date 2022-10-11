@@ -15,7 +15,7 @@ import '../helpers/setup_widget_tester.dart';
 void main() {
   group('Testing templates', () {
     testWidgets(
-        'When ButtonDefaultApp is called then expect to find its widgets and tap it',
+        'WHEN ButtonDefaultApp is called THEN expect to find its widgets and tap it',
         (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -46,7 +46,7 @@ void main() {
     });
 
     testWidgets(
-        'When ErrorBody is tapped then expects to find its widgets and tap its button',
+        'WHEN ErrorBody is tapped THEN expects to find its widgets and tap its button',
         (WidgetTester tester) async {
       await loadPage(tester, ErrorBody(onError: () {}));
       await tester.pumpAndSettle();
@@ -71,7 +71,7 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets('When LoadingBody is called then expects to find its widgets',
+    testWidgets('WHEN LoadingBody is called THEN expects to find its widgets',
         (WidgetTester tester) async {
       await loadPage(tester, const LoadingBody());
 
@@ -81,7 +81,7 @@ void main() {
     });
 
     testWidgets(
-        'When BottomNavigationBarApp is on PortfolioScreen then go to MovementsScreen',
+        'WHEN BottomNavigationBarApp is on PortfolioScreen THEN go to MovementsScreen',
         (WidgetTester tester) async {
       await loadPage(tester, const BottomNavigationBarApp(index: 0));
       await tester.pumpAndSettle();
@@ -110,7 +110,7 @@ void main() {
       await tester.pumpAndSettle();
     });
     testWidgets(
-        'When BottomNavigationBarApp is on Movements then go to PortfoliosScreen',
+        'WHEN BottomNavigationBarApp is on Movements THEN go to PortfoliosScreen',
         (WidgetTester tester) async {
       await loadPage(tester, const BottomNavigationBarApp(index: 1));
       await tester.pumpAndSettle();
@@ -120,7 +120,7 @@ void main() {
     });
 
     testWidgets(
-        'When AppBarDefault is called then expects its widgets and tap the arrow_back icon',
+        'WHEN AppBarDefault is called THEN expects its widgets and tap the arrow_back icon',
         (WidgetTester tester) async {
       await loadPage(
           tester,

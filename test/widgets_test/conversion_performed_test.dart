@@ -6,7 +6,7 @@ import '../helpers/setup_widget_tester.dart';
 
 void main() {
   group('Testing conversion performed screen', () {
-    testWidgets('When body is called then sees if it has all it needs',
+    testWidgets('WHEN body is called THEN sees if it has all it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const ConversionPerformedScreen());
 
