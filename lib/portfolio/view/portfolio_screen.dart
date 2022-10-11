@@ -8,7 +8,6 @@ import '../widgets/body_portifolio_screen.dart';
 
 class PortfolioScreen extends HookConsumerWidget {
   const PortfolioScreen({Key? key}) : super(key: key);
-  static const route = '/portifolio';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

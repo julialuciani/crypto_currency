@@ -5,7 +5,7 @@ import '../../shared/templates/bottom_navigation_bar_app.dart';
 
 class PortfolioPage extends StatelessWidget {
   const PortfolioPage({super.key});
-
+  static const route = '/portifolio';
   @override
   Widget build(BuildContext context) {
     return const SafeArea(

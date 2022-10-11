@@ -1,9 +1,24 @@
 {
     "crypto": "Crypto",
-    "total" : "Total crypto wealth",
+    "@crypto": {
+      "description": "First text on the upper side of the first screen"
+    },
+    "total": "Total crypto wealth",
+    "@total": {
+      "description": "Phrase below the balance of the user"
+    },
     "port" : "Portfolio",
+    "@port": {
+      "description": "Name of the first screen on BottomBar"
+    },
     "move" : "Movements",
+    "@move": {
+      "description": "Name of the second screen on the BottomBar"
+    },
     "prices" : "Price in the last {days} days",
+    "@prices": {
+      "description": "Tells when was the time of that price on Details Screen"
+    },
     "@prices": {
     "placeholders":{
     "days":{
@@ -14,6 +29,9 @@
     },  
     "variation" : "Variation in the last {days} days",
     "@variation": {
+      "description": "Tells when was the time of that variation price on Details Screen"
+    },
+    "@variation": {
     "placeholders":{
     "days":{
     "type" : "int",
@@ -22,24 +40,81 @@
     }
     },  
     "quant" : "Quantity",
+    "@quant": {
+      "description": "Is next to the quantity that the user has of that coin on Details Screen"
+    },
     "value" : "Value",
+    "@value": {
+      "description": "Is next to the value in money that the user have of that coin"
+    },
     "conv" : "Convert coin",
+    "@conv": {
+      "description": "Is the text of the button to go to Conversion Screen"
+    },
     "avai" : "Available balance",
+    "@avai": {
+      "description": "Is next to the ammount of balance that the user has"
+    },
     "how" : "How much would you like to convert?",
+    "@how": {
+      "description": "Is on the inractive text that asks the user how much he wants to convert"
+    },
     "totEst" : "Estimated total",
+    "@totEst": {
+      "description": "Is above the estimated value on the coin the user is converting to"
+    },
     "review" : "Review your conversion data",
+    "@review": {
+      "description": "Is the interactive text that asks the user to review his conversion data"
+    },
     "convert" : "Convert",
+    "@convert": {
+      "description": "Is next to the value that the user wants to convert"
+    },
     "receive" : "Receive",
+    "@receive": {
+      "description": "Is next to the value that the user will increase by the convertion"
+    },
     "exc" : "Exchange",
+    "@exc": {
+      "description": "Next to the comparation between one of the converted coin to the increased coin"
+    },
     "comp" : "Complete conversion",
+    "@comp": {
+      "description": "Text on the button to complete the conversion"
+    },
     "sucess" : "Conversion performed",
+    "@sucess": {
+      "description": "Text below the checked icon on sucess page that shows the conversion was madeSucess phrase below the text and the icon check"
+    },
     "sucessM" : "Conversion made successfully!",
+    "@sucessM": {
+      "description": "Sucess phrase below the text and the icon check"
+    },
     "writeS" : "Type something",
+    "@writeS": {
+      "description": "Says to user type something when textFormField is empty"
+    },
     "theValue" : "Value cannot start with special character",
+    "@theValue": {
+      "description": "Warning Messenger that says the value cannot start with a special character"
+    },
     "youDont" : "You don't have this ammount",
+    "@youDont": {
+      "description": "Warning message that says that the user doesn't have this coin ammount"
+    },
     "zero" : "You can't convert zero",
+    "@zero": {
+      "description": "Warning message that says to user that he can't convert 0"
+    },
     "details" : "Details",
-    "pick" : "Choose a crypto to convert"
+    "@details": {
+      "description": "Title of appBar details screen"
+    },
+    "pick" : "Choose a crypto to convert",
+    "@pick": {
+      "description": "Text on modal sheet that says to user pick a crypto to convert"
+    }
 
 
      

@@ -29,7 +29,7 @@ void main() {
         final upperContainerFinder = find.byType(UpperContainerCrypto);
         final dividerFinder = find.byType(Divider);
         final listViewCryptosFinder = find.byType(ListViewCryptos);
-        final expandedFinder = find.byKey(const Key('expanded'));
+        final expandedFinder = find.byType(Expanded);
 
         expect(upperContainerFinder, findsOneWidget);
         expect(dividerFinder, findsWidgets);

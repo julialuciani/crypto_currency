@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:projeto_crypto/portfolio/view/portfolio_screen.dart';
+
+import 'package:projeto_crypto/details/view/details_screen.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
+
+import '../../l10n/core_strings.dart';
+import '../../shared/templates/app_bar_default.dart';
 
 class DetailsPage extends StatelessWidget {
-  const DetailsPage({super.key});
+  final CryptoViewData crypto;
+  final double singleBalance;
+  final List<CryptoViewData> list;
+  const DetailsPage({
+    Key? key,
+    required this.crypto,
+    required this.singleBalance,
+    required this.list,
+  }) : super(key: key);
+  static const route = '/details';
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: PortfolioScreen(),
+    return Scaffold(
+      appBar: AppBarDefault(title: CoreString.of(context)!.details),
+      body: DetailsScreen(
+          crypto: crypto, singleBalance: singleBalance, list: list),
     );
   }
 }

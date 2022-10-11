@@ -21,7 +21,6 @@ class BodyPortifolioScreen extends StatelessWidget {
         const UpperContainerCrypto(),
         const Divider(thickness: 1, height: 0.5),
         Expanded(
-          key: const Key('expanded'),
           child: ListViewCryptos(
             data: data,
             singleBalance: singleBalance,

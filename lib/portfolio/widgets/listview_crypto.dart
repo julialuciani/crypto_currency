@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:projeto_crypto/portfolio/controller/balance_provider.dart';
 
 import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
-import '../controller/balance_provider.dart';
 import '../methods/portifolio_methods.dart';
 import 'listile_crypto.dart';
 
