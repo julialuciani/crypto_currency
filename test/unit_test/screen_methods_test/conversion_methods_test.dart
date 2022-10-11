@@ -52,7 +52,7 @@ void main() {
     });
 
     test(
-        'When receives a value the returns the value divided by the current price of the crypto',
+        'When receives a value then returns the value divided by the current price of the crypto',
         () async {
       String getTotal = ConversionMethods.getTotal(crypto, 5);
       expect(getTotal, '2.5000000000 BTC');

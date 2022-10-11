@@ -15,7 +15,7 @@ import '../helpers/setup_widget_tester.dart';
 void main() {
   group('Testing templates', () {
     testWidgets(
-        'When ButtonDefaultApp is called the expect to find its widgets and tap it',
+        'When ButtonDefaultApp is called then expect to find its widgets and tap it',
         (WidgetTester tester) async {
       await loadPage(
           tester,
@@ -46,7 +46,7 @@ void main() {
     });
 
     testWidgets(
-        'When ErrorBody is tapped expects to find its widgets and tap its button',
+        'When ErrorBody is tapped then expects to find its widgets and tap its button',
         (WidgetTester tester) async {
       await loadPage(tester, ErrorBody(onError: () {}));
       await tester.pumpAndSettle();
@@ -115,7 +115,7 @@ void main() {
       await loadPage(tester, const BottomNavigationBarApp(index: 1));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('Portifólio'));
+      await tester.tap(find.text('Portfólio'));
       await tester.pumpAndSettle();
     });
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import '../../shared/utils/currency_formatter.dart';
 import '../controller/visibility_provider.dart';

@@ -5,7 +5,7 @@ import 'package:projeto_crypto/details/model/cryptos_market_data_view_data.dart'
 
 void main() {
   test(
-      'When the numbers are the same then returns grey, when the numbers are different then returns transparente',
+      'When the numbers are the same then returns grey, when the numbers are different then returns transparent',
       () async {
     Color change = DetailsMethods.changeButtonColor(5, 5);
     expect(change, Colors.grey.shade300);

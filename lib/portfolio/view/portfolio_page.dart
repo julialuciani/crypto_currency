@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_crypto/portifolio/view/portfolio_screen.dart';
+import 'package:projeto_crypto/portfolio/view/portfolio_screen.dart';
 
 import '../../shared/templates/bottom_navigation_bar_app.dart';
 

@@ -6,8 +6,8 @@ import 'package:projeto_crypto/movements/view/model/movement_model.dart';
 import 'package:projeto_crypto/shared/controller/movement_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
 
-import '../../portifolio/controller/crypto_individual_balance_notifier.dart';
-import '../../portifolio/model/crypto_view_data.dart';
+import '../../portfolio/controller/crypto_individual_balance_notifier.dart';
+import '../../portfolio/model/crypto_view_data.dart';
 
 class ButtonRevisionScreen extends HookConsumerWidget {
   final String convertQuantity;

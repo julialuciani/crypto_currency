@@ -19,7 +19,7 @@ import '../helpers/setup_widget_tester.dart';
 void main() {
   group('Testing details screen', () {
     testWidgets(
-        'When BodyDetailsScreen is called then test if it has all it needs',
+        'When BodyDetailsScreen is called then test if it has all the widgets it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         CryptosMarkeDataViewData cryptosMarket =
@@ -78,7 +78,7 @@ void main() {
     });
 
     testWidgets(
-        'When UpperColumnCrypto is called then test if it has all it needs',
+        'When UpperColumnCrypto is called then test if it has all the widgets it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(tester, UpperColumnCrypto(crypto: crypto));
@@ -93,7 +93,7 @@ void main() {
     });
 
     testWidgets(
-        'When ChangeDaysButtons is called then tests if it hass all it needs and tap',
+        'When ChangeDaysButtons is called then tests if it has all the widgets it needs and tap',
         (WidgetTester tester) async {
       await loadPage(tester, const ChangeDaysButtons());
 

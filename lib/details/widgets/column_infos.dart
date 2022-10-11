@@ -3,7 +3,7 @@ import 'package:projeto_crypto/details/model/cryptos_market_data_view_data.dart'
 import 'package:projeto_crypto/details/widgets/row_infos.dart';
 
 import '../../l10n/core_strings.dart';
-import '../../portifolio/model/crypto_view_data.dart';
+import '../../portfolio/model/crypto_view_data.dart';
 import '../../shared/utils/currency_formatter.dart';
 
 class ColumnInfos extends StatelessWidget {

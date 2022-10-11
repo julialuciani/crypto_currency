@@ -15,7 +15,7 @@ void main() {
 
     expect(find.text('Crypto'), findsOneWidget);
     expect(find.text('Total crypto wealth'), findsOneWidget);
-    expect(find.text('Portifolio'), findsOneWidget);
+    expect(find.text('Portfolio'), findsOneWidget);
     expect(find.text('Movements'), findsOneWidget);
     expect(find.text('Price in the last 3 days'), findsOneWidget);
     expect(find.text('Variation in the last 3 days'), findsOneWidget);

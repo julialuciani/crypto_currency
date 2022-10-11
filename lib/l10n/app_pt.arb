@@ -1,7 +1,7 @@
 {
     "crypto": "Cripto",
     "total" : "Valor total de moedas",
-    "port" : "Portifólio",
+    "port" : "Portfólio",
     "move" : "Movimentos",
     "prices" : "Preço nos últimos {days} dias",
     "@prices": {

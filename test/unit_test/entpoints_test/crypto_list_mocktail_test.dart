@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:projeto_crypto/portifolio/repository/cryptos_repository.dart';
-import 'package:projeto_crypto/portifolio/usecase/cryptos_usecase.dart';
+import 'package:projeto_crypto/portfolio/repository/cryptos_repository.dart';
+import 'package:projeto_crypto/portfolio/usecase/cryptos_usecase.dart';
 import 'package:projeto_crypto/shared/api/models/endpoints/cryptos_endpoint.dart';
 
 import '../../shared/api_factory.dart';

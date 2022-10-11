@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/portifolio/usecase/cryptos_usecase.dart';
-import 'package:projeto_crypto/portifolio/repository/cryptos_repository_provider.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/usecase/cryptos_usecase.dart';
+import 'package:projeto_crypto/portfolio/repository/cryptos_repository_provider.dart';
 
 final cryptosProviderUsecase = Provider(
   (ref) {

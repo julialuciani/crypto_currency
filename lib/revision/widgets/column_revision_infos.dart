@@ -3,7 +3,7 @@ import 'package:projeto_crypto/l10n/core_strings.dart';
 
 import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
 
-import '../../portifolio/model/crypto_view_data.dart';
+import '../../portfolio/model/crypto_view_data.dart';
 import '../methods/revision_methods.dart';
 
 class ColumnRevisionInfo extends StatelessWidget {

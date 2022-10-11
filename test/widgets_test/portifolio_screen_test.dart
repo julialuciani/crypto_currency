@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
-import 'package:projeto_crypto/portifolio/widgets/body_portifolio_screen.dart';
-import 'package:projeto_crypto/portifolio/widgets/invisible_container.dart';
-import 'package:projeto_crypto/portifolio/widgets/listile_crypto.dart';
-import 'package:projeto_crypto/portifolio/widgets/listview_crypto.dart';
-import 'package:projeto_crypto/portifolio/widgets/upper_container_crypto.dart';
+import 'package:projeto_crypto/portfolio/widgets/body_portifolio_screen.dart';
+import 'package:projeto_crypto/portfolio/widgets/invisible_container.dart';
+import 'package:projeto_crypto/portfolio/widgets/listile_crypto.dart';
+import 'package:projeto_crypto/portfolio/widgets/listview_crypto.dart';
+import 'package:projeto_crypto/portfolio/widgets/upper_container_crypto.dart';
 import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 
 import '../helpers/crypto_mock_data.dart';
@@ -15,7 +15,7 @@ import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 void main() {
   group('Testing portifolio screen', () {
     testWidgets(
-        'When BodyPortifolioScreen is called the tests if it has all the widgets it needs',
+        'When BodyPortifolioScreen is called then tests if it has all the widgets it needs',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(
@@ -63,7 +63,7 @@ void main() {
     });
 
     testWidgets(
-        'When called UpperContainerCrypto then tests if it has the number of texts it shou have',
+        'When called UpperContainerCrypto then tests if it has the number of texts it should have',
         (WidgetTester tester) async {
       await loadPage(tester, const UpperContainerCrypto());
 
@@ -124,7 +124,7 @@ void main() {
     });
 
     testWidgets(
-        'When ListTile is called expect to find its widgets and its infos',
+        'When ListTile is called then expect to find its widgets and its infos',
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await loadPage(

@@ -55,7 +55,7 @@ void main() {
     });
 
     testWidgets(
-        'When ContainerMovementsText is called the tests if it has all the widgets it needs',
+        'When ContainerMovementsText is called then tests if it has all the widgets it needs',
         (WidgetTester tester) async {
       await loadPage(tester, const ContainerMovementsText());
 

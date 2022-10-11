@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_crypto/portifolio/view/portfolio_screen.dart';
+import 'package:projeto_crypto/portfolio/view/portfolio_screen.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
 import 'package:projeto_crypto/revision/view/conversion_performed_screen.dart';
 import 'package:projeto_crypto/revision/view/revision_screen.dart';

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
 import '../../revision/revision_arguments/revision_arguments_screen.dart';
 import '../widgets/bottom_sheet_warning_user.dart';

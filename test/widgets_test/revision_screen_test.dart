@@ -85,7 +85,7 @@ void main() {
     });
 
     testWidgets(
-        'When ButtonRevisionScreen is called the expect to find its widgets and taps it',
+        'When ButtonRevisionScreen is called then expect to find its widgets and taps it',
         (WidgetTester tester) async {
       await loadPage(
           tester,

@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projeto_crypto/conversion/controller/cryptos_provider.dart';
 
 import 'package:projeto_crypto/l10n/core_strings.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
 import 'list_tile_conversion.dart';
 

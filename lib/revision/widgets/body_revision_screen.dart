@@ -4,7 +4,7 @@ import 'package:projeto_crypto/revision/widgets/button_revision_screen.dart';
 import 'package:projeto_crypto/revision/widgets/column_revision_infos.dart';
 import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
 
-import '../../portifolio/model/crypto_view_data.dart';
+import '../../portfolio/model/crypto_view_data.dart';
 
 class BodyRevision extends StatelessWidget {
   final String convertQuantity;

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:projeto_crypto/portifolio/controller/crypto_individual_balance_notifier.dart';
+import 'package:projeto_crypto/portfolio/controller/crypto_individual_balance_notifier.dart';
 
 import '../../l10n/core_strings.dart';
-import '../../portifolio/model/crypto_view_data.dart';
+import '../../portfolio/model/crypto_view_data.dart';
 import '../../shared/style/colors.dart';
 import '../../shared/templates/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';

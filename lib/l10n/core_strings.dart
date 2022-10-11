@@ -110,7 +110,7 @@ abstract class CoreString {
   /// No description provided for @port.
   ///
   /// In pt, this message translates to:
-  /// **'Portifólio'**
+  /// **'Portfólio'**
   String get port;
 
   /// No description provided for @move.

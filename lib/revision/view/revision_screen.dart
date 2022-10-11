@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/revision/widgets/body_revision_screen.dart';
 import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 

@@ -5,7 +5,7 @@ import 'package:projeto_crypto/details/controller/days_provider.dart';
 import 'package:projeto_crypto/details/model/cryptos_market_data_view_data.dart';
 import 'package:projeto_crypto/details/widgets/column_infos.dart';
 
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../../l10n/core_strings.dart';
