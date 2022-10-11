@@ -21,6 +21,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBarDefault(title: CoreString.of(context)!.details),
       body: DetailsScreen(
           crypto: crypto, singleBalance: singleBalance, list: list),
