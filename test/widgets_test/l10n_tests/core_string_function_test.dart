@@ -9,7 +9,7 @@ void main() {
         () => lookupCoreString(const Locale('kk', 'BK')), throwsFlutterError);
   });
 
-  test('WHEN CoreString should reload THEN expect it to reload', () async {
+  test('WHEN CoreString should reload THEN return expectations', () async {
     expect(CoreString.delegate.shouldReload.call(CoreString.delegate), false);
   });
 }
