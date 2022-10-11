@@ -1,7 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:projeto_crypto/details/view/details_screen.dart';
+import 'package:projeto_crypto/details/widgets/body_details_screen.dart';
 import 'package:projeto_crypto/portfolio/view/portfolio_screen.dart';
+import 'package:projeto_crypto/portfolio/widgets/body_portifolio_screen.dart';
 
 import '../../helpers/setup/setup_when_widget_tester.dart';
 import '../../shared/crypto_mock_data.dart';
@@ -15,6 +17,7 @@ void main() {
       await loadPageWhen(
           tester, const SetupWhenWidgetTester(child: PortfolioScreen()));
       await tester.pumpAndSettle();
+      expect(find.byType(BodyPortifolioScreen), findsWidgets);
     });
   });
 
@@ -30,6 +33,7 @@ void main() {
             list: data,
           )));
       await tester.pumpAndSettle();
+      expect(find.byType(BodyDetailsScreen), findsWidgets);
     });
   });
 }

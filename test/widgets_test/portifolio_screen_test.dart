@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:projeto_crypto/portfolio/view/portfolio_screen.dart';
 import 'package:projeto_crypto/portfolio/widgets/body_portifolio_screen.dart';
 import 'package:projeto_crypto/portfolio/widgets/invisible_container.dart';
 import 'package:projeto_crypto/portfolio/widgets/listile_crypto.dart';
@@ -14,6 +15,15 @@ import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   group('Testing portifolio screen', () {
+    testWidgets(
+        'WHEN testing Portifolios Screen THEN taps the refresh error button',
+        (WidgetTester tester) async {
+      await loadPage(tester, const PortfolioScreen());
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(InkWell));
+      await tester.pumpAndSettle();
+    });
     testWidgets(
         'WHEN BodyPortifolioScreen is called THEN tests if it has all the widgets it needs',
         (WidgetTester tester) async {

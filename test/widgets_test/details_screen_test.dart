@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:projeto_crypto/details/model/cryptos_market_data_view_data.dart';
+import 'package:projeto_crypto/details/view/details_screen.dart';
 import 'package:projeto_crypto/details/widgets/body_details_screen.dart';
 import 'package:projeto_crypto/details/widgets/change_days_button.dart';
 import 'package:projeto_crypto/details/widgets/chart_button.dart';
@@ -15,9 +16,25 @@ import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 
 import '../shared/crypto_mock_data.dart';
 import '../helpers/setup/setup_widget_tester.dart';
+import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   group('Testing details screen', () {
+    testWidgets(
+        'WHEN testing Details Screen THEN taps the refresh error button',
+        (WidgetTester tester) async {
+      await loadPage(
+          tester,
+          DetailsScreen(
+            crypto: crypto,
+            list: data,
+            singleBalance: cryptoBalance,
+          ));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(InkWell));
+      await tester.pumpAndSettle();
+    });
     testWidgets(
         'WHEN BodyDetailsScreen is called THEN test if it has all the widgets it needs',
         (WidgetTester tester) async {
