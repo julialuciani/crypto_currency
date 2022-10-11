@@ -8,11 +8,11 @@ import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 import 'list_tile_conversion.dart';
 
 class ButtonChangeCoin extends ConsumerStatefulWidget {
-  CryptoViewData crypto;
+  final CryptoViewData crypto;
   final List<CryptoViewData> data;
   final String id;
 
-  ButtonChangeCoin({
+  const ButtonChangeCoin({
     super.key,
     required this.crypto,
     required this.data,
@@ -75,9 +75,10 @@ class _ButtonChangeCoinState extends ConsumerState<ButtonChangeCoin> {
                           onTap: () {
                             setState(() {
                               if (widget.id == '1') {
-                                widget.crypto = widget.data[index];
+                                ref.read(leftCryptoProvider.state).state =
+                                    widget.data[index];
                               } else if (widget.id != '1') {
-                                ref.read(singleCryptoProvider.state).state =
+                                ref.read(rightCryptoProvider.state).state =
                                     widget.data[index];
                               }
                             });

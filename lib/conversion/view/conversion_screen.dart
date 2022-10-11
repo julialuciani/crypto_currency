@@ -43,7 +43,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     super.initState();
     valueController.addListener(getLastestValue);
     Future.delayed(Duration.zero, () {
-      ref.read(singleCryptoProvider.state).state = widget.crypto;
+      ref.read(rightCryptoProvider.state).state = widget.crypto;
+      ref.read(leftCryptoProvider.state).state = widget.crypto;
     });
   }
 
@@ -55,7 +56,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var crypto = ref.watch(singleCryptoProvider.state).state;
+    var cryptoRight = ref.watch(rightCryptoProvider.state).state;
+    var cryptoLeft = ref.watch(leftCryptoProvider.state).state;
     var cryptoBalance = ref.read(singleBalanceProvider);
 
     return Form(
@@ -72,7 +74,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               UpperAvailableBalanceContainer(
                 crypto: widget.crypto,
                 singleBalance: cryptoBalance.elementAt(
-                  widget.list.indexOf(widget.crypto),
+                  widget.list.indexOf(cryptoLeft),
                 ),
               ),
               const InteractiveText(),
@@ -80,22 +82,22 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ButtonChangeCoin(
-                    crypto: widget.crypto,
+                    crypto: cryptoLeft,
                     data: widget.list,
                     id: '1',
                   ),
                   IconButton(
                     icon: const Icon(Icons.compare_arrows, color: magenta),
                     onPressed: () {
-                      CryptoViewData temp = widget.crypto;
+                      CryptoViewData temp = cryptoLeft;
                       setState(() {
-                        widget.crypto = crypto;
-                        ref.read(singleCryptoProvider.state).state = temp;
+                        ref.read(leftCryptoProvider.state).state = cryptoRight;
+                        ref.read(rightCryptoProvider.state).state = temp;
                       });
                     },
                   ),
                   ButtonChangeCoin(
-                    crypto: crypto,
+                    crypto: cryptoRight,
                     data: widget.list,
                     id: '2',
                   ),
@@ -129,11 +131,11 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   setState(() {
                     ConversionMethods.formatLatestValue(
                         ConversionMethods.convertLatestValue(
-                            valueController.text, widget.crypto));
+                            valueController.text, cryptoLeft));
                     ConversionMethods.getTotal(
-                        crypto,
+                        cryptoRight,
                         ConversionMethods.convertLatestValue(
-                            valueController.text, widget.crypto));
+                            valueController.text, cryptoLeft));
                   });
                 },
                 validator: (value) {
@@ -168,17 +170,17 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               validate ? magenta : const Color.fromARGB(255, 202, 200, 212),
           onPressed: () {
             if (_key.currentState!.validate()) {
-              ConversionMethods.validation(
-                  crypto, widget.crypto, context, valueController, widget.list);
+              ConversionMethods.validation(cryptoRight, cryptoLeft, context,
+                  valueController, widget.list);
             }
           },
           child: const Icon(Icons.navigate_next),
         ),
         bottomSheet: TotalContainer(
           total: ConversionMethods.getTotal(
-              crypto,
+              cryptoRight,
               ConversionMethods.convertLatestValue(
-                  valueController.text, widget.crypto)),
+                  valueController.text, cryptoLeft)),
         ),
       ),
     );
