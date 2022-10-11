@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/portfolio/methods/portifolio_methods.dart';
 import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
-import '../../helpers/crypto_mock_data.dart';
+import '../../shared/crypto_mock_data.dart';
 
 void main() {
   test(

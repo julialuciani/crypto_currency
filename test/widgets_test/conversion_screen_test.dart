@@ -11,8 +11,8 @@ import 'package:projeto_crypto/conversion/widgets/upper_container_conversion.dar
 import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
-import '../helpers/crypto_mock_data.dart';
-import '../helpers/setup_widget_tester.dart';
+import '../shared/crypto_mock_data.dart';
+import '../helpers/setup/setup_widget_tester.dart';
 
 void main() {
   group('Testing conversion screen', () {

@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/revision/methods/revision_methods.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
 
-import '../../helpers/crypto_mock_data.dart';
+import '../../shared/crypto_mock_data.dart';
 
 void main() {
   test(

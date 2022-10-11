@@ -8,8 +8,8 @@ import 'package:projeto_crypto/revision/widgets/row_revision_info.dart';
 import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
 import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 
-import '../helpers/crypto_mock_data.dart';
-import '../helpers/setup_widget_tester.dart';
+import '../shared/crypto_mock_data.dart';
+import '../helpers/setup/setup_widget_tester.dart';
 
 void main() {
   group('Testing revision screen', () {

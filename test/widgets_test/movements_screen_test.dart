@@ -7,8 +7,8 @@ import 'package:projeto_crypto/movements/widgets/list_tile_movements.dart';
 import 'package:projeto_crypto/movements/widgets/list_view_movements.dart';
 import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 
-import '../helpers/crypto_mock_data.dart';
-import '../helpers/setup_widget_tester.dart';
+import '../shared/crypto_mock_data.dart';
+import '../helpers/setup/setup_widget_tester.dart';
 
 void main() {
   group('Testing movemnts screen', () {

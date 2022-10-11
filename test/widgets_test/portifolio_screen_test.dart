@@ -8,8 +8,8 @@ import 'package:projeto_crypto/portfolio/widgets/listview_crypto.dart';
 import 'package:projeto_crypto/portfolio/widgets/upper_container_crypto.dart';
 import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 
-import '../helpers/crypto_mock_data.dart';
-import '../helpers/setup_widget_tester.dart';
+import '../shared/crypto_mock_data.dart';
+import '../helpers/setup/setup_widget_tester.dart';
 import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {

@@ -17,5 +17,3 @@ var leftCryptoProvider = StateProvider<CryptoViewData>((ref) => CryptoViewData(
       currentPrice: 0.0,
       variation: 0.0,
     ));
-
-var leftCryptoOnlyBalance = StateProvider((ref) => 0);

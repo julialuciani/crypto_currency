@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:projeto_crypto/l10n/core_strings.dart';
 
-import 'widgets/internationalized_texts.dart';
+import '../widgets/internationalized_texts.dart';
 
 class L10nSetupWidgetTester extends StatelessWidget {
   final Locale locale;

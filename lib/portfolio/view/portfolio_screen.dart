@@ -7,7 +7,7 @@ import '../usecase/cryptos_provider.dart';
 import '../widgets/body_portifolio_screen.dart';
 
 class PortfolioScreen extends HookConsumerWidget {
-  const PortfolioScreen({Key? key}) : super(key: key);
+  const PortfolioScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

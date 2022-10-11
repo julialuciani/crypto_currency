@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../helpers/l10n_setup_widget_tester.dart';
-import '../../helpers/setup_widget_tester.dart';
+import '../../helpers/setup/l10n_setup_widget_tester.dart';
+import '../../helpers/setup/setup_widget_tester.dart';
 
 void main() {
   testWidgets('Testing english translation', (WidgetTester tester) async {

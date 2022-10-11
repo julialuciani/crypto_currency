@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/revision/view/conversion_performed_screen.dart';
 
-import '../helpers/setup_widget_tester.dart';
+import '../helpers/setup/setup_widget_tester.dart';
 
 void main() {
   group('Testing conversion performed screen', () {
