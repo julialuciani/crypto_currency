@@ -5,7 +5,8 @@ var rightCryptoProvider = StateProvider<CryptoViewData>((ref) => CryptoViewData(
       id: 'bitcoin',
       symbol: 'btc',
       name: 'Bitcoin',
-      image: 'assets/icons/cent.png',
+      image:
+          'https://w7.pngwing.com/pngs/698/439/png-transparent-bitcoin-cryptocurrency-logo-bitcoin-text-orange-logo.png',
       currentPrice: 0.0,
       variation: 0.0,
     ));
@@ -13,7 +14,8 @@ var leftCryptoProvider = StateProvider<CryptoViewData>((ref) => CryptoViewData(
       id: 'bitcoin',
       symbol: 'btc',
       name: 'Bitcoin',
-      image: 'assets/icons/cent.png',
+      image:
+          'https://w7.pngwing.com/pngs/698/439/png-transparent-bitcoin-cryptocurrency-logo-bitcoin-text-orange-logo.png',
       currentPrice: 0.0,
       variation: 0.0,
     ));

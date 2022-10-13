@@ -43,7 +43,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
     super.initState();
     valueController.addListener(getLastestValue);
     Future.delayed(Duration.zero, () {
-      ref.read(rightCryptoProvider.state).state = widget.crypto;
+      ref.read(rightCryptoProvider.state).state =
+          widget.crypto == widget.list[0] ? widget.list[1] : widget.list[0];
       ref.read(leftCryptoProvider.state).state = widget.crypto;
     });
   }
