@@ -20,14 +20,6 @@ class ConversionMethods {
     return value;
   }
 
-  static double getTotal(double currentPrice, double convert) {
-    if (convert == 0.0) {
-      return 0;
-    }
-    double total = convert / currentPrice;
-    return total;
-  }
-
   static double getIncrease(double textFieldHelper, double rightCurrentPrice) {
     return textFieldHelper / rightCurrentPrice;
   }

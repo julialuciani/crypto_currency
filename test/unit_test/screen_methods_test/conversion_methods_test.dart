@@ -5,10 +5,6 @@ import '../../shared/crypto_mock_data.dart';
 
 void main() {
   group('Testing conversion methods', () {
-    test('WHEN testing getTotal THEN return expectations', () async {
-      double getTotal = ConversionMethods.getTotal(5, 5);
-      expect(getTotal, 1.0);
-    });
     test('WHEN testing formattingValue THEN return a formatted value',
         () async {
       expect(ConversionMethods.formattingValue('0,2'), '0.2');
