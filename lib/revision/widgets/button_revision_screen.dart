@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import 'package:projeto_crypto/l10n/core_strings.dart';
 import 'package:projeto_crypto/movements/model/movement_model.dart';
@@ -10,15 +11,11 @@ import '../../portfolio/controller/crypto_individual_balance_notifier.dart';
 import '../../portfolio/model/crypto_view_data.dart';
 
 class ButtonRevisionScreen extends HookConsumerWidget {
-  final String convertQuantity;
-  final String receiveQuantity;
+  final double convertQuantity;
+  final double receiveQuantity;
   final CryptoViewData cryptoConvert;
   final CryptoViewData cryptoReceive;
-  final String total;
-  final double discount;
-  final double increase;
-  final String idDiscount;
-  final String idIncrease;
+
   final List<CryptoViewData> cryptos;
   const ButtonRevisionScreen({
     Key? key,
@@ -26,11 +23,6 @@ class ButtonRevisionScreen extends HookConsumerWidget {
     required this.receiveQuantity,
     required this.cryptoConvert,
     required this.cryptoReceive,
-    required this.total,
-    required this.discount,
-    required this.increase,
-    required this.idDiscount,
-    required this.idIncrease,
     required this.cryptos,
   }) : super(key: key);
 
@@ -39,22 +31,23 @@ class ButtonRevisionScreen extends HookConsumerWidget {
     final movements = ref.watch(movementProvider.state).state;
 
     MovementModel model = MovementModel(
-      converted: '$convertQuantity ${cryptoConvert.symbol.toUpperCase()}',
-      received: receiveQuantity,
-      valueInReal: total,
-      date: DateTime.now(),
-      increase: increase,
-      discount: discount,
-      idDiscount: idDiscount,
-      idIncrease: idIncrease,
-    );
+        converted: '$convertQuantity ${cryptoConvert.symbol.toUpperCase()}',
+        received: '$receiveQuantity ${cryptoReceive.symbol.toUpperCase()}',
+        date: DateTime.now(),
+        increase: receiveQuantity,
+        discount: convertQuantity,
+        idDiscount: cryptoConvert.id,
+        idIncrease: cryptoReceive.id,
+        valueInReal:
+            NumberFormat.simpleCurrency(locale: 'pt_BR', decimalDigits: 2)
+                .format(convertQuantity * cryptoConvert.currentPrice));
 
     void alterBalance() {
       Future.delayed(Duration.zero, () {
         int discountIndex =
-            cryptos.indexWhere((element) => idDiscount == element.id);
+            cryptos.indexWhere((element) => model.idDiscount == element.id);
         int increaseIndex =
-            cryptos.indexWhere((element) => idIncrease == element.id);
+            cryptos.indexWhere((element) => model.idIncrease == element.id);
 
         for (CryptoViewData crypto in cryptos) {
           if (model.idDiscount == crypto.id) {

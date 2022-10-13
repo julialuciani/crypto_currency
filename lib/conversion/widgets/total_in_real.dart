@@ -19,7 +19,8 @@ class TotalInReal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       NumberFormat.simpleCurrency(locale: 'pt_BR', decimalDigits: 2).format(
-          ConversionMethods.convertLatestValue(valueController.text, crypto)),
+          ConversionMethods.convertLeftValueToReal(
+              valueController.text, crypto)),
       style: TextStyle(
         fontSize: 20,
         color: Colors.grey.shade500,

@@ -14,21 +14,15 @@ void main() {
 
   test('WHEN receive the parameters THEN tests if they are equal', () async {
     RevisionArguments revisionArguments = RevisionArguments(
-        convertQuantity: '1BTC',
-        receiveQuantity: '2 ETH',
+        convertQuantity: 1,
+        receiveQuantity: 2,
         cryptoConvert: crypto,
         cryptoReceive: cryptoSecond,
-        total: '100',
-        discount: 1,
-        increase: 2,
         cryptos: [crypto, cryptoSecond]);
 
-    expect(revisionArguments.convertQuantity, '1BTC');
-    expect(revisionArguments.receiveQuantity, '2 ETH');
+    expect(revisionArguments.convertQuantity, 1);
+    expect(revisionArguments.receiveQuantity, 2);
     expect(revisionArguments.cryptoConvert, crypto);
     expect(revisionArguments.cryptoReceive, cryptoSecond);
-    expect(revisionArguments.total, '100');
-    expect(revisionArguments.discount, 1);
-    expect(revisionArguments.increase, 2);
   });
 }

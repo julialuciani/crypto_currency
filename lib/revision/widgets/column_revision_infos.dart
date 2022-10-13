@@ -15,9 +15,9 @@ class ColumnRevisionInfo extends StatelessWidget {
     required this.cryptoReceive,
   }) : super(key: key);
 
-  final String convertQuantity;
+  final double convertQuantity;
   final CryptoViewData cryptoConvert;
-  final String receiveQuantity;
+  final double receiveQuantity;
   final CryptoViewData cryptoReceive;
 
   @override
@@ -31,7 +31,8 @@ class ColumnRevisionInfo extends StatelessWidget {
         ),
         const Divider(thickness: 1),
         RowRevisionInfo(
-            label: CoreString.of(context)!.receive, data: receiveQuantity),
+            label: CoreString.of(context)!.receive,
+            data: '$receiveQuantity ${cryptoReceive.symbol.toUpperCase()}'),
         const Divider(thickness: 1),
         RowRevisionInfo(
           label: CoreString.of(context)!.exc,

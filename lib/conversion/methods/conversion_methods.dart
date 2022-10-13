@@ -9,31 +9,15 @@ class ConversionMethods {
     return !value.startsWith(RegExp(r'[!@#$%^&*()-/+.,?":{}|<>]'));
   }
 
-  static double convertLatestValue(
-      String valueController, CryptoViewData crypto) {
+  static double convertLeftValueToReal(
+      String valueController, CryptoViewData cryptoLeft) {
     double value = 0.0;
     if (valueController == '' || valueController == '.') {
       value = 0.0;
     } else {
-      value = double.parse(valueController) * crypto.currentPrice;
+      value = double.parse(valueController) * cryptoLeft.currentPrice;
     }
     return value;
-  }
-
-  static String getTotalFormatted(CryptoViewData crypto, double convert) {
-    if (convert == 0.0) {
-      return '0.00 ${crypto.symbol.toUpperCase()}';
-    }
-    double total = convert / crypto.currentPrice;
-    return '${total.toStringAsFixed(5)} ${crypto.symbol.toUpperCase()}';
-  }
-
-  static double getTotal(double currentPrice, double convert) {
-    if (convert == 0.0) {
-      return 0;
-    }
-    double total = convert / currentPrice;
-    return total;
   }
 
   static double getIncrease(double textFieldHelper, double rightCurrentPrice) {
