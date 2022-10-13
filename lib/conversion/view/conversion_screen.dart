@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import 'package:projeto_crypto/portfolio/controller/crypto_individual_balance_notifier.dart';
 
@@ -181,21 +180,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                   '/revision',
                   arguments: RevisionArguments(
                     cryptos: widget.list,
-                    convertQuantity: valueController.text,
+                    convertQuantity: double.parse(valueController.text),
                     cryptoConvert: cryptoLeft,
                     cryptoReceive: cryptoRight,
-                    receiveQuantity: ConversionMethods.getTotalFormatted(
-                        cryptoRight,
-                        ConversionMethods.convertLatestValue(
-                            valueController.text, cryptoLeft)),
-                    total: NumberFormat.simpleCurrency(
-                            locale: 'pt_BR', decimalDigits: 2)
-                        .format(
-                      ConversionMethods.convertLatestValue(
-                          valueController.text, cryptoLeft),
-                    ),
-                    discount: double.parse(valueController.text),
-                    increase: ConversionMethods.getIncrease(
+                    receiveQuantity: ConversionMethods.getIncrease(
                         ConversionMethods.convertLatestValue(
                             valueController.text, cryptoLeft),
                         cryptoRight.currentPrice),
@@ -208,10 +196,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
           child: const Icon(Icons.navigate_next),
         ),
         bottomSheet: TotalContainer(
-          total: ConversionMethods.getTotalFormatted(
-              cryptoRight,
-              ConversionMethods.convertLatestValue(
-                  valueController.text, cryptoLeft)),
+          total:
+              '${ConversionMethods.getIncrease(ConversionMethods.convertLatestValue(valueController.text, cryptoLeft), cryptoRight.currentPrice)} ${cryptoRight.symbol.toUpperCase()}',
         ),
       ),
     );

@@ -20,14 +20,6 @@ class ConversionMethods {
     return value;
   }
 
-  static String getTotalFormatted(CryptoViewData crypto, double convert) {
-    if (convert == 0.0) {
-      return '0.00 ${crypto.symbol.toUpperCase()}';
-    }
-    double total = convert / crypto.currentPrice;
-    return '${total.toStringAsFixed(5)} ${crypto.symbol.toUpperCase()}';
-  }
-
   static double getTotal(double currentPrice, double convert) {
     if (convert == 0.0) {
       return 0;

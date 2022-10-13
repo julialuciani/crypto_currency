@@ -57,9 +57,6 @@ class GenerateRoute {
             cryptoConvert: args.cryptoConvert,
             cryptoReceive: args.cryptoReceive,
             receiveQuantity: args.receiveQuantity,
-            total: args.total,
-            discount: args.discount,
-            increase: args.increase,
             cryptos: args.cryptos,
           );
         },

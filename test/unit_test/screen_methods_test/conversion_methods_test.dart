@@ -42,15 +42,5 @@ void main() {
           ConversionMethods.convertLatestValue(valueControllerThird, crypto);
       expect(convertThird, 0);
     });
-
-    test(
-        'WHEN receives a value THEN returns the value divided by the current price of the crypto',
-        () async {
-      String getTotal = ConversionMethods.getTotalFormatted(crypto, 5);
-      expect(getTotal, '2.50000 BTC');
-
-      String getTotalSecond = ConversionMethods.getTotalFormatted(crypto, 0);
-      expect(getTotalSecond, '0.00 BTC');
-    });
   });
 }

@@ -19,13 +19,10 @@ void main() {
           tester,
           RevisionScreen(
             cryptos: [crypto, cryptoSecond],
-            convertQuantity: '1BTC',
-            receiveQuantity: '2 ETH',
+            convertQuantity: 1,
+            receiveQuantity: 2,
             cryptoConvert: crypto,
             cryptoReceive: cryptoSecond,
-            total: '1',
-            discount: 1,
-            increase: 2,
           ));
       await tester.pumpAndSettle();
       final scaffoldFinder = find.byType(Scaffold);
@@ -41,16 +38,12 @@ void main() {
       await loadPage(
           tester,
           BodyRevision(
-              cryptos: [crypto, cryptoSecond],
-              convertQuantity: '0.2',
-              receiveQuantity: '0.2',
-              cryptoConvert: crypto,
-              cryptoReceive: crypto,
-              total: '0.2',
-              increase: 0.0,
-              discount: 0.0,
-              idDiscount: 'bitcoin',
-              idIncrease: 'bitcoin'));
+            cryptos: [crypto, cryptoSecond],
+            convertQuantity: 0.2,
+            receiveQuantity: 0.2,
+            cryptoConvert: crypto,
+            cryptoReceive: crypto,
+          ));
 
       await tester.pumpAndSettle();
       final sizedBoxFinder = find.byType(SizedBox);
@@ -71,8 +64,8 @@ void main() {
       await loadPage(
           tester,
           ColumnRevisionInfo(
-            convertQuantity: '0.2',
-            receiveQuantity: '0.2',
+            convertQuantity: 0.2,
+            receiveQuantity: 0.2,
             cryptoConvert: crypto,
             cryptoReceive: crypto,
           ));
@@ -89,15 +82,10 @@ void main() {
       await loadPage(
           tester,
           ButtonRevisionScreen(
-            convertQuantity: '0.2',
-            receiveQuantity: '0.2',
+            convertQuantity: 0.2,
+            receiveQuantity: 0.2,
             cryptoConvert: crypto,
             cryptoReceive: cryptoSecond,
-            total: '0.2',
-            increase: 0.0,
-            discount: 0.0,
-            idDiscount: 'bitcoin',
-            idIncrease: 'ethereum',
             cryptos: [crypto, cryptoSecond],
           ));
       await tester.pumpAndSettle();
@@ -117,11 +105,6 @@ void main() {
       expect(buttonTester.receiveQuantity, '0.2');
       expect(buttonTester.cryptoConvert.id, crypto.id);
       expect(buttonTester.cryptoReceive.id, cryptoSecond.id);
-      expect(buttonTester.total, '0.2');
-      expect(buttonTester.increase, 0.0);
-      expect(buttonTester.discount, 0.0);
-      expect(buttonTester.idDiscount, 'bitcoin');
-      expect(buttonTester.idIncrease, 'ethereum');
       expect(materialTester.onPressed != null, true);
 
       await tester.tap(revisionButton);
