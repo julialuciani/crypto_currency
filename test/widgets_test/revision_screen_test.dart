@@ -101,8 +101,8 @@ void main() {
       expect(paddingFinder, findsWidgets);
       expect(textFinder, findsWidgets);
       expect(revisionButton, findsWidgets);
-      expect(buttonTester.convertQuantity, '0.2');
-      expect(buttonTester.receiveQuantity, '0.2');
+      expect(buttonTester.convertQuantity, 0.2);
+      expect(buttonTester.receiveQuantity, 0.2);
       expect(buttonTester.cryptoConvert.id, crypto.id);
       expect(buttonTester.cryptoReceive.id, cryptoSecond.id);
       expect(materialTester.onPressed != null, true);
