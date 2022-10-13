@@ -13,6 +13,6 @@ class CryptosEndpoint {
 
   Future<Response> getAllCryptosMarketData(String id) async {
     return await _dio.get(
-        '/coins/$id/market_chart?vs_currency=$currency&days=365&interval=daily');
+        '/coins/$id/market_chart?vs_currency=$currency&days=366&interval=daily');
   }
 }

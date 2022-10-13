@@ -32,6 +32,10 @@ class ChangeDaysButtons extends StatelessWidget {
           daysButton: 90,
         ),
         ChartButton(
+          title: '180D',
+          daysButton: 180,
+        ),
+        ChartButton(
           title: '365D',
           daysButton: 365,
         ),
