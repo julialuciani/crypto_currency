@@ -21,8 +21,6 @@ void main() {
         total: '100',
         discount: 1,
         increase: 2,
-        idDiscount: 'btc',
-        idIncrease: 'eth',
         cryptos: [crypto, cryptoSecond]);
 
     expect(revisionArguments.convertQuantity, '1BTC');
@@ -32,7 +30,5 @@ void main() {
     expect(revisionArguments.total, '100');
     expect(revisionArguments.discount, 1);
     expect(revisionArguments.increase, 2);
-    expect(revisionArguments.idDiscount, 'btc');
-    expect(revisionArguments.idIncrease, 'eth');
   });
 }

@@ -13,8 +13,6 @@ class RevisionScreen extends StatelessWidget {
   final String total;
   final double discount;
   final double increase;
-  final String idDiscount;
-  final String idIncrease;
   final List<CryptoViewData> cryptos;
 
   const RevisionScreen({
@@ -26,8 +24,6 @@ class RevisionScreen extends StatelessWidget {
     required this.total,
     required this.discount,
     required this.increase,
-    required this.idDiscount,
-    required this.idIncrease,
     required this.cryptos,
   }) : super(key: key);
 
@@ -43,8 +39,8 @@ class RevisionScreen extends StatelessWidget {
         total: total,
         increase: increase,
         discount: discount,
-        idDiscount: idDiscount,
-        idIncrease: idIncrease,
+        idDiscount: cryptoConvert.id,
+        idIncrease: cryptoReceive.id,
         cryptos: cryptos,
       ),
     );

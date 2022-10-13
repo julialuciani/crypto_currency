@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projeto_crypto/l10n/core_strings.dart';
@@ -52,7 +53,7 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
             ],
           ),
           visible.state
-              ? Text(
+              ? AutoSizeText(
                   FormatCurrency.format(balance),
                   style: const TextStyle(
                     fontSize: 29,

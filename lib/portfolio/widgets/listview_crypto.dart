@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:projeto_crypto/portfolio/controller/balance_provider.dart';
 
 import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
-import '../methods/portifolio_methods.dart';
+import '../controller/balance_provider.dart';
 import 'listile_crypto.dart';
 
 class ListViewCryptos extends HookConsumerWidget {
@@ -16,12 +15,21 @@ class ListViewCryptos extends HookConsumerWidget {
     required this.singleBalance,
   }) : super(key: key);
 
+  double getBalance() {
+    double balance = 0;
+    for (CryptoViewData crypto in data) {
+      balance += crypto.currentPrice * singleBalance[data.indexOf(crypto)];
+      debugPrint(balance.toString());
+    }
+    return balance;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Future.delayed(Duration.zero, () {
-      ref.read(balanceProvider.state).state =
-          PortifolioMethods.getBalance(data, singleBalance);
+      ref.read(balanceProvider.state).state = getBalance();
     });
+
     return ListView.separated(
       physics: const ClampingScrollPhysics(),
       itemCount: data.length,

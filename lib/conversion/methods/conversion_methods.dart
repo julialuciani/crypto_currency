@@ -1,9 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
-
-import '../../revision/revision_arguments/revision_arguments_screen.dart';
-import '../widgets/bottom_sheet_warning_user.dart';
 
 class ConversionMethods {
   static String formattingValue(String value) {
@@ -25,14 +20,7 @@ class ConversionMethods {
     return value;
   }
 
-  static String formatLatestValue(double price) {
-    String value =
-        NumberFormat.simpleCurrency(locale: 'pt_BR', decimalDigits: 2)
-            .format(price);
-    return value;
-  }
-
-  static String getTotal(CryptoViewData crypto, double convert) {
+  static String getTotalFormatted(CryptoViewData crypto, double convert) {
     if (convert == 0.0) {
       return '0.00 ${crypto.symbol.toUpperCase()}';
     }
@@ -40,38 +28,15 @@ class ConversionMethods {
     return '${total.toStringAsFixed(5)} ${crypto.symbol.toUpperCase()}';
   }
 
-  static bool validation(
-      CryptoViewData crypto,
-      CryptoViewData model,
-      BuildContext context,
-      TextEditingController valueController,
-      List<CryptoViewData> list) {
-    if (model == crypto) {
-      bottomSheetWarningUser(context);
-      return false;
-    } else {
-      Navigator.of(context).pushNamed(
-        '/revision',
-        arguments: RevisionArguments(
-          cryptos: list,
-          convertQuantity: valueController.text,
-          cryptoConvert: model,
-          cryptoReceive: crypto,
-          receiveQuantity: ConversionMethods.getTotal(
-              crypto,
-              ConversionMethods.convertLatestValue(
-                  valueController.text, model)),
-          total: ConversionMethods.formatLatestValue(
-              ConversionMethods.convertLatestValue(
-                  valueController.text, model)),
-          discount: double.parse(valueController.text),
-          increase: ConversionMethods.convertLatestValue(
-              valueController.text, crypto),
-          idDiscount: model.id,
-          idIncrease: crypto.id,
-        ),
-      );
-      return true;
+  static double getTotal(double currentPrice, double convert) {
+    if (convert == 0.0) {
+      return 0;
     }
+    double total = convert / currentPrice;
+    return total;
+  }
+
+  static double getIncrease(double textFieldHelper, double rightCurrentPrice) {
+    return textFieldHelper / rightCurrentPrice;
   }
 }

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import 'package:projeto_crypto/portfolio/controller/crypto_individual_balance_notifier.dart';
 
 import '../../l10n/core_strings.dart';
 import '../../portfolio/model/crypto_view_data.dart';
+import '../../revision/revision_arguments/revision_arguments_screen.dart';
 import '../../shared/style/colors.dart';
 import '../../shared/templates/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
 import '../methods/conversion_methods.dart';
+import '../widgets/bottom_sheet_warning_user.dart';
 import '../widgets/button_change_coin.dart';
 import '../widgets/interactive_text.dart';
 import '../widgets/total_container.dart';
@@ -129,15 +132,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                       RegExp(r'^(\d+)?\.?\d{0,6}')),
                 ],
                 onChanged: (value) {
-                  if (_key.currentState!.validate()) validate = true;
                   setState(() {
-                    ConversionMethods.formatLatestValue(
-                        ConversionMethods.convertLatestValue(
-                            valueController.text, cryptoLeft));
-                    ConversionMethods.getTotal(
-                        cryptoRight,
-                        ConversionMethods.convertLatestValue(
-                            valueController.text, cryptoLeft));
+                    if (_key.currentState!.validate()) {
+                      validate = true;
+                    }
                   });
                 },
                 validator: (value) {
@@ -162,7 +160,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                 },
               ),
               const SizedBox(height: 10),
-              TotalInReal(valueController: valueController, widget: widget),
+              TotalInReal(
+                valueController: valueController,
+                crypto: cryptoLeft,
+              ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.32),
             ],
           ),
@@ -172,14 +173,42 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               validate ? magenta : const Color.fromARGB(255, 202, 200, 212),
           onPressed: () {
             if (_key.currentState!.validate()) {
-              ConversionMethods.validation(cryptoRight, cryptoLeft, context,
-                  valueController, widget.list);
+              if (cryptoLeft == cryptoRight) {
+                bottomSheetWarningUser(context);
+                validate = false;
+              } else {
+                Navigator.of(context).pushNamed(
+                  '/revision',
+                  arguments: RevisionArguments(
+                    cryptos: widget.list,
+                    convertQuantity: valueController.text,
+                    cryptoConvert: cryptoLeft,
+                    cryptoReceive: cryptoRight,
+                    receiveQuantity: ConversionMethods.getTotalFormatted(
+                        cryptoRight,
+                        ConversionMethods.convertLatestValue(
+                            valueController.text, cryptoLeft)),
+                    total: NumberFormat.simpleCurrency(
+                            locale: 'pt_BR', decimalDigits: 2)
+                        .format(
+                      ConversionMethods.convertLatestValue(
+                          valueController.text, cryptoRight),
+                    ),
+                    discount: double.parse(valueController.text),
+                    increase: ConversionMethods.getIncrease(
+                        ConversionMethods.convertLatestValue(
+                            valueController.text, cryptoLeft),
+                        cryptoRight.currentPrice),
+                  ),
+                );
+                validate = true;
+              }
             }
           },
           child: const Icon(Icons.navigate_next),
         ),
         bottomSheet: TotalContainer(
-          total: ConversionMethods.getTotal(
+          total: ConversionMethods.getTotalFormatted(
               cryptoRight,
               ConversionMethods.convertLatestValue(
                   valueController.text, cryptoLeft)),

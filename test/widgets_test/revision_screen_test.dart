@@ -18,16 +18,15 @@ void main() {
       await loadPage(
           tester,
           RevisionScreen(
-              cryptos: [crypto, cryptoSecond],
-              convertQuantity: '1BTC',
-              receiveQuantity: '2 ETH',
-              cryptoConvert: crypto,
-              cryptoReceive: cryptoSecond,
-              total: '1',
-              discount: 1,
-              increase: 2,
-              idDiscount: 'btc',
-              idIncrease: 'eth'));
+            cryptos: [crypto, cryptoSecond],
+            convertQuantity: '1BTC',
+            receiveQuantity: '2 ETH',
+            cryptoConvert: crypto,
+            cryptoReceive: cryptoSecond,
+            total: '1',
+            discount: 1,
+            increase: 2,
+          ));
       await tester.pumpAndSettle();
       final scaffoldFinder = find.byType(Scaffold);
       final appBarFinder = find.byType(AppBarDefault);

@@ -8,8 +8,6 @@ class RevisionArguments {
   String total;
   double discount;
   double increase;
-  String idDiscount;
-  String idIncrease;
   List<CryptoViewData> cryptos;
   RevisionArguments({
     required this.convertQuantity,
@@ -19,8 +17,6 @@ class RevisionArguments {
     required this.total,
     required this.discount,
     required this.increase,
-    required this.idDiscount,
-    required this.idIncrease,
     required this.cryptos,
   });
 }

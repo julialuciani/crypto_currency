@@ -42,10 +42,10 @@ void main() {
     test(
         'WHEN receives a value THEN returns the value divided by the current price of the crypto',
         () async {
-      String getTotal = ConversionMethods.getTotal(crypto, 5);
+      String getTotal = ConversionMethods.getTotalFormatted(crypto, 5);
       expect(getTotal, '2.50000 BTC');
 
-      String getTotalSecond = ConversionMethods.getTotal(crypto, 0);
+      String getTotalSecond = ConversionMethods.getTotalFormatted(crypto, 0);
       expect(getTotalSecond, '0.00 BTC');
     });
   });
