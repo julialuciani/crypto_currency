@@ -7,7 +7,6 @@ import 'package:projeto_crypto/portfolio/widgets/body_portifolio_screen.dart';
 
 import '../../helpers/setup/setup_when_widget_tester.dart';
 import '../../shared/crypto_mock_data.dart';
-import '../../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   testWidgets(
@@ -30,7 +29,7 @@ void main() {
               child: DetailsScreen(
             crypto: crypto,
             singleBalance: cryptoBalance,
-            list: data,
+            list: [crypto, cryptoSecond],
           )));
       await tester.pumpAndSettle();
       expect(find.byType(BodyDetailsScreen), findsWidgets);

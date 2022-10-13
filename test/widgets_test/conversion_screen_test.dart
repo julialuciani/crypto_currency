@@ -13,7 +13,6 @@ import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../shared/crypto_mock_data.dart';
 import '../helpers/setup/setup_widget_tester.dart';
-import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   group('Testing conversion screen', () {
@@ -175,7 +174,9 @@ void main() {
         await loadPage(
             tester,
             ConversionScreen(
-                crypto: crypto, singleBalance: cryptoBalance, list: data));
+                crypto: crypto,
+                singleBalance: cryptoBalance,
+                list: [crypto, cryptoSecond]));
         await tester.pumpAndSettle();
 
         final textFormFieldFinder = find.byType(TextFormField);

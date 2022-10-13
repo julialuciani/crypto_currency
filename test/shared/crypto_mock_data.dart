@@ -27,3 +27,6 @@ MovementModel movement = MovementModel(
     increase: 0,
     idDiscount: '',
     idIncrease: '');
+
+List<CryptoViewData> data = [crypto, cryptoSecond];
+List<double> singleBalance = [0.5, 0.5];

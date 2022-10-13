@@ -16,7 +16,6 @@ import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 
 import '../shared/crypto_mock_data.dart';
 import '../helpers/setup/setup_widget_tester.dart';
-import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   group('Testing details screen', () {
@@ -27,7 +26,7 @@ void main() {
           tester,
           DetailsScreen(
             crypto: crypto,
-            list: data,
+            list: [crypto, cryptoSecond],
             singleBalance: cryptoBalance,
           ));
       await tester.pumpAndSettle();

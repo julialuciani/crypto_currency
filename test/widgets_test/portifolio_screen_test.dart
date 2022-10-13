@@ -11,7 +11,6 @@ import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 
 import '../shared/crypto_mock_data.dart';
 import '../helpers/setup/setup_widget_tester.dart';
-import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   group('Testing portifolio screen', () {
@@ -32,7 +31,7 @@ void main() {
             tester,
             BodyPortifolioScreen(
               data: data,
-              singleBalance: balance,
+              singleBalance: singleBalance,
             ));
         await tester.pumpAndSettle();
 
@@ -88,7 +87,7 @@ void main() {
           tester,
           BodyPortifolioScreen(
             data: data,
-            singleBalance: balance,
+            singleBalance: singleBalance,
           ));
       await tester.pumpAndSettle();
 
@@ -111,8 +110,8 @@ void main() {
         await loadPage(
             tester,
             ListViewCryptos(
-              data: data,
-              singleBalance: balance,
+              data: [crypto, cryptoSecond],
+              singleBalance: const [0.5, 0.5],
             ));
 
         await tester.pumpAndSettle();
@@ -124,8 +123,8 @@ void main() {
         expect(listViewFinder, findsOneWidget);
         expect(listFinder, findsWidgets);
         expect(listTileFinder, findsWidgets);
-        expect(listCheck.singleBalance, balance);
-        expect(listCheck.data, data);
+        expect(listCheck.singleBalance, [0.5, 0.5]);
+        expect(listCheck.data, [crypto, cryptoSecond]);
 
         await tester.tap(listViewFinder);
         await tester.tap(listTileFinder.first);
