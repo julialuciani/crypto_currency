@@ -192,7 +192,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                             locale: 'pt_BR', decimalDigits: 2)
                         .format(
                       ConversionMethods.convertLatestValue(
-                          valueController.text, cryptoRight),
+                          valueController.text, cryptoLeft),
                     ),
                     discount: double.parse(valueController.text),
                     increase: ConversionMethods.getIncrease(
