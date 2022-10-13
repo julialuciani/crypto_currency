@@ -184,7 +184,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     cryptoConvert: cryptoLeft,
                     cryptoReceive: cryptoRight,
                     receiveQuantity: ConversionMethods.getIncrease(
-                        ConversionMethods.convertLatestValue(
+                        ConversionMethods.convertLeftValueToReal(
                             valueController.text, cryptoLeft),
                         cryptoRight.currentPrice),
                   ),
@@ -197,7 +197,7 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
         ),
         bottomSheet: TotalContainer(
           total:
-              '${ConversionMethods.getIncrease(ConversionMethods.convertLatestValue(valueController.text, cryptoLeft), cryptoRight.currentPrice)} ${cryptoRight.symbol.toUpperCase()}',
+              '${ConversionMethods.getIncrease(ConversionMethods.convertLeftValueToReal(valueController.text, cryptoLeft), cryptoRight.currentPrice)} ${cryptoRight.symbol.toUpperCase()}',
         ),
       ),
     );

@@ -23,19 +23,19 @@ void main() {
       String valueController = '5';
 
       double convert =
-          ConversionMethods.convertLatestValue(valueController, crypto);
+          ConversionMethods.convertLeftValueToReal(valueController, crypto);
       expect(convert, 10);
 
       String valueControllerSecond = '';
 
-      double convertSecond =
-          ConversionMethods.convertLatestValue(valueControllerSecond, crypto);
+      double convertSecond = ConversionMethods.convertLeftValueToReal(
+          valueControllerSecond, crypto);
       expect(convertSecond, 0);
 
       String valueControllerThird = '.';
 
-      double convertThird =
-          ConversionMethods.convertLatestValue(valueControllerThird, crypto);
+      double convertThird = ConversionMethods.convertLeftValueToReal(
+          valueControllerThird, crypto);
       expect(convertThird, 0);
     });
   });

@@ -9,13 +9,13 @@ class ConversionMethods {
     return !value.startsWith(RegExp(r'[!@#$%^&*()-/+.,?":{}|<>]'));
   }
 
-  static double convertLatestValue(
-      String valueController, CryptoViewData crypto) {
+  static double convertLeftValueToReal(
+      String valueController, CryptoViewData cryptoLeft) {
     double value = 0.0;
     if (valueController == '' || valueController == '.') {
       value = 0.0;
     } else {
-      value = double.parse(valueController) * crypto.currentPrice;
+      value = double.parse(valueController) * cryptoLeft.currentPrice;
     }
     return value;
   }
