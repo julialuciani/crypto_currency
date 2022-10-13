@@ -4,8 +4,8 @@ import 'package:projeto_crypto/l10n/core_strings.dart';
 
 class UserTextRevision extends StatelessWidget {
   const UserTextRevision({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

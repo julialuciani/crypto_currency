@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../controller/days_provider.dart';
+import '../methods/details_methods.dart';
 
 class ChartButton extends StatefulHookConsumerWidget {
   final int daysButton;
   final String title;
   const ChartButton({
-    Key? key,
+    super.key,
     required this.daysButton,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<ChartButton> createState() => _ChartButtonState();
@@ -21,27 +22,20 @@ class _ChartButtonState extends ConsumerState<ChartButton> {
   Widget build(BuildContext context) {
     var days = ref.watch(daysProvider.state);
 
-    Color changeButtonColor() {
-      if (widget.daysButton == days.state) {
-        return Colors.grey.shade300;
-      } else {
-        return Colors.transparent;
-      }
-    }
-
     return InkWell(
       onTap: () {
         setState(
           () {
             days.state = widget.daysButton;
-            changeButtonColor();
+            DetailsMethods.changeButtonColor(widget.daysButton, days.state);
           },
         );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
-          color: changeButtonColor(),
+          color:
+              DetailsMethods.changeButtonColor(widget.daysButton, days.state),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Text(

@@ -1,8 +1,4 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
 class ConversionMethods {
   static String formattingValue(String value) {
@@ -10,33 +6,37 @@ class ConversionMethods {
   }
 
   static bool isCorrect(String value) {
-    return value.startsWith(RegExp(r'[!@#$%^&*().,?":{}|<>]'));
+    return !value.startsWith(RegExp(r'[!@#$%^&*()-/+.,?":{}|<>]'));
   }
 
   static double convertLatestValue(
-      TextEditingController valueController, CryptoViewData crypto) {
+      String valueController, CryptoViewData crypto) {
     double value = 0.0;
-    if (valueController.text == '' || valueController.text == '.') {
+    if (valueController == '' || valueController == '.') {
       value = 0.0;
     } else {
-      value = double.parse(valueController.text) * crypto.currentPrice;
+      value = double.parse(valueController) * crypto.currentPrice;
     }
     return value;
   }
 
-  static String formatLatestValue(double price) {
-    String value = NumberFormat.simpleCurrency(
-            locale: Platform.localeName == 'pt_BR' ? 'pt_BR' : 'en',
-            decimalDigits: 2)
-        .format(price);
-    return value;
-  }
-
-  static String getTotal(CryptoViewData crypto, double convert) {
+  static String getTotalFormatted(CryptoViewData crypto, double convert) {
     if (convert == 0.0) {
       return '0.00 ${crypto.symbol.toUpperCase()}';
     }
     double total = convert / crypto.currentPrice;
-    return '${total.toStringAsFixed(10)} ${crypto.symbol.toUpperCase()}';
+    return '${total.toStringAsFixed(5)} ${crypto.symbol.toUpperCase()}';
+  }
+
+  static double getTotal(double currentPrice, double convert) {
+    if (convert == 0.0) {
+      return 0;
+    }
+    double total = convert / currentPrice;
+    return total;
+  }
+
+  static double getIncrease(double textFieldHelper, double rightCurrentPrice) {
+    return textFieldHelper / rightCurrentPrice;
   }
 }

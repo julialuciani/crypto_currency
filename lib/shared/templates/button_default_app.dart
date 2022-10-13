@@ -5,10 +5,10 @@ import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 import '../style/colors.dart';
 
 class ButtonDefaulApp extends StatelessWidget {
-  AppArguments arguments;
-  String route;
-  String label;
-  ButtonDefaulApp({
+  final AppArguments arguments;
+  final String route;
+  final String label;
+  const ButtonDefaulApp({
     Key? key,
     required this.route,
     required this.arguments,

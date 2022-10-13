@@ -11,7 +11,7 @@ class CoreStringPt extends CoreString {
   String get total => 'Valor total de moedas';
 
   @override
-  String get port => 'Portifólio';
+  String get port => 'Portfólio';
 
   @override
   String get move => 'Movimentos';

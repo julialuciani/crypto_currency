@@ -11,7 +11,7 @@ class CoreStringEn extends CoreString {
   String get total => 'Total crypto wealth';
 
   @override
-  String get port => 'Portifolio';
+  String get port => 'Portfolio';
 
   @override
   String get move => 'Movements';
@@ -54,7 +54,7 @@ class CoreStringEn extends CoreString {
   String get receive => 'Receive';
 
   @override
-  String get exc => 'exchange';
+  String get exc => 'Exchange';
 
   @override
   String get comp => 'Complete conversion';

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:projeto_crypto/l10n/core_strings.dart';
 
-import 'package:projeto_crypto/movements/view/model/movement_model.dart';
-import 'package:projeto_crypto/portifolio/usecase/cryptos_provider.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
+import 'package:projeto_crypto/movements/model/movement_model.dart';
 import 'package:projeto_crypto/shared/controller/movement_provider.dart';
 import 'package:projeto_crypto/shared/style/colors.dart';
 
-import '../../portifolio/controller/crypto_individual_balance_notifier.dart';
-import '../../portifolio/model/crypto_view_data.dart';
+import '../../portfolio/controller/crypto_individual_balance_notifier.dart';
+import '../../portfolio/model/crypto_view_data.dart';
 
 class ButtonRevisionScreen extends HookConsumerWidget {
   final String convertQuantity;
@@ -20,6 +19,7 @@ class ButtonRevisionScreen extends HookConsumerWidget {
   final double increase;
   final String idDiscount;
   final String idIncrease;
+  final List<CryptoViewData> cryptos;
   const ButtonRevisionScreen({
     Key? key,
     required this.convertQuantity,
@@ -31,12 +31,13 @@ class ButtonRevisionScreen extends HookConsumerWidget {
     required this.increase,
     required this.idDiscount,
     required this.idIncrease,
+    required this.cryptos,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final movements = ref.watch(movementProvider.state).state;
-    final cryptos = ref.watch(cryptosProvider);
+
     MovementModel model = MovementModel(
       converted: '$convertQuantity ${cryptoConvert.symbol.toUpperCase()}',
       received: receiveQuantity,
@@ -50,12 +51,12 @@ class ButtonRevisionScreen extends HookConsumerWidget {
 
     void alterBalance() {
       Future.delayed(Duration.zero, () {
-        int discountIndex = cryptos.asData!.value
-            .indexWhere((element) => idDiscount == element.id);
-        int increaseIndex = cryptos.asData!.value
-            .indexWhere((element) => idIncrease == element.id);
+        int discountIndex =
+            cryptos.indexWhere((element) => idDiscount == element.id);
+        int increaseIndex =
+            cryptos.indexWhere((element) => idIncrease == element.id);
 
-        for (CryptoViewData crypto in cryptos.asData!.value) {
+        for (CryptoViewData crypto in cryptos) {
           if (model.idDiscount == crypto.id) {
             ref.read(singleBalanceProvider)[discountIndex] -= model.discount;
           } else if (model.idIncrease == crypto.id) {

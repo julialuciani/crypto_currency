@@ -95,154 +95,154 @@ abstract class CoreString {
     Locale('pt')
   ];
 
-  /// No description provided for @crypto.
+  /// First text on the upper side of the first screen
   ///
-  /// In pt, this message translates to:
-  /// **'Cripto'**
+  /// In en, this message translates to:
+  /// **'Crypto'**
   String get crypto;
 
-  /// No description provided for @total.
+  /// Phrase below the balance of the user
   ///
-  /// In pt, this message translates to:
-  /// **'Valor total de moedas'**
+  /// In en, this message translates to:
+  /// **'Total crypto wealth'**
   String get total;
 
-  /// No description provided for @port.
+  /// Name of the first screen on BottomBar
   ///
-  /// In pt, this message translates to:
-  /// **'Portifólio'**
+  /// In en, this message translates to:
+  /// **'Portfolio'**
   String get port;
 
-  /// No description provided for @move.
+  /// Name of the second screen on the BottomBar
   ///
-  /// In pt, this message translates to:
-  /// **'Movimentos'**
+  /// In en, this message translates to:
+  /// **'Movements'**
   String get move;
 
   /// No description provided for @prices.
   ///
-  /// In pt, this message translates to:
-  /// **'Preço nos últimos {days} dias'**
+  /// In en, this message translates to:
+  /// **'Price in the last {days} days'**
   String prices(int days);
 
   /// No description provided for @variation.
   ///
-  /// In pt, this message translates to:
-  /// **'Variação nos últimos {days} dias'**
+  /// In en, this message translates to:
+  /// **'Variation in the last {days} days'**
   String variation(int days);
 
-  /// No description provided for @quant.
+  /// Is next to the quantity that the user has of that coin on Details Screen
   ///
-  /// In pt, this message translates to:
-  /// **'Quantidade'**
+  /// In en, this message translates to:
+  /// **'Quantity'**
   String get quant;
 
-  /// No description provided for @value.
+  /// Is next to the value in money that the user have of that coin
   ///
-  /// In pt, this message translates to:
-  /// **'Valor'**
+  /// In en, this message translates to:
+  /// **'Value'**
   String get value;
 
-  /// No description provided for @conv.
+  /// Is the text of the button to go to Conversion Screen
   ///
-  /// In pt, this message translates to:
-  /// **'Converter moeda'**
+  /// In en, this message translates to:
+  /// **'Convert coin'**
   String get conv;
 
-  /// No description provided for @avai.
+  /// Is next to the ammount of balance that the user has
   ///
-  /// In pt, this message translates to:
-  /// **'Saldo disponível'**
+  /// In en, this message translates to:
+  /// **'Available balance'**
   String get avai;
 
-  /// No description provided for @how.
+  /// Is on the inractive text that asks the user how much he wants to convert
   ///
-  /// In pt, this message translates to:
-  /// **'Quanto você gostaria de converter?'**
+  /// In en, this message translates to:
+  /// **'How much would you like to convert?'**
   String get how;
 
-  /// No description provided for @totEst.
+  /// Is above the estimated value on the coin the user is converting to
   ///
-  /// In pt, this message translates to:
-  /// **'Total estimado'**
+  /// In en, this message translates to:
+  /// **'Estimated total'**
   String get totEst;
 
-  /// No description provided for @review.
+  /// Is the interactive text that asks the user to review his conversion data
   ///
-  /// In pt, this message translates to:
-  /// **'Revise os dados da sua conversão'**
+  /// In en, this message translates to:
+  /// **'Review your conversion data'**
   String get review;
 
-  /// No description provided for @convert.
+  /// Is next to the value that the user wants to convert
   ///
-  /// In pt, this message translates to:
-  /// **'Converter'**
+  /// In en, this message translates to:
+  /// **'Convert'**
   String get convert;
 
-  /// No description provided for @receive.
+  /// Is next to the value that the user will increase by the convertion
   ///
-  /// In pt, this message translates to:
-  /// **'Receber'**
+  /// In en, this message translates to:
+  /// **'Receive'**
   String get receive;
 
-  /// No description provided for @exc.
+  /// Next to the comparation between one of the converted coin to the increased coin
   ///
-  /// In pt, this message translates to:
-  /// **'Câmbio'**
+  /// In en, this message translates to:
+  /// **'Exchange'**
   String get exc;
 
-  /// No description provided for @comp.
+  /// Text on the button to complete the conversion
   ///
-  /// In pt, this message translates to:
-  /// **'Concluir conversão'**
+  /// In en, this message translates to:
+  /// **'Complete conversion'**
   String get comp;
 
-  /// No description provided for @sucess.
+  /// Text below the checked icon on sucess page that shows the conversion was madeSucess phrase below the text and the icon check
   ///
-  /// In pt, this message translates to:
-  /// **'Conversão efetuada'**
+  /// In en, this message translates to:
+  /// **'Conversion performed'**
   String get sucess;
 
-  /// No description provided for @sucessM.
+  /// Sucess phrase below the text and the icon check
   ///
-  /// In pt, this message translates to:
-  /// **'Conversão de moeda efetuada com sucesso!'**
+  /// In en, this message translates to:
+  /// **'Conversion made successfully!'**
   String get sucessM;
 
-  /// No description provided for @writeS.
+  /// Says to user type something when textFormField is empty
   ///
-  /// In pt, this message translates to:
-  /// **'Digite algo'**
+  /// In en, this message translates to:
+  /// **'Type something'**
   String get writeS;
 
-  /// No description provided for @theValue.
+  /// Warning Messenger that says the value cannot start with a special character
   ///
-  /// In pt, this message translates to:
-  /// **'O valor não pode começar com um caractere especial'**
+  /// In en, this message translates to:
+  /// **'Value cannot start with special character'**
   String get theValue;
 
-  /// No description provided for @youDont.
+  /// Warning message that says that the user doesn't have this coin ammount
   ///
-  /// In pt, this message translates to:
-  /// **'Você não tem essa quantia'**
+  /// In en, this message translates to:
+  /// **'You don\'t have this ammount'**
   String get youDont;
 
-  /// No description provided for @zero.
+  /// Warning message that says to user that he can't convert 0
   ///
-  /// In pt, this message translates to:
-  /// **'Você não pode converter zero'**
+  /// In en, this message translates to:
+  /// **'You can\'t convert zero'**
   String get zero;
 
-  /// No description provided for @details.
+  /// Title of appBar details screen
   ///
-  /// In pt, this message translates to:
-  /// **'Detalhes'**
+  /// In en, this message translates to:
+  /// **'Details'**
   String get details;
 
-  /// No description provided for @pick.
+  /// Text on modal sheet that says to user pick a crypto to convert
   ///
-  /// In pt, this message translates to:
-  /// **'Escolha uma moeda para converter'**
+  /// In en, this message translates to:
+  /// **'Choose a crypto to convert'**
   String get pick;
 }
 

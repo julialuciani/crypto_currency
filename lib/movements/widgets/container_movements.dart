@@ -4,8 +4,8 @@ import '../../l10n/core_strings.dart';
 
 class ContainerMovementsText extends StatelessWidget {
   const ContainerMovementsText({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
 class RevisionArguments {
   String convertQuantity;
@@ -8,8 +8,7 @@ class RevisionArguments {
   String total;
   double discount;
   double increase;
-  String idDiscount;
-  String idIncrease;
+  List<CryptoViewData> cryptos;
   RevisionArguments({
     required this.convertQuantity,
     required this.receiveQuantity,
@@ -18,7 +17,6 @@ class RevisionArguments {
     required this.total,
     required this.discount,
     required this.increase,
-    required this.idDiscount,
-    required this.idIncrease,
+    required this.cryptos,
   });
 }

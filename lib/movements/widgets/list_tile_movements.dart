@@ -16,7 +16,7 @@ class ListTileMovements extends StatelessWidget {
     required this.date,
   }) : super(key: key);
 
-  DateFormat dateFormat = DateFormat.yMd(Platform.localeName);
+  final DateFormat dateFormat = DateFormat.yMd(Platform.localeName);
 
   @override
   Widget build(BuildContext context) {

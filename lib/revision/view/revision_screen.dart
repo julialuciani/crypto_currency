@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:projeto_crypto/portifolio/model/crypto_view_data.dart';
-import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
+import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 import 'package:projeto_crypto/revision/widgets/body_revision_screen.dart';
-import 'package:projeto_crypto/shared/utils/app_bar_default.dart';
+import 'package:projeto_crypto/shared/templates/app_bar_default.dart';
 
 class RevisionScreen extends StatelessWidget {
   static const route = '/revision';
@@ -14,8 +13,7 @@ class RevisionScreen extends StatelessWidget {
   final String total;
   final double discount;
   final double increase;
-  final String idDiscount;
-  final String idIncrease;
+  final List<CryptoViewData> cryptos;
 
   const RevisionScreen({
     Key? key,
@@ -26,26 +24,24 @@ class RevisionScreen extends StatelessWidget {
     required this.total,
     required this.discount,
     required this.increase,
-    required this.idDiscount,
-    required this.idIncrease,
+    required this.cryptos,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as RevisionArguments;
     return Scaffold(
       appBar: const AppBarDefault(title: 'Revisar'),
       body: BodyRevision(
-        convertQuantity: args.convertQuantity,
-        cryptoConvert: args.cryptoConvert,
-        cryptoReceive: args.cryptoReceive,
-        receiveQuantity: args.receiveQuantity,
-        total: args.total,
-        increase: args.increase,
-        discount: args.discount,
-        idDiscount: args.idDiscount,
-        idIncrease: args.idIncrease,
+        convertQuantity: convertQuantity,
+        cryptoConvert: cryptoConvert,
+        cryptoReceive: cryptoReceive,
+        receiveQuantity: receiveQuantity,
+        total: total,
+        increase: increase,
+        discount: discount,
+        idDiscount: cryptoConvert.id,
+        idIncrease: cryptoReceive.id,
+        cryptos: cryptos,
       ),
     );
   }

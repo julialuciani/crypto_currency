@@ -4,7 +4,7 @@ import 'package:projeto_crypto/revision/widgets/button_revision_screen.dart';
 import 'package:projeto_crypto/revision/widgets/column_revision_infos.dart';
 import 'package:projeto_crypto/revision/widgets/user_text_revision.dart';
 
-import '../../portifolio/model/crypto_view_data.dart';
+import '../../portfolio/model/crypto_view_data.dart';
 
 class BodyRevision extends StatelessWidget {
   final String convertQuantity;
@@ -16,6 +16,7 @@ class BodyRevision extends StatelessWidget {
   final double discount;
   final String idDiscount;
   final String idIncrease;
+  final List<CryptoViewData> cryptos;
   const BodyRevision({
     Key? key,
     required this.convertQuantity,
@@ -27,6 +28,7 @@ class BodyRevision extends StatelessWidget {
     required this.discount,
     required this.idDiscount,
     required this.idIncrease,
+    required this.cryptos,
   }) : super(key: key);
 
   @override
@@ -55,6 +57,7 @@ class BodyRevision extends StatelessWidget {
             increase: increase,
             idDiscount: idDiscount,
             idIncrease: idIncrease,
+            cryptos: cryptos,
           ),
         ],
       ),

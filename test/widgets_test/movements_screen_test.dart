@@ -7,13 +7,19 @@ import 'package:projeto_crypto/movements/widgets/list_tile_movements.dart';
 import 'package:projeto_crypto/movements/widgets/list_view_movements.dart';
 import 'package:projeto_crypto/shared/templates/bottom_navigation_bar_app.dart';
 
-import '../helpers/setup_widget_tester.dart';
+import '../shared/crypto_mock_data.dart';
+import '../helpers/setup/setup_widget_tester.dart';
 
 void main() {
   group('Testing movemnts screen', () {
-    testWidgets('Testing if the body has all it needs',
+    testWidgets(
+        'WHEN BodyMovements is called THEN test if it has all the widgets it needs',
         (WidgetTester tester) async {
-      await loadPage(tester, const BodyMovements());
+      await loadPage(
+          tester,
+          BodyMovements(
+            movements: [movement],
+          ));
 
       final dividerFinder = find.byType(Divider);
       final columnFinder = find.byType(Column);
@@ -22,13 +28,15 @@ void main() {
       final expandedFinder = find.byType(Expanded);
 
       expect(expandedFinder, findsOneWidget);
-      expect(dividerFinder, findsOneWidget);
-      expect(columnFinder, findsOneWidget);
+      expect(dividerFinder, findsWidgets);
+      expect(columnFinder, findsWidgets);
       expect(containerMovementsFinder, findsOneWidget);
       expect(listViewMovementsFinder, findsOneWidget);
     });
 
-    testWidgets('Testing movements screen', (WidgetTester tester) async {
+    testWidgets(
+        'WHEN MovementsScreen its called THEN test if it has all the widgets it needs',
+        (WidgetTester tester) async {
       await loadPage(tester, const MovementsScreen());
       await tester.pumpAndSettle();
 
@@ -41,27 +49,49 @@ void main() {
       expect(scaffoldFinder, findsOneWidget);
       expect(bottomFinder, findsOneWidget);
       expect(bodyFinder, findsOneWidget);
+
+      await tester.tap(bottomFinder);
+      await tester.pumpAndSettle();
     });
 
-    testWidgets('Testing Container Movements', (WidgetTester tester) async {
+    testWidgets(
+        'WHEN ContainerMovementsText is called THEN tests if it has all the widgets it needs',
+        (WidgetTester tester) async {
       await loadPage(tester, const ContainerMovementsText());
 
       final textFinder = find.byType(Text);
       final containerFinder = find.byType(Container);
+      final containerMovementsTextFinder = find.byType(ContainerMovementsText);
 
-      expect(containerFinder, findsOneWidget);
+      expect(containerFinder, findsWidgets);
       expect(textFinder, findsOneWidget);
+      expect(containerMovementsTextFinder, findsOneWidget);
     });
 
-    testWidgets('Testing ListView movements', (WidgetTester tester) async {
-      await loadPage(tester, const ListViewMovements());
+    testWidgets(
+        'WHEN ListViewMovements is called THEN tests if it has all the widgets it needs',
+        (WidgetTester tester) async {
+      await loadPage(
+          tester,
+          ListViewMovements(
+            movements: [movement],
+          ));
+      await tester.pumpAndSettle();
 
-      final listTileFinder = find.byType(ListView);
+      final listViewFinder = find.byType(ListView);
+      final listTileFinder = find.byType(ListTileMovements);
+      final ListTileMovements listTile = tester.widget(listTileFinder);
 
-      expect(listTileFinder, findsWidgets);
+      expect(listViewFinder, findsOneWidget);
+      expect(listTileFinder, findsOneWidget);
+      expect(listTile.convertQuantity, movement.converted);
+      expect(listTile.receiveQuantity, movement.received);
+      expect(listTile.total, movement.valueInReal);
     });
 
-    testWidgets('Testing ListTile', (WidgetTester tester) async {
+    testWidgets(
+        'WHEN ListTile is called THEN tests if it has all the widgets it needs',
+        (WidgetTester tester) async {
       await loadPage(
           tester,
           ListTileMovements(

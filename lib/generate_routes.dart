@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_crypto/portifolio/view/portifolio_screen.dart';
+import 'package:projeto_crypto/details/view/details_page.dart';
+import 'package:projeto_crypto/portfolio/view/portfolio_page.dart';
 import 'package:projeto_crypto/revision/revision_arguments/revision_arguments_screen.dart';
 import 'package:projeto_crypto/revision/view/conversion_performed_screen.dart';
 import 'package:projeto_crypto/revision/view/revision_screen.dart';
 import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import 'conversion/view/conversion_screen.dart';
-import 'details/view/details_screen.dart';
 import 'movements/view/movements_screen.dart';
 
 class GenerateRoute {
   static Route<dynamic>? findRoute(settings) {
-    if (settings.name == PortifolioScreen.route) {
+    if (settings.name == PortfolioPage.route) {
       return PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) {
-          return const PortifolioScreen();
+          return const PortfolioPage();
         },
       );
     } else if (settings.name == MovementsScreen.route) {
@@ -23,13 +23,14 @@ class GenerateRoute {
           return const MovementsScreen();
         },
       );
-    } else if (settings.name == DetailsScreen.route) {
+    } else if (settings.name == DetailsPage.route) {
       final args = settings.arguments as AppArguments;
       return PageRouteBuilder(
         settings: settings,
         pageBuilder: (context, animation, secondaryAnimation) {
-          return DetailsScreen(
+          return DetailsPage(
             crypto: args.crypto,
+            list: args.list,
             singleBalance: args.singleBalance,
           );
         },
@@ -42,6 +43,7 @@ class GenerateRoute {
           return ConversionScreen(
             crypto: args.crypto,
             singleBalance: args.singleBalance,
+            list: args.list,
           );
         },
       );
@@ -58,8 +60,7 @@ class GenerateRoute {
             total: args.total,
             discount: args.discount,
             increase: args.increase,
-            idDiscount: args.idDiscount,
-            idIncrease: args.idIncrease,
+            cryptos: args.cryptos,
           );
         },
       );

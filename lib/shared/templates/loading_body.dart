@@ -7,10 +7,18 @@ class LoadingBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: LoadingAnimationWidget.stretchedDots(
-        color: magenta,
-        size: 100,
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Center(
+            child: LoadingAnimationWidget.stretchedDots(
+              color: magenta,
+              size: 100,
+            ),
+          ),
+        ],
       ),
     );
   }

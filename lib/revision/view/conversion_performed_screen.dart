@@ -5,8 +5,8 @@ class ConversionPerformedScreen extends StatefulWidget {
   static const route = '/conversion-performed';
 
   const ConversionPerformedScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<ConversionPerformedScreen> createState() =>
