@@ -77,7 +77,6 @@ void main() {
         expect(bodyTester.data, cryptosMarket);
         expect(bodyTester.list, [crypto, crypto]);
 
-        // await tester.tap(changeDaysButton.first);
         await tester.pumpAndSettle();
         await tester.tap(buttonDefaultAppFinder);
         await tester.pumpAndSettle();
