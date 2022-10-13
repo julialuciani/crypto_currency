@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:projeto_crypto/conversion/methods/conversion_methods.dart';
 
@@ -39,16 +37,6 @@ void main() {
       double convertThird =
           ConversionMethods.convertLatestValue(valueControllerThird, crypto);
       expect(convertThird, 0);
-    });
-
-    test(
-        'WHEN receives value THEN formats value with the currency by the locale',
-        () async {
-      String formatLatest = ConversionMethods.formatLatestValue(50.0);
-      if (Platform.localeName == 'pt-BR') {
-        expect(formatLatest, 'R\$ 50,00');
-      }
-      expect(formatLatest, '\$50.00');
     });
 
     test(

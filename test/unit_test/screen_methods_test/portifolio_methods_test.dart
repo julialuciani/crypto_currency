@@ -13,5 +13,5 @@ void main() {
   });
 }
 
-List<CryptoViewData> data = [crypto, crypto];
+List<CryptoViewData> data = [crypto, cryptoSecond];
 List<double> balance = [5, 5];

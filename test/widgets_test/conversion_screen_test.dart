@@ -13,6 +13,7 @@ import 'package:projeto_crypto/shared/utils/app_arguments.dart';
 
 import '../shared/crypto_mock_data.dart';
 import '../helpers/setup/setup_widget_tester.dart';
+import '../unit_test/screen_methods_test/portifolio_methods_test.dart';
 
 void main() {
   group('Testing conversion screen', () {
@@ -161,6 +162,36 @@ void main() {
         await tester.enterText(textFormFieldFinder, '10000');
 
         await tester.enterText(textFormFieldFinder, '0.001');
+
+        await tester.tap(floatingButtonFinder);
+        await tester.pumpAndSettle();
+      });
+    });
+
+    testWidgets(
+        'WHEN user chooses the same crypto to convert THEN return warning',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await loadPage(
+            tester,
+            ConversionScreen(
+                crypto: crypto, singleBalance: cryptoBalance, list: data));
+        await tester.pumpAndSettle();
+
+        final textFormFieldFinder = find.byType(TextFormField);
+        final floatingButtonFinder = find.byType(FloatingActionButton);
+        final buttonChangeCoinFinder = find.byType(ButtonChangeCoin);
+        final listTileFinder = find.byType(ListTileConversion);
+
+        await tester.enterText(textFormFieldFinder, '0.001');
+        await tester.tap(buttonChangeCoinFinder.first);
+        await tester.pumpAndSettle();
+        await tester.tap(listTileFinder.first);
+        await tester.pumpAndSettle();
+        await tester.tap(buttonChangeCoinFinder.last);
+        await tester.pumpAndSettle();
+        await tester.tap(listTileFinder.first);
+        await tester.pumpAndSettle();
 
         await tester.tap(floatingButtonFinder);
         await tester.pumpAndSettle();
