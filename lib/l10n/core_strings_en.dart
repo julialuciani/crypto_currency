@@ -81,5 +81,8 @@ class CoreStringEn extends CoreString {
   String get details => 'Details';
 
   @override
+  String get sense => 'Doesn\'t make sense convert the same coin';
+
+  @override
   String get pick => 'Choose a crypto to convert';
 }

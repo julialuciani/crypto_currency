@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_crypto/l10n/core_strings.dart';
 
 Future<dynamic> bottomSheetWarningUser(BuildContext context) {
   return showModalBottomSheet(
@@ -14,7 +15,7 @@ Future<dynamic> bottomSheetWarningUser(BuildContext context) {
         height: 100,
         child: Center(
           child: Text(
-            'Não faz sentido converter duas moedas iguais',
+            CoreString.of(context)!.sense,
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.grey.shade700),
           ),

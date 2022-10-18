@@ -81,5 +81,8 @@ class CoreStringPt extends CoreString {
   String get details => 'Detalhes';
 
   @override
+  String get sense => 'Não faz sentido converter a mesma moeda';
+
+  @override
   String get pick => 'Escolha uma moeda para converter';
 }

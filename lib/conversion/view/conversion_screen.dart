@@ -11,7 +11,6 @@ import '../../shared/style/colors.dart';
 import '../../shared/templates/app_bar_default.dart';
 import '../controller/cryptos_provider.dart';
 import '../methods/conversion_methods.dart';
-import '../widgets/bottom_sheet_warning_user.dart';
 import '../widgets/button_change_coin.dart';
 import '../widgets/interactive_text.dart';
 import '../widgets/total_container.dart';
@@ -153,6 +152,8 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                       cryptoSingleBalance) {
                     validate = false;
                     return CoreString.of(context)!.youDont;
+                  } else if (cryptoLeft == cryptoRight) {
+                    return CoreString.of(context)!.sense;
                   } else {
                     return null;
                   }
@@ -172,25 +173,20 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
               validate ? magenta : const Color.fromARGB(255, 202, 200, 212),
           onPressed: () {
             if (_key.currentState!.validate()) {
-              if (cryptoLeft == cryptoRight) {
-                bottomSheetWarningUser(context);
-                validate = false;
-              } else {
-                Navigator.of(context).pushNamed(
-                  '/revision',
-                  arguments: RevisionArguments(
-                    cryptos: widget.list,
-                    convertQuantity: double.parse(valueController.text),
-                    cryptoConvert: cryptoLeft,
-                    cryptoReceive: cryptoRight,
-                    receiveQuantity: ConversionMethods.getIncrease(
-                        ConversionMethods.convertLeftValueToReal(
-                            valueController.text, cryptoLeft),
-                        cryptoRight.currentPrice),
-                  ),
-                );
-                validate = true;
-              }
+              Navigator.of(context).pushNamed(
+                '/revision',
+                arguments: RevisionArguments(
+                  cryptos: widget.list,
+                  convertQuantity: double.parse(valueController.text),
+                  cryptoConvert: cryptoLeft,
+                  cryptoReceive: cryptoRight,
+                  receiveQuantity: ConversionMethods.getIncrease(
+                      ConversionMethods.convertLeftValueToReal(
+                          valueController.text, cryptoLeft),
+                      cryptoRight.currentPrice),
+                ),
+              );
+              validate = true;
             }
           },
           child: const Icon(Icons.navigate_next),

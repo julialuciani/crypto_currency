@@ -81,5 +81,8 @@ class CoreStringEs extends CoreString {
   String get details => 'Detalles';
 
   @override
+  String get sense => 'No tiene sentido convertir la misma moneda';
+
+  @override
   String get pick => 'Elija una criptomoneda para convertir';
 }

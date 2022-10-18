@@ -39,6 +39,7 @@
     "youDont" : "No tienes esta cantidad",
     "zero" : "No puedes convertir cero",
     "details" : "Detalles",
+    "sense" : "No tiene sentido convertir la misma moneda",
     "pick" : "Elija una criptomoneda para convertir"
 
 

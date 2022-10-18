@@ -233,11 +233,17 @@ abstract class CoreString {
   /// **'You can\'t convert zero'**
   String get zero;
 
-  /// Title of appBar details screen
+  /// modal bottom sheet text
   ///
   /// In en, this message translates to:
   /// **'Details'**
   String get details;
+
+  /// No description provided for @sense.
+  ///
+  /// In en, this message translates to:
+  /// **'Doesn\'t make sense convert the same coin'**
+  String get sense;
 
   /// Text on modal sheet that says to user pick a crypto to convert
   ///

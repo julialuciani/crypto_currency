@@ -111,6 +111,10 @@
     "@details": {
       "description": "Title of appBar details screen"
     },
+    "sense" : "Doesn't make sense convert the same coin",
+    "@details": {
+      "description": "modal bottom sheet text"
+    },
     "pick" : "Choose a crypto to convert",
     "@pick": {
       "description": "Text on modal sheet that says to user pick a crypto to convert"

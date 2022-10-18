@@ -40,5 +40,7 @@ void main() {
     expect(find.text('Você não pode converter zero'), findsOneWidget);
     expect(find.text('Detalhes'), findsOneWidget);
     expect(find.text('Escolha uma moeda para converter'), findsOneWidget);
+    expect(
+        find.text('Não faz sentido converter a mesma moeda'), findsOneWidget);
   });
 }

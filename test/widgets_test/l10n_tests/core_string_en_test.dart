@@ -38,5 +38,7 @@ void main() {
     expect(find.text('You don\'t have this ammount'), findsOneWidget);
     expect(find.text('You can\'t convert zero'), findsOneWidget);
     expect(find.text('Details'), findsOneWidget);
+    expect(
+        find.text('Doesn\'t make sense convert the same coin'), findsOneWidget);
   });
 }

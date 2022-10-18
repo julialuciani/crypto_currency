@@ -39,5 +39,7 @@ void main() {
     expect(find.text('No puedes convertir cero'), findsOneWidget);
     expect(find.text('Detalles'), findsOneWidget);
     expect(find.text('Elija una criptomoneda para convertir'), findsOneWidget);
+    expect(find.text('No tiene sentido convertir la misma moneda'),
+        findsOneWidget);
   });
 }

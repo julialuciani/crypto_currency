@@ -39,6 +39,7 @@
     "youDont" : "Você não tem essa quantia",
     "zero" : "Você não pode converter zero",
     "details" : "Detalhes",
+    "sense" : "Não faz sentido converter a mesma moeda",
     "pick" : "Escolha uma moeda para converter"
 
      

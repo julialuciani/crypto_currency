@@ -34,6 +34,7 @@ class InternationalizedTexts extends StatelessWidget {
           Text(CoreString.of(context)!.zero),
           Text(CoreString.of(context)!.details),
           Text(CoreString.of(context)!.pick),
+          Text(CoreString.of(context)!.sense),
         ],
       ),
     );
