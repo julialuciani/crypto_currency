@@ -153,8 +153,10 @@ class _ConversionState extends ConsumerState<ConversionScreen> {
                     validate = false;
                     return CoreString.of(context)!.youDont;
                   } else if (cryptoLeft == cryptoRight) {
+                    validate = false;
                     return CoreString.of(context)!.sense;
                   } else {
+                    validate = true;
                     return null;
                   }
                 },
