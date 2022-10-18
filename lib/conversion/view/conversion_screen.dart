@@ -19,11 +19,11 @@ import '../widgets/upper_container_conversion.dart';
 
 class ConversionScreen extends StatefulHookConsumerWidget {
   static const route = '/conversion';
-  CryptoViewData crypto;
+  final CryptoViewData crypto;
   final double singleBalance;
   final List<CryptoViewData> list;
 
-  ConversionScreen({
+  const ConversionScreen({
     super.key,
     required this.crypto,
     required this.singleBalance,
