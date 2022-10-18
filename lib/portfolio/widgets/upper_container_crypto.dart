@@ -38,7 +38,6 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                   color: magenta,
-                  fontFamily: 'Montserrat',
                 ),
               ),
               IconButton(
