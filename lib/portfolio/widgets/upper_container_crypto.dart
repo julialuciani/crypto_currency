@@ -56,7 +56,6 @@ class _UpperCardCryptoState extends ConsumerState<UpperContainerCrypto> {
                   FormatCurrency.format(balance),
                   style: const TextStyle(
                     fontSize: 29,
-                    fontFamily: 'Montserrat',
                   ),
                 )
               : const InvisibleContainer(),

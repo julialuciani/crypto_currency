@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:projeto_crypto/details/controller/days_provider.dart';
 import 'package:projeto_crypto/portfolio/model/crypto_view_data.dart';
 
 import '../../shared/templates/error_body.dart';
@@ -23,9 +22,6 @@ class DetailsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final marketData = ref.watch(marketDataProvider(crypto.id));
-    Future.delayed(Duration.zero, () {
-      ref.read(daysProvider.state).state = 5;
-    });
 
     return marketData.when(data: ((data) {
       return BodyDetailsScreen(
